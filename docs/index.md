@@ -1,11 +1,16 @@
 ---
 # This top area is to give jekyll informations about the page.
-layout: default
+title: Page with menubar
+permalink: /
+subtitle: Demo page with a menubar
+layout: page
+show_sidebar: false
+menubar: navigation
 ---
 # The first Headline of the page
-This site is a simple example for a markdown page.  
+ergdrgddgrg site is a simple example for a markdown page.  
 All important informations for markdown can be found in the official [documentations](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).  
-Here are just some fundamental things.
+Here are just some fundamental things.wdwdwd
 
 ## Headlines
 In Markdown Headings are created with # and the number of # represent the size of the heaading.

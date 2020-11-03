@@ -1,0 +1,9 @@
+- name: Knowledge
+  link: knowledge/
+  dropdown:
+    - name: WakeWord
+      link: knowledge/wakeword/
+    - name: Docker
+      link: knowledge/docker/
+    - name: Speech To Text
+      link: knowledge/speech-to-text/
