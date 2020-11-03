@@ -1,6 +1,10 @@
 ---
-# This top area is to give jekyll informations about the page.
-layout: default
+title: WakeWord
+permalink: /knowledge/wakeword
+subtitle: Demo page with a menubar
+layout: page
+show_sidebar: false
+menubar: navigation
 ---
 
 # Wake Word

@@ -1,6 +1,10 @@
 ---
-# This top area is to give jekyll informations about the page.
-layout: default
+title: Docker
+permalink: /knowledge/docker
+subtitle: Demo page with a menubar
+layout: page
+show_sidebar: false
+menubar: navigation
 ---
 
 # Docker
