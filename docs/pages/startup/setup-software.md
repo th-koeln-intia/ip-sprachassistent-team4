@@ -1,6 +1,6 @@
 ---
-title: Installation
-permalink: /installation 
+title: Setup Software
+permalink: /startup/setup-software 
 subtitle: Installation of the voice assistant
 layout: page
 show_sidebar: false

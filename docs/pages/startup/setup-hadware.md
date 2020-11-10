@@ -1,6 +1,6 @@
 ---
 title: Setup Raspberry Pi
-permalink: /startup/setup-raspi
+permalink: /startup/setup-hardware
 subtitle: Demo page with a menubar
 layout: page
 show_sidebar: false
