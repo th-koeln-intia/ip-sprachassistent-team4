@@ -1,3 +1,8 @@
+---
+layout: default
+parent: Knowledge
+---
+
 # Jekyll
 - jekyll ist most popular framework to work static websites
 - ist powerfull and extensible

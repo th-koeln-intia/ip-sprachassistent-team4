@@ -1,10 +1,6 @@
 ---
-title: Software Configuration
-permalink: /startup/configuration
-subtitle: Setup of the voice assistant
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Startup
 ---
 
 # Settings of Rhasspy

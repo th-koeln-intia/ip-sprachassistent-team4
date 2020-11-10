@@ -24,11 +24,27 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
-remote_theme: chrisrhymes/bulma-clean-theme
+#remote_theme: chrisrhymes/bulma-clean-theme
+theme: "just-the-docs"
+
 plugins:
   - jekyll-feed
   - jekyll-relative-links
   - jekyll-remote-theme
+
+defaults:
+  # _docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
+      sidebar:
+        nav: "docs"
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

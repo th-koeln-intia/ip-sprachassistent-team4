@@ -1,10 +1,6 @@
 ---
-title: Setup Software
-permalink: /startup/setup-software 
-subtitle: Installation of the voice assistant
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Startup
 ---
 
 # Installation Rhasspy
