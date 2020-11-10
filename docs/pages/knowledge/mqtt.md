@@ -1,6 +1,10 @@
 ---
-# This top area is to give jekyll informations about the page.
-layout: default
+title: MQTT
+permalink: /knowledge/mqtt
+subtitle: Knowledge about MQTT
+layout: page
+show_sidebar: false
+menubar: navigation
 ---
 
 # MQTT (Message Queuing Telemetry Transport)
@@ -30,5 +34,5 @@ Topics looks like paths for example `'rhasspy/audioServer/devices)'` or `'house/
 When you subscribe you can also use wildcards. ` + ` is a single wildcard(replaces one character) and ` # ` is a multi wildcard(replaces many characters).   
 When you publish you can't use wildcards.
 
-## Which MQTT topics are supportet?
+## Which MQTT topics are supported?
 All available topics in rhasspy can be found here: [MQTT API](https://rhasspy.readthedocs.io/en/latest/reference/#mqtt-api)
