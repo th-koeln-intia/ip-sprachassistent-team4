@@ -1,3 +1,12 @@
+---
+title: Rhasspy
+permalink: /knowledge/rhasspy
+subtitle: Demo page with a menubar
+layout: page
+show_sidebar: false
+menubar: navigation
+---
+
 # What is Rhasspy ?
 Rhasspy is an open source, fully offline voice assistant toolkit.
 Rhasppy core component can be taken done to speech and intent.
