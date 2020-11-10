@@ -1,10 +1,6 @@
 ---
-title: Speech to text
-permalink: /knowledge/speech-to-text
-subtitle: Demo page with a menubar
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Knowledge
 ---
 
 # Speech to text

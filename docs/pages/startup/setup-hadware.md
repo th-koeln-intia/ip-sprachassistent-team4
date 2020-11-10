@@ -1,10 +1,6 @@
 ---
-title: Setup Raspberry Pi
-permalink: /startup/setup-hardware
-subtitle: Demo page with a menubar
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Startup
 ---
 
 # Shopping List

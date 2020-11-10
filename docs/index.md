@@ -1,13 +1,11 @@
 ---
 # This top area is to give jekyll informations about the page.
-title: Page with menubar
-permalink: /
-subtitle: Demo page with a menubar
-layout: page
-show_sidebar: false
-menubar: navigation
+title: Welcome to Sherlock
+layout: default
+nav_order: 1
 ---
-# The first Headline of the page
+# Welcome To Sherlock
+
 ergdrgddgrg site is a simple example for a markdown page.  
 All important informations for markdown can be found in the official [documentations](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).  
 Here are just some fundamental things.wdwdwd

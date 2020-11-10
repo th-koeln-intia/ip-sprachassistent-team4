@@ -1,10 +1,6 @@
 ---
-title: MQTT
-permalink: /knowledge/mqtt
-subtitle: Knowledge about MQTT
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Knowledge
 ---
 
 # MQTT (Message Queuing Telemetry Transport)

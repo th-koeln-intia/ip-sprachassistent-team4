@@ -1,10 +1,6 @@
 ---
-title: WakeWord
-permalink: /knowledge/wakeword
-subtitle: Demo page with a menubar
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Knowledge
 ---
 
 # Wake Word

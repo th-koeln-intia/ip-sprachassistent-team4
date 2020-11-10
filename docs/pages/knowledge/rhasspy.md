@@ -1,10 +1,6 @@
 ---
-title: Rhasspy
-permalink: /knowledge/rhasspy
-subtitle: Demo page with a menubar
-layout: page
-show_sidebar: false
-menubar: navigation
+layout: default
+parent: Knowledge
 ---
 
 # What is Rhasspy ?
