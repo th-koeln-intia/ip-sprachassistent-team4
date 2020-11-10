@@ -1,6 +1,6 @@
-instalation---
+---
 title: Installation
-permalink: /pages/installation 
+permalink: /installation 
 subtitle: Installation of the voice assistant
 layout: page
 show_sidebar: false
