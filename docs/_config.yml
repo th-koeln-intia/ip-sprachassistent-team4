@@ -26,7 +26,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 markdown: kramdown
 #remote_theme: chrisrhymes/bulma-clean-theme
 # theme: "just-the-docs"
-remote_theme: pmarsceill/just-the-docs
+#remote_theme: pmarsceill/just-the-docs
+remote_theme: Sh4der/just-the-docs
 color_scheme: dark
 
 plugins:
