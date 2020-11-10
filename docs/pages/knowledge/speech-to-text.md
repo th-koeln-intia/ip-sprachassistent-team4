@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Speech to text
 permalink: /knowledge/speech-to-text
 subtitle: Demo page with a menubar

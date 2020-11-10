@@ -7,3 +7,7 @@
       link: knowledge/docker/
     - name: Speech To Text
       link: knowledge/speech-to-text/
+    - name: MQTT
+      link: knowledge/mqtt/
+    - name: Rhasspy
+      link: knowledge/rhasspy/
