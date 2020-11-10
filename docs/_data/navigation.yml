@@ -1,8 +1,12 @@
 - name: Startup
   link: startup/
   dropdown:
-    - name: 1. Setup raspi
-      link: startup/setup-raspi
+    - name: 1. Setup Hardware
+      link: startup/setup-hardware
+    - name: 2. Setup Software
+      link: startup/setup-software
+    - name: 3. Configuration
+      link: startup/configuration
 
 - name: Knowledge
   link: knowledge/
