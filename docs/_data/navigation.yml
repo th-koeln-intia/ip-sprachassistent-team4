@@ -1,3 +1,9 @@
+- name: Startup
+  link: startup/
+  dropdown:
+    - name: 1. Setup raspi
+      link: startup/setup-raspi
+
 - name: Knowledge
   link: knowledge/
   dropdown:
