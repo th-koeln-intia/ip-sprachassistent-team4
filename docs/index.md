@@ -6,6 +6,25 @@ nav_order: 1
 ---
 # Welcome To Sherlock
 
+#### Example
+{: .no_toc }
+
+<button class="btn js-toggle-dark-mode">Preview dark color scheme</button>
+
+<script>
+const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
+
+jtd.addEvent(toggleDarkMode, 'click', function(){
+  if (jtd.getTheme() === 'dark') {
+    jtd.setTheme('light');
+    toggleDarkMode.textContent = 'Preview dark color scheme';
+  } else {
+    jtd.setTheme('dark');
+    toggleDarkMode.textContent = 'Return to the light side';
+  }
+});
+</script>
+
 ergdrgddgrg site is a simple example for a markdown page.  
 All important informations for markdown can be found in the official [documentations](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).  
 Here are just some fundamental things.wdwdwd
