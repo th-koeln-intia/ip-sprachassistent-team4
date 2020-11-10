@@ -11,6 +11,13 @@ menubar: navigation
 
 ## What is a Wake Word?
 A Wake Word is a word, for example a name, to wake a Voice Assistant. After you wake up a voice assistant you can give it a task to proceed.
+There are 4 scenarios a program con detect a wakeword:
+- true positiv: The wake word was spoken, and was detected correct.
+- false negative: The wake word was spoken and was not detected by the program.
+- false positive: The wake word was not spoken but the program detects a wake word.
+- true negative: The wake word was spoken and the program does not detect a wake word.     
+
+The goal of a wake word system is to recognize the wake word with the greatest possible precision. So false negative and false positive detections are not welcome.
 
 ## How does Rhasspy listen to a Wake Word?
 Rhasspy itself won't listen to a wake word. It listens for MQTT messages on `'hermes/hotword/<wakeword>/detected'`.
