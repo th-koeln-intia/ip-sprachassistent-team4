@@ -37,7 +37,7 @@ All available topics in rhasspy can be found here: [MQTT API](https://rhasspy.re
 The data you publish or subscribe are nothing else than Json objects. Let's take a look at ``hermes/tts/say``, in the 
 [MQTT API](https://rhasspy.readthedocs.io/en/latest/reference/#text-to-speech) you can see the topic ``hermes/tts/say`` requires 5 different values.
 This could look like this:
-```
+```json
 {
     "text": "Example Text", 
     "lang": null, 
@@ -47,7 +47,7 @@ This could look like this:
 }
 ```
 In this topic you can shorten it a bit. There are some values with a datatype with a '?' behind. You can left them null of you simply won't mention them like this:
-```
+```json
 {
     "text": "Example Text", 
     "siteId": "default"
@@ -55,7 +55,7 @@ In this topic you can shorten it a bit. There are some values with a datatype wi
 ```
 The same principle is used when you subscribe a topic. For example the topic ``hermes/tts/sayFinished`` it's published by the tts system, when it has finished speaking (after ``hermes/tts/say``).
 When you subscribed to it you can get the following data:
-```
+```json
 {
     "id": null, 
     "siteId": "default"

@@ -61,7 +61,7 @@ aplay hello.wav                                      // make sure default device
                                                      // Audio will come out via audio jack of Raspberry Pi
 ```
 
-## 3. Install a MQTTT-Server and Node-Red
+## 3. Install a MQTT-Server and Node-Red
 ```bash
 sudo apt-get install mosquitto mosquitto-clients -y
 wget https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-andnodered

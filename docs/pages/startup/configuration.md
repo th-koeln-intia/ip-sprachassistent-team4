@@ -22,7 +22,7 @@ I'll go through the settings with the order on the settings page.
 You can find the settings page on ``<ip of your raspberry>:12101``, and then at the gears on the left.
 To apply all settings you need to click th e save button on the top or bottom, your raspberry will restart.
 
-## 1. [MQTT](/knowledge/mqtt#what-is-mqtt)
+## 1. [MQTT](/pages/knowledge/mqtt#what-is-mqtt)
 For background Information click on the topic header.
 MQTT is the communication channel rhasspy communicates with. Our MQTT-server is mosquitto we installed in the installation.
 When you done all steps in the [installations instruction](/startup/setup-software#3-install-a-mqttt-server-and-node-red) you have already a running MQTT server on your Raspberry.
@@ -37,7 +37,7 @@ When you installed it correctly, you can proceed. Under the MQTT option is the o
 In the options below you only need to select the installed microphone (``Default Audio Device (sysdefault:CARD=seeed4micvoicec)``) or you type 
 ``sysdefault:CARD=seeed4micvoicec`` in the upper textbox.
 
-## 3. [Wake Word](/knowledge/wakeword)
+## 3. [Wake Word](/pages/knowledge/wakeword)
 We chose Rhasspy Raven as wake word system. Select it in the drop down menu. When you open the settings, you first need to record three 
 examples of your wake word. You can choose a own one or you use ``Sherlock`` as wake word as we did. You see three Record buttons.
 Press the first one and say your wake word, then the second, and then the third. You can then adjust a few settings.      
@@ -45,7 +45,7 @@ Press the first one and say your wake word, then the second, and then the third.
 ``Average Templates`` combines all example wav files to one. this reduces cpu usage, but the accurity will lessen.    
 ``Minimum Matches`` this is a number between 1 and 3. It specifies how many wav files needs to match the detection.
 
-## 4. [Speech to Text](/knowledge/speech-to-text)
+## 4. [Speech to Text](/pages/knowledge/speech-to-text)
 
 ## 5. Intent Recognition
 
@@ -54,7 +54,7 @@ Here you can choose your own. We decided to use NanoTTS, it's simple to use and 
 So choose NanoTTS or one of the TTS you want. When you use nano TTS you only need to setup the language the available languages are ``en-US``, ``en-GB``, ``de-DE``, ``es-ES``, ``fr-FR`` and ``it-IT``.
 
 ## 7. Audio Playing
-Please choose aplay. When you follow [step 2](/startup/setup-software#step-2) of the [audio configuration](/startup/setup-software#2-configure-audio), you audio is already configured.
+Please choose aplay. When you follow [step 2](/pages/startup/setup-software#step-2) of the [audio configuration](/pages/startup/setup-software#2-configure-audio), you audio is already configured.
 
 ## 8. Dialogue Management
 
