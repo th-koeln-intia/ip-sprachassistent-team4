@@ -29,6 +29,7 @@ markdown: kramdown
 #remote_theme: pmarsceill/just-the-docs
 remote_theme: Sh4der/just-the-docs
 color_scheme: dark
+hideThemeButton: false
 
 plugins:
   - jekyll-feed
