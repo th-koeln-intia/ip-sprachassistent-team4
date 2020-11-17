@@ -18,10 +18,6 @@ The offline transcription of voice commands in Rhasspy is handled by one of thre
 
 [Read more about Speech To Text](/pages/knowledge/speech-to-text)
 
-# Text to Intent
-The speech recognition system(s) in Rhasspy produce text transcriptions that are then given to an intent recognition 
-system. When both *speech* and *intent* systems are trained together from the same template file, 
-all valid commands (with minor variations) should be correctly translated to JSON events.
 
 # Text To Speech
 the input of a voice command will produce an output to the user if the voice command is recognized.
