@@ -11,7 +11,8 @@ You need to install some software:
 * Docker
 * Rhasspy
 * ac108 codec
-* MQTT-Server and Node-RED
+* MQTT-Server
+* Node-RED
 * Zigbee2MQTT
 * Optionally Hermes Led Control
 
@@ -39,7 +40,7 @@ This may take a while.
 ### Run Rhasspy docker image
 Run the Rhasspy docker image with the command
 
-```
+```bash
 docker run -d -p 12101:12101 \
       --name rhasspy \
       --restart unless-stopped \
@@ -50,18 +51,19 @@ docker run -d -p 12101:12101 \
       --user-profiles /profiles \
       --profile en
 ```
+{: #code-example-1}
 
 Have a look to more [useful docker commands](/pages/knowledge/docker)
 
 ### Finished!
 
-Rhasspy is now accessable at the IP of your Raspberry PI under port 12101. http://<ip-adress>:12101. Test it!
+Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
 
-## 1. Configure Audio
+## 3. Configure Audio
 ### Install ac108 codec
 
-//TODO: Wofür wird der Codec gebraucht?
-Install the ac108 codec on your RPI. Copy and paste the commands to your console. 
+Your Raspberry Pi needs the ac108 codec to make the Respeaker work.
+Copy and paste the commands to your console. 
 
 #### Update and upgrade Raspberry pi
 `sudo apt-get update`
@@ -69,7 +71,7 @@ Install the ac108 codec on your RPI. Copy and paste the commands to your console
 
 This may take a while.
 
-#### Go back to pi's home directory
+#### Go to pi's home directory
 `cd ~`
 
 #### Clone seeed-voicecard
@@ -84,13 +86,12 @@ This may take a while.
 #### Reboot
 `sudo reboot`
 
-//TODO: Warum müssen wir die Config anpassen?
 The driver should now be installed. 
 
-### Edit asound config
-Next you need to edit the file ``/etc/asound.conf``.
+### Set Default Audio Device
+Next you need to edit the file `/etc/asound.conf` to make the Respeaker as your default audio device.
 
-Use nano or any editor: ``sudo nano /etc/asound.conf``
+Use nano or any editor: `sudo nano /etc/asound.conf`
 
 Edit `pcm.!default`:
 1. change `type asym` to `type pulse`
@@ -104,7 +105,7 @@ ctl.!default {
 }
 ```
 
-The file ``/etc/asound.conf`` should now look like this:
+The file `/etc/asound.conf` should now look like this:
 
 ```bash
 # The IPC key of dmix or dsnoop plugin must be unique
@@ -178,12 +179,17 @@ Play the command with:
     
 If you could hear your recording everything works! Great!
 
-## 2. Install a MQTT-Server and Node-RED
+## 4. Install a MQTT-Server
 
-First you need to execute this script to update Node.js and install Node-RED.
-
-### Install Mosquitto and Mosquitto-Clients:
+Install Mosquitto and Mosquitto-Clients:
 `sudo apt-get install mosquitto mosquitto-clients -y`
+
+## 5. Update Node.js and install Node-RED
+
+First you need to download and execute a script to update Node.js and install Node-RED.
+
+#### Go to pi's home directory
+`cd ~`
 
 ### Download Script to update Node.js and install Node-RED:
 `wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered`
@@ -209,7 +215,7 @@ Now start Node-RED with `sudo systemctl start nodered.service` or restart your R
 
 The NodeRed server is now accessable at the IP of your Raspberry PI under port 1880. http://<ip-adress>:1880. Test it!
 
-## 3. Install Zigbee2MQTT
+## 6. Install Zigbee2MQTT
 
 To install Zigbee2MQTT follow this script:
 
@@ -249,9 +255,9 @@ To install Zigbee2MQTT follow this script:
 Enter `deactivate` to deactivate the environment.
 
 ### Start and test Zigbee2MQTT
-//TODO: Hinweis auf https://mqtt-explorer.com
-
 Start Zigbee2MQTT and test if the connection works.
+
+Tip: Use the [mqtt explorer](https://mqtt-explorer.com){:target="_blank"} to see incoming messages.
 
 #### Enter folder
 `cd /opt/zigbee2mqtt`
@@ -282,7 +288,7 @@ To start zigbee2mqtt at boot create a service:
  
 Execute `sudo nano /etc/systemd/system/zigbee2mqtt.service` and copy and paste the following content: 
 
-```
+```bash
 [Unit]
 Description=zigbee2mqtt
 After=network.target
@@ -303,12 +309,12 @@ Enable the new service with `sudo systemctl enable zigbee2mqtt.service`.
 
 Now start the service with `sudo systemctl start zigbee2mqtt.service` or restart your Raspberry Pi.
 
-## 4. Optional install Hermes Led Control for Respeaker Leds
+## 7. Optional install Hermes Led Control for Respeaker Leds
 
 Hermes Led Control controls the leds of the respeaker device. For example, when you say the wake word, the leds turn on.
 With this setting you always can see when the respeaker is active.
 
-### Go back to pi's home directory
+### Go to pi's home directory
 `cd ~`
 
 ### Download script
@@ -328,7 +334,12 @@ Answer the questions like following:
 * What pattern do you want to use? Enter 5 for custom
 * Do you need to install / configure your respeaker4? Enter 2 for no 
 
+Later you will configure Rhasspy to work with Hermes Led Control.
+
 [Read more about Hermes Led Control](https://github.com/project-alice-assistant/HermesLedControl/wiki){:target="_blank"}
 
+# Setup completed!
 
-//TODO test leds?
+Congratulations! You finished the installation of all necessary software. Next you will
+ [configure Rhasspy](/pages/startup/configuration).
+
