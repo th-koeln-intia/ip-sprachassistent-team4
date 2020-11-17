@@ -41,7 +41,7 @@ If you want to start the Raspberry Pi headless, you can enable SSH and configure
 
 ## Enable SSH
 
-You only need to create a empty file with the name ``SSH`` in the root directory. Done!
+You only need to create a empty file with the name ``ssh`` in the boot directory. Done!
 
 ## Configure WIFI
 
@@ -59,6 +59,7 @@ network={
  psk="<Password for your wireless LAN>"
 }
 ```
+you can use the command ` sudo rasi-config` for additional setting (e.g : change your time zone, set the language, Keybord layout etc..)
 
 Read more about a headless setup 
 [here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
