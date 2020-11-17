@@ -41,13 +41,14 @@ If you want to start the Raspberry Pi headless, you can enable SSH and configure
 
 ## Enable SSH
 
-You only need to create a empty file with the name ``ssh`` in the boot directory. Done!
+You only need to create an empty file with the name `ssh` without any extension in the root directory of the usb stick.
+Done!
 
 ## Configure WIFI
 
-Create a file with the name ``wpa_supplicant.conf`` in the root directory of the pi. Fill it with the following code
-and adjust ``country`` to your country, for example DE for germany. 
-Also adjust ``ssid`` and ``psk`` to your network. 
+Create a file with the name `wpa_supplicant.conf` in the root directory of the pi. Fill it with the following code
+and adjust `country` to your country, for example DE for germany. 
+Also adjust `ssid` and `psk` to your network. 
 
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
