@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Startup
+title: Setup Software
 ---
 
 # Installation Rhasspy
