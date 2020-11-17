@@ -11,12 +11,15 @@ To build your own voice assistant, you will need at least the following things:
 * Raspberry Pi 3b/3b+/4 with Power Cable
 * Micro-SD-Card with min. 16gb
 * RESPEAKER 4-Mic-Array
-* Zigbee2MQTT adapter, like **Texas Instruments CC2531** or **ConBee2** ([or other compatible adapters](https://www.zigbee2mqtt.io/information/supported_adapters){:target="_blank"})
+* Zigbee2MQTT adapter, like **Texas Instruments CC2531** or **ConBee2** 
+([or other compatible adapters](https://www.zigbee2mqtt.io/information/supported_adapters){:target="_blank"})
 * Zigbee LED Light Bulb or any other Zigbee device
+* Speaker with 3.5mm jack
 
 # Setup Raspberry Pi
 
-The easiest way to setup a Raspberry Pi is to use the [**Raspberry Pi Imager**](https://www.raspberrypi.org/software/){:target="_blank"}.
+The easiest way to setup a Raspberry Pi is to use the 
+[**Raspberry Pi Imager**](https://www.raspberrypi.org/software/){:target="_blank"}.
 
 Steps:
 1. Insert Micro SD Card
@@ -24,6 +27,12 @@ Steps:
 3. Choose Micro SD Card
 4. Click Button **Write**
 5. Done!
+
+You can attach a screen, keyboard and mouse to enable SSH and configure WIFI connection.
+
+The username is ``pi`` and the password is ``raspberry``. 
+You should [change the password](https://www.raspberrypi.org/documentation/linux/usage/users.md){:target="_blank"} 
+immediately.
 
 # Optionally SSH and WIFI configuration
 
@@ -50,7 +59,8 @@ network={
 }
 ```
 
-Read more about a headless setup [here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
+Read more about a headless setup 
+[here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
 
 # Plugin RESPEAKER and Zigbee Adapter
 
