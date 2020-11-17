@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Knowledge
+nav_order: 2
 ---
 
 # MQTT (Message Queuing Telemetry Transport)
