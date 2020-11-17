@@ -39,10 +39,10 @@ In the options below you only need to select the installed microphone (``Default
 ``sysdefault:CARD=seeed4micvoicec`` in the upper textbox.
 
 ## 3. [Wake Word](/pages/knowledge/wakeword)
-We chose Rhasspy Raven as wake word system. Select it in the drop down menu. When you open the settings, you first need to record three 
+We chose ``Rhasspy Raven`` as wake word system. Select it in the drop down menu. When you open the settings, you first need to record three 
 examples of your wake word. You can choose a own one or you use ``Sherlock`` as wake word as we did. You see three Record buttons.
-Press the first one and say your wake word, then the second, and then the third. You can then adjust a few settings.      
-``Probability Threshold`` is a value between 0 and 1. You can adjust the sensity with it. The lower the value, the mire sensitive the rhasspy will react.    
+Press the first one and say your wake word, then the second, and then the third. Please make sure you record the Wake Word from 3 different positions in the room for example far away, semi far away and close to the microfone. You can then adjust a few settings.      
+``Probability Threshold`` is a value between 0 and 1. You can adjust the sensity with it. The lower the value, the more sensitive the rhasspy will react. My best results are with the value  ``0.52``.    
 ``Average Templates`` combines all example wav files to one. this reduces cpu usage, but the accurity will lessen.    
 ``Minimum Matches`` this is a number between 1 and 3. It specifies how many wav files needs to match the detection.
 
