@@ -5,6 +5,16 @@ parent: Knowledge
 
 # Docker
 
+## What is a Docker
+Docker enables you to separate your applications from your infrastructure
+so you can deliver software quickly.
+The programmings language for Docker is GO.
+
+## Installation of Docker
+Docker is available on different operations systems. On some Unbutu machine Docker Engine is preinstall but for better used, it is recommanded to install Docker from official Docker-Repository.
+Follow thi step to  [install](https://docs.docker.com/engine/install/) docker on you OS.
+To install Docker on your machine, follow the installation steps on Docker 
+
 ## What is a Container?
 A Container is a process, that has been isolated from the processes on the host machine.
 
