@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Startup
+nav_order: 3
 ---
 
 # Settings of Rhasspy

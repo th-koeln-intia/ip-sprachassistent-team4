@@ -2,6 +2,7 @@
 layout: default
 parent: Startup
 title: Setup Hardware
+nav_order: 1
 ---
 
 # Shopping List

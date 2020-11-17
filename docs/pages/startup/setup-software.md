@@ -2,6 +2,7 @@
 layout: default
 parent: Startup
 title: Setup Software
+nav_order: 2
 ---
 
 # Setup Software

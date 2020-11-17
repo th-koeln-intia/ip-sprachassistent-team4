@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Knowledge
+nav_order: 1
 ---
 
 # What is Rhasspy ?
