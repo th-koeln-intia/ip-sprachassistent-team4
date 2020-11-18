@@ -9,7 +9,7 @@ nav_order: 2
 
 You need to install some software:
 * Docker
-* Rhasspy
+* Rhasspy with & without Docker
 * ac108 codec
 * MQTT-Server
 * Node-RED
@@ -18,48 +18,7 @@ You need to install some software:
 
 Login to your Raspberry Pi and solve the following steps.
 
-## 1. Docker
-Docker is the easiest way to work with Rhasspy. Follow the steps to install docker.
-
-### Install Docker 
-`curl -sSL https://get.docker.com | sh`
-
-### Add pi to usergroup
-`sudo usermod -aG docker pi` 
-
-### Reboot
-`sudo reboot`
-
-## 2. Install Rhasspy
-To install Rhasspy pull the docker image with the command
-
-`docker pull rhasspy/rhasspy`
-
-This may take a while.
-
-### Run Rhasspy docker image
-Run the Rhasspy docker image with the command
-
-```bash
-docker run -d -p 12101:12101 \
-      --name rhasspy \
-      --restart unless-stopped \
-      -v "$HOME/.config/rhasspy/profiles:/profiles" \
-      -v "/etc/localtime:/etc/localtime:ro" \
-      --device /dev/snd:/dev/snd \
-      rhasspy/rhasspy \
-      --user-profiles /profiles \
-      --profile en
-```
-{: #code-example-1}
-
-Have a look to more [useful docker commands](/pages/knowledge/docker)
-
-### Finished!
-
-Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
-
-## 3. Configure Audio
+## 1. Configure Audio
 ### Install ac108 codec
 
 Your Raspberry Pi needs the ac108 codec to make the Respeaker work.
@@ -179,28 +138,28 @@ Play the command with:
     
 If you could hear your recording everything works! Great!
 
-## 4. Install a MQTT-Server
+## 2. Install a MQTT-Server
 
 Install Mosquitto and Mosquitto-Clients:
 `sudo apt-get install mosquitto mosquitto-clients -y`
 
-## 5. Update Node.js and install Node-RED
+## 3. Update Node.js and install Node-RED
 
 First you need to download and execute a script to update Node.js and install Node-RED.
 
 #### Go to pi's home directory
 `cd ~`
 
-### Download Script to update Node.js and install Node-RED:
+### Download Script to update Node.js and install Node-RED
 `wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered`
 
-### Make the downloaded file executable:
+### Make the downloaded file executable
 `sudo chmod 755 ./update-nodejs-and-nodered`
 
-### Execute the file:
+### Execute the file
 `./update-nodejs-and-nodered`
 
-#### Notes:
+#### Notes
 * You will be asked some questions. Always answer with y (for YES)
 * Wait until the script is done
 * If you get the message "rm: cannot remove '/usr/bin/update-nodejs-and-nodered': No such file or directory" 
@@ -215,7 +174,7 @@ Now start Node-RED with `sudo systemctl start nodered.service` or restart your R
 
 The NodeRed server is now accessable at the IP of your Raspberry PI under port 1880. http://<ip-adress>:1880. Test it!
 
-## 6. Install Zigbee2MQTT
+## 4. Install Zigbee2MQTT
 
 To install Zigbee2MQTT follow this script:
 
@@ -309,7 +268,7 @@ Enable the new service with `sudo systemctl enable zigbee2mqtt.service`.
 
 Now start the service with `sudo systemctl start zigbee2mqtt.service` or restart your Raspberry Pi.
 
-## 7. Optional install Hermes Led Control for Respeaker Leds
+## 5. Optional install Hermes Led Control for Respeaker Leds
 
 Hermes Led Control controls the leds of the respeaker device. For example, when you say the wake word, the leds turn on.
 With this setting you always can see when the respeaker is active.
@@ -329,14 +288,88 @@ With this setting you always can see when the respeaker is active.
 Answer the questions like following:
 * What assistant engine are you using? Enter 2 for rhasspy
 * What's the path to your assistant config file? Press Enter 
-(Path Should be like _.config/rhasspy/profiles/de/profile.json_)
+(Path Should be like _/home/pi/.config/rhasspy/profiles/de/profile.json_)
 * What device do you wish to control with SLC? Enter 2 for respeaker4
-* What pattern do you want to use? Enter 5 for custom
+* What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google
 * Do you need to install / configure your respeaker4? Enter 2 for no 
 
 Later you will configure Rhasspy to work with Hermes Led Control.
 
 [Read more about Hermes Led Control](https://github.com/project-alice-assistant/HermesLedControl/wiki){:target="_blank"}
+
+## 6. Install Rhasspy native
+
+### Go to pi's home directory
+`cd ~`
+
+### Download Rhaspy V2.5.7 to
+You can get the latest version from [github](https://github.com/rhasspy/rhasspy/releases/){:target="_blank"}
+
+Download with command:
+`wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb`
+
+### Make the downloaded file executable
+Install Rhasspy with command:
+`sudo apt install ./rhasspy_2.5.7_armhf.deb -y`
+
+### Edit profile.json
+Get the 
+Open the profile.json file with the command:
+
+`sudo nano /home/pi/.config/rhasspy/profiles/de/profile.json`
+
+Find the entry "microphone" and change it to:
+
+```json
+"microphone": {
+  "system": "arecord",
+  "arecord": {
+    "device": "sysdefault:CARD=seeed4micvoicec"
+  }
+}
+```
+
+### Start Rhasspy
+
+Start Rhasspy and check if rhasspy runs without problems.
+`rhasspy --profile de`
+
+If an error occures like `PermissionError: [Errno 13] Permission denied: '/home/pi/.config/rhasspy/profiles/de'`
+you need to give your user permission to the folder `/home/pi/.config/rhasspy`
+
+`sudo chown -R pi:pi /home/pi/.config/rhasspy`
+
+### Start Rhasspy in background
+
+`rhasspy --profile de &`
+
+## 6. Install Rhasspy with Docker
+To install Rhasspy pull the docker image with the command
+
+`docker pull rhasspy/rhasspy`
+
+This may take a while.
+
+### Run Rhasspy docker image
+Run the Rhasspy docker image with the command
+
+```bash
+docker run -d -p 12101:12101 \
+      --name rhasspy \
+      --restart unless-stopped \
+      -v "$HOME/.config/rhasspy/profiles:/profiles" \
+      -v "/etc/localtime:/etc/localtime:ro" \
+      --device /dev/snd:/dev/snd \
+      rhasspy/rhasspy \
+      --user-profiles /profiles \
+      --profile de
+```
+
+Have a look to more [useful docker commands](/pages/knowledge/docker)
+
+### Finished!
+
+Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
 
 # Setup completed!
 
