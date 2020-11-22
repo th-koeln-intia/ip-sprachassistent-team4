@@ -339,11 +339,40 @@ you need to give your user permission to the folder `/home/pi/.config/rhasspy`
 
 `sudo chown -R pi:pi /home/pi/.config/rhasspy`
 
-### Start Rhasspy in background
+### Start Rhasspy as service
+Create the file ``/etc/system.d/system/rhasspy.service`` and put the following code inside:
+```bash
+[Unit]
+Description=Rhasspy
+After=syslog.target network.target seed-voicecard.service sound.target
 
-`rhasspy --profile de &`
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/.config/rhasspy
+ExecStart=/bin/bash -lc 'rhasspy --profile de 2>&1 | cat'
+User=pi
+Group=pi
 
-## 6. Install Rhasspy with Docker
+RestartSec=1
+Restart=on-failure
+
+StandardOutput=syslog
+StandardError=syslog
+
+SyslogIdentifier=rhasspy
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Now enable the service:   
+``systemctl enable rhasspy``    
+And start it with:    
+``systemctl start rhasspy``    
+You can stop it with:    
+``systemctl stop rhasspy``
+
+## 6. Install Rhasspy with Docker (not recomment)
 To install Rhasspy pull the docker image with the command
 
 `docker pull rhasspy/rhasspy`
@@ -366,6 +395,7 @@ docker run -d -p 12101:12101 \
 ```
 
 Have a look to more [useful docker commands](/pages/knowledge/docker)
+
 
 ### Finished!
 
