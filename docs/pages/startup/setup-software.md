@@ -7,6 +7,17 @@ nav_order: 2
 
 # Setup Software
 
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+
+# Software Requirements
 You need to install some software:
 * Docker
 * Rhasspy with & without Docker
@@ -20,34 +31,41 @@ Login to your Raspberry Pi and solve the following steps.
 
 ## 1. Configure Audio
 ### Install ac108 codec
-
+{: .no_toc }
 Your Raspberry Pi needs the ac108 codec to make the Respeaker work.
 Copy and paste the commands to your console. 
 
 #### Update and upgrade Raspberry pi
+{: .no_toc }
 `sudo apt-get update`
 `sudo apt-get upgrade -y`
 
 This may take a while.
 
 #### Go to pi's home directory
+{: .no_toc }
 `cd ~`
 
 #### Clone seeed-voicecard
+{: .no_toc }
 `git clone https://github.com/respeaker/seeed-voicecard.git`
 
 #### Change directory
+{: .no_toc }
 `cd seeed-voicecard`
 
 #### Install seeed-voicecard
+{: .no_toc }
 `sudo ./install.sh`
 
 #### Reboot
+{: .no_toc }
 `sudo reboot`
 
 The driver should now be installed. 
 
 ### Set Default Audio Device
+{: .no_toc }
 Next you need to edit the file `/etc/asound.conf` to make the Respeaker as your default audio device.
 
 Use nano or any editor: `sudo nano /etc/asound.conf`
@@ -106,7 +124,7 @@ ctl.!default {
 ```
 
 ### Set output device
-
+{: .no_toc }
 To be able to hear the voice output on the speaker, set the 3.5mm jack to default.
 
 ```bash
@@ -120,7 +138,7 @@ sudo raspi-config
 [Read more about audio configuration here](https://www.raspberrypi.org/documentation/configuration/audio-config.md){:target="_blank"}
 
 ### Test mic functionally
-
+{: .no_toc }
 Check if the mic is installed correctly:
 
 ```bash
@@ -148,30 +166,36 @@ Install Mosquitto and Mosquitto-Clients:
 First you need to download and execute a script to update Node.js and install Node-RED.
 
 #### Go to pi's home directory
+{: .no_toc }
 `cd ~`
 
 ### Download Script to update Node.js and install Node-RED
+{: .no_toc }
 `wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered`
 
 ### Make the downloaded file executable
+{: .no_toc }
 `sudo chmod 755 ./update-nodejs-and-nodered`
 
 ### Execute the file
+{: .no_toc }
 `./update-nodejs-and-nodered`
 
 #### Notes
+{: .no_toc }
 * You will be asked some questions. Always answer with y (for YES)
 * Wait until the script is done
 * If you get the message "rm: cannot remove '/usr/bin/update-nodejs-and-nodered': No such file or directory" 
 the folder could be in your actually location. You can delete the folder by yourself.
 
 ### Enable Node-RED at boot 
+{: .no_toc }
 To start Node-RED at boot execute `sudo systemctl enable nodered.service`.
 
 Now start Node-RED with `sudo systemctl start nodered.service` or restart your Raspberry Pi.
 
 ### Finished!
-
+{: .no_toc }
 The NodeRed server is now accessable at the IP of your Raspberry PI under port 1880. http://<ip-adress>:1880. Test it!
 
 ## 4. Install Zigbee2MQTT
@@ -179,52 +203,67 @@ The NodeRed server is now accessable at the IP of your Raspberry PI under port 1
 To install Zigbee2MQTT follow this script:
 
 ### Clone Zigbee2MQTT repository
+{: .no_toc }
 `sudo git clone https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt`
 
 ### Set rights to user pi
+{: .no_toc }
 `sudo chown -R pi:pi /opt/zigbee2mqtt`
 
 ### Enter folder
+{: .no_toc }
 `cd /opt/zigbee2mqtt`
 
 ### Install python env
+{: .no_toc }
 `python3 -m venv .`
 
 ### Activate environment
+{: .no_toc }
 `source /opt/zigbee2mqtt/bin/activate`
 
 ### Upgrade pip, wheel and setuptools
+{: .no_toc }
 `pip install --upgrade pip wheel setuptools`
 
 ### Install node environment
+{: .no_toc }
 `pip install nodeenv`
 
 ### Init node environment
+{: .no_toc }
 `nodeenv -p -n 10.15.1`
 
 ### Deactivate and activate environment to be sure
+{: .no_toc }
 `deactivate`
 `source /opt/zigbee2mqtt/bin/activate`
 
 ### Install dependencies
+{: .no_toc }
 `cd /opt/zigbee2mqtt`
 `npm ci`
 
 ### Deactivate environment
+{: .no_toc }
 Enter `deactivate` to deactivate the environment.
 
 ### Start and test Zigbee2MQTT
+{: .no_toc }
 Start Zigbee2MQTT and test if the connection works.
 
 Tip: Use the [mqtt explorer](https://mqtt-explorer.com){:target="_blank"} to see incoming messages.
 
 #### Enter folder
+{: .no_toc }
 `cd /opt/zigbee2mqtt`
 
 #### Activate environment
+{: .no_toc }
 `source /opt/zigbee2mqtt/bin/activate`
 
 #### Start
+{: .no_toc }
 `npm start`
 
 Now you can turn on and off your Zigbee device to see if everything works.
@@ -237,12 +276,15 @@ Zigbee2MQTT:info  2020-11-17 11:32:44: MQTT publish: topic 'zigbee2mqtt/0x00158d
 ```
 
 #### Quit
+{: .no_toc }
 Press ctrl + c to quit.
 
 #### Deactivate environment
+{: .no_toc }
 Enter `deactivate` to deactivate the environment.
 
 ### Enable Zigbee2MQTT at boot
+{: .no_toc }
 To start zigbee2mqtt at boot create a service:
  
 Execute `sudo nano /etc/systemd/system/zigbee2mqtt.service` and copy and paste the following content: 
@@ -274,15 +316,19 @@ Hermes Led Control controls the leds of the respeaker device. For example, when 
 With this setting you always can see when the respeaker is active.
 
 ### Go to pi's home directory
+{: .no_toc }
 `cd ~`
 
 ### Download script
+{: .no_toc }
 `wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh`
 
 ### Make the script executable
+{: .no_toc }
 `sudo chmod +x hlc_download.sh`
 
 ###  Execute the script
+{: .no_toc }
 `sudo ./hlc_download.sh`
 
 Answer the questions like following:
@@ -300,19 +346,23 @@ Later you will configure Rhasspy to work with Hermes Led Control.
 ## 6. Install Rhasspy native
 
 ### Go to pi's home directory
+{: .no_toc }
 `cd ~`
 
 ### Download Rhaspy V2.5.7 to
+{: .no_toc }
 You can get the latest version from [github](https://github.com/rhasspy/rhasspy/releases/){:target="_blank"}
 
 Download with command:
 `wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb`
 
 ### Make the downloaded file executable
+{: .no_toc }
 Install Rhasspy with command:
 `sudo apt install ./rhasspy_2.5.7_armhf.deb -y`
 
 ### Edit profile.json
+{: .no_toc }
 Get the 
 Open the profile.json file with the command:
 
@@ -330,7 +380,7 @@ Find the entry "microphone" and change it to:
 ```
 
 ### Start Rhasspy
-
+{: .no_toc }
 Start Rhasspy and check if rhasspy runs without problems.
 `rhasspy --profile de`
 
@@ -340,6 +390,7 @@ you need to give your user permission to the folder `/home/pi/.config/rhasspy`
 `sudo chown -R pi:pi /home/pi/.config/rhasspy`
 
 ### Start Rhasspy as service
+{: .no_toc }
 Create the file ``/etc/system.d/system/rhasspy.service`` and put the following code inside:
 ```bash
 [Unit]
@@ -382,6 +433,7 @@ To install Rhasspy pull the docker image with the command
 This may take a while.
 
 ### Run Rhasspy docker image
+{: .no_toc }
 Run the Rhasspy docker image with the command
 
 ```bash
@@ -400,7 +452,7 @@ Have a look to more [useful docker commands](/pages/knowledge/docker)
 
 
 ### Finished!
-
+{: .no_toc }
 Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
 
 # Setup completed!
