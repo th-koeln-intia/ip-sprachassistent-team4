@@ -371,6 +371,8 @@ And start it with:
 ``systemctl start rhasspy``    
 You can stop it with:    
 ``systemctl stop rhasspy``
+After saving settings in Rhasspy you need to restart rhasspy manual in the console with the command:
+``systemctl restart rhasspy``
 
 ## 6. Install Rhasspy with Docker (not recomment)
 To install Rhasspy pull the docker image with the command
