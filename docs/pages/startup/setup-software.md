@@ -310,7 +310,7 @@ Now start the service with `sudo systemctl start zigbee2mqtt.service` or restart
 
 ## 5. Optional install Hermes Led Control for Respeaker Leds
 
-Hermes Led Control controls the leds of the respeaker device. For example, when you say the wake word, the leds turn on.
+Hermes Led Control controls the leds of the respeaker device. For example, when you say the Wake Word, the leds turn on.
 With this setting you always can see when the respeaker is active.
 
 ### Go to pi's home directory

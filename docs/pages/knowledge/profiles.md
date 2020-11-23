@@ -16,7 +16,7 @@ parent: Knowledge
 # Profiles 
 
 ## For what are profiles good for?
-Here are all confogurations for rhasspy saved. For example configiurations for wake word detection, speech transcription or intent recognitiion.
+Here are all confogurations for rhasspy saved. For example configiurations for Wake Word detection, speech transcription or intent recognitiion.
 
 ## Files
 `profiles/defaults.json`: This is the default profile for all profiles. It'll applied to all profiles on start.
