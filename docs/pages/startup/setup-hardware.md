@@ -4,6 +4,14 @@ parent: Startup
 title: Setup Hardware
 nav_order: 1
 ---
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 # Shopping List
 
@@ -40,12 +48,12 @@ immediately.
 If you want to start the Raspberry Pi headless, you can enable SSH and configure the WIFI connection before starting.
 
 ## Enable SSH
-
+{: .no_toc }
 You only need to create an empty file with the name `ssh` without any extension in the root directory of the usb stick.
 Done!
 
 ## Configure WIFI
-
+{: .no_toc }
 Create a file with the name `wpa_supplicant.conf` in the root directory of the pi. Fill it with the following code
 and adjust `country` to your country, for example DE for germany. 
 Also adjust `ssid` and `psk` to your network. 
