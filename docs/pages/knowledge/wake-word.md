@@ -8,7 +8,7 @@ nav_order: 3
 
 ## What is a Wake Word?
 A Wake Word is a word, for example a name, to wake up a Voice Assistant. After you wake up a voice assistant you can give it a task to proceed.
-There are 4 scenarios a program con detect a wakeword:
+There are 4 scenarios a program can detect a wakeword:
 - true positiv: The wake word was spoken, and was detected correct.
 - false negative: The wake word was spoken and was not detected by the program.
 - false positive: The wake word was not spoken but the program detects a wake word.
@@ -41,7 +41,7 @@ To add Raven to Rhasspy you must edit your user profile. Add this to your user [
 ## How to Record a Wake Word
 To Record a Wake Word you need to open the options of Raven, there are three Record Buttons. There you must record your Wake Word three times to create three examples for raven to recognize the Wake Word.
 
-### Here you now have 3 new settings:
+### Here you  have now 3 new settings:
 
 `raven.probability_threshold`: Is a value in the range between [0, 1]. With this option you adjust the sensitivity of Raven. The lower the value is the more sensitive Raven reacts.
 

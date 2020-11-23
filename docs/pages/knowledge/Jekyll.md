@@ -20,7 +20,7 @@ after installation , run these commands in a folder to create a new Jekyll stati
     - to preview the site run ` bundle exec jekyll serve` --> this will output a URL , where the website can be seen
     - run ` bundle exec jekyll built` to built a website
 
-## how to change a theme for a Jekyll  site
+
 
 - 
 
