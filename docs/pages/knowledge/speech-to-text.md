@@ -1,8 +1,18 @@
 ---
 layout: default
+title: Speech to text
 parent: Knowledge
 nav_order: 4
 ---
+
+<details close markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 # Speech to text
 

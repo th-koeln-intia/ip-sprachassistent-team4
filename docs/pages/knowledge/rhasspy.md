@@ -1,10 +1,20 @@
 ---
 layout: default
+title: What is Rhasspy?
 parent: Knowledge
 nav_order: 1
 ---
 
-# What is Rhasspy ?
+<details close markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+# What is Rhasspy?
 Rhasspy is an open source, fully offline voice assistant toolkit.
 Rhasppy core component can be taken done to speech and intent.
 

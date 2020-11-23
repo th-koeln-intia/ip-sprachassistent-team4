@@ -1,7 +1,17 @@
 ---
 layout: default
+title: Text To Speech
 parent: Knowledge
 ---
+
+<details close markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 # Text To Speech
 

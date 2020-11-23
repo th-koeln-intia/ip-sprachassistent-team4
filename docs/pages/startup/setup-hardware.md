@@ -4,7 +4,8 @@ parent: Startup
 title: Setup Hardware
 nav_order: 1
 ---
-<details open markdown="block">
+
+<details close markdown="block">
   <summary>
     Table of contents
   </summary>
@@ -13,7 +14,9 @@ nav_order: 1
 {:toc}
 </details>
 
-# Shopping List
+# Setup Hardware
+
+## Shopping List
 
 To build your own voice assistant, you will need at least the following things:
 
@@ -25,7 +28,7 @@ To build your own voice assistant, you will need at least the following things:
 * Zigbee LED Light Bulb or any other Zigbee device
 * Speaker with 3.5mm jack
 
-# Setup Raspberry Pi
+## Setup Raspberry Pi
 
 The easiest way to setup a Raspberry Pi is to use the 
 [**Raspberry Pi Imager**](https://www.raspberrypi.org/software/){:target="_blank"}.
@@ -43,7 +46,7 @@ The username is ``pi`` and the password is ``raspberry``.
 You should [change the password](https://www.raspberrypi.org/documentation/linux/usage/users.md){:target="_blank"} 
 immediately.
 
-# Optionally SSH and WIFI configuration
+## Optionally SSH and WIFI configuration
 
 If you want to start the Raspberry Pi headless, you can enable SSH and configure the WIFI connection before starting.
 
@@ -52,7 +55,7 @@ If you want to start the Raspberry Pi headless, you can enable SSH and configure
 You only need to create an empty file with the name `ssh` without any extension in the root directory of the usb stick.
 Done!
 
-## Configure WIFI
+### Configure WIFI
 {: .no_toc }
 Create a file with the name `wpa_supplicant.conf` in the root directory of the pi. Fill it with the following code
 and adjust `country` to your country, for example DE for germany. 
@@ -73,14 +76,14 @@ you can use the command ` sudo rasi-config` for additional setting (e.g : change
 Read more about a headless setup 
 [here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
 
-# Plugin RESPEAKER and Zigbee Adapter
+## Plugin RESPEAKER and Zigbee Adapter
 
 Attach the RESPEAKER 4-Mic-Array to the Raspberry Pi and plugin the Zigbee Adapter.
 
 ![Raspberry Pi with RESPEAKER and ConBee2](../../assets/rpi_respeaker_conbee2.jpg)
 
 
-# Finish!
+## Finish!
 
 Congratulations! You mastered the first step to your own Voice Assistant! 
  

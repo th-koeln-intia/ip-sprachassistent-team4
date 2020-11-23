@@ -5,9 +5,7 @@ title: Settings of Rhasspy
 nav_order: 3
 ---
 
-# Settings of Rhasspy
-
-<details open markdown="block">
+<details close markdown="block">
   <summary>
     Table of contents
   </summary>
@@ -15,6 +13,8 @@ nav_order: 3
 1. TOC
 {:toc}
 </details>
+
+# Settings of Rhasspy
 
 ## 0. Which systems are we using?
 We are using the following systems: 

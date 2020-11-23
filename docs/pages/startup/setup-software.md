@@ -5,9 +5,8 @@ title: Setup Software
 nav_order: 2
 ---
 
-# Setup Software
 
-<details open markdown="block">
+<details close markdown="block">
   <summary>
     Table of contents
   </summary>
@@ -16,8 +15,7 @@ nav_order: 2
 {:toc}
 </details>
 
-
-# Software Requirements
+# Setup Software
 You need to install some software:
 * Docker
 * Rhasspy with & without Docker

@@ -1,7 +1,17 @@
 ---
 layout: default
+title: Jekyll
 parent: Knowledge
 ---
+
+<details close markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 # Jekyll
 - jekyll ist most popular framework to work static websites
