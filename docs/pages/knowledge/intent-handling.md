@@ -6,7 +6,7 @@ nav_order: 6
 
 # Intent Handling
 
-After the intent recognition the json must be interpretet, to do what the internt is made for. Rhasspy knows three methods to do this.
+After the intent recognition the json must be interpreted, to do what the internt is made for. Rhasspy knows three methods to do this.
 It's tasks like turn the light on, how cold is it outside or how is the weather. When an intent appears, you can use an external command to proceed it or a remote HTTP server
 or you can use Home Assistant.
 
