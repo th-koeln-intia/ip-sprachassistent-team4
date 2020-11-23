@@ -3,6 +3,34 @@
 title: Welcome to Sherlock
 layout: default
 nav_order: 1
+has_toc: true
 ---
-# Welcome To Sherlock
 
+<!-- <details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details> -->
+
+
+# Welcome To Sherlock
+Sherlock is a simple to use offline voice assistant, it's based on the [rhasspy project](https://rhasspy.readthedocs.io/en/latest/). 
+It's an opensource project and is working local offline on your [Raspberry Pi](https://de.wikipedia.org/wiki/Raspberry_Pi). So you don't need to worry about your privacy, it stays all on your own device. Unlike the Google Assiustant or Alexa, 
+they upload all you say to them in their cloud to process it. This is not a good way, when you want to have a good privacy for example for vulnerable person.
+
+# Skills
+- Read the clock
+- Set an alarm clock
+- Weather forecast
+- Light control
+- Play music with [Spotify](www.spotify.com) / [YouTube](www.youtube.com)
+
+# How to use
+This website is seperated in three parts, one part is [Startup](/pages/startup), there is the tutorial, for installing Sherlock. The other part is the [Knowledge](pages/knowledge) section. There you find interessting background info about rhasspy, and the programms around it.
+
+# Links
+- Archilab projectpage: [www.archi-lab.io](https://www.archi-lab.io/pages/viewpage.action?pageId=41156613)
+- Intia projectpage: [dites.web.th-koeln.de](https://dites.web.th-koeln.de/forschung/projekte/intia/)
