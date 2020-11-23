@@ -413,6 +413,7 @@ SyslogIdentifier=rhasspy
 [Install]
 WantedBy=multi-user.target
 ```
+[Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/rhasspy.service)
 
 Now enable the service:   
 ``systemctl enable rhasspy``    

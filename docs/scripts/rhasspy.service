@@ -1,0 +1,22 @@
+[Unit]
+Description=Rhasspy
+After=syslog.target network.target seed-voicecard.service sound.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/.config/rhasspy
+#ExecStart=/usr/bin/rhasspy --profile de
+ExecStart=/bin/bash -lc 'rhasspy --profile de 2>&1 | cat'
+User=pi
+Group=pi
+
+RestartSec=1
+Restart=on-failure
+
+StandardOutput=syslog
+StandardError=syslog
+
+SyslogIdentifier=rhasspy
+
+[Install]
+WantedBy=multi-user.target
