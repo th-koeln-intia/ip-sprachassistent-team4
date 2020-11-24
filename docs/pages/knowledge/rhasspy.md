@@ -45,7 +45,7 @@ protocol.
 
 # Intent Recognition
 
-the voice command is transcribed from Test_to_speech system and after that the intent needs to be recognition and as 
+the voice command is transcribed from Test_to_speech system and after that the intent needs to be recognized and as 
 result, the rhasppy will produced a JSON event. The are different intent recognition system .
 Fsticuffs (if you plan  to recognize the voice from your training set, this will be the best), Fuzzywuzzy, 
 Snips NLU (NLU -> Natural Language Understanding), RasaNLU, Mycroft Adapt (Not supported yet in 2.5), 

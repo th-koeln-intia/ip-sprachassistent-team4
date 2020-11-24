@@ -16,7 +16,7 @@ parent: Knowledge
 # Jekyll
 - Jekyll is most popular framework to work static websites
 - Powerfull and extensible
-- Has a large community behind it. The community creates themes and templates that you can be used for free to add more advanced features
+- Has a large community behind it. The community creates themes and templates that you can use for free to add more advanced features
 - Jekyll ist built on top of ruby language
 
 ## Create a new Jekyll site
