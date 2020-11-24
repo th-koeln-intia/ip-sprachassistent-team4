@@ -16,16 +16,16 @@ parent: Knowledge
 # Profiles 
 
 ## For what are profiles good for?
-Here are all confogurations for rhasspy saved. For example configiurations for Wake Word detection, speech transcription or intent recognitiion.
+Here are all configurations for rhasspy saved. For example configiurations for Wake Word detection, speech transcription or intent recognitiion.
 
 ## Files
 `profiles/defaults.json`: This is the default profile for all profiles. It'll applied to all profiles on start.
 `profiles/<profilename>/profile.json`: There is also a additional profile file for each profile, that overrides the default settings.
 
 ## Profiles folder
-The `profiles` folder can be find in different locations, there also two kinds of profile folders. One System profile folder and a user profile folder.
+The `profiles` folder can be find in different locations, there also two kinds of profile folders. One system profile folder and a user profile folder.
 The user profile folder overrides the system profile folder, you can either set them or use the default location.   
-When are using Docker, so the system profile folder is in location `/usr/lib/rhasspy-voltron/rhasspy-profile/rhasspyprofile/profiles', and the user profile must be map the folder explicit in the start command `docker run ... -v /localpath/to/profiles:/profiles <IMAGE_NAME> --user-profiles /profiles`.
+If you are using Docker, so the system profile folder is in location `/usr/lib/rhasspy-voltron/rhasspy-profile/rhasspyprofile/profiles', and the user profile must be map the folder explicit in the start command `docker run ... -v /localpath/to/profiles:/profiles <IMAGE_NAME> --user-profiles /profiles`.
 
 The arguments for docker to set them manually are:
 - For the system profile: `--system-profiles <DIR>`
@@ -33,5 +33,5 @@ The arguments for docker to set them manually are:
 
 Most changes are in the user profile.
 
-If you installed rhasspy without docker, the userfolder is in the location ``$HOME/.config/rhasspy/profiles``.
+If you installed rhasspy without docker, the user folder is in the location ``$HOME/.config/rhasspy/profiles``.
 Here you find your profiles and your ``profile.json``.
