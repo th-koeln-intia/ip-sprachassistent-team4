@@ -21,9 +21,8 @@ so you can deliver software quickly.
 The programmings language for Docker is GO.
 
 ## Installation of Docker
-Docker is available on different operations systems. On some Unbutu machine Docker Engine is preinstall but for better used, it is recommanded to install Docker from official Docker-Repository.
-Follow thi step to  [install](https://docs.docker.com/engine/install/) docker on you OS.
-To install Docker on your machine, follow the installation steps on Docker 
+Docker is available on different operations systems.
+Follow [this guide](https://docs.docker.com/get-docker/) to install docker. 
 
 ## What is a Container?
 A Container is a process, that has been isolated from the processes on the host machine.

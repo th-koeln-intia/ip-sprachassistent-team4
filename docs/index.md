@@ -1,5 +1,4 @@
 ---
-# This top area is to give jekyll informations about the page.
 title: Welcome to Sherlock
 layout: default
 nav_order: 1
@@ -30,6 +29,11 @@ they upload all you say to them in their cloud to process it. This is not a good
 
 # How to use
 This website is seperated in three parts, one part is [Startup](/pages/startup), there is the tutorial, for installing Sherlock. The other part is the [Knowledge](pages/knowledge) section. There you find interessting background info about rhasspy, and the programms around it.
+
+# Why Sherlock?
+Sherlock is a short, catchy word that is rarely used in everyday language. It also consists of two syllables and is 
+therefore a perfect wake word. Furthermore Sherlock is based on the character Sherlock Holmes whose brother is 
+Mycroft Holmes. There is an open source language wizard called Mycroft.
 
 # Links
 - Archilab projectpage: [www.archi-lab.io](https://www.archi-lab.io/pages/viewpage.action?pageId=41156613)
