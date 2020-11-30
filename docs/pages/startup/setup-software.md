@@ -6,7 +6,7 @@ nav_order: 2
 ---
 
 
-<details close markdown="block">
+<details open markdown="block">
   <summary>
     Table of contents
   </summary>
@@ -16,15 +16,6 @@ nav_order: 2
 </details>
 
 # Setup Software
-You need to install some software:
-* Docker
-* Rhasspy with & without Docker
-* ac108 codec
-* MQTT-Server
-* Node-RED
-* Zigbee2MQTT
-* Optionally Hermes Led Control
-
 Login to your Raspberry Pi and solve the following steps.
 
 ## 1. Configure Audio
@@ -466,7 +457,14 @@ wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfM
 When you use the wget commands the files are already in the right place.
 
 Now you need to install a custom version of rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes.
-Just download this file to you rhaspberry and run it: [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)     
+
+You can install Snips-NLU with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)
+
+Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp``
+
+Make script executable: ``sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh``
+
+Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
 
 Here is the content of this script:
 ```bash
@@ -486,6 +484,48 @@ deactivate
 ```
 
 This file will download and install rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes to the ``/opt folder`` and run it in a [service file](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service) via systemd.
+
+## 8. Install Snips-NLU 
+
+### Install choices
+{: .no_toc }
+
+You have different choices to install Snips-NLU:
+
+* Use the ``snips-nlu-install.sh`` script
+* Install step-by-step
+
+#### snips-nlu-install.sh
+{: .no_toc }
+
+You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/snips-nlu-install.sh)
+
+Change dir to home folder: ``cd $HOME``
+
+Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/snips-nlu-install.sh -P $HOME/tmp``
+
+Make script executable: ``sudo chmod +x ./snips-nlu-install.sh``
+
+Execute script: ``./snips-nlu-install.sh``
+
+#### Install step-by-step
+{: .no_toc }
+
+1. Install Rust: ``sudo apt install rustc -y``
+2. Install Setuptools plugin for Rust extensions: ``pip3 install setuptools-rust``
+3. Install Snips-NLU: ``pip install snips-nlu``
+4. Do Snips NLU rebirth
+
+4.1 ``sudo apt install libatlas3-base libgfortran5``
+
+5. Install Rhasspy Snips NLU Hermes ``pip3 install rhasspy-snips-nlu-hermes``
+
+6. Start Client for MQTT-Server ``rhasspy-snips-nlu-hermes --language de --engine-path /home/pi/.config/rhasspy/profiles/de/snips/engine --dataset-path /home/pi/.config/rhasspy/profiles/de/snips/dataset.yaml --host 127.0.0.1 --port 1883``
+
+Resources:
+- https://github.com/snipsco/snips-nlu 
+- https://github.com/jr-k/snips-nlu-rebirth
+- https://rhasspy.readthedocs.io/en/latest/intent-recognition/#snips-nlu
 
 # Setup completed!
 
