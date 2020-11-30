@@ -22,10 +22,9 @@ sudo pip3 install $HOME/snips-nlu/snips_nlu_parsers-0.4.3-cp37-cp37m-linux_armv7
 sudo pip3 install $HOME/snips-nlu/snips_nlu-0.20.2-py3-none-any.whl
 
 # Download language en
-snips-nlu download en
+snips-nlu download de
 
 # Create dirs for snips engine
-
 mkdir ~/.config/rhasspy/profiles/de/snips
 mkdir ~/.config/rhasspy/profiles/de/snips/engine
 
