@@ -6,9 +6,6 @@ sudo apt install rustc -y
 # Install Setuptools plugin for Rust extensions
 pip3 install setuptools-rust
 
-# Install Snips-NLU
-pip install snips-nlu
-
 # Do Snips-NLU rebirth
 sudo apt install libatlas3-base libgfortran5
 
