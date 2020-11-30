@@ -6,9 +6,6 @@ sudo apt install rustc -y
 # Install Setuptools plugin for Rust extensions
 pip3 install setuptools-rust
 
-# Install Snips-NLU
-pip install snips-nlu
-
 # Do Snips-NLU rebirth
 sudo apt install libatlas3-base libgfortran5
 
@@ -24,11 +21,13 @@ sudo pip3 install $HOME/snips-nlu/snips_nlu_utils-0.9.1-cp37-cp37m-linux_armv7l.
 sudo pip3 install $HOME/snips-nlu/snips_nlu_parsers-0.4.3-cp37-cp37m-linux_armv7l.whl
 sudo pip3 install $HOME/snips-nlu/snips_nlu-0.20.2-py3-none-any.whl
 
+# Install rhasspy-snips-nlu-hermes
+sudo pip3 install rhasspy-snips-nlu-hermes
+
 # Download language en
-snips-nlu download en
+snips-nlu download de
 
 # Create dirs for snips engine
-
 mkdir ~/.config/rhasspy/profiles/de/snips
 mkdir ~/.config/rhasspy/profiles/de/snips/engine
 
