@@ -9,6 +9,7 @@ source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate
 pip install /opt/rhasspy-asr-deepspeech/
 pip install /opt/rhasspy-asr-deepspeech-hermes/
 sudo ln /opt/rhasspy-asr-deepspeech-hermes/bin/rhasspy-asr-deepspeech-hermes /usr/bin/rhasspy-asr-deepspeech-hermes
-sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -O /etc/syste$sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
+sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -P /etc/systemd/system/
+sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
 sudo systemctl start rhasspy-asr-deepspeech-hermes.service
 deactivate
