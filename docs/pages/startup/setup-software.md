@@ -424,7 +424,7 @@ You can stop it with:
 After saving settings in Rhasspy you need to restart rhasspy manual in the console with the command:
 ``systemctl restart rhasspy``
 
-## 6. Install Rhasspy with Docker (not recomment)
+## (6). Install Rhasspy with Docker (not recomment)
 To install Rhasspy pull the docker image with the command
 
 `docker pull rhasspy/rhasspy`
@@ -453,6 +453,39 @@ Have a look to more [useful docker commands](/pages/knowledge/docker)
 ### Finished!
 {: .no_toc }
 Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
+
+## 7. Install Deepspeech 0.7.4
+Deepspeech is the Speach to text program for rhasspy in this project. You need to install it in an different way than the rhasspy docs says, otherwise it will not work.    
+We are using german pretrained model files for ``deepspech 0.7.4`` from this repository: [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german).
+You need the ``output_graph.tflite`` and the ``kenlm.scorer`` files. You can download them manually from [this google drive folder](https://drive.google.com/drive/folders/1PFSIdmi4Ge8EB75cYh2nfYOXlCIgiMEL) and place them in the folder ``.config/rhasspy/profiles/de/deepspeech/models/``.
+Or you can download them with this two commands:
+```
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer
+```
+When you use the wget commands the files are already in the right place.
+
+Now you need to install a custom version of rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes.
+Just download this file to you rhaspberry and run it: [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)     
+
+Here is the content of this script:
+```bash
+sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
+sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
+sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech
+sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech-hermes
+mkdir /opt/rhasspy-asr-deepspeech-hermes/.venv
+virtualenv -p python3 /opt/rhasspy-asr-deepspeech-hermes/.venv
+source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate
+pip install /opt/rhasspy-asr-deepspeech/
+pip install /opt/rhasspy-asr-deepspeech-hermes/
+sudo ln /opt/rhasspy-asr-deepspeech-hermes/bin/rhasspy-asr-deepspeech-hermes /usr/bin/rhasspy-asr-deepspeech-hermes
+sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -O /etc/syste$sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
+sudo systemctl start rhasspy-asr-deepspeech-hermes.service
+deactivate
+```
+
+This file will download and install rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes to the ``/opt folder`` and run it in a [service file](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service) via systemd.
 
 # Setup completed!
 

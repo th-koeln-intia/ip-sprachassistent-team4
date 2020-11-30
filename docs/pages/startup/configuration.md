@@ -57,6 +57,12 @@ Press the first one and say your Wake Word, then the second, and then the third.
 ``Minimum Matches`` this is a number between 1 and 3. It specifies how many wav files needs to match the detection.
 
 ## 4. [Speech to Text](/pages/knowledge/speech-to-text)
+As STT this project is using ``deepspeech 0.7.4``, please make sureyou have [installed](pages/startup/setup-software#7-install-deepspeech-074) it.
+In the rhasspy config you must set the dropdown menu to ``Hermes MQTT``. Since you installed this custom version of deepspeech 0.7.4 you *can't* use the option 
+``Mozilla Deepspeech``. This is because the default ``deepspeech 0.6.1`` of rhasspy can't load the default pretrained language model and there is 
+no german pretrained language model for this version. We found a good german pretrained language model at [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german), 
+but there is no model for ``deepspeech 0.6.1`` so we port ``rhasspy-asr-deepspeech`` and``rhasspy-asr-deepspeech-hermes`` to a new version. 
+Transcribing works very good but training does not workin. But it's in developement.
 
 ## 5. Intent Recognition
 
