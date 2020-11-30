@@ -21,6 +21,9 @@ sudo pip3 install $HOME/snips-nlu/snips_nlu_utils-0.9.1-cp37-cp37m-linux_armv7l.
 sudo pip3 install $HOME/snips-nlu/snips_nlu_parsers-0.4.3-cp37-cp37m-linux_armv7l.whl
 sudo pip3 install $HOME/snips-nlu/snips_nlu-0.20.2-py3-none-any.whl
 
+# Install rhasspy-snips-nlu-hermes
+sudo pip3 install rhasspy-snips-nlu-hermes
+
 # Download language en
 snips-nlu download de
 
