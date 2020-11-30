@@ -4,8 +4,8 @@ After=syslog.target network.target rhasspy.service
 
 [Service]
 Type=simple
-WorkingDirectory=$HOME/.config/rhasspy
-ExecStart=/bin/bash -lc 'source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate; /usr/bin/rhasspy-asr-deepspeech-hermes --model $HOME/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite --scorer $HOME/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer --host 127.0.0.1 --port 1883'
+WorkingDirectory=/home/pi/.config/rhasspy
+ExecStart=/bin/bash -lc 'source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate; /usr/bin/rhasspy-asr-deepspeech-hermes --model /home/pi/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite --scorer /home/pi/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer --host 127.0.0.1 --port 1883'
 User=pi
 Group=pi
 

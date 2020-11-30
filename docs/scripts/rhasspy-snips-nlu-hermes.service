@@ -4,8 +4,8 @@ After=syslog.target network.target rhasspy.service
 
 [Service]
 Type=simple
-WorkingDirectory=$HOME/.config/rhasspy
-ExecStart=/bin/bash -lc 'rhasspy-snips-nlu-hermes --language de --engine-path $HOME/.config/rhasspy/profiles/de/snips/engine --dataset-path $HOME/.config/rhasspy/profiles/de/snips/dataset.yaml --host 127.0.0.1 --port 1883'
+WorkingDirectory=/home/pi/.config/rhasspy
+ExecStart=/bin/bash -lc 'rhasspy-snips-nlu-hermes --language de --engine-path /home/pi/.config/rhasspy/profiles/de/snips/engine --dataset-path /home/pi/.config/rhasspy/profiles/de/snips/dataset.yaml --host 127.0.0.1 --port 1883'
 User=pi
 Group=pi
 
