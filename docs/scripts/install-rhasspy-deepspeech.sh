@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
 sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech
