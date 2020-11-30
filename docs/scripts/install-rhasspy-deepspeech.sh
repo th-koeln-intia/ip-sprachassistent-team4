@@ -1,4 +1,10 @@
 #!/bin/bash
+
+mkdir ~/.config/rhasspy/profiles/de/deepspeech
+mkdir ~/.config/rhasspy/profiles/de/deepspeech/models
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC" -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer && rm -rf /tmp/cookies.txt
+
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
 sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech
@@ -13,3 +19,4 @@ sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-te
 sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
 sudo systemctl start rhasspy-asr-deepspeech-hermes.service
 deactivate
+

@@ -446,19 +446,22 @@ Have a look to more [useful docker commands](/pages/knowledge/docker)
 Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
 
 ## 7. Install Deepspeech 0.7.4
-Deepspeech is the Speach to text program for rhasspy in this project. You need to install it in an different way than the rhasspy docs says, otherwise it will not work.    
-We are using german pretrained model files for ``deepspech 0.7.4`` from this repository: [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german).
-You need the ``output_graph.tflite`` and the ``kenlm.scorer`` files. You can download them manually from [this google drive folder](https://drive.google.com/drive/folders/1PFSIdmi4Ge8EB75cYh2nfYOXlCIgiMEL) and place them in the folder ``.config/rhasspy/profiles/de/deepspeech/models/``.
-Or you can download them with this two commands:
-```
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer
-```
-When you use the wget commands the files are already in the right place.
 
-Now you need to install a custom version of rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes.
+Deepspeech is the Speech To Text program for Rhasspy in this project. You need to install it in a different way than 
+the Rhasspy documentation says. Otherwise it will not work.    
 
-You can install Snips-NLU with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)
+### Install choices
+{: .no_toc }
+
+You have different choices to install Deepspeech:
+
+* Use the ``install-rhasspy-deepspeech.sh`` script
+* Install step-by-step
+
+#### snips-nlu-install.sh
+{: .no_toc }
+
+You can install Deepspeech with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)
 
 Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp``
 
@@ -466,7 +469,33 @@ Make script executable: ``sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.s
 
 Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
 
-Here is the content of this script:
+#### Install step-by-step
+{: .no_toc }
+
+We are using german pretrained model files for ``deepspech 0.7.4`` from this repository: 
+[AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german).
+
+You need the files ``output_graph.tflite`` and ``kenlm.scorer``. You can download them manually from 
+[this google drive folder](https://drive.google.com/drive/folders/1PFSIdmi4Ge8EB75cYh2nfYOXlCIgiMEL).
+Save then into the folder ``.config/rhasspy/profiles/de/deepspeech/models/``.
+
+If the folders don't exist, create them:
+
+```
+mkdir ~/.config/rhasspy/profiles/de/deepspeech
+mkdir ~/.config/rhasspy/profiles/de/deepspeech/models
+``` 
+
+You also can download the files with the following commands: 
+
+```
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC" -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer && rm -rf /tmp/cookies.txt
+```
+
+Now you need to install a custom version of rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes.
+
+Execute the following commands:
 ```bash
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
@@ -478,12 +507,13 @@ source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate
 pip install /opt/rhasspy-asr-deepspeech/
 pip install /opt/rhasspy-asr-deepspeech-hermes/
 sudo ln /opt/rhasspy-asr-deepspeech-hermes/bin/rhasspy-asr-deepspeech-hermes /usr/bin/rhasspy-asr-deepspeech-hermes
-sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -O /etc/syste$sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
+sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -P /etc/systemd/system/
+sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
 sudo systemctl start rhasspy-asr-deepspeech-hermes.service
 deactivate
 ```
 
-This file will download and install rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes to the ``/opt folder`` and run it in a [service file](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service) via systemd.
+After going through these commands, you have a service named ``rhasspy-asr-deepspeech-hermes``.
 
 ## 8. Install Snips-NLU 
 
