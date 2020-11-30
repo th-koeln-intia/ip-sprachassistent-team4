@@ -498,11 +498,11 @@ You have different choices to install Snips-NLU:
 #### snips-nlu-install.sh
 {: .no_toc }
 
-You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/snips-nlu-install.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/snips-nlu-install_venv.sh)
+You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-snips-nlu_venv.sh)
 
 Change dir to home folder: ``cd $HOME``
 
-Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/snips-nlu-install.sh -P $HOME/tmp``
+Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-snips-nlu.sh -P $HOME/tmp``
 
 Make script executable: ``sudo chmod +x ./snips-nlu-install.sh``
 
