@@ -498,7 +498,7 @@ You have different choices to install Snips-NLU:
 #### snips-nlu-install.sh
 {: .no_toc }
 
-You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/snips-nlu-install.sh)
+You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/snips-nlu-install.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/snips-nlu-install_venv.sh)
 
 Change dir to home folder: ``cd $HOME``
 
