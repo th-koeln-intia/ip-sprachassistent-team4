@@ -30,7 +30,7 @@ sudo systemctl enable nodered.service # start Node-Red as service
 ```
 Node-Red is now available at http://<hostname>:1880 
 
-# Setting a password for the your node-Red [Optional]
+# Setting a password for your node-Red [Optional]
 
 if you want you can set a password  to your Node-Red  with following command 
 ```
@@ -80,7 +80,18 @@ To start with Node Red setting your device should be connected to Zigbee2MQTT br
 
 In the same way, you can set up the color and the brightness of your Light, if your light has these  properties.
 
+# Get weather Information
+
+This example illustrates how  to get the weather information for a specific city. 
+There are different Weather APi but in this example we will use Openweathermap.
+1. on Node_Red main page search for weather  and select openweathermap to be installed.After installation, log on openweathermap to  get a key. This Key is needed for the openweathermap  Node
+
+2. Select Hermes MQTT IN node, insert your topic (`e.g hermes/intent/WetterAbfragen`) 
+3. select a function Node to get the city information from the intent and pass it to the Openweathermap IN Node. you can set the function name to SetCity
+4. select Openweathermap IN Node, which will get the function SetCity output
+5. add a MQTT Out Node to speech a custom sentence for the weather information.
+
+![setup light with Node_Red](../../assets/weather_info.png)
+
 
 # setup an alarm clock
-
-# Get weather Information
