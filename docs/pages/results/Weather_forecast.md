@@ -17,7 +17,7 @@ nav_order: 3
 The weather forecast allows the user to get the weather information of a specific date. For the Implementation we will use Node-red and Hermess MQTT protokoll.
 
 ## Setup the intent in sentence.ini
-the specification for the intent can be like :
+the specification for the intent can be like:
 
 ```
 [WeatherForecast]
