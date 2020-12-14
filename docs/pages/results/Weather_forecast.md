@@ -1,8 +1,7 @@
 ---
 layout: default
 title: weather forecast
-parent: results
-nav_order: 3
+parent: Results
 ---
 <details close markdown="block">
   <summary>
