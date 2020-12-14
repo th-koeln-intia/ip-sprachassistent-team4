@@ -20,6 +20,8 @@ intent of the user. In this project we are using Snips NLU. It's a system with v
 moderate training time.
 
 ## How to use Snips NLU
+Please install Snlu with the instruction in [Setup Software](pages/startup/setup-software ).
+The following instruction does not work.
 To use Snips NLU you need to add the following config to your [profile](/pages/knowledge/profile):
 ```json
 "intent": {
