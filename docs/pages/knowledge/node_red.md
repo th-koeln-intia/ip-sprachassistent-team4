@@ -63,26 +63,11 @@ the output is passed on
 - Trigger: Converts messages into a "status". E.g. ensure that the
 Status is held "HIGH" as long as new messages are received.
 
-# Setup a light
-there are different ways to set up a light. This example is based on setting a light with Hermes and Zigbe2MQTT protokoll.
-To start with Node Red setting your device should be connected to Zigbee2MQTT brocker. Have a look on 
-[zigbee2mqtt](/pages/knowledge/zigbee/zigbee2mqtt) to see how  you can connect your devices.
-
-
-- first create a bridge by selecting Zigbee2mqtt Bridge Node, then enter an optional name for the bridge, Locallhost for the Host , zigbee2mqtt for Base Topic and 1883 for the Mqtt Port
-- select MQTT IN node and enter the Topic name as well as the Server. In this example the Server name is : 127.0.0.1: 1883 and the topic is hermes/intent/LampeStatus (Note: the same Intent should be available on Rhasspy Sentences site)
-- then select a switch with available status for the light. In this case with have only two status : ON or OFF
-- finally select your Zigbee2Mqtt Out Nodes to handle the status of your light
-
-
-![setup light with Node_Red](../../assets/Setup_light_NodeRed.png)
-
-
 In the same way, you can set up the color and the brightness of your Light, if your light has these  properties.
 
-# Get weather Information
+# Example of a flow used to Get current weather Information
 
-This example illustrates how  to get the weather information for a specific city. 
+This example illustrates how  to get the current weather information for a specific city. 
 There are different Weather APi but in this example we will use Openweathermap.
 1. on Node_Red main page search for weather  and select openweathermap to be installed.After installation, log on openweathermap to  get a key. This Key is needed for the openweathermap  Node
 

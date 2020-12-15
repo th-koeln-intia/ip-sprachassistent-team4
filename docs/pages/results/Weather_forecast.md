@@ -32,4 +32,4 @@ The only downside to this NODE is that we can only get the weather information o
 2. The switch node as already mentioned, will delegate the weather forecast according to the date to a specific function and the hermess Mqtt out node will publish the message set in the function.
 
 
-![setup light with Node_Red](../../assets/five_days_weather.png)
+![setup weather forecast with Node_Red](../../assets/five_days_weather.png)
