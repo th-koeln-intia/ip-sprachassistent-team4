@@ -8,7 +8,7 @@ wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zIvp
 
 
 sudo rm -rf /opt/rhasspy-asr-deepspeech
-sudo rm -rf /opt/rhasspy-deepspeech-hermes
+sudo rm -rf /opt/rhasspy-asr-deepspeech-hermes
 #get rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes repository
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
