@@ -1,5 +1,5 @@
 #!/bin/bash
-
+rm -rf ~/.config/rhasspy/profiles/de/deepspeech
 mkdir ~/.config/rhasspy/profiles/de/deepspeech
 mkdir ~/.config/rhasspy/profiles/de/deepspeech/models
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
@@ -7,7 +7,8 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zIvpdJ0YOreg_HwVwoyt_6BEEusH5g4w' -O ~/.config/rhasspy/profiles/de/deepspeech/models/alphabet.txt
 
 
-sudo rm -rf /opt/rhasspy-asr-deepspeech /opt/rhasspy-deepspeech-hermes
+sudo rm -rf /opt/rhasspy-asr-deepspeech 
+sudo rm -rf /opt/rhasspy-deepspeech-hermes
 #get rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes repository
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
