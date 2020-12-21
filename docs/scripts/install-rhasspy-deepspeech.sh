@@ -7,7 +7,7 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zIvpdJ0YOreg_HwVwoyt_6BEEusH5g4w' -O ~/.config/rhasspy/profiles/de/deepspeech/models/alphabet.txt
 
 
-sudo rm -rf /opt/rhasspy-asr-deepspeech 
+sudo rm -rf /opt/rhasspy-asr-deepspeech
 sudo rm -rf /opt/rhasspy-deepspeech-hermes
 #get rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes repository
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr-deepspeech
@@ -24,7 +24,7 @@ rm /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
 
 sudo apt install llvm
 
-#create virtual enviroment and enter it
+#create virtual environment and enter it
 mkdir /opt/rhasspy-asr-deepspeech-hermes/.venv
 virtualenv -p python3 /opt/rhasspy-asr-deepspeech-hermes/.venv
 source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate
@@ -45,5 +45,6 @@ sudo systemctl start rhasspy-asr-deepspeech-hermes.service
 #leave virtual enviroment
 deactivate
 
+echo "$(tput setaf 2)DONE! Please check if there are any errors during installation! $(tput sgr 0)"
 
 
