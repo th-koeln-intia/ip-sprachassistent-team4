@@ -22,7 +22,7 @@ wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/docs/
 tar xvfz /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz -C /opt/rhasspy-asr-deepspeech-hermes
 rm /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
 
-sudo apt install llvm
+sudo apt install llvm libfst-tools libngram-tools
 
 #create virtual environment and enter it
 mkdir /opt/rhasspy-asr-deepspeech-hermes/.venv
