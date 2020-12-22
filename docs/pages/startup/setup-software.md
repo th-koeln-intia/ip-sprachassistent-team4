@@ -456,20 +456,20 @@ the Rhasspy documentation says. Otherwise it will not work.
 You have different choices to install Deepspeech:
 
 * Use the ``install-rhasspy-deepspeech.sh`` script
-* Install step-by-step
+* Alternative install step-by-step
 
-#### snips-nlu-install.sh
+#### install-rhasspy-deepspeech.sh
 {: .no_toc }
 
 You can install Deepspeech with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)
 
-Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp``
+Download script: ``wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp``
 
 Make script executable: ``sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh``
 
 Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
 
-#### Install step-by-step
+#### Alternative install step-by-step
 {: .no_toc }
 
 We are using german pretrained model files for ``deepspech 0.7.4`` from this repository: 
@@ -489,8 +489,9 @@ mkdir ~/.config/rhasspy/profiles/de/deepspeech/models
 You also can download the files with the following commands: 
 
 ```
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC" -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer && rm -rf /tmp/cookies.txt
+wget -N --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
+wget -N --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget -N --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC" -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer && rm -rf /tmp/cookies.txt
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zIvpdJ0YOreg_HwVwoyt_6BEEusH5g4w' -O ~/.config/rhasspy/profiles/de/deepspeech/models/alphabet.txt
 ```
 
 Now you need to install a custom version of rhasspy-asr-deepspeech and rhasspy-asr-deepspeech-hermes.
@@ -501,12 +502,24 @@ sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech /opt/rhasspy-asr
 sudo git clone https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes /opt/rhasspy-asr-deepspeech-hermes
 sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech
 sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech-hermes
+
+wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/docs/tools/deepspeech_train_tools.tar.gz -O /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
+tar xvfz /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz -C /opt/rhasspy-asr-deepspeech-hermes
+rm /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
+
+sudo apt install llvm libfst-tools libngram-tools
+
 mkdir /opt/rhasspy-asr-deepspeech-hermes/.venv
 virtualenv -p python3 /opt/rhasspy-asr-deepspeech-hermes/.venv
 source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate
+
 pip install /opt/rhasspy-asr-deepspeech/
 pip install /opt/rhasspy-asr-deepspeech-hermes/
+pip install progressbar2==3.47.0
+pip install /opt/rhasspy-asr-deepspeech-hermes/tools/packages/*.whl
+
 sudo ln /opt/rhasspy-asr-deepspeech-hermes/bin/rhasspy-asr-deepspeech-hermes /usr/bin/rhasspy-asr-deepspeech-hermes
+
 sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -P /etc/systemd/system/
 sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
 sudo systemctl start rhasspy-asr-deepspeech-hermes.service
@@ -523,14 +536,14 @@ After going through these commands, you have a service named ``rhasspy-asr-deeps
 You have different choices to install Snips-NLU:
 
 * Use the ``snips-nlu-install.sh`` script
-* Install step-by-step
+* Alternative install step-by-step
 
 #### snips-nlu-install.sh
 {: .no_toc }
 
 You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-snips-nlu_venv.sh)
 
-Change dir to home folder: ``cd $HOME``
+Change directory to home folder: ``cd $HOME``
 
 Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-snips-nlu.sh -P $HOME/tmp``
 
@@ -538,7 +551,7 @@ Make script executable: ``sudo chmod +x ./snips-nlu-install.sh``
 
 Execute script: ``./snips-nlu-install.sh``
 
-#### Install step-by-step
+#### Alternative install step-by-step
 {: .no_toc }
 
 1. Install Rust: ``sudo apt install rustc -y``

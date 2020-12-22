@@ -29,7 +29,7 @@ and false positive detections are not welcome.
 
 ## How does Rhasspy listen to a Wake Word?
 Rhasspy itself won't listen to a Wake Word. It listens for MQTT messages on the topic `'hermes/hotword/<wakeword>/detected'`.
-You can disable/enable the Wake Word with the message `'hermes/hotword/toggleOff'`
+You can disable/enable the Wake Word with the message `'hermes/hotword/toggleOff'`.
 
 ## Who sets the `'hermes/hotword/<wakeword>/detected` message'?
 There are many programs for Wake Word handling like Raven, Porcupine, Snowboy, Mycroft precise, Pocketsphinx.
@@ -50,7 +50,7 @@ To add Raven to Rhasspy you must edit your user profile. Add this to your user [
 ```
 
 ## How to record a Wake Word
-You can record the Wake Word directly in the Rhasspy UI. Open the settings and then click on the dropdown button of
+You can record the Wake Word directly in the Rhasspy UI. Open the settings and then click on the drop down button of
 Wake Word. The settings of Raven will appear. There are three record buttons. 
 You must record your Wake Word three times to create three examples for raven to recognize the Wake Word. We recommend
 to record from three different positions of your room where you want to use your voice assistant.

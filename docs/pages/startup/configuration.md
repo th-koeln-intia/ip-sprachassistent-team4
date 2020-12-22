@@ -34,7 +34,7 @@ You can find the settings page on ``<ip of your raspberry>:12101``, and then at 
 To apply all settings you need to click th e save button on the top or bottom, your raspberry will restart.
 
 ## 1. [MQTT](/pages/knowledge/mqtt#what-is-mqtt)
-For background Information click on the topic header.
+For background information click on the topic header.
 MQTT is the communication channel rhasspy communicates with. Our MQTT-server is mosquitto we installed in the installation.
 When you done all steps in the [installations instruction](/startup/setup-software#3-install-a-mqttt-server-and-node-red) you have already a running MQTT server on your Raspberry.
 To use it you choose ``External`` in the drop down menu next to the MQTT button in the Rhasspy settings.
@@ -63,6 +63,13 @@ In the rhasspy config you must set the dropdown menu to ``Hermes MQTT``. Since y
 no german pretrained language model for this version. We found a good german pretrained language model at [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german), 
 but there is no model for ``deepspeech 0.6.1`` so we port ``rhasspy-asr-deepspeech`` and``rhasspy-asr-deepspeech-hermes`` to a new version. 
 Transcribing works very good but training does not workin. But it's in developement.
+Please check in your .config/rhasspy/profilesprofile.json if this exists:
+```
+"speech_to_text": {
+        "system": "hermes"
+},
+```
+If there are any other line in the curly braces, please delete them.
 
 ## 5. Intent Recognition
 

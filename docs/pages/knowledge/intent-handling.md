@@ -20,6 +20,7 @@ Rhasspy is able to
 * call a custom program
 * send a POST request to a Rhasspy Remote HTTP Server 
 * Home Assistant.
+* Node Red
 
 ## External Command
 This is for you if you want to handle the intent with an external program, for example an shell script or a python script ore something else.
@@ -64,3 +65,8 @@ To install it merge this into your [profile.json](/pages/knowledge/profiles):
   "url": "http://hassio/homeassistant/"
 }
 ```
+
+## Node Red
+Ndoe Red is an graphical programming tool you can use to automate your Raspberry Pi. It's based on Nodes you can connect with lines. 
+On the left are the Input Nodes and on the right are the output nodes. You can do many things with it, nodered runs under the hood 
+and there are also many plugins you can use to control your raspberry pi. There are nearly unlimited possibilities.
