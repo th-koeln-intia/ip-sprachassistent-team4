@@ -463,9 +463,13 @@ You have different choices to install Deepspeech:
 
 You can install Deepspeech with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)
 
-Download script: ``wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp``
+Download script: 
+```
+wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp
+```
 
-Make script executable: ``sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh``
+Make script executable: 
+``sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh``
 
 Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
 
@@ -545,18 +549,36 @@ You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-
 
 Change directory to home folder: ``cd $HOME``
 
-Download script: ``wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-snips-nlu.sh -P $HOME/tmp``
+Download script: 
+```bash
+wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-snips-nlu.sh -P $HOME/tmp
+```
 
-Make script executable: ``sudo chmod +x ./snips-nlu-install.sh``
+Make script executable: 
+```bash
+sudo chmod +x ./snips-nlu-install.sh
+```
 
-Execute script: ``./snips-nlu-install.sh``
+Execute script: 
+```bash
+./snips-nlu-install.sh
+```
 
 #### Alternative install step-by-step
 {: .no_toc }
 
-1. Install Rust: ``sudo apt install rustc -y``
-2. Install Setuptools plugin for Rust extensions: ``pip3 install setuptools-rust``
-3. Install Snips-NLU: ``pip install snips-nlu``
+1. Install Rust: 
+   ```bash
+   sudo apt install rustc -y
+   ```
+2. Install Setuptools plugin for Rust extensions:
+   ```bash
+   pip3 install setuptools-rust
+   ```
+3. Install Snips-NLU: 
+   ```bash
+   pip install snips-nlu
+   ```
 4. Do Snips NLU rebirth
 
 4.1 ``sudo apt install libatlas3-base libgfortran5``
