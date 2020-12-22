@@ -85,7 +85,7 @@ Leverkusen
 ```
 We used a list with 14000 German Citys from [here](https://www.datenbörse.net/item/Liste_von_deutschen_Staedtenamen_.csv).
 This list does not work well, you need to remove some characters and lines.
-Remove the lines ``<different>`` and ``<unterschiedlich>`` from the file. You also must remove all quotation marks and you must replace all back slashes with speces.
+Remove the lines ``<different>`` and ``<unterschiedlich>`` from the file. You also must remove all quotation marks and you must replace all back slashes and slashes with spaces. There could be some other unsupported characters in this file. There are only alphabet letters and ä, ü, ö allowed. 
 Now move your edited file to ``~/.config/rhasspy/profiles/de/slots/``.
 You can see your slots on the rhassspy page on the disc on the left side.
 When you want to use a flot you can use ``($slotfilename)`` in your sentences.
