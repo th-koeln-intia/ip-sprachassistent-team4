@@ -1,5 +1,7 @@
 ---
-layout: default title: LightBrightness_flow parent: Node-Red-Flows
+layout: default 
+title: LightBrightness_flow 
+parent: Node-Red-Flows
 ---
 <details close markdown="block">
   <summary>
