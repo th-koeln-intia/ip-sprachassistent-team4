@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Timer with JS
-parent: Timer
+title: Alarm with JS
+parent: Alarm
 grand_parent: Results
 ---
 
@@ -14,4 +14,4 @@ grand_parent: Results
 {:toc}
 </details>
 
-![Timer with JavaScript](/assets/timerJSFull.png)
+![Timer with JavaScript](/assets/alarmJSFull.png)
