@@ -6,9 +6,9 @@ parent: Results
 nav_order: 0
 ---
 
-# Timer
+# Alarm
 
-## What is a Timer?
+## What is a Alarm?
 A alarm is a feature, that reminds you of an event at a specific time. For example when you have a meeting with your dentist next week on Thurstday at 15:00.
 Then you can set an alarm and Sherlock will remind you on this meeting.
 
