@@ -291,6 +291,10 @@ cp ${WORK}/tensorflow/tensorflow-0.15.2-cp35-none-linux_armv7l.whl
 I used this description: [tensorflow.org](https://www.tensorflow.org/install/source_rpi#python-3.7)
 
 
+# Links to our rhasspy-asr repositories
+- [rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech)
+- [rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes)
+
 
 
 
