@@ -23,7 +23,7 @@ We created a alarm feature in NodeRed with JS Functions. Here is a small overvie
 - `PlaySound` node from [node-red-contrib-play-sound](https://flows.nodered.org/node/node-red-contrib-play-sound)
 
 ## Features
-- It can load and save alarms from a file. So when te raspberry turns of and on again the alarms are will be leaded again.
+- It can load and save alarms from a file. So when the raspberry turns off and on, the alarms are will be loaded again.
 - Set an alarm via voice you can set hours, minutes and seconds.
 - You can clear all alarms.
 - Stop an alarm via voice
@@ -32,7 +32,7 @@ We created a alarm feature in NodeRed with JS Functions. Here is a small overvie
 - TTS tells you which time you set the alarm
 
 ## Savefile
-The alarms are saved in the profile folder: 
+The alarm sound is setup to this file:
 ```
 /home/pi/.config/rhasspy/profiles/de/data/alarms.json
 ```
@@ -42,7 +42,7 @@ Tha alarm sound is setup here:
 ```
 /home/pi/.config/rhasspy/profiles/de/data/alarm.mp3
 ```
-You can edit it or set another path. Important is that you use an absolut path to link the mp3 file. Otherwise NodeRed looksin its own workfolder.
+You can edit it or set another path. Important is that you use an absolut path to link the mp3 file. Otherwise NodeRed looks in its own workfolder.
 
 ## Description
 I start to describe the flow from top to bottom. so we start with the loading the alarms from a file.
@@ -56,10 +56,10 @@ them from everywhere.
 
 ### Intent `SetAlarmClock`
 ![Set new alarm](/assets/alarmJSSet.png)
-When an `SetAlarmClock` intent enterns the mqtt-Server the function `createTimerObject` will be triggered.
+When an `SetAlarmClock` intent enters the mqtt-Server, the function `createAlarmObject` will be triggered.
 This function extract the hour, minutes and seconds from the message and create a alarm object in this format:
 ```
-{alarmSet : <dateTime the alarm was set>, alarmAt : <dateTime the alarm should ring>};
+{alarmSet : <dateTime the alarm was set>, alarmAt : <dateTime the alarm should ring>}
 ```
 Here is the sourcecode of this function:
 ```javascript
@@ -128,9 +128,9 @@ After this function the alarm list will be saved with the node `file` to the fil
 
 ### Injection `resetAlarms`
 ![Reset all alarms](/assets/alarmJSReset.png)
-This part is for deleting all Alarms from the global list and from the savefile.
+This part is for deleting all alarms from the global list and from the savefile.
 After you click on `resetAlarms` the functions `resetAllAlarms` starts.
-This function sets the global `alarms` array tro an empty array:
+This function sets the global `alarms` array to an empty array:
 ```javascript
 global.set("alarms", []);
 msg.payload = null;
@@ -140,10 +140,10 @@ After this the alarms will be saved in the savefile again.
 
 ### Injection `refreshAlarms`
 ![Check alarms](/assets/alarmJSCheck.png)
-The injection  `refreshAlarms` triggers the function `checkAllAlarms` every second.
+The injection `refreshAlarms` triggers the function `checkAllAlarms` every second.
 `checkAllAlarms` goes through every alarm in the global alarm list and checks if it's time to ring.
-When a timer is out of time it will be add to the `readyTimers` array, which will be the output for the function. 
-If `readyTimers` is empty the function will return `null`. 
+When a alarm is out of time it will be add to the `readyAlarms` array, which will be the output for the function. 
+If `readyAlarms` is empty the function will return `null`. 
 
 Here is the Code:
 ```javascript
@@ -213,7 +213,7 @@ If not the `PlaySound` node starts playing again.
 
 ### Intent `StopAlarmClock`
 ![Stop an alarm](/assets/alarmJSStop.png)
-The Intent `StopAlarmClock` stops the rining of an alarm. It runs the function `stopRinging`. 
+The Intent `StopAlarmClock` stops the ringing of an alarm. It runs the function `stopRinging`. 
 This sets the global variable `alarmRinging` to `0` and sets the payload to `"stop"`.
 This message goes to the `PlaySound` node, it should stop playing the file. 
 
@@ -229,7 +229,7 @@ return msg;
 The Intent `NextAlarm` picks the next due alarmclock and creates a text the TTS should say to inform the user when the next alarm rings.
 
 The Intent first triggers the function `checkAllAlarms`. This function goes through all alarms listed in the global `alarms` variable
-and put the next due alarm in `mas.payload`.
+and put the next due alarm in `msg.payload`.
 ```javascript
 var alarms = global.get("alarms");
 var nextDate = new Date(new Date().getFullYear()+2000, 0, 0, 0, 0, 0);
