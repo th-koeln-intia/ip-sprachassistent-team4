@@ -21,8 +21,8 @@ The specification for the intent can be like:
 ```
 [WeatherForecast]
 city_name=(cologne | Bergisch Gladbach | Paris ){city}
-date =(heute| Morgen | in zwei Tagen| in drei Tagen | in vier Tagen){day}
-Wie ist das Wetter  <date> in <city_name>
+date =(today| Tomorrow | in two days| in three days | in fourth days){day}S
+how is the wether <date> in <city_name>
 
 ```
 1. First a city name needs to be specify. This name can be obtained through a databank, where the city and country name are stored. To keep it simple in this exemple, we can just put some cities' names as a list.
@@ -33,3 +33,6 @@ The only downside to this NODE is that we can only get the weather information o
 
 
 ![setup weather forecast with Node_Red](../../assets/five_days_weather.png)
+
+# downlod the flow
+- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/WeatherForecast.json)
