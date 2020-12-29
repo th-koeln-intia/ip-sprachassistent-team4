@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Alarm with JS
-parent: Alarm
+title: Timer with JS
+parent: Timer
 grand_parent: Results
 ---
 
