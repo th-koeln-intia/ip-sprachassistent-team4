@@ -1,0 +1,40 @@
+{
+    "dialogue": {
+        "system": "rhasspy"
+    },
+    "intent": {
+        "system": "hermes"
+    },
+    "microphone": {
+        "arecord": {
+            "device": "sysdefault:CARD=seeed4micvoicec"
+        },
+        "system": "arecord"
+    },
+    "mqtt": {
+        "enabled": "true",
+        "host": "127.0.0.1"
+    },
+    "sounds": {
+        "aplay": {
+            "device": "sysdefault:CARD=Headphones"
+        },
+        "system": "aplay"
+    },
+    "speech_to_text": {
+        "system": "hermes"
+    },
+    "text_to_speech": {
+        "nanotts": {
+            "language": "de-DE"
+        },
+        "system": "nanotts"
+    },
+    "wake": {
+        "raven": {
+            "average_templates": false,
+            "probability_threshold": "0.53"
+        },
+        "system": "raven"
+    }
+}
