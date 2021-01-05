@@ -1,1 +1,559 @@
-[{"id":"4d6cbb4.9fd3944","type":"tab","label":"timer","disabled":false,"info":""},{"id":"4e8dd158.5c6328","type":"mqtt in","z":"4d6cbb4.9fd3944","name":"","topic":"hermes/intent/SetTimer","qos":"2","datatype":"json","broker":"7d5a3618.9ef98","x":240,"y":200,"wires":[["4e3d672f.c85b6"]]},{"id":"4e3d672f.c85b6","type":"function","z":"4d6cbb4.9fd3944","name":"createTimerObject","func":"var seconds = 0;\nvar minutes = 0;\nvar hours = 0;\n\nfor(var i = 0; i < msg.payload.slots.length; i++)\n{\n    if(msg.payload.slots[i].slotName === \"seconds\")\n        seconds = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"minutes\")\n        minutes = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"hours\")\n        hours = msg.payload.slots[i].value.value;\n}\nvar timerSetAt = new Date();\nvar timerAt = new Date(timerSetAt);\ntimerAt.setHours(timerAt.getHours() + hours);\ntimerAt.setMinutes(timerAt.getMinutes() + minutes);\ntimerAt.setSeconds(timerAt.getSeconds() + seconds);\n\nvar timerIn = new Date(0);\ntimerIn.setHours(timerIn.getHours() + hours);\ntimerIn.setMinutes(timerIn.getMinutes() + minutes);\ntimerIn.setSeconds(timerIn.getSeconds() + seconds);\n\nmsg.payload = {timerSet : timerSetAt, timerAt : timerAt, timerIn: timerIn};\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":490,"y":200,"wires":[["691baa33.cb88e4","4d0ec413.ceb5bc"]]},{"id":"b3d113b3.a2b9","type":"json","z":"4d6cbb4.9fd3944","name":"","property":"payload","action":"","pretty":false,"x":1250,"y":260,"wires":[["2ddaf5c7.0cc9b2"]]},{"id":"2ddaf5c7.0cc9b2","type":"file","z":"4d6cbb4.9fd3944","name":"","filename":"/home/pi/.config/rhasspy/profiles/de/data/timers.json","appendNewline":false,"createDir":true,"overwriteFile":"true","encoding":"none","x":1540,"y":260,"wires":[[]]},{"id":"95295b30.fbcff8","type":"inject","z":"4d6cbb4.9fd3944","name":"loadTimers","props":[],"repeat":"","crontab":"","once":true,"onceDelay":0.1,"topic":"","x":230,"y":140,"wires":[["8e2db8da.9c2498"]]},{"id":"4a1ba525.14ab54","type":"function","z":"4d6cbb4.9fd3944","name":"setTimersGlobal","func":"\n                \nglobal.set(\"timers\", msg.payload);\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1240,"y":140,"wires":[[]]},{"id":"8e2db8da.9c2498","type":"file in","z":"4d6cbb4.9fd3944","name":"","filename":"/home/pi/.config/rhasspy/profiles/de/data/timers.json","format":"utf8","chunk":false,"sendError":false,"encoding":"none","x":600,"y":140,"wires":[["af451768.edd0f"]]},{"id":"af451768.edd0f","type":"json","z":"4d6cbb4.9fd3944","name":"","property":"payload","action":"","pretty":false,"x":990,"y":140,"wires":[["4a1ba525.14ab54"]]},{"id":"8f6f6cd7.cff19","type":"inject","z":"4d6cbb4.9fd3944","name":"saveTimers","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"","payloadType":"date","x":230,"y":260,"wires":[["4d0ec413.ceb5bc"]]},{"id":"4d0ec413.ceb5bc","type":"function","z":"4d6cbb4.9fd3944","name":"AddToGlobalTimers","func":"\nvar timers = global.get(\"timers\");\nif(timers === undefined)\n    timers = [];\n\nif(msg.payload != null)\n{\n    timers.push(msg.payload);\n    global.set(\"timers\", timers);\n}\n\nmsg.payload = timers;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":750,"y":260,"wires":[["b3d113b3.a2b9"]]},{"id":"78403ef6.ec5d38","type":"inject","z":"4d6cbb4.9fd3944","name":"reset Timer","props":[{"p":"payload"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"[]","payloadType":"str","x":230,"y":300,"wires":[["2cb8ad95.dc8b72"]]},{"id":"2cb8ad95.dc8b72","type":"function","z":"4d6cbb4.9fd3944","name":"resetAllTimers","func":"\n                \n\nglobal.set(\"timers\", []);\n\nmsg.payload = null;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":480,"y":300,"wires":[["4d0ec413.ceb5bc"]]},{"id":"39a3abf6.513244","type":"inject","z":"4d6cbb4.9fd3944","name":"refreshTimer","props":[{"p":"payload.timers","v":"timers","vt":"global"}],"repeat":"1","crontab":"","once":false,"onceDelay":0.1,"topic":"","payloadType":"str","x":240,"y":360,"wires":[["47cd15ac.a4bf34"]]},{"id":"47cd15ac.a4bf34","type":"function","z":"4d6cbb4.9fd3944","name":"check all timers","func":"var dateNow = new Date();\nvar readyTimers = [];\n\nfor(var i = 0; i < msg.payload.timers.length; i++)\n{\n    var thenTime = new Date(msg.payload.timers[i].timerAt);\n    //node.warn(\"now=\"+dateNow.getTime());\n    //node.warn(\"then=\"+thenTime.getTime());\n\n    if(dateNow.getTime() >= thenTime.getTime())\n    {\n        readyTimers.push(msg.payload.timers[i]);\n    }\n}\n\nif(readyTimers.length > 0)\n    msg.payload = readyTimers;\nelse\n    msg.payload = null;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":480,"y":360,"wires":[["a85b37ed.f8f64"]]},{"id":"ff49c44f.2ca0a","type":"function","z":"4d6cbb4.9fd3944","name":"removeFromGlobalTimers","func":"\nvar timers = global.get(\"timers\");\nif(timers === undefined)\n    timers = [];\n\nif(msg.payload != null)\n{\n    for(var i = 0; i < msg.payload.length; i++)\n    {\n        for( var j = 0; j < timers.length; j++) \n        { \n            if (timers[j].timerSet.toString() == msg.payload[i].timerSet.toString() && timers[j].timerAt.toString() == msg.payload[i].timerAt.toString())\n            {\n                timers.splice(j, 1); \n            }\n            /*\n            node.warn(typeof timers[j].timerSet);\n            node.warn(typeof msg.payload[i].timerSet);\n            node.warn(timers[j].timerSet.toString() === msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet.toString() == msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet);\n            node.warn(msg.payload[i].timerSet);\n            */\n        }\n        //node.warn(timers);\n    }\n    \n    \n    global.set(\"timers\", timers);\n}\n\nmsg.payload = timers;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1050,"y":340,"wires":[["b3d113b3.a2b9"]]},{"id":"e31b9619.037bc","type":"PlaySound","z":"4d6cbb4.9fd3944","name":"","playerOptions":"{}","audioURI":"/home/pi/.config/rhasspy/profiles/de/data/alarm.mp3","options":"{\"afplay\" : [\"-l0\"]}","x":1250,"y":420,"wires":[["64a38fa0.abcb1"]]},{"id":"c9224e8a.0eed4","type":"function","z":"4d6cbb4.9fd3944","name":" start ringing","func":"global.set(\"timerRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1010,"y":400,"wires":[["e31b9619.037bc"]]},{"id":"e93e4de7.314af","type":"inject","z":"4d6cbb4.9fd3944","name":"stop Timer","props":[{"p":"payload"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"stop","payloadType":"str","x":220,"y":500,"wires":[["4dfe8ab.c9fa074"]]},{"id":"a85b37ed.f8f64","type":"switch","z":"4d6cbb4.9fd3944","name":"checkNotNull","property":"payload","propertyType":"msg","rules":[{"t":"nnull"}],"checkall":"true","repair":false,"outputs":1,"x":730,"y":360,"wires":[["c9224e8a.0eed4","ff49c44f.2ca0a"]]},{"id":"ba8841c6.ebed18","type":"mqtt in","z":"4d6cbb4.9fd3944","name":"","topic":"hermes/intent/StopTimer","qos":"2","datatype":"json","broker":"7d5a3618.9ef98","x":250,"y":440,"wires":[["4dfe8ab.c9fa074"]]},{"id":"4dfe8ab.c9fa074","type":"function","z":"4d6cbb4.9fd3944","name":" stop ringing","func":"global.set(\"timerRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1010,"y":440,"wires":[["e31b9619.037bc"]]},{"id":"691baa33.cb88e4","type":"function","z":"4d6cbb4.9fd3944","name":"createTTSText","func":"\n//msg.payload = {timerSet : timerSetAt, timerAt : timerAt};\n\nvar timerIn = new Date(msg.payload.timerIn);\nvar hours = timerIn.getHours() -1 ;\nvar minutes = timerIn.getMinutes();\nvar seconds = timerIn.getSeconds();\n\nvar text = \"Es wurde ein Teimer in \";\nif(hours !== 0)\n    text += hours + \" Stunden \";\nif(minutes !== 0)\n    text += minutes + \" Minuten \";\nif(seconds !== 0)\n    text += seconds + \" Sekunden \";\n    \ntext += \"gesetzt.\";\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\n\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":740,"y":200,"wires":[["b5356de9.41fc98"]]},{"id":"b5356de9.41fc98","type":"mqtt out","z":"4d6cbb4.9fd3944","name":"","topic":"hermes/tts/say","qos":"2","retain":"false","broker":"7d5a3618.9ef98","x":1020,"y":200,"wires":[]},{"id":"64a38fa0.abcb1","type":"switch","z":"4d6cbb4.9fd3944","name":"checkTimerRinging","property":"timerRinging","propertyType":"global","rules":[{"t":"gt","v":"0","vt":"num"}],"checkall":"true","repair":false,"outputs":1,"x":1470,"y":420,"wires":[["e31b9619.037bc"]]},{"id":"b3a0c5a5.512ec","type":"mqtt in","z":"4d6cbb4.9fd3944","name":"","topic":"hermes/intent/NextTimer","qos":"2","datatype":"json","broker":"7d5a3618.9ef98","x":250,"y":580,"wires":[["1d3eab4b.3c5a2d"]]},{"id":"1d3eab4b.3c5a2d","type":"function","z":"4d6cbb4.9fd3944","name":"check all timers","func":"var timers = global.get(\"timers\");\nvar nextDate = new Date(new Date().getFullYear()+2000, 0, 0, 0, 0, 0);\n\n\nfor(var i = 0; i < timers.length; i++)\n{\n    var thenTime = new Date(timers[i].timerAt);\n    if(nextDate.getTime() > thenTime.getTime())\n    {\n        nextDate = new Date(thenTime);\n    }\n\n}\n\nmsg.payload = nextDate;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":480,"y":580,"wires":[["1a6aecf1.c2095b"]]},{"id":"1a6aecf1.c2095b","type":"function","z":"4d6cbb4.9fd3944","name":"create the answer text","func":"\nvar currentDate = new Date();\n\nvar timerDate = new Date(msg.payload);\n\nvar fullSecondsRemain = (timerDate.getTime() - currentDate.getTime())/1000;\nvar minutesRemain = Math.floor(fullSecondsRemain/60);\nvar secondsRemain = Math.floor(fullSecondsRemain%60);\n\nvar text = \"Der nächste Teimer geht in \" + minutesRemain + \" Minuten und \" + secondsRemain + \" Sekunden\";\n\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":740,"y":580,"wires":[["9466b887.4621e"]]},{"id":"9466b887.4621e","type":"mqtt out","z":"4d6cbb4.9fd3944","name":"","topic":"hermes/tts/say","qos":"2","retain":"false","broker":"7d5a3618.9ef98","x":960,"y":580,"wires":[]},{"id":"7d5a3618.9ef98","type":"mqtt-broker","name":"mqtt","broker":"127.0.0.1","port":"1883","clientid":"","usetls":false,"compatmode":false,"keepalive":"60","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""}]
+[
+  {
+    "id": "4d6cbb4.9fd3944",
+    "type": "tab",
+    "label": "timer",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "4e8dd158.5c6328",
+    "type": "mqtt in",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "topic": "hermes/intent/SetTimer",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "7d5a3618.9ef98",
+    "x": 240,
+    "y": 200,
+    "wires": [
+      [
+        "4e3d672f.c85b6"
+      ]
+    ]
+  },
+  {
+    "id": "4e3d672f.c85b6",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "createTimerObject",
+    "func": "var seconds = 0;\nvar minutes = 0;\nvar hours = 0;\n\nfor(var i = 0; i < msg.payload.slots.length; i++)\n{\n    if(msg.payload.slots[i].slotName === \"seconds\")\n        seconds = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"minutes\")\n        minutes = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"hours\")\n        hours = msg.payload.slots[i].value.value;\n}\nvar timerSetAt = new Date();\nvar timerAt = new Date(timerSetAt);\ntimerAt.setHours(timerAt.getHours() + hours);\ntimerAt.setMinutes(timerAt.getMinutes() + minutes);\ntimerAt.setSeconds(timerAt.getSeconds() + seconds);\n\nvar timerIn = new Date(0);\ntimerIn.setHours(timerIn.getHours() + hours);\ntimerIn.setMinutes(timerIn.getMinutes() + minutes);\ntimerIn.setSeconds(timerIn.getSeconds() + seconds);\n\nmsg.payload = {timerSet : timerSetAt, timerAt : timerAt, timerIn: timerIn};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 490,
+    "y": 200,
+    "wires": [
+      [
+        "691baa33.cb88e4",
+        "4d0ec413.ceb5bc"
+      ]
+    ]
+  },
+  {
+    "id": "b3d113b3.a2b9",
+    "type": "json",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 1250,
+    "y": 260,
+    "wires": [
+      [
+        "2ddaf5c7.0cc9b2"
+      ]
+    ]
+  },
+  {
+    "id": "2ddaf5c7.0cc9b2",
+    "type": "file",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "filename": "/home/pi/.config/rhasspy/profiles/de/data/timers.json",
+    "appendNewline": false,
+    "createDir": true,
+    "overwriteFile": "true",
+    "encoding": "none",
+    "x": 1540,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "95295b30.fbcff8",
+    "type": "inject",
+    "z": "4d6cbb4.9fd3944",
+    "name": "loadTimers",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 230,
+    "y": 140,
+    "wires": [
+      [
+        "8e2db8da.9c2498"
+      ]
+    ]
+  },
+  {
+    "id": "4a1ba525.14ab54",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "setTimersGlobal",
+    "func": "\n                \nglobal.set(\"timers\", msg.payload);\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1240,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "8e2db8da.9c2498",
+    "type": "file in",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "filename": "/home/pi/.config/rhasspy/profiles/de/data/timers.json",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "none",
+    "x": 600,
+    "y": 140,
+    "wires": [
+      [
+        "af451768.edd0f"
+      ]
+    ]
+  },
+  {
+    "id": "af451768.edd0f",
+    "type": "json",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 990,
+    "y": 140,
+    "wires": [
+      [
+        "4a1ba525.14ab54"
+      ]
+    ]
+  },
+  {
+    "id": "8f6f6cd7.cff19",
+    "type": "inject",
+    "z": "4d6cbb4.9fd3944",
+    "name": "saveTimers",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 230,
+    "y": 260,
+    "wires": [
+      [
+        "4d0ec413.ceb5bc"
+      ]
+    ]
+  },
+  {
+    "id": "4d0ec413.ceb5bc",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "AddToGlobalTimers",
+    "func": "\nvar timers = global.get(\"timers\");\nif(timers === undefined)\n    timers = [];\n\nif(msg.payload != null)\n{\n    timers.push(msg.payload);\n    global.set(\"timers\", timers);\n}\n\nmsg.payload = timers;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 750,
+    "y": 260,
+    "wires": [
+      [
+        "b3d113b3.a2b9"
+      ]
+    ]
+  },
+  {
+    "id": "78403ef6.ec5d38",
+    "type": "inject",
+    "z": "4d6cbb4.9fd3944",
+    "name": "reset Timer",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "[]",
+    "payloadType": "str",
+    "x": 230,
+    "y": 300,
+    "wires": [
+      [
+        "2cb8ad95.dc8b72"
+      ]
+    ]
+  },
+  {
+    "id": "2cb8ad95.dc8b72",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "resetAllTimers",
+    "func": "\n                \n\nglobal.set(\"timers\", []);\n\nmsg.payload = null;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 480,
+    "y": 300,
+    "wires": [
+      [
+        "4d0ec413.ceb5bc"
+      ]
+    ]
+  },
+  {
+    "id": "39a3abf6.513244",
+    "type": "inject",
+    "z": "4d6cbb4.9fd3944",
+    "name": "refreshTimer",
+    "props": [
+      {
+        "p": "payload.timers",
+        "v": "timers",
+        "vt": "global"
+      }
+    ],
+    "repeat": "1",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payloadType": "str",
+    "x": 240,
+    "y": 360,
+    "wires": [
+      [
+        "47cd15ac.a4bf34"
+      ]
+    ]
+  },
+  {
+    "id": "47cd15ac.a4bf34",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "check all timers",
+    "func": "var dateNow = new Date();\nvar readyTimers = [];\n\nfor(var i = 0; i < msg.payload.timers.length; i++)\n{\n    var thenTime = new Date(msg.payload.timers[i].timerAt);\n    //node.warn(\"now=\"+dateNow.getTime());\n    //node.warn(\"then=\"+thenTime.getTime());\n\n    if(dateNow.getTime() >= thenTime.getTime())\n    {\n        readyTimers.push(msg.payload.timers[i]);\n    }\n}\n\nif(readyTimers.length > 0)\n    msg.payload = readyTimers;\nelse\n    msg.payload = null;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 480,
+    "y": 360,
+    "wires": [
+      [
+        "a85b37ed.f8f64"
+      ]
+    ]
+  },
+  {
+    "id": "ff49c44f.2ca0a",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "removeFromGlobalTimers",
+    "func": "\nvar timers = global.get(\"timers\");\nif(timers === undefined)\n    timers = [];\n\nif(msg.payload != null)\n{\n    for(var i = 0; i < msg.payload.length; i++)\n    {\n        for( var j = 0; j < timers.length; j++) \n        { \n            if (timers[j].timerSet.toString() == msg.payload[i].timerSet.toString() && timers[j].timerAt.toString() == msg.payload[i].timerAt.toString())\n            {\n                timers.splice(j, 1); \n            }\n            /*\n            node.warn(typeof timers[j].timerSet);\n            node.warn(typeof msg.payload[i].timerSet);\n            node.warn(timers[j].timerSet.toString() === msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet.toString() == msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet);\n            node.warn(msg.payload[i].timerSet);\n            */\n        }\n        //node.warn(timers);\n    }\n    \n    \n    global.set(\"timers\", timers);\n}\n\nmsg.payload = timers;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1050,
+    "y": 340,
+    "wires": [
+      [
+        "b3d113b3.a2b9"
+      ]
+    ]
+  },
+  {
+    "id": "e31b9619.037bc",
+    "type": "PlaySound",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "playerOptions": "{}",
+    "audioURI": "/home/pi/.config/rhasspy/profiles/de/data/alarm.mp3",
+    "options": "{\"afplay\" : [\"-l0\"]}",
+    "x": 1250,
+    "y": 420,
+    "wires": [
+      [
+        "64a38fa0.abcb1"
+      ]
+    ]
+  },
+  {
+    "id": "c9224e8a.0eed4",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": " start ringing",
+    "func": "global.set(\"timerRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1010,
+    "y": 400,
+    "wires": [
+      [
+        "e31b9619.037bc"
+      ]
+    ]
+  },
+  {
+    "id": "e93e4de7.314af",
+    "type": "inject",
+    "z": "4d6cbb4.9fd3944",
+    "name": "stop Timer",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "stop",
+    "payloadType": "str",
+    "x": 220,
+    "y": 500,
+    "wires": [
+      [
+        "4dfe8ab.c9fa074"
+      ]
+    ]
+  },
+  {
+    "id": "a85b37ed.f8f64",
+    "type": "switch",
+    "z": "4d6cbb4.9fd3944",
+    "name": "checkNotNull",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 730,
+    "y": 360,
+    "wires": [
+      [
+        "c9224e8a.0eed4",
+        "ff49c44f.2ca0a"
+      ]
+    ]
+  },
+  {
+    "id": "ba8841c6.ebed18",
+    "type": "mqtt in",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "topic": "hermes/intent/StopTimer",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "7d5a3618.9ef98",
+    "x": 250,
+    "y": 440,
+    "wires": [
+      [
+        "4dfe8ab.c9fa074"
+      ]
+    ]
+  },
+  {
+    "id": "4dfe8ab.c9fa074",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": " stop ringing",
+    "func": "global.set(\"timerRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1010,
+    "y": 440,
+    "wires": [
+      [
+        "e31b9619.037bc"
+      ]
+    ]
+  },
+  {
+    "id": "691baa33.cb88e4",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "createTTSText",
+    "func": "\n//msg.payload = {timerSet : timerSetAt, timerAt : timerAt};\n\nvar timerIn = new Date(msg.payload.timerIn);\nvar hours = timerIn.getHours() -1 ;\nvar minutes = timerIn.getMinutes();\nvar seconds = timerIn.getSeconds();\n\nvar text = \"Es wurde ein Teimer in \";\nif(hours !== 0)\n    text += hours + \" Stunden \";\nif(minutes !== 0)\n    text += minutes + \" Minuten \";\nif(seconds !== 0)\n    text += seconds + \" Sekunden \";\n    \ntext += \"gesetzt.\";\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 740,
+    "y": 200,
+    "wires": [
+      [
+        "b5356de9.41fc98"
+      ]
+    ]
+  },
+  {
+    "id": "b5356de9.41fc98",
+    "type": "mqtt out",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "topic": "hermes/tts/say",
+    "qos": "2",
+    "retain": "false",
+    "broker": "7d5a3618.9ef98",
+    "x": 1020,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "64a38fa0.abcb1",
+    "type": "switch",
+    "z": "4d6cbb4.9fd3944",
+    "name": "checkTimerRinging",
+    "property": "timerRinging",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "gt",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 1470,
+    "y": 420,
+    "wires": [
+      [
+        "e31b9619.037bc"
+      ]
+    ]
+  },
+  {
+    "id": "b3a0c5a5.512ec",
+    "type": "mqtt in",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "topic": "hermes/intent/NextTimer",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "7d5a3618.9ef98",
+    "x": 250,
+    "y": 580,
+    "wires": [
+      [
+        "1d3eab4b.3c5a2d"
+      ]
+    ]
+  },
+  {
+    "id": "1d3eab4b.3c5a2d",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "check all timers",
+    "func": "var timers = global.get(\"timers\");\nvar nextDate = new Date(new Date().getFullYear()+2000, 0, 0, 0, 0, 0);\n\n\nfor(var i = 0; i < timers.length; i++)\n{\n    var thenTime = new Date(timers[i].timerAt);\n    if(nextDate.getTime() > thenTime.getTime())\n    {\n        nextDate = new Date(thenTime);\n    }\n\n}\n\nmsg.payload = nextDate;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 480,
+    "y": 580,
+    "wires": [
+      [
+        "1a6aecf1.c2095b"
+      ]
+    ]
+  },
+  {
+    "id": "1a6aecf1.c2095b",
+    "type": "function",
+    "z": "4d6cbb4.9fd3944",
+    "name": "create the answer text",
+    "func": "\nvar currentDate = new Date();\n\nvar timerDate = new Date(msg.payload);\n\nvar fullSecondsRemain = (timerDate.getTime() - currentDate.getTime())/1000;\nvar minutesRemain = Math.floor(fullSecondsRemain/60);\nvar secondsRemain = Math.floor(fullSecondsRemain%60);\n\nvar text = \"Der nächste Teimer geht in \" + minutesRemain + \" Minuten und \" + secondsRemain + \" Sekunden\";\n\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 740,
+    "y": 580,
+    "wires": [
+      [
+        "9466b887.4621e"
+      ]
+    ]
+  },
+  {
+    "id": "9466b887.4621e",
+    "type": "mqtt out",
+    "z": "4d6cbb4.9fd3944",
+    "name": "",
+    "topic": "hermes/tts/say",
+    "qos": "2",
+    "retain": "false",
+    "broker": "7d5a3618.9ef98",
+    "x": 960,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "7d5a3618.9ef98",
+    "type": "mqtt-broker",
+    "name": "mqtt",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  }
+]
