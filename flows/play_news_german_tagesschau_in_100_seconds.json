@@ -1,0 +1,232 @@
+[
+  {
+    "id": "e0c627ae.a69358",
+    "type": "tab",
+    "label": "News",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "f01978b3.d5dec8",
+    "type": "http request",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "https://www.tagesschau.de/export/podcast/hi/tagesschau-in-100-sekunden/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 390,
+    "y": 200,
+    "wires": [
+      [
+        "f36056e5.30be48"
+      ]
+    ]
+  },
+  {
+    "id": "9a57fd3f.329fe",
+    "type": "inject",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 380,
+    "y": 120,
+    "wires": [
+      [
+        "f01978b3.d5dec8"
+      ]
+    ]
+  },
+  {
+    "id": "f36056e5.30be48",
+    "type": "xml",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "property": "payload",
+    "attr": "",
+    "chr": "",
+    "x": 590,
+    "y": 200,
+    "wires": [
+      [
+        "c09b6011.8f98b"
+      ]
+    ]
+  },
+  {
+    "id": "ff5827e6.b2dc78",
+    "type": "PlaySound",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "playerOptions": "{}",
+    "audioURI": "/home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3",
+    "options": "{\"afplay\" : [\"-l0\"]}",
+    "x": 1350,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c09b6011.8f98b",
+    "type": "function",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "func": "var url = msg.payload.rss.channel[0].item[0].enclosure[0].$.url;\n\nvar cmd = \"curl -X GET '\" + url + \"' -o /home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3\"\n\nmsg.payload = cmd;\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 740,
+    "y": 200,
+    "wires": [
+      [
+        "42654d1b.2b4004"
+      ]
+    ]
+  },
+  {
+    "id": "42654d1b.2b4004",
+    "type": "exec",
+    "z": "e0c627ae.a69358",
+    "command": "",
+    "addpay": true,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "",
+    "x": 910,
+    "y": 200,
+    "wires": [
+      [],
+      [],
+      [
+        "b9898acb.bcf528"
+      ]
+    ]
+  },
+  {
+    "id": "b9898acb.bcf528",
+    "type": "switch",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "property": "payload.code",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "str"
+      },
+      {
+        "t": "gt",
+        "v": "0",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1110,
+    "y": 200,
+    "wires": [
+      [
+        "ff5827e6.b2dc78"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "efde2075.fd29e",
+    "type": "mqtt in",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "topic": "hermes/intent/PlayNews",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 370,
+    "y": 280,
+    "wires": [
+      [
+        "f01978b3.d5dec8"
+      ]
+    ]
+  },
+  {
+    "id": "eeaf5d5.e9e8ba",
+    "type": "mqtt in",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "topic": "hermes/intent/Stop",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 1030,
+    "y": 280,
+    "wires": [
+      [
+        "814ffda6.e2481"
+      ]
+    ]
+  },
+  {
+    "id": "814ffda6.e2481",
+    "type": "function",
+    "z": "e0c627ae.a69358",
+    "name": "",
+    "func": "msg.payload = \"stop\";\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1220,
+    "y": 280,
+    "wires": [
+      [
+        "ff5827e6.b2dc78"
+      ]
+    ]
+  },
+  {
+    "id": "e19fa228.bc1cf",
+    "type": "mqtt-broker",
+    "name": "mqtt",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  }
+]
