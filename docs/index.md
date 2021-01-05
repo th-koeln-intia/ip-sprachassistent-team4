@@ -38,6 +38,7 @@ Mycroft Holmes. There is an open source language wizard called Mycroft.
 # Links
 - Archilab projectpage: [www.archi-lab.io](https://www.archi-lab.io/pages/viewpage.action?pageId=41156613)
 - Intia projectpage: [dites.web.th-koeln.de](https://dites.web.th-koeln.de/forschung/projekte/intia/)
+- Project Repository: [th-koeln-intia/ip-sprachassistent-team4](https://github.com/th-koeln-intia/ip-sprachassistent-team4)
 - Our other repositories for Deepspeech:
   - [rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech)
   - [rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes)
