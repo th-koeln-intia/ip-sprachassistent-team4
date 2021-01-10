@@ -10,7 +10,7 @@
     "id": "f01978b3.d5dec8",
     "type": "http request",
     "z": "e0c627ae.a69358",
-    "name": "",
+    "name": "http request",
     "method": "GET",
     "ret": "txt",
     "paytoqs": "ignore",
@@ -19,7 +19,7 @@
     "persist": false,
     "proxy": "",
     "authType": "",
-    "x": 390,
+    "x": 370,
     "y": 200,
     "wires": [
       [
@@ -49,7 +49,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 380,
-    "y": 120,
+    "y": 140,
     "wires": [
       [
         "f01978b3.d5dec8"
@@ -64,7 +64,7 @@
     "property": "payload",
     "attr": "",
     "chr": "",
-    "x": 590,
+    "x": 570,
     "y": 200,
     "wires": [
       [
@@ -80,8 +80,8 @@
     "playerOptions": "{}",
     "audioURI": "/home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3",
     "options": "{\"afplay\" : [\"-l0\"]}",
-    "x": 1350,
-    "y": 200,
+    "x": 1190,
+    "y": 320,
     "wires": [
       []
     ]
@@ -90,13 +90,13 @@
     "id": "c09b6011.8f98b",
     "type": "function",
     "z": "e0c627ae.a69358",
-    "name": "",
+    "name": "create curl command",
     "func": "var url = msg.payload.rss.channel[0].item[0].enclosure[0].$.url;\n\nvar cmd = \"curl -X GET '\" + url + \"' -o /home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3\"\n\nmsg.payload = cmd;\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 740,
+    "x": 760,
     "y": 200,
     "wires": [
       [
@@ -108,14 +108,14 @@
     "id": "42654d1b.2b4004",
     "type": "exec",
     "z": "e0c627ae.a69358",
-    "command": "",
+    "command": "download german news tagesschau in 100 seconds",
     "addpay": true,
     "append": "",
     "useSpawn": "false",
     "timer": "",
     "oldrc": false,
     "name": "",
-    "x": 910,
+    "x": 1110,
     "y": 200,
     "wires": [
       [],
@@ -147,8 +147,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 2,
-    "x": 1110,
-    "y": 200,
+    "x": 970,
+    "y": 280,
     "wires": [
       [
         "ff5827e6.b2dc78"
@@ -166,7 +166,7 @@
     "datatype": "json",
     "broker": "e19fa228.bc1cf",
     "x": 370,
-    "y": 280,
+    "y": 260,
     "wires": [
       [
         "f01978b3.d5dec8"
@@ -182,8 +182,8 @@
     "qos": "2",
     "datatype": "json",
     "broker": "e19fa228.bc1cf",
-    "x": 1030,
-    "y": 280,
+    "x": 390,
+    "y": 360,
     "wires": [
       [
         "814ffda6.e2481"
@@ -200,8 +200,8 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 1220,
-    "y": 280,
+    "x": 980,
+    "y": 360,
     "wires": [
       [
         "ff5827e6.b2dc78"
