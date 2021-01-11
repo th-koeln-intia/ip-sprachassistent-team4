@@ -42,7 +42,7 @@ For example with the sentence: ``set the light on 50 percent``, the light should
 - Define the function, which will get the brightness value from intent and pass it to zigbeeToMqtt Node: `GetLightBrightness` will be the function name.
 - Finally select 	zigbee2mqtt-out Node to set light brightness. Then select zigbee2mqtt for the command and set the alue to Brightness(0..255) and the payload value will be msg.brightness (`Note: the properties brightness is the return propevrty from the fucntion GetLightBrightness`)
 
-![setup weather forecast with Node_Red](../../assets/light_brightness.png)
+![setup light brithness with Node_Red](../../assets/light_brightness.png)
 
 # downlod the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/LightControl.json)
