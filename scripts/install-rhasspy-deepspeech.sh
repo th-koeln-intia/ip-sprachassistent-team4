@@ -18,7 +18,7 @@ sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech
 sudo chown -R pi:pi /opt/rhasspy-asr-deepspeech-hermes
 
 #download tar.gz
-wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/docs/tools/deepspeech_train_tools.tar.gz -O /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
+wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/tools/deepspeech_train_tools.tar.gz -O /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
 tar xvfz /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz -C /opt/rhasspy-asr-deepspeech-hermes
 rm /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
 
@@ -38,7 +38,7 @@ pip install /opt/rhasspy-asr-deepspeech-hermes/tools/packages/*.whl
 sudo ln /opt/rhasspy-asr-deepspeech-hermes/bin/rhasspy-asr-deepspeech-hermes /usr/bin/rhasspy-asr-deepspeech-hermes
 
 #add rhasspy-asr-deepspeech-hermes to systemd for autostart
-sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-asr-deepspeech-hermes.service -O /etc/systemd/system/rhasspy-asr-deepspeech-hermes.service
+sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/rhasspy-asr-deepspeech-hermes.service -O /etc/systemd/system/rhasspy-asr-deepspeech-hermes.service
 sudo systemctl enable rhasspy-asr-deepspeech-hermes.service
 sudo systemctl start rhasspy-asr-deepspeech-hermes.service
 
