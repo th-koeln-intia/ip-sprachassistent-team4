@@ -17,7 +17,7 @@ parent: Results
 Here is a flow to get the latest headlines of a country. We used the newsapi.org api. If you want to use that flow,
 you need to get a free api key from newsapi.org.
 
-Then you need to install the node `node-red-contrib-queue-gate`.
+Then you need to install the node [node-red-contrib-queue-gate](https://flows.nodered.org/node/node-red-contrib-queue-gate){:target="_blank"}.
 
 After installing the node, import our flow from [our github repository](https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/flows/play_headlines_german.json){:target="_blank"}
 
