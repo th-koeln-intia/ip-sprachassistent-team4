@@ -21,7 +21,7 @@ Then you need to install the node `node-red-contrib-queue-gate`.
 
 After installing the node, import our flow from [our github repository](https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/flows/play_headlines_german.json){:target="_blank"}
 
-Open the node "get news for DE" and update the URL. Acutally the URL looks like this:
+Open the node "get news for DE" and update the URL. Actually the URL looks like this:
 
 `https://newsapi.org/v2/top-headlines?country=de&apiKey=PUT_YOUR_API_KEY_HERE`
 
