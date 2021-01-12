@@ -33,11 +33,11 @@ pip install rhasspy-snips-nlu-hermes
 snips-nlu download de
 
 # Create dirs for snips engine
-mkdir ~/.config/rhasspy/profiles/de/snips
-mkdir ~/.config/rhasspy/profiles/de/snips/engine
+mkdir -p ~/.config/rhasspy/profiles/de/snips
+mkdir -p ~/.config/rhasspy/profiles/de/snips/engine
 
 # Download and start rhasspy-snips-nlu-hermes service
-sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/rhasspy-snips-nlu-hermes_venv.service -O /etc/systemd/system/rhasspy-snips-nlu-hermes.service
+sudo wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/rhasspy-snips-nlu-hermes_venv.service -O /etc/systemd/system/rhasspy-snips-nlu-hermes.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable rhasspy-snips-nlu-hermes.service
