@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf ~/.config/rhasspy/profiles/de/deepspeech
-mkdir ~/.config/rhasspy/profiles/de/deepspeech
-mkdir ~/.config/rhasspy/profiles/de/deepspeech/models
+mkdir -p ~/.config/rhasspy/profiles/de/deepspeech
+mkdir -p ~/.config/rhasspy/profiles/de/deepspeech/models
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1lyOFCfrxiTwXotmeWs1hdm_Amg3J_y1T' -O ~/.config/rhasspy/profiles/de/deepspeech/models/output_graph.tflite
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget -N --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1mrfMSYp_mYrsLswttY_fvfAHaJ7azahC" -O ~/.config/rhasspy/profiles/de/deepspeech/models/kenlm.scorer && rm -rf /tmp/cookies.txt
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zIvpdJ0YOreg_HwVwoyt_6BEEusH5g4w' -O ~/.config/rhasspy/profiles/de/deepspeech/models/alphabet.txt
@@ -25,7 +25,7 @@ rm /opt/rhasspy-asr-deepspeech-hermes/deepspeech_train_tools.tar.gz
 sudo apt install llvm libfst-tools libngram-tools libboost-all-dev -y
 
 #create virtual environment and enter it
-mkdir /opt/rhasspy-asr-deepspeech-hermes/.venv
+mkdir -p /opt/rhasspy-asr-deepspeech-hermes/.venv
 virtualenv -p python3 /opt/rhasspy-asr-deepspeech-hermes/.venv
 source /opt/rhasspy-asr-deepspeech-hermes/.venv/bin/activate
 
