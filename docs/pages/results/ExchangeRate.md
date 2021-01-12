@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Exchange Rate
-parent: results
+parent: Results
 ---
 
 <details close markdown="block">
