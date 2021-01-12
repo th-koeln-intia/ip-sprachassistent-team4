@@ -12,4 +12,11 @@ parent: Results
 {:toc}
 </details>
 
-# News
+# German News
+
+Here is a flow to get the latest audio clip from the german news tv program "tagesschau". The clip is about
+100 seconds long. 
+
+To use this flow, you need to install the node [node-red-contrib-join-wait](https://flows.nodered.org/node/node-red-contrib-join-wait){:target="_blank"}.
+
+![Example headlines flow](/assets/play_news_german_tagesschau_in_100_seconds.png)
