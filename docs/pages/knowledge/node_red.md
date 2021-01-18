@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Node-RED
-parent: Node-RED
-grand_parent: Knowledge
+parent: Knowledge
 ---
 
 <details close markdown="block">
