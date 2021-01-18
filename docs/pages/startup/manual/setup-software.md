@@ -1,8 +1,9 @@
 ---
 layout: default
-parent: Startup
+parent: Manual installation
+grand_parent: Startup
 title: Setup Software
-nav_order: 2
+nav_order: 1
 ---
 
 
