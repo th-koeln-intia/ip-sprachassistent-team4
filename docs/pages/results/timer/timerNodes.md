@@ -27,3 +27,9 @@ In Node Red you can add a Timer by searching for it in the dropdown menu. Below 
 As already discussed we were not able to find a method how we can inject the start and end time from rhasspy Intent to the timer Node.But it is possible to set timer manually using inject node (see below some flow example)
 
 ![Timer with Node](/assets/timer_Node.PNG)
+
+# Our own timer node
+
+![Timer with node small-timer](/assets/timer_small-timer-flow.png)
+
+node-red-contrib-smalltimer: [github.com/kevinbischof/node-red-contrib-smalltimer](https://github.com/kevinbischof/node-red-contrib-smalltimer)

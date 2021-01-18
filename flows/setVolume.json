@@ -1,0 +1,134 @@
+[
+  {
+    "id": "e263580f.fdc828",
+    "type": "tab",
+    "label": "Set volume",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "75d955d0.cf7ecc",
+    "type": "exec",
+    "z": "e263580f.fdc828",
+    "command": "",
+    "addpay": true,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "execute volume command",
+    "x": 930,
+    "y": 160,
+    "wires": [
+      [
+        "8aaff993.3b6698"
+      ],
+      [
+        "8aaff993.3b6698"
+      ],
+      [
+        "8aaff993.3b6698"
+      ]
+    ]
+  },
+  {
+    "id": "4b712740.ccd4e8",
+    "type": "function",
+    "z": "e263580f.fdc828",
+    "name": "create curl command",
+    "func": "let percent = msg.payload;\nlet cmd = \"amixer sset 'Headphone' \" + percent + \"%\";\n\nmsg.payload = cmd;\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 690,
+    "y": 160,
+    "wires": [
+      [
+        "75d955d0.cf7ecc"
+      ]
+    ]
+  },
+  {
+    "id": "8aaff993.3b6698",
+    "type": "debug",
+    "z": "e263580f.fdc828",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1150,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "576c3f57.1c75c",
+    "type": "mqtt in",
+    "z": "e263580f.fdc828",
+    "name": "",
+    "topic": "hermes/intent/SetVolume",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 210,
+    "y": 160,
+    "wires": [
+      [
+        "e0ee795e.0b1268"
+      ]
+    ]
+  },
+  {
+    "id": "e0ee795e.0b1268",
+    "type": "function",
+    "z": "e263580f.fdc828",
+    "name": "get volume from intent",
+    "func": "if (msg.payload.slots[0].slotName.toString() === \"volume\") {\n    msg.payload = msg.payload.slots[0].value.value;\n    return msg;\n}\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 460,
+    "y": 160,
+    "wires": [
+      [
+        "4b712740.ccd4e8"
+      ]
+    ]
+  },
+  {
+    "id": "cfd7f203.dc56e",
+    "type": "comment",
+    "z": "e263580f.fdc828",
+    "name": "Set volume by intent for device 'Headphone'",
+    "info": "",
+    "x": 270,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "e19fa228.bc1cf",
+    "type": "mqtt-broker",
+    "name": "mqtt",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  }
+]
