@@ -22,3 +22,9 @@ deactivate
 
 # Start Zigbee2MQTT
 sudo systemctl start zigbee2mqtt
+
+if ! grep -q frontend "/opt/zigbee2mqtt/data/configuration.yaml"; then
+    printf "frontend:\n  # Optional, default 8080\n  port: 8080\n  # Optional, default 0.0.0.0\n  host: 0.0.0.0\n" >> /opt/zigbee2mqtt/data/configuration.yaml
+fi
+
+sudo systemctl restart zigbee2mqtt
