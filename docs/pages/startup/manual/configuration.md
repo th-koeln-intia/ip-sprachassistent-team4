@@ -1,8 +1,9 @@
 ---
 layout: default
-parent: Startup
+parent: Manual installation
+grand_parent: Startup
 title: Settings of Rhasspy
-nav_order: 3
+nav_order: 2
 ---
 
 <details close markdown="block">
