@@ -17,7 +17,7 @@ grand_parent: Results
 # Alarm with JS
 We created a alarm feature in NodeRed with JS Functions. Here is a small overview:
 
-![Alarm with JavaScript](/assets/alarmJSFull.png)
+[![Alarm with JavaScript](/assets/alarmJSFull.png)](/assets/alarmJSFull.png){:target="_blank"}  
 
 ## Requirements
 - `PlaySound` node from [node-red-contrib-play-sound](https://flows.nodered.org/node/node-red-contrib-play-sound)
@@ -48,14 +48,14 @@ You can edit it or set another path. Important is that you use an absolut path t
 I start to describe the flow from top to bottom. so we start with the loading the alarms from a file.
 
 ### Load Alarms
-![Load Alarms](/assets/alarmJSLoad.png)
+[![Load alarms](/assets/alarmJSLoad.png)](/assets/alarmJSLoad.png){:target="_blank"}  
 Loading all alarms from a file will be triggered at the start of NodeRed. The injector `loadAlarms` triggers the `file in` node.
 The `file in` node reads the whole file and hands it to the json node, which converts the JSON data format to a JavaScript(JS) object. 
 This JS object goes to the function `setAlarmsGlobal`. This function saves all alarms in a global array in NodeRed, so we can access 
 them from everywhere.
 
 ### Intent `SetAlarmClock`
-![Set new alarm](/assets/alarmJSSet.png)
+[![Set new alarm](/assets/alarmJSSet.png)](/assets/alarmJSSet.png){:target="_blank"}  
 When an `SetAlarmClock` intent enters the mqtt-Server, the function `createAlarmObject` will be triggered.
 This function extract the hour, minutes and seconds from the message and create a alarm object in this format:
 ```
@@ -127,7 +127,7 @@ return msg;
 After this function the alarm list will be saved with the node `file` to the file `/home/pi/.config/rhasspy/profiles/de/data/alarms.json`.
 
 ### Injection `resetAlarms`
-![Reset all alarms](/assets/alarmJSReset.png)
+[![Reset alarms](/assets/alarmJSReset.png)](/assets/alarmJSReset.png){:target="_blank"}  
 This part is for deleting all alarms from the global list and from the savefile.
 After you click on `resetAlarms` the functions `resetAllAlarms` starts.
 This function sets the global `alarms` array to an empty array:
@@ -139,7 +139,7 @@ return msg;
 After this the alarms will be saved in the savefile again.
 
 ### Injection `refreshAlarms`
-![Check alarms](/assets/alarmJSCheck.png)
+[![Check alarms](/assets/alarmJSCheck.png)](/assets/alarmJSCheck.png){:target="_blank"}  
 The injection `refreshAlarms` triggers the function `checkAllAlarms` every second.
 `checkAllAlarms` goes through every alarm in the global alarm list and checks if it's time to ring.
 When a alarm is out of time it will be add to the `readyAlarms` array, which will be the output for the function. 
@@ -212,7 +212,7 @@ When the file ends the switch `checkAlarmRinging` checks if the global variable 
 If not the `PlaySound` node starts playing again.
 
 ### Intent `StopAlarmClock`
-![Stop an alarm](/assets/alarmJSStop.png)
+[![Stop an alarm](/assets/alarmJSStop.png)](/assets/alarmJSStop.png){:target="_blank"}  
 The Intent `StopAlarmClock` stops the ringing of an alarm. It runs the function `stopRinging`. 
 This sets the global variable `alarmRinging` to `0` and sets the payload to `"stop"`.
 This message goes to the `PlaySound` node, it should stop playing the file. 
@@ -225,7 +225,7 @@ return msg;
 ```
 
 ### Intent `NextAlarm`
-![Reset all alarms](/assets/alarmJSNext.png)
+[![Next alarm](/assets/alarmJSNext.png)](/assets/alarmJSNext.png){:target="_blank"}  
 The Intent `NextAlarm` picks the next due alarmclock and creates a text the TTS should say to inform the user when the next alarm rings.
 
 The Intent first triggers the function `checkAllAlarms`. This function goes through all alarms listed in the global `alarms` variable

@@ -17,7 +17,7 @@ grand_parent: Results
 # Timer with JS
 We created a timer feature in NodeRed with JS Functions. Here is a small overview:
 
-![Timer with JavaScript](/assets/timerJSFull.png)
+[![Timer with JavaScript](/assets/timerJSFull.png)](/assets/timerJSFull.png){:target="_blank"}  
 
 ## Requirements
 - `PlaySound` node from [node-red-contrib-play-sound](https://flows.nodered.org/node/node-red-contrib-play-sound)
@@ -48,14 +48,14 @@ You can edit it or set another path. Important is that you use an absolut path t
 I start to describe the flow from top to bottom. so we start with the loading the alarms from a file.
 
 ### Load Timers
-![Load Timers](/assets/timerJSLoad.png)
+[![Load Timers](/assets/timerJSLoad.png)](/assets/timerJSLoad.png){:target="_blank"}  
 Loading all timers from a file will be triggered at the start of NodeRed. The injector `loadTimers` triggers the `file in` node.
 The `file in` node reads the whole file and hands it to the json node, which converts the JSON data format to a JavaScript(JS) object. 
 This JS object goes to the function `setTimersGlobal`. This function saves all timers in a global array in NodeRed, so we can access 
 them from everywhere.
 
 ### Intent `SetTimer`
-![Set new timer](/assets/timerJSSet.png)
+[![Set new timer](/assets/timerJSSet.png)](/assets/timerJSSet.png){:target="_blank"}  
 When an `SetTimer` intent enters the mqtt-Server, the function `createTimerObject` will be triggered.
 This function extract the hour, minutes and seconds from the message and create a alarm object in this format:
 ```
@@ -132,7 +132,7 @@ return msg;
 After this function the timer list will be saved with the node `file` to the file `/home/pi/.config/rhasspy/profiles/de/data/timers.json`.
 
 ### Injection `resetTimers`
-![Reset all timers](/assets/timerJSReset.png)
+[![Reset all timers](/assets/timerJSReset.png)](/assets/timerJSReset.png){:target="_blank"}  
 This part is for deleting all timers from the global list and from the savefile.
 After you click on `resetTimers` the functions `resetAllTimers` starts.
 This function sets the global `timers` array to an empty array:
@@ -144,7 +144,7 @@ return msg;
 After this the timers will be saved in the savefile again.
 
 ### Injection `refreshTimers`
-![Check timers](/assets/timerJSCheck.png)
+[![Check timers](/assets/timerJSCheck.png)](/assets/timerJSCheck.png){:target="_blank"}  
 The injection `refreshTimers` triggers the function `checkAllTimers` every second.
 `checkAllTimers` goes through every timer in the global timer list and checks if it's time to ring.
 When a timer is out of time it will be add to the `readyTimers` array, which will be the output for the function. 
@@ -213,7 +213,7 @@ When the file ends the switch `checkTimerRinging` checks if the global variable 
 If not the `PlaySound` node starts playing again.
 
 ### Intent `StopTimer`
-![Stop an timer](/assets/timerJSStop.png)
+[![Stop an timer](/assets/timerJSStop.png)](/assets/timerJSStop.png){:target="_blank"}  
 The Intent `StopTimerClock` stops the ringing of an alarm. It runs the function `stopRinging`. 
 This sets the global variable `timerRinging` to `0` and sets the payload to `"stop"`.
 This message goes to the `PlaySound` node, it should stop playing the file. 
@@ -226,7 +226,7 @@ return msg;
 ```
 
 ### Intent `NextTimer`
-![Reset all alarms](/assets/timerJSNext.png)
+[![Next alarm](/assets/timerJSNext.png)](/assets/timerJSNext.png){:target="_blank"}  
 The Intent `NextTimer` picks the next due timer and creates a text the TTS should say to inform the user when the next timer rings.
 
 The Intent first triggers the function `checkAllTimers`. This function goes through all timers listed in the global `timers` variable
