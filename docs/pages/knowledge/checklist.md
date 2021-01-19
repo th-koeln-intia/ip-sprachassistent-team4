@@ -22,6 +22,10 @@ First you can check if every service we installed is running.
 When you run the `sudo systemctl status <servicename>` you can check if everything works fine.
 Look at the point `Active` it should be `active (running)`. And you can look down at the status for an error.
 
+Mosquitto:
+```
+sudo systemctl status mosquitto
+```
 Deepspeech:
 ```bash
 sudo systemctl status rhasspy-asr-deepspeech-hermes
@@ -57,11 +61,25 @@ Open rhasspy GUI `<ip of your raspberry pi>:12101` and click train. there is a s
 After near 60 seconds this message with a different time should appear: `Training completed in 59.34 second(s)`
 When you got an error please open with `journalctl` the log of deepspeech and snips and train again to search for an error. 
 Maybe there is an syntax error in sentence.ini or a model is missing.
+Here are the commands for the logs:
+```bash
+sudo journalctl -fu rhasspy-asr-deepspeech-hermes
+sudo journalctl -fu rhasspy-snips-nlu-hermes
+```
 
-# 3. Check microphone and Hermes Led Control
+# 3. Check snips
+When the training was successfull, you can try out an intent. Go on the rhasspy GUI and type this:
+[![Rhasspy snips test](/assets/check_snips.png)](/assets/check_snips.png){:target="_blank"}  
+You should see, that the Intent `GetTime` is triggered.
+If not, open the log for snips and look for errors:
+```bash
+sudo journalctl -fu rhasspy-snips-nlu-hermes
+```
+
+# 4. Check microphone and Hermes Led Control
 First setup a [wakeword](/pages/installation/manual/configuration.html#3-wake-word), after that you can try it.
 The LEDs on the raspberry should now blink. Your wakeword got recogniced.
 
-# 4. Check Node-Red
+# 5. Check Node-Red
 Check if you can access Node-Red `<ip of your raspberry>:1880`.
 When you can access it you can try your flows. This part is your part.
