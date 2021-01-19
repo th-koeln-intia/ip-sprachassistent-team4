@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Headlines
+title: Headlines news api
 parent: News
 grand_parent: Skills
 ---
@@ -13,7 +13,7 @@ grand_parent: Skills
 {:toc}
 </details>
 
-# Headlines
+# Headlines News API
 
 Here is a flow to get the latest headlines of a country. We used the newsapi.org api. If you want to use that flow,
 you need to get a free api key from newsapi.org.
@@ -30,4 +30,4 @@ After `country=` insert the letters of a country like "de" for germany oder "us"
 
 After `apiKey=` insert your api key from newsapi.org.
 
-![Example headlines flow](/assets/play_headlines_germany.png)
+![Example headlines flow](../../../assets/play_headlines_germany.png)

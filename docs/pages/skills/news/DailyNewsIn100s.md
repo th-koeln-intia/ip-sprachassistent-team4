@@ -1,6 +1,6 @@
 ---
 layout: default
-title: News
+title: Daily News In 100 seconds
 parent: News
 grand_parent: Skills
 ---
@@ -13,7 +13,7 @@ grand_parent: Skills
 {:toc}
 </details>
 
-# German News
+# Daily News In 100 seconds
 
 Here is a flow to get the latest audio clip from the german news tv program "tagesschau". The clip is about
 100 seconds long. 
@@ -27,4 +27,4 @@ You also need to add the node [node-red-contrib-join-wait](https://flows.nodered
 After installing the `mpg123` and the `join-wait` node, 
 import our flow from [our github repository](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/play_news_german_tagesschau_in_100_seconds.json){:target="_blank"}
 
-![Example headlines flow](/assets/play_news_german_tagesschau_in_100_seconds.png)
+![Example headlines flow](../../../assets/play_news_german_tagesschau_in_100_seconds.png)
