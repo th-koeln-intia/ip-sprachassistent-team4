@@ -63,6 +63,11 @@ else
     #enable nodered
     sudo systemctl enable nodered.service
 
+    #install npm packages and import example flows
+    wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install-node-red-npm-packages-and-flows.sh -O $WORKFOLDER/install-node-red-npm-packages-and-flows
+    chmod +x install-node-red-npm-packages-and-flows
+    ./install-node-red-npm-packages-and-flows
+
     echo "zigbee"
     read -p "Press [Enter] key to continue..."
     install zigbee2mqtt
@@ -115,4 +120,5 @@ else
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/sentences.ini -O /home/$USER/.config/rhasspy/profiles/de/sentences.ini
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/cities -O /home/$USER/.config/rhasspy/profiles/de/slots/cities
     sudo systemctl restart rhasspy
+    wget
 fi
