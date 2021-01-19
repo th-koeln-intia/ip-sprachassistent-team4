@@ -1,6 +1,6 @@
 ---
 layout: default
-title: headkine HTTP
+title: Headline HTTP
 parent: News
 grand_parent: Skills
 ---
