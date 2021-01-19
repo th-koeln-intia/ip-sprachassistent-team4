@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Startup
+parent: Installation
 title: Setup Hardware
 nav_order: 1
 ---

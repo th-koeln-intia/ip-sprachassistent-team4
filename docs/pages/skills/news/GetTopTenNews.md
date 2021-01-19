@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Get Top Ten News
-parent: Results
+parent: News
+grand_parent: Skills
 ---
 
 <details close markdown="block">

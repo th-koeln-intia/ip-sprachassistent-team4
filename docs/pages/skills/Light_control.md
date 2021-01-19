@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Light control
-parent: Results
+parent: Skills
 ---
 <details close markdown="block">
   <summary>

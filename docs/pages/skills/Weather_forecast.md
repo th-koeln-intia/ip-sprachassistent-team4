@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Weather forecast
-parent: Results
+parent: Skills
 ---
 <details close markdown="block">
   <summary>

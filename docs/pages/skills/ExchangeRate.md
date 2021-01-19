@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Exchange Rate
-parent: Results
+parent: Skills
 ---
 
 <details close markdown="block">

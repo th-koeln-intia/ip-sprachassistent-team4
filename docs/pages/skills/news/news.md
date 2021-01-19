@@ -1,7 +1,8 @@
 ---
 layout: default
 title: News
-parent: Results
+parent: News
+grand_parent: Skills
 ---
 <details close markdown="block">
   <summary>

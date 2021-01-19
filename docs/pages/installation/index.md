@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Startup
+title: Installation
 nav_order: 2
 has_children: true
 ---

@@ -2,7 +2,7 @@
 layout: default
 title: Manual installation
 has_children: true
-parent: Startup
+parent: Installation
 nav_order: 2
 ---
 

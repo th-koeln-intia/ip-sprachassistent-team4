@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Why Node-RED
-parent: Results
+parent: Skills
+nav_order: 0
 ---
 <details close markdown="block">
   <summary>

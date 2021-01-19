@@ -2,7 +2,7 @@
 layout: default
 title: Alarm with Nodes
 parent: Alarm
-grand_parent: Results
+grand_parent: Skills
 ---
 
 <details close markdown="block">

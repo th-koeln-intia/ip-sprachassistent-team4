@@ -2,7 +2,7 @@
 layout: default
 title: Timer with Nodes
 parent: Timer
-grand_parent: Results
+grand_parent: Skills
 ---
 
 <details close markdown="block">

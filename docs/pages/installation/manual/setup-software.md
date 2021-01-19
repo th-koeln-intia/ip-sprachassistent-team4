@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Manual installation
-grand_parent: Startup
+grand_parent: Installation
 title: Setup Software
 nav_order: 1
 ---

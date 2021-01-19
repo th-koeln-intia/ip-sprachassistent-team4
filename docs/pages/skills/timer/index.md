@@ -2,8 +2,8 @@
 layout: default
 title: Timer
 has_children: true
-parent: Results
-nav_order: 1
+parent: Skills
+nav_order: 2
 ---
 
 # Timer

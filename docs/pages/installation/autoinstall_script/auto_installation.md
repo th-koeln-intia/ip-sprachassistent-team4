@@ -3,7 +3,7 @@ layout: default
 title: Installation
 has_children: true
 parent: Auto installation
-grand_parent: Startup
+grand_parent: Installation
 ---
 
 # Autoinstall script

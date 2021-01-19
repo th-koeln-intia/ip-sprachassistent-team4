@@ -2,8 +2,8 @@
 layout: default
 title: Alarm
 has_children: true
-parent: Results
-nav_order: 0
+parent: Skills
+nav_order: 1
 ---
 
 # Alarm
