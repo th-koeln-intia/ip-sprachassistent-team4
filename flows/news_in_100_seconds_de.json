@@ -2,7 +2,7 @@
   {
     "id": "e0c627ae.a69358",
     "type": "tab",
-    "label": "News",
+    "label": "German news in 100 seconds",
     "disabled": false,
     "info": ""
   },
@@ -258,7 +258,6 @@
     "name": "",
     "paths": "[\"path_1\", \"path_2\"]",
     "pathsToExpire": "",
-    "ignoreUnmatched": false,
     "pathTopic": "paths",
     "pathTopicType": "msg",
     "correlationTopic": "",
@@ -467,8 +466,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 420,
-    "y": 640,
+    "x": 400,
+    "y": 600,
     "wires": [
       []
     ]
@@ -481,8 +480,8 @@
     "func": "if(msg.status.text){\n    if(msg.status.text.match(/pid/g)){\n        let pid = msg.status.text.split(':');\n        msg.payload = pid[1];\n        return msg;\n    } else {\n        msg.payload = false;\n        return msg;\n    }\n} else {\n    msg.payload = false;\n    return msg;\n}",
     "outputs": 1,
     "noerr": 0,
-    "x": 250,
-    "y": 640,
+    "x": 230,
+    "y": 600,
     "wires": [
       [
         "b909e542.18bab8"
@@ -497,8 +496,8 @@
     "scope": [
       "6e478248.fffd3c"
     ],
-    "x": 90,
-    "y": 640,
+    "x": 80,
+    "y": 600,
     "wires": [
       [
         "ef785fa3.a41398"
@@ -576,8 +575,8 @@
     "z": "e0c627ae.a69358",
     "name": "Get and save pid of playing sound clip",
     "info": "",
-    "x": 179,
-    "y": 586,
+    "x": 170,
+    "y": 540,
     "wires": []
   },
   {
