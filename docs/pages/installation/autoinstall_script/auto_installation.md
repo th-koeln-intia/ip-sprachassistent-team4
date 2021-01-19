@@ -12,7 +12,7 @@ grand_parent: Installation
 First make sure you installed the raspberry and it's operating system correctly with the user ``pi``.
 
 ## 2. Run the installation script
-Download this script you can download it [manual](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/installAll.sh)
+Download this script you can [download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/installAll.sh) it manual
 and start it. Use this command:
 ```
 wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/installAll.sh
@@ -41,6 +41,6 @@ sudo reboot
 ```
 
 ## 5. Additional Settings
-Your raspberry is now setup for using rhasspy. Please setup a [wakeword](/pages/startup/manual/configuration.html#3-wake-word) 
+Your raspberry is now setup for using rhasspy. Please setup a [wakeword](/pages/installation/manual/configuration.html#3-wake-word)
 and install scripts or create some at [nodered](/pages/knowledge/node_red).
 You can find node on this adress: `<ip of raspberry>:1880`
