@@ -25,14 +25,17 @@ they upload all you say to them in their cloud to process it. This is not a good
 - Set an alarm clock
 - Weather forecast
 - Light control
-- Play music with [Spotify](www.spotify.com) / [YouTube](www.youtube.com)
+- Play music with [Spotify](https://www.spotify.com) / [YouTube](https://www.youtube.com)
 
 # How to use
-This website is seperated in three parts, one part is [Startup](/pages/startup), there is the tutorial, for installing Sherlock. The other part is the [Knowledge](pages/knowledge) section. There you find interessting background info about rhasspy, and the programms around it.
+This website is separated in three parts. One part is [Installation](/pages/installation), a tutorial for 
+installing Sherlock. The second one is the [Knowledge](pages/knowledge) section. There you find interesting 
+background info about rhasspy and the surrounding programs. The third one is [Skills](/pages/skills) which contains 
+the preset skills for Sherlock and how to configure them.
 
 # Why Sherlock?
 Sherlock is a short, catchy word that is rarely used in everyday language. It also consists of two syllables and is 
-therefore a perfect wake word. Furthermore Sherlock is based on the character Sherlock Holmes whose brother is 
+therefore a perfect wake word. Furthermore, Sherlock is based on the character Sherlock Holmes whose brother is 
 Mycroft Holmes. There is an open source language wizard called Mycroft.
 
 # Links

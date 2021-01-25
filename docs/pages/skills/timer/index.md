@@ -14,7 +14,7 @@ you can say "Sherlock, stelle einen Timer auf 20 Minuten". Sherlock will ring in
 
 ## How to realize this feature?
 We realized this feature with NodeRed. And in it we tested different solutions:
-- [Programm it for your self with Javascript](timerJS)
-- [Use diffenent nodes](timerNodes)
+- [Programm it for your self with Javascript](timer-js)
+- [Use diffenent nodes](timer-nodes)
 
 
