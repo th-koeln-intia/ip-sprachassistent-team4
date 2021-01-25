@@ -25,7 +25,7 @@ To use Zigbee2MQTT you need a zigbee adapter. You can see a complete list
 [here](https://www.zigbee2mqtt.io/information/supported_adapters.html){:target="_blank"}.
 
 ## Installation
-[You can find the installation here](/pages/startup/setup-software.html#6-install-zigbee2mqtt)
+[You can find the installation here](/pages/installation/manual/setup-software.html#6-install-zigbee2mqtt)
 
 ## Connect a new device
 First make sure the option ``permit_join`` in the file ''/opt/zigbee2mqtt/data/configuration.yaml`` is set on true.

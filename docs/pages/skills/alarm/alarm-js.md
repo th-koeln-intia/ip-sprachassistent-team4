@@ -271,4 +271,4 @@ return msg;
 The output of this function goes directly to the Mqtt TTS node.
 
 ## Download the Flow
-- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/alarm.json)
+- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/alarm_js.json)

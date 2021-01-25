@@ -7,18 +7,19 @@ This is a Project to create Proof of Concept for a Voice Assistant. We we are us
 - Text-To-Speech: NanoTTS
 
 ## To DO
-- [X] Intent Handling beschreibung machen
-- [X] Lichtsteuerung
-- [X] Wecker implementieren
-- [X] Timer implementieren
-- [ ] Doku und Git anpassen
-- [ ] Installationsscript
+- [X] Write intent handling description
+- [X] Control light
+- [X] Alarm implementation
+- [X] Timer implementation
+- [ ] Update documentation and git
+- [ ] Installation script
 
 
-## Dokumentation
-The documentation is created in form of GitHub pages following the official documentation:  
+## Documentation
+The documentation is created in form of a GitHub page following the official documentation:  
 [installation guide](https://ip-team4.intia.de/)
-Please follow the steps under Startup from top to down.
+You can install Sherlock complete [automatically](https://ip-team4.intia.de/pages/installation/auto-install-script/) 
+or [manually](https://ip-team4.intia.de/pages/installation/manual/). Please follow the steps in the relevant section.
 
 To run the documentation locally Jekyll is required. Follow the official installation [guide](https://jekyllrb.com/docs/installation/) to install Jekyll for the appropriate OS. It is important to install the correct version to prevent potential problems with Github Pages. The officially supported version is listed [here](https://pages.github.com/versions/).  
 The following command starts a local server, if Jekyll is installed with bundler:

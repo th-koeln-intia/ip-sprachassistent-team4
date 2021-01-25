@@ -462,7 +462,7 @@ You have different choices to install Deepspeech:
 #### install-rhasspy-deepspeech.sh
 {: .no_toc }
 
-You can install Deepspeech with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-deepspeech.sh)
+You can install Deepspeech with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech.sh)
 
 Download script: 
 ```
@@ -546,7 +546,7 @@ You have different choices to install Snips-NLU:
 #### snips-nlu-install.sh
 {: .no_toc }
 
-You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/install-rhasspy-snips-nlu_venv.sh)
+You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu_venv.sh)
 
 Change directory to home folder: ``cd $HOME``
 
@@ -596,5 +596,5 @@ Resources:
 # Setup completed!
 
 Congratulations! You finished the installation of all necessary software. Next you will
- [configure Rhasspy](/pages/startup/configuration).
+ [configure Rhasspy](/pages/installation/manual/configuration).
 

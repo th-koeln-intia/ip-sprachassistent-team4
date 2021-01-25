@@ -20,7 +20,7 @@ you need to get a free api key from newsapi.org.
 
 Then you need to install the node [node-red-contrib-queue-gate](https://flows.nodered.org/node/node-red-contrib-queue-gate){:target="_blank"}.
 
-After installing the node, import our flow from [our github repository](https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/flows/play_headlines_german.json){:target="_blank"}
+After installing the node, import the flow from [our github repository](https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/flows/headlines_api_de.json){:target="_blank"}
 
 Open the node "get news for DE" and update the URL. Actually the URL looks like this:
 

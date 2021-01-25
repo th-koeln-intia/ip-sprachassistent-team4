@@ -47,7 +47,7 @@ You can edit the ``/etc/system.d/system/rhasspy.service``. By simply replacing t
 ``ExecStart=/usr/bin/rhasspy --profile de``    
 With this:    
 ``ExecStart=/bin/bash -lc "rhasspy --profile de 2>&1 | cat"``    
-[Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/docs/scripts/rhasspy.service)    
+[Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy.service)    
 This redirects all output to the ``cat`` commanand and prints it to the normal standard console.
 When you save your rhasspy settings you need to manually restart rhasspy.
 

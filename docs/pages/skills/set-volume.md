@@ -16,6 +16,6 @@ parent: Skills
 
 Here is a flow to set the headphone jack's volume.
 
-Import our flow from [our github repository](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/setVolume.json){:target="_blank"}
+Import our flow from [our github repository](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/set_volume.json){:target="_blank"}
 
 ![Example headlines flow](../../assets/setVolume.png)

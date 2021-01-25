@@ -25,6 +25,6 @@ To use this flow, you need to install the package `mpg123` on your raspberry pi:
 You also need to add the node [node-red-contrib-join-wait](https://flows.nodered.org/node/node-red-contrib-join-wait){:target="_blank"} to your node-red.
 
 After installing the `mpg123` and the `join-wait` node, 
-import our flow from [our github repository](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/play_news_german_tagesschau_in_100_seconds.json){:target="_blank"}
+import our flow from [our github repository](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/news_in_100_seconds_de.json){:target="_blank"}
 
 ![Example headlines flow](../../../assets/play_news_german_tagesschau_in_100_seconds.png)

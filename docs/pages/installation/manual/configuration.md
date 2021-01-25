@@ -58,7 +58,7 @@ Press the first one and say your Wake Word, then the second, and then the third.
 ``Minimum Matches`` this is a number between 1 and 3. It specifies how many wav files needs to match the detection.
 
 ## 4. [Speech to Text](/pages/knowledge/speech-to-text)
-As STT this project is using ``deepspeech 0.7.4``, please make sureyou have [installed](pages/startup/setup-software#7-install-deepspeech-074) it.
+As STT this project is using ``deepspeech 0.7.4``, please make sureyou have [installed](pages/installation/manual/setup-software#7-install-deepspeech-074) it.
 In the rhasspy config you must set the dropdown menu to ``Hermes MQTT``. Since you installed this custom version of deepspeech 0.7.4 you *can't* use the option 
 ``Mozilla Deepspeech``. This is because the default ``deepspeech 0.6.1`` of rhasspy can't load the default pretrained language model and there is 
 no german pretrained language model for this version. We found a good german pretrained language model at [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german), 
@@ -79,7 +79,8 @@ Here you can choose your own. We decided to use NanoTTS, it's simple to use and 
 So choose NanoTTS or one of the TTS you want. When you use nano TTS you only need to setup the language the available languages are ``en-US``, ``en-GB``, ``de-DE``, ``es-ES``, ``fr-FR`` and ``it-IT``.
 
 ## 7. Audio Playing
-Please choose aplay. When you follow [step 2](/pages/installation/manual/setup-software#step-2) of the [audio configuration](/pages/startup/setup-software#2-configure-audio), you audio is already configured.
+Please choose aplay. When you follow [step 2](/pages/installation/manual/setup-software#step-2) of the 
+[audio configuration](/pages/installation/manual/setup-software#2-configure-audio) your audio is already configured.
 
 ## 8. Dialogue Management
 
