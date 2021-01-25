@@ -8,7 +8,7 @@ parent: Knowledge
 # Zigbee
 
 ## What is Zigbee?
-Zigbee is a very energy efficien network system to connect IoT devices like lights, switches, sensors and other 
+Zigbee is a very energy efficient network system to connect IoT devices like lights, switches, sensors and other 
 devices for home automation these are named nodes. 
 The Zigbee network is a WPAN(Wireless Personal Area Network), the range in buildings is 10-20 meters and on a free 
 field 100m. 

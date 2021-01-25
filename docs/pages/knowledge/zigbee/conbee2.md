@@ -15,8 +15,12 @@ grand_parent: Knowledge
 </details>
 
 # Zigbee Adapter ConBee2
+The Conbee2 Adapter was developed by Phoscon in Germany. It's a small usb device to
+ connect to other zigbee devices. It is really powerfull. Inside buildings 
+ you can reach devices in a 30 meter radius and outside buildings
+ it can reach devices in a 200m radius.
 
-To pair zigbee devices, you only need zigbee2mqtt, it can direct communicate with this device and not other software is needed. So this step is voluntary and only for people who
+To pair zigbee devices, you only need zigbee2mqtt, it can direct communicate with this device and no other software is needed. So this step is voluntary and only for people who
 eager new Knowledge! Phoscon, the producer of the Conbee2 recommends the tool deconz. DeCONZ application is a tool to configure, 
 control and monitor Zigbee networks with the ConBee2 adapter. It does not work together with zigbee2mqtt, if you want to try it out, 
 stop the zigbee2mqtt service and go through the following instructions.
@@ -53,9 +57,9 @@ sudo apt update
 
 ## Using deCONZ
 The Phoscon app is hosted on the port 8080 on your raspberry. When you open it, you see your conbee2 device, select it.
-Now you must setup a passoword, after that it searches for zigbee devices. Feel free to play with it.
-Deconz also offers an ui on an X-Server. when you start deconz in an graphical enviroment you see another window. I don't want to explain more, it's not important for this project.
-But feel free to play with it7. When you are ready with playing keep in mind, that you mnust stop deCONZ and start the zigbee2mqtt service again to make your zigbee devices
+Now you must setup a password, after that it searches for zigbee devices. Feel free to play with it.
+Deconz also offers an UI on an X-Server. when you start deconz in an graphical enviroment you see another window. I don't want to explain more, it's not important for this project.
+But feel free to play with it. When you are ready with playing keep in mind, that you mnust stop deCONZ and start the zigbee2mqtt service again to make your zigbee devices
 working in this project.
 
 
