@@ -27,7 +27,9 @@ jobs:
           gem install jekyll bundler
           bundle install
       - name: Build jekyll website with drafts
-        run: bundle exec jekyll build --drafts
+        run: |
+          cd docs/
+          bundle exec jekyll build --drafts
       - name: Check for broken links
         run: |
           cd docs/
