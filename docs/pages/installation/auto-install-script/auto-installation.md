@@ -6,6 +6,15 @@ parent: Auto installation
 grand_parent: Installation
 ---
 
+<details close markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
 # Autoinstall script
 
 ## 1. Setup raspberry pi
