@@ -8,7 +8,7 @@ jobs:
         id: lc
         uses: lycheeverse/lychee-action@v1
         with:
-          args: lychee -v "'**/*.md'"
+          args: lychee -v \'**/*.md\'
       - name: Fail if there were link errors
         run: exit ${{ steps.lc.outputs.exit_code }}
 
