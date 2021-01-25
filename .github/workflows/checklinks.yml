@@ -30,6 +30,7 @@ jobs:
         run: bundle exec jekyll build --drafts
       - name: Check for broken links
         run: |
+          cd docs/
           bundle exec htmlproofer --log-level :debug ./_site &> links.log
         continue-on-error: true
       - name: Archive log links
