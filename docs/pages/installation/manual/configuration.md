@@ -37,14 +37,14 @@ To apply all settings you need to click th e save button on the top or bottom, y
 ## 1. [MQTT](/pages/knowledge/mqtt#what-is-mqtt)
 For background information click on the topic header.
 MQTT is the communication channel rhasspy communicates with. Our MQTT-server is mosquitto we installed in the installation.
-When you done all steps in the [installations instruction](/installation/manual/setup-software#2-install-a-mqtt-server) you have already a running MQTT server on your Raspberry.
+When you done all steps in the [installations instruction](/pages/installation/manual/setup-software#2-install-a-mqtt-server) you have already a running MQTT server on your Raspberry.
 To use it you choose ``External`` in the drop down menu next to the MQTT button in the Rhasspy settings.
 Now you can setup a hostname, a port, a username and a password. We only need to setup the host and the port.
 The host ip is the local ip of you raspberry pi (``127.0.0.1``). When you use Hermes Led Control the host ip MUST be a IP and should 
 NOT be the alias ``localhost``!. As Port you need the port ``1883``. The username and password is only needed if you installed one.
 
 ## 2. Audio Recording
-Please make sure you [install](/installation/manual/setup-software#1-configure-audio) your microphone correctly!
+Please make sure you [install](/pages/installation/manual/setup-software#1-configure-audio) your microphone correctly!
 When you installed it correctly, you can proceed. Under the MQTT option is the option ``Audio Recording``. Select ``arecord`` in the dropdown menu.
 In the options below you only need to select the installed microphone (``Default Audio Device (sysdefault:CARD=seeed4micvoicec)``) or you type 
 ``sysdefault:CARD=seeed4micvoicec`` in the upper textbox.

@@ -113,7 +113,7 @@ The version 0.7.4 of deepspeech seems to work well.
 
 Now we know the which version works fine with the german language model, but how does ``Rhasspy`` communicate with deepspeech?
 
-Rhasspy is using to control many all services including [STT](7pages/knowledge/speech-to-text) and deepspeech.
+Rhasspy is using to control many all services including [STT](/pages/knowledge/speech-to-text) and deepspeech.
 The mqtt client for deepspeech is the program [rhaspy-asr-deepspeech-hermes](https://github.com/rhasspy/rhasspy-asr-deepspeech-hermes).
 And the program uses this libary: [rhasspy-asr-deepspeech](https://github.com/rhasspy/rhasspy-asr-deepspeech).
 
