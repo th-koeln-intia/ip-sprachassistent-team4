@@ -2,7 +2,6 @@
 layout: default
 title: MQTT
 parent: Knowledge
-nav_order: 2
 ---
 <details close markdown="block">
   <summary>

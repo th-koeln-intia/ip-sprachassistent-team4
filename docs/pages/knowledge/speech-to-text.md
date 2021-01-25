@@ -2,7 +2,6 @@
 layout: default
 title: Speech to text
 parent: Knowledge
-nav_order: 4
 ---
 
 <details close markdown="block">

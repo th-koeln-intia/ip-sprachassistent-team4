@@ -3,7 +3,7 @@ layout: default
 title: Auto installation
 has_children: true
 parent: Installation
-nav_order: 2
+nav_order: 1
 ---
 
 # Autoinstall script
