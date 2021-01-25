@@ -4,15 +4,24 @@ This is a Project to create Proof of Concept for a Voice Assistant. We we are us
 - Speech-To-Text: Deepspeech
 - Intent Recognition: Snips NLU
 - Intent Handling: NodeRed
-- Text-To-Speech: NanoTTS
+- Text-To-Speech: NanoTTS / Mozilla TTS
+
+# Skills
+- Read the clock
+- Set an alarm clock
+- Weather forecast
+- Light control
+- Get latest news
+- Get infos about exchange rate
 
 ## To DO
 - [X] Write intent handling description
 - [X] Control light
 - [X] Alarm implementation
 - [X] Timer implementation
-- [ ] Update documentation and git
-- [ ] Installation script
+- [X] Update documentation and git
+- [X] Installation script
+- [ ] Revise the documentation
 
 
 ## Documentation
@@ -32,3 +41,4 @@ bundle exec jekyll serve
 - rhasspy-asr-deepspeech: [Sh4der/rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech)
 - rhasspy-asr-deepspeech-hermes: [Sh4der/rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes)
 - node-red-contrib-smalltimer: [kevinbischof/node-red-contrib-smalltimer](https://github.com/kevinbischof/node-red-contrib-smalltimer)
+- MQTTMozillaTTSGerman: [Sh4der/MQTTMozillaTTSGerman](https://github.com/Sh4der/MQTTMozillaTTSGerman)
