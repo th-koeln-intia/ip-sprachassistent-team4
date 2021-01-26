@@ -33,3 +33,6 @@ As already discussed we were not able to find a method how we can inject the sta
 ![Timer with node small-timer](/assets/timer_small-timer-flow.png)
 
 node-red-contrib-smalltimer: [github.com/kevinbischof/node-red-contrib-smalltimer](https://github.com/kevinbischof/node-red-contrib-smalltimer)
+
+## Download the flow
+- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/timer_node_de.json){:target="_blank"}

@@ -33,4 +33,4 @@ return msg;
 ```
 
 ## Downlod the flow
-- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/get-time.json)
+- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/get-time.json){:target="_blank"}

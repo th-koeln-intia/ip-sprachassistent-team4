@@ -32,5 +32,5 @@ Picture below shows the complete nodes used.
 
 ![Exchange rate](../../../assets/getTopTenNews.png)
 
-# downlod the complete flow
-- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/headlines_http_req_de.json)
+# Download the flow
+- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/headlines_http_req_de.json){:target="_blank"}

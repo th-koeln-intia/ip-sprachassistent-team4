@@ -44,6 +44,6 @@ For example with the sentence: ``set the light on 50 percent``, the light should
 
 ![setup light brithness with Node_Red](../../assets/light_brightness.png)
 
-# downlod the flow
-- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/light_control.json)
+## Downlod the flow
+- [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/light_control.json){:target="_blank"}
 
