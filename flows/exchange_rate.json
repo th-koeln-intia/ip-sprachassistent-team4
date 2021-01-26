@@ -60,7 +60,8 @@
       "y": 400,
       "wires": [
          [
-            "2eefc20.b02e13e"
+            "2eefc20.b02e13e",
+            "43fd0b95.46b8c4"
          ]
       ]
    },
@@ -216,10 +217,26 @@
       "id": "47b5bbd.a392744",
       "type": "comment",
       "z": "13bfe052.758b6",
-      "name": "Get exchange rate for different countries",
+      "name": "Get exchange rate from Euro to currencies from different countries",
       "info": "",
-      "x": 230,
+      "x": 320,
       "y": 60,
+      "wires": []
+   },
+   {
+      "id": "43fd0b95.46b8c4",
+      "type": "debug",
+      "z": "13bfe052.758b6",
+      "name": "",
+      "active": false,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "false",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 1150,
+      "y": 460,
       "wires": []
    },
    {
