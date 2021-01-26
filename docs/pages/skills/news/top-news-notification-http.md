@@ -15,20 +15,20 @@ grand_parent: Skills
 </details>
 
 # Top News Notification HTTP
-The purpose of this topic is to allow the user to get the new notification from sport, economy and politics.
-We use three different HTTp requests to collect the top news from each topic.
-From the intent we extract the specific topic name (`e.g: politic`) and pass it to a switch-node named `NotificationSelector`, which will then pass the information to the corresponding HTTP request Node. From the HPPT node, the first Topic on n-tv website is fetched and sent to TTS node.
+The purpose of this theme is to allow the user to receive the new notifications from sports, business and politics.
+We use three different HTTp requests to get the top news from each topic.
+From the intent, we extract the specific topic name (`e.g.: Politics`) and pass it to a switch node called `NotificationSelector`, which then passes the information to the corresponding HTTP request node. From the HPPT node, the first topic is retrieved from the respective web pages and sent to the TTS node.
  
-the intent is something like :
+The intent is roughly as follows:
  
 ```
 [GetNotificationForNews]
 top new from economy{economy}
-top new from politic{politic}
-top new from sport{sport}
+top new from politic{politics}
+top new from sport
  
 ```
-The TTS will then output the first news corresponding to the topic set in intent.
+The TTS will then output the first message from the corresponding topic.
 
 
 ![top_news_notification](../../../assets/top_news_notification.png)

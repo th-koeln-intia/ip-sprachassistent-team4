@@ -14,11 +14,11 @@ parent: Skills
 </details>
 
 # Exchange Rate
-The goal of this Topic is to allow users to get the exchange rate for a specific currency for a specific country converted in Euro.The user can also ask for the value for ` silver or gold ` and get its corresponding price in euro.
-To get all information about the actual rate we use the API with the URL `https://wechselkurse-euro.de/`. From this url, we can extract the table for different countries and their currency value corresponding to 1 €.
-We need an HTTP Request node to fecht the value from the Internet and some knowledge from css to load the information which we are looking for. Because the values are presented in two different tables, we also need a join node to combine the two tables. Finally a function named GetAll will combine the two tables and send it to another function named GetTextForTTs, which will forward the message to the TTS node.
-For the intent we also use a custom slot name ExchangeCounties to store different countries.
-the intent is something like :
+The goal of this theme is to allow the user to get the exchange rate for a specific currency for a specific country converted to Euro.
+To get all the information about the current exchange rate, we use the API with the URL `https://wechselkurse-euro.de/`. From this URL we can extract the table for different countries and their currency value corresponding to €1.
+We need a HTTP request node to fecht the value from the internet and some knowledge of css to load the information we are looking for. Since the values are represented in two different tables, we also need a join node to combine the two tables. Finally, a function called GetAll combines the two tables and sends them to another function called GetTextForTTs, which forwards the message to the TTS node.
+For the intent, we also use a custom slot called ExchangeCounties to store different countries.
+The intent is something like the following:
 
 ```
 [GetExchangeRate]
@@ -26,12 +26,12 @@ Exchange rate for ($ExchangeCountries){country}
 ```
 The slot list named ExchangeCountries can be downloaded from [here ](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/data/ExchangeCountries).
 
-From the intent we get the country name and pass it to the table to obtain the currency value and currency name. 
+From the intent we get the country name and pass it to the table to get the currency value and currency name. 
 The TTS output is : 
 ```
-1 € is corresponding to <country currency name>
+1 € corresponds to <name of country currency>.
 ```
-Picture below shows the complete nodes used.
+The following figure shows the nodes used.
 
 ![Exchange rate](/assets/ExchangeRate.png)
 
