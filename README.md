@@ -29,6 +29,7 @@ We we are using these Tools:
 - [ ] Technology rating section with rating of all technologies write down with personal rating and conclusion.
 - [ ] Explanation Why Node-Red the Why is actually missing
 - [ ] Link to knowledge entries on all possible pages
+- [ ] Check all images
 
 
 ## Documentation
