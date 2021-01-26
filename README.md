@@ -22,6 +22,12 @@ This is a Project to create Proof of Concept for a Voice Assistant. We we are us
 - [X] Update documentation and git
 - [X] Installation script
 - [ ] Revise the documentation
+- [ ] Make images smaller
+- [ ] Setup hardware at the bottom of the page refer to the installation
+- [ ] Correct installation arrangement
+- [ ] Technology rating section with rating of all technologies write down with personal rating and conclusion.
+- [ ] Explanation Why Node-Red the Why is actually missing
+- [ ] Link to knowledge entries on all possible pages
 
 
 ## Documentation
