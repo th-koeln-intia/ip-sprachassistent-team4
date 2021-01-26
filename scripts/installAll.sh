@@ -79,12 +79,6 @@ else
     sudo systemctl enable zigbee2mqtt.service
     sudo systemctl start zigbee2mqtt.service
 
-    echo "hcl"
-    read -p "Press [Enter] key to continue..."
-    wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh
-    sudo chmod +x hlc_download.sh
-    sudo ./hlc_download.sh
-
     echo "rhasspy"
     read -p "Press [Enter] key to start reboot..."
     # rhasspy
@@ -98,7 +92,22 @@ else
     sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy.service -O /etc/systemd/system/rhasspy.service
 
     sudo systemctl enable rhasspy
-    sudo systemctl start rhasspy
+
+    echo "configs"
+    read -p "Press [Enter] key to continue..."
+    mkdir -p /home/$USER/.config/rhasspy/profiles/de/slots
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/custom_words.txt -O /home/$USER/.config/rhasspy/profiles/de/custom_words.txt
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/profile.json -O /home/$USER/.config/rhasspy/profiles/de/profile.json
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/sentences.ini -O /home/$USER/.config/rhasspy/profiles/de/sentences.ini
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/cities -O /home/$USER/.config/rhasspy/profiles/de/slots/cities
+    sudo systemctl restart rhasspy
+
+    echo "hlc"
+    read -p "Press [Enter] key to continue..."
+    wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh
+    sudo chmod +x hlc_download.sh
+    sudo ./hlc_download.sh
+
     echo "deepspeech"
     read -p "Press [Enter] key to continue..."
     #deepspeech
@@ -112,13 +121,4 @@ else
     chmod +x $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 
-    echo "configs"
-    read -p "Press [Enter] key to continue..."
-    mkdir -p /home/$USER/.config/rhasspy/profiles/de/slots
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/custom_words.txt -O /home/$USER/.config/rhasspy/profiles/de/custom_words.txt
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/profile.json -O /home/$USER/.config/rhasspy/profiles/de/profile.json
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/sentences.ini -O /home/$USER/.config/rhasspy/profiles/de/sentences.ini
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/cities -O /home/$USER/.config/rhasspy/profiles/de/slots/cities
-    sudo systemctl restart rhasspy
-    wget
 fi
