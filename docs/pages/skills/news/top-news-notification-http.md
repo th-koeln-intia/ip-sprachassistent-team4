@@ -33,5 +33,5 @@ The TTS will then output the first news corresponding to the topic set in intent
 
 ![top_news_notification](../../../assets/top_news_notification.png)
 
-# Downlod the flow
+# Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/top_news_notification.json){:target="_blank"}

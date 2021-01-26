@@ -35,5 +35,5 @@ Picture below shows the complete nodes used.
 
 ![Exchange rate](/assets/ExchangeRate.png)
 
-# Downlod the flow
+# Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/exchange_rate.json){:target="_blank"}

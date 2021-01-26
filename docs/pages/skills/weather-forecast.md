@@ -34,5 +34,5 @@ The only downside to this NODE is that we can only get the weather information o
 
 ![setup weather forecast with Node_Red](../../assets/five_days_weather.png)
 
-## Downlod the flow
+## Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/weather_forecast.json){:target="_blank"}
