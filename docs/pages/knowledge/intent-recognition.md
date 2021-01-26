@@ -2,7 +2,6 @@
 layout: default
 title: Intent Recognition
 parent: Knowledge
-nav_order: 5
 ---
 <details close markdown="block">
   <summary>

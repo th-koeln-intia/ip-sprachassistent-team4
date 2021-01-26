@@ -2,7 +2,6 @@
 layout: default
 title: Intent Handling
 parent: Knowledge
-nav_order: 6
 ---
 
 <details close markdown="block">
