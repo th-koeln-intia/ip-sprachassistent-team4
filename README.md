@@ -8,7 +8,7 @@ We we are using these Tools:
 - Text-To-Speech: [NanoTTS](https://github.com/gmn/nanotts) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/tts/nano-tts))
 - 
 # Skills
-- Read the clock
+- [Read the clock](https://ip-team4.intia.de/pages/skills/time)
 - [Set an alarm clock](https://ip-team4.intia.de/pages/skills/alarm/)
 - [Weather forecast](https://ip-team4.intia.de/pages/skills/weather-forecast)
 - [Light control](https://ip-team4.intia.de/pages/skills/light-control)

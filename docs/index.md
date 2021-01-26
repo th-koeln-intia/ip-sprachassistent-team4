@@ -22,7 +22,7 @@ So you don't need to worry about your privacy, it stays all on your own device. 
 they upload all you say to them to their cloud to process it. This is not a good way, when you want to have a good privacy for example for vulnerable person.
 
 # Skills
-- [Read the clock](/pages/skills/current-time)
+- [Read the clock](/pages/skills/time)
 - [Set an alarm clock](/pages/skills/alarm/)
 - [Weather forecast](/pages/skills/weather-forecast)
 - [Light control](/pages/skills/light-control)
