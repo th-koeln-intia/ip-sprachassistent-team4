@@ -301,7 +301,7 @@
     "z": "4d6cbb4.9fd3944",
     "name": "",
     "playerOptions": "{}",
-    "audioURI": "/home/pi/.config/rhasspy/profiles/de/data/alarm.mp3",
+    "audioURI": "/home/pi/.node-red/alarm.mp3",
     "options": "{\"afplay\" : [\"-l0\"]}",
     "x": 1250,
     "y": 420,
