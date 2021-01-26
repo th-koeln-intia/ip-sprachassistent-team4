@@ -33,6 +33,7 @@ npm install ~/tmp/node-red-contrib-smalltimer-*.tgz
 npm install node-red-contrib-play-sound
 
 #Exchange Rate
+wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/data/ExchangeCountries -O ~/.config/rhasspy/profiles/de/slots/ExchangeCountries
 
 #Headlines
 npm install node-red-contrib-queue-gate
@@ -42,6 +43,7 @@ npm install node-red-contrib-queue-gate
 #Volume
 #Weather forecast
 npm install node-red-node-openweathermap
+wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/data/cities -O ~/.config/rhasspy/profiles/de/slots/cities
 
 #Clone repository to get all flows
 git clone https://github.com/th-koeln-intia/ip-sprachassistent-team4.git ~/tmp/ip-sprachassistent-team4

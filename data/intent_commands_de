@@ -1,0 +1,38 @@
+#GetExchangeRate
+Wechselkurs für Japan
+
+#ChangeLightState
+Mach das Licht an
+Mach die Stehlampe an
+Mach das Garagenlicht an
+Mach alle Lampen an
+Schalte das Garagenlicht aus
+
+#ChangeLightBrightness
+Setze das Garagenlicht auf 50 Prozent
+
+#ChangeLightTemperature
+Mach die Stehlampe warmweiß
+Mach das Garagenlicht kaltweiß
+
+#ChangeLightColor
+Mach das Garagenlicht blau
+
+#SetVolume
+Lautstärke 75 Prozent
+Lautstärke 100 Prozent
+
+#GetWeather
+Wie ist das Wetter in Köln
+Wie wird das Wetter morgen in Brunsbüttel
+Wie wird das Wetter in zwei Tagen in München
+Wie wird das Wetter in drei Tagen in Gummersbach
+
+#PlayNews
+nachrichten abspielen
+
+#PlayHeadlines
+schlagzeilen abspielen
+
+#GetTopTenNews
+top ten Nachrichten abspielen
