@@ -2,7 +2,7 @@
 layout: default
 parent: Installation
 title: Setup Hardware
-nav_order: 1
+nav_order: 0
 ---
 
 <details close markdown="block">
