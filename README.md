@@ -1,18 +1,19 @@
-# Voice Assistant Sherlock
-This is a Project to create Proof of Concept for a Voice Assistant. We we are using these Tools:
-- Wakeword: Raven
-- Speech-To-Text: Deepspeech
-- Intent Recognition: Snips NLU
-- Intent Handling: NodeRed
-- Text-To-Speech: NanoTTS / Mozilla TTS
-
+# [Voice Assistant Sherlock](https://ip-team4.intia.de)
+This is a Project to create Proof of Concept for a Voice Assistant. 
+We we are using these Tools:
+- Wakeword:  [Raven](https://github.com/rhasspy/rhasspy-wake-raven) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/wake-word))
+- Speech-To-Text: [Deepspeech](https://github.com/mozilla/DeepSpeech) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/deepspeech))
+- Intent Recognition: [Snips NLU](https://github.com/snipsco/snips-nlu) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/intent-recognition))
+- Intent Handling: [NodeRed](https://nodered.org/) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/node-red))
+- Text-To-Speech: [NanoTTS](https://github.com/gmn/nanotts) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/tts/nano-tts))
+- 
 # Skills
-- Read the clock
-- Set an alarm clock
-- Weather forecast
-- Light control
-- Get latest news
-- Get infos about exchange rate
+- [Read the clock](https://ip-team4.intia.de/pages/skills/time)
+- [Set an alarm clock](https://ip-team4.intia.de/pages/skills/alarm/)
+- [Weather forecast](https://ip-team4.intia.de/pages/skills/weather-forecast)
+- [Light control](https://ip-team4.intia.de/pages/skills/light-control)
+- [Get latest news](https://ip-team4.intia.de/pages/skills/news/)
+- [Get infos about exchange rate](https://ip-team4.intia.de/pages/skills/exchange-rate)
 
 ## To DO
 - [X] Write intent handling description
@@ -32,9 +33,9 @@ This is a Project to create Proof of Concept for a Voice Assistant. We we are us
 
 ## Documentation
 The documentation is created in form of a GitHub page following the official documentation:  
-[installation guide](https://ip-team4.intia.de/)
-You can install Sherlock complete [automatically](https://ip-team4.intia.de/pages/installation/auto-install-script/) 
-or [manually](https://ip-team4.intia.de/pages/installation/manual/). Please follow the steps in the relevant section.
+[Sherlock docs](https://ip-team4.intia.de)
+You can install Sherlock complete [automatically](https://ip-team4.intia.de/pages/installation/auto-install-script/auto-installation.html) 
+or [manually](https://ip-team4.intia.de/pages/installation/manual/setup-software.html). Please follow the steps in the relevant section.
 
 To run the documentation locally Jekyll is required. Follow the official installation [guide](https://jekyllrb.com/docs/installation/) to install Jekyll for the appropriate OS. It is important to install the correct version to prevent potential problems with Github Pages. The officially supported version is listed [here](https://pages.github.com/versions/).  
 The following command starts a local server, if Jekyll is installed with bundler:

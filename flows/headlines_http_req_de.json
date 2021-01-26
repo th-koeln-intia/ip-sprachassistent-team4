@@ -37,7 +37,7 @@
     "tag": ".col-xs-12.col-sm-7.col-md-8 article[class=\"teaser teaser--wide teaser--hero \"] span",
     "ret": "text",
     "as": "single",
-    "x": 620,
+    "x": 600,
     "y": 100,
     "wires": [
       [
@@ -56,7 +56,7 @@
     "initialize": "",
     "finalize": "",
     "x": 260,
-    "y": 200,
+    "y": 180,
     "wires": [
       [
         "9309d278.f42b5"
@@ -67,12 +67,12 @@
     "id": "bbd3168d.9cf2d8",
     "type": "mqtt in",
     "z": "671fb83a.4733e8",
-    "name": "GetTopTenNews",
+    "name": "",
     "topic": "hermes/intent/GetTopTenNews",
     "qos": "2",
     "datatype": "json",
     "broker": "f80b985a.2ffa78",
-    "x": 220,
+    "x": 190,
     "y": 100,
     "wires": [
       [
@@ -89,8 +89,8 @@
     "qos": "2",
     "retain": "true",
     "broker": "f80b985a.2ffa78",
-    "x": 860,
-    "y": 200,
+    "x": 840,
+    "y": 180,
     "wires": []
   },
   {
@@ -105,7 +105,7 @@
     "stream": false,
     "addname": "",
     "x": 440,
-    "y": 200,
+    "y": 180,
     "wires": [
       [
         "57a5a129.2ffa2"
@@ -123,7 +123,7 @@
     "initialize": "",
     "finalize": "",
     "x": 640,
-    "y": 200,
+    "y": 180,
     "wires": [
       [
         "be6950a3.a4ff5"
@@ -140,13 +140,23 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 930,
+    "x": 810,
     "y": 100,
     "wires": [
       [
         "2c69c238.7f279e"
       ]
     ]
+  },
+  {
+    "id": "829d775a.6e8c38",
+    "type": "comment",
+    "z": "671fb83a.4733e8",
+    "name": "Get German Top Ten News",
+    "info": "",
+    "x": 170,
+    "y": 40,
+    "wires": []
   },
   {
     "id": "f80b985a.2ffa78",

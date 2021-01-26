@@ -20,4 +20,4 @@ as we expected because of some drop back relating to the node. For this reason w
 JavaScript.
 To have a kick view on drop back for the node, please refer to this [link](/pages/skills/timer/timer-nodes){:target="_blank"}.
 
-For the implementation with Javascript,check [alarmJS](/pages/skills/timer/timer-js){:target="_blank"}.
+For the implementation with Javascript, check [alarmJS](/pages/skills/timer/timer-js){:target="_blank"}.

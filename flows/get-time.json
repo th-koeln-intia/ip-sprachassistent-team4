@@ -1,0 +1,78 @@
+[
+    {
+        "id": "86048e22.b8721",
+        "type": "tab",
+        "label": "GetTime",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "db9ea287.182038",
+        "type": "mqtt out",
+        "z": "86048e22.b8721",
+        "name": "",
+        "topic": "hermes/tts/say",
+        "qos": "2",
+        "retain": "false",
+        "broker": "7d5a3618.9ef98",
+        "x": 800,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "65a8861e.0fc158",
+        "type": "mqtt in",
+        "z": "86048e22.b8721",
+        "name": "",
+        "topic": "hermes/intent/GetTime",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "7d5a3618.9ef98",
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "c15c1c34.67ac38"
+            ]
+        ]
+    },
+    {
+        "id": "c15c1c34.67ac38",
+        "type": "function",
+        "z": "86048e22.b8721",
+        "name": "convertTimeToText",
+        "func": "\nvar time = new Date()\nmsg.payload = {text: \"Es ist \" + time.getHours() + \" Uhr \" + time.getMinutes(), siteId: \"default\", id: \"testID\"};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "db9ea287.182038"
+            ]
+        ]
+    },
+    {
+        "id": "7d5a3618.9ef98",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

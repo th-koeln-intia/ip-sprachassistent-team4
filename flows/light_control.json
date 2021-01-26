@@ -11,26 +11,202 @@
     "type": "mqtt in",
     "z": "8434b087.927d2",
     "name": "",
-    "topic": "hermes/intent/LightStatus",
+    "topic": "hermes/intent/ChangeLightState",
     "qos": "2",
     "datatype": "json",
     "broker": "f80b985a.2ffa78",
-    "x": 290,
-    "y": 240,
+    "x": 190,
+    "y": 140,
     "wires": [
       [
-        "aab28f80.3024e"
+        "24883bef.5ed8d4"
       ]
     ]
   },
   {
-    "id": "aab28f80.3024e",
+    "id": "668c7cd.8a82684",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "garagenlicht ON",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x00158d000520f47d",
+    "command": "state",
+    "commandType": "z2m_cmd",
+    "payload": "on",
+    "payloadType": "z2m_payload",
+    "transition": "1",
+    "x": 1320,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "8c99c867.1ee1d8",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "garagenlicht OFF",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x00158d000520f47d",
+    "command": "state",
+    "commandType": "z2m_cmd",
+    "payload": "off",
+    "payloadType": "z2m_payload",
+    "transition": "1",
+    "x": 1330,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "28e7c4fe.ba482c",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "stehlampe ON",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x588e81fffeb447bc",
+    "command": "state",
+    "commandType": "z2m_cmd",
+    "payload": "on",
+    "payloadType": "z2m_payload",
+    "transition": "1",
+    "x": 1320,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "56197ff4.c8b3e",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "stehlampe OFF",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x588e81fffeb447bc",
+    "command": "state",
+    "commandType": "z2m_cmd",
+    "payload": "off",
+    "payloadType": "z2m_payload",
+    "transition": "1",
+    "x": 1320,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "7059421d.df33ac",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "licht ON",
+    "server": "8451e792.d55f88",
+    "friendly_name": "",
+    "device_id": "0x00158d000387e759",
+    "command": "state",
+    "commandType": "z2m_cmd",
+    "payload": "on",
+    "payloadType": "z2m_payload",
+    "transition": "1",
+    "x": 1300,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "a1cc130f.76afa",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "licht OFF",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x00158d000387e759",
+    "command": "state",
+    "commandType": "z2m_cmd",
+    "payload": "off",
+    "payloadType": "z2m_payload",
+    "transition": "1",
+    "x": 1300,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "dc26fc1b.8b64d",
     "type": "switch",
     "z": "8434b087.927d2",
-    "name": "",
-    "property": "payload.slots[1].value.value",
+    "name": "Switch device",
+    "property": "name",
     "propertyType": "msg",
     "rules": [
+      {
+        "t": "eq",
+        "v": "licht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "garagenlicht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "stehlampe",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "alle lampen",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 1040,
+    "y": 100,
+    "wires": [
+      [
+        "7059421d.df33ac"
+      ],
+      [
+        "668c7cd.8a82684"
+      ],
+      [
+        "28e7c4fe.ba482c"
+      ],
+      [
+        "7059421d.df33ac",
+        "668c7cd.8a82684",
+        "28e7c4fe.ba482c"
+      ]
+    ]
+  },
+  {
+    "id": "24883bef.5ed8d4",
+    "type": "function",
+    "z": "8434b087.927d2",
+    "name": "Switch-Case-Slots",
+    "func": "var message = {\n    cmd: \"\",\n    name: \"\",\n    state: \"\",\n    brightness: \"\",\n    color: \"\",\n    temperature: \"\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"cmd\":\n                message.cmd = msg.payload.slots[i].value.value;\n            break;\n            case \"name\":\n                message.name = msg.payload.slots[i].value.value;\n            break;\n            case \"state\":\n                message.state = msg.payload.slots[i].value.value;\n            break;\n            case \"brightness\":\n                message.brightness = msg.payload.slots[i].value.value;\n            break;\n                case \"color\":\n                message.color = msg.payload.slots[i].value.value;\n            break;\n                case \"temperature\":\n                message.temperature = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn message;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 530,
+    "y": 140,
+    "wires": [
+      [
+        "dbf13012.fdcb7"
+      ]
+    ]
+  },
+  {
+    "id": "dbf13012.fdcb7",
+    "type": "switch",
+    "z": "8434b087.927d2",
+    "name": "Switch on|off",
+    "property": "state",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "ein",
+        "vt": "str"
+      },
       {
         "t": "eq",
         "v": "an",
@@ -44,69 +220,202 @@
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 2,
-    "x": 510,
+    "outputs": 3,
+    "x": 750,
+    "y": 140,
+    "wires": [
+      [
+        "dc26fc1b.8b64d",
+        "634938.c016e6c8"
+      ],
+      [
+        "dc26fc1b.8b64d",
+        "634938.c016e6c8"
+      ],
+      [
+        "21dec2b3.c9990e",
+        "634938.c016e6c8"
+      ]
+    ]
+  },
+  {
+    "id": "21dec2b3.c9990e",
+    "type": "switch",
+    "z": "8434b087.927d2",
+    "name": "Switch device",
+    "property": "name",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "licht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "garagenlicht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "stehlampe",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "alle lampen",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 1040,
     "y": 240,
     "wires": [
       [
-        "c79a1455.2c9708"
+        "a1cc130f.76afa"
       ],
       [
-        "a8dfd7e4.dbc378"
+        "8c99c867.1ee1d8"
+      ],
+      [
+        "56197ff4.c8b3e"
+      ],
+      [
+        "a1cc130f.76afa",
+        "8c99c867.1ee1d8",
+        "56197ff4.c8b3e"
       ]
     ]
   },
   {
-    "id": "c79a1455.2c9708",
-    "type": "zigbee2mqtt-out",
+    "id": "eb1cde1a.e1806",
+    "type": "comment",
     "z": "8434b087.927d2",
-    "name": "Lamp living room ON",
-    "server": "7c9dbd0a.c040e4",
-    "friendly_name": "",
-    "device_id": "0xf0d1b80000175d54",
-    "command": "state",
-    "commandType": "z2m_cmd",
-    "payload": "on",
-    "payloadType": "z2m_payload",
-    "transition": 0,
-    "x": 740,
-    "y": 180,
+    "name": "Change light state",
+    "info": "",
+    "x": 150,
+    "y": 80,
     "wires": []
   },
   {
-    "id": "a8dfd7e4.dbc378",
-    "type": "zigbee2mqtt-out",
+    "id": "854ef1.d02e811",
+    "type": "comment",
     "z": "8434b087.927d2",
-    "name": "Lamp living room OFF",
-    "server": "7c9dbd0a.c040e4",
-    "friendly_name": "",
-    "device_id": "0xf0d1b80000175d54",
-    "command": "state",
-    "commandType": "z2m_cmd",
-    "payload": "off",
-    "payloadType": "z2m_payload",
-    "transition": 0,
-    "x": 740,
-    "y": 280,
+    "name": "Change light brightness",
+    "info": "",
+    "x": 160,
+    "y": 380,
     "wires": []
   },
   {
-    "id": "a70cd5f1.0111c8",
-    "type": "zigbee2mqtt-bridge",
+    "id": "74f54ebd.ef6c3",
+    "type": "mqtt in",
     "z": "8434b087.927d2",
     "name": "",
-    "server": "7c9dbd0a.c040e4",
-    "topic": null,
-    "x": 290,
-    "y": 120,
+    "topic": "hermes/intent/ChangeLightBrightness",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 210,
+    "y": 440,
     "wires": [
       [
-        "4ad01196.91cf8"
+        "7bb26d8c.e3b534"
       ]
     ]
   },
   {
-    "id": "4ad01196.91cf8",
+    "id": "7bb26d8c.e3b534",
+    "type": "function",
+    "z": "8434b087.927d2",
+    "name": "Switch-Case-Slots",
+    "func": "var message = {\n    cmd: \"\",\n    name: \"\",\n    state: \"\",\n    brightness: \"\",\n    color: \"\",\n    temperature: \"\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"cmd\":\n                message.cmd = msg.payload.slots[i].value.value;\n            break;\n            case \"name\":\n                message.name = msg.payload.slots[i].value.value;\n            break;\n            case \"state\":\n                message.state = msg.payload.slots[i].value.value;\n            break;\n            case \"brightness\":\n                message.brightness = msg.payload.slots[i].value.value;\n            break;\n                case \"color\":\n                message.color = msg.payload.slots[i].value.value;\n            break;\n                case \"temperature\":\n                message.temperature = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn message;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 530,
+    "y": 440,
+    "wires": [
+      [
+        "93a6893a.2fb4d8"
+      ]
+    ]
+  },
+  {
+    "id": "93a6893a.2fb4d8",
+    "type": "function",
+    "z": "8434b087.927d2",
+    "name": "Transform brightness value",
+    "func": "if (msg.brightness) {\n    msg.brightness = msg.brightness / 100 * 255;\n    return msg;\n}\n    \n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 800,
+    "y": 440,
+    "wires": [
+      [
+        "61537913.2e7f98",
+        "9bedd7d1.5f0c88"
+      ]
+    ]
+  },
+  {
+    "id": "61537913.2e7f98",
+    "type": "switch",
+    "z": "8434b087.927d2",
+    "name": "Switch device",
+    "property": "name",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "licht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "garagenlicht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "stehlampe",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "alle lampen",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 1040,
+    "y": 440,
+    "wires": [
+      [
+        "f8da6ab6.c62668"
+      ],
+      [
+        "4cd5b614.985d98"
+      ],
+      [
+        "58fd45da.8c898c"
+      ],
+      [
+        "f8da6ab6.c62668",
+        "4cd5b614.985d98",
+        "58fd45da.8c898c"
+      ]
+    ]
+  },
+  {
+    "id": "9bedd7d1.5f0c88",
     "type": "debug",
     "z": "8434b087.927d2",
     "name": "",
@@ -118,59 +427,441 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 490,
-    "y": 120,
+    "x": 1010,
+    "y": 500,
     "wires": []
   },
   {
-    "id": "f1851ab5.a1b1e8",
-    "type": "mqtt in",
-    "z": "8434b087.927d2",
-    "name": "",
-    "topic": "hermes/intent/LightBrightness",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "f80b985a.2ffa78",
-    "x": 300,
-    "y": 360,
-    "wires": [
-      [
-        "23ea3ba.8ced2c4"
-      ]
-    ]
-  },
-  {
-    "id": "2f7c4397.5829cc",
+    "id": "f8da6ab6.c62668",
     "type": "zigbee2mqtt-out",
     "z": "8434b087.927d2",
-    "name": "LightBrightness",
-    "server": "7c9dbd0a.c040e4",
+    "name": "licht brightness",
+    "server": "8451e792.d55f88",
     "friendly_name": "",
-    "device_id": "0xf0d1b80000175d54",
+    "device_id": "0x00158d000387e759",
     "command": "brightness",
     "commandType": "z2m_cmd",
     "payload": "brightness",
     "payloadType": "msg",
-    "transition": 0,
-    "x": 820,
-    "y": 360,
+    "transition": "1",
+    "x": 1320,
+    "y": 400,
     "wires": []
   },
   {
-    "id": "23ea3ba.8ced2c4",
+    "id": "4cd5b614.985d98",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "garagenlicht brightness",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x00158d000520f47d",
+    "command": "brightness",
+    "commandType": "z2m_cmd",
+    "payload": "brightness",
+    "payloadType": "msg",
+    "transition": "1",
+    "x": 1350,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "58fd45da.8c898c",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "stehlampe brightness",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "",
+    "device_id": "0x588e81fffeb447bc",
+    "command": "brightness",
+    "commandType": "z2m_cmd",
+    "payload": "brightness",
+    "payloadType": "msg",
+    "transition": "1",
+    "x": 1340,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "634938.c016e6c8",
+    "type": "debug",
+    "z": "8434b087.927d2",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "a70ff155.99916",
+    "type": "mqtt in",
+    "z": "8434b087.927d2",
+    "name": "",
+    "topic": "hermes/intent/ChangeLightColor",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 190,
+    "y": 640,
+    "wires": [
+      [
+        "981dcf18.2a52f"
+      ]
+    ]
+  },
+  {
+    "id": "9ec2d84f.914368",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "licht RGB",
+    "server": "f0a0ca75.30ddb8",
+    "friendly_name": "",
+    "device_id": "0x00158d000387e759",
+    "command": "color_hex",
+    "commandType": "z2m_cmd",
+    "payload": "payload",
+    "payloadType": "msg",
+    "transition": 0,
+    "x": 1300,
+    "y": 620,
+    "wires": []
+  },
+  {
+    "id": "fb10fcf7.13138",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "garagenlicht RGB",
+    "server": "f0a0ca75.30ddb8",
+    "friendly_name": "",
+    "device_id": "0x588e81fffeb447bc",
+    "command": "color_hex",
+    "commandType": "z2m_cmd",
+    "payload": "payload",
+    "payloadType": "msg",
+    "transition": 0,
+    "x": 1330,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "d107c369.daa24",
     "type": "function",
     "z": "8434b087.927d2",
-    "name": "GetLightBrightness",
-    "func": "\nmsg = {\n         brightness: 255*msg.payload.slots[1].value.value/100\n    }\n    return msg;",
+    "name": "Transform color to hex",
+    "func": "switch(msg.color) {\n    case \"blau\":\n        msg.payload = \"0x0000FF\";\n    break;  \n    \n    case \"rot\":\n        msg.payload = \"0xFF0000\";\n    break;\n    \n    case \"gelb\":\n        msg.payload = \"0xFFFF00\";\n    break;\n    \n    case \"grün\":\n        msg.payload = \"0x008000\";\n    break;\n    \n    case \"lila\":\n        msg.payload = \"0x800080\";\n    break;\n    \n    case \"weiß\":\n        msg.payload = \"0xFFFFFF\";\n    break;\n    default:\n}\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 570,
-    "y": 360,
+    "x": 780,
+    "y": 640,
     "wires": [
       [
-        "2f7c4397.5829cc"
+        "c2fb3dd2.1533a",
+        "2f2b3e0e.539a12"
+      ]
+    ]
+  },
+  {
+    "id": "c2fb3dd2.1533a",
+    "type": "debug",
+    "z": "8434b087.927d2",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "981dcf18.2a52f",
+    "type": "function",
+    "z": "8434b087.927d2",
+    "name": "Switch-Case-Slots",
+    "func": "var message = {\n    cmd: \"\",\n    name: \"\",\n    state: \"\",\n    brightness: \"\",\n    color: \"\",\n    temperature: \"\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"cmd\":\n                message.cmd = msg.payload.slots[i].value.value;\n            break;\n            case \"name\":\n                message.name = msg.payload.slots[i].value.value;\n            break;\n            case \"state\":\n                message.state = msg.payload.slots[i].value.value;\n            break;\n            case \"brightness\":\n                message.brightness = msg.payload.slots[i].value.value;\n            break;\n                case \"color\":\n                message.color = msg.payload.slots[i].value.value;\n            break;\n                case \"temperature\":\n                message.temperature = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn message;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 530,
+    "y": 640,
+    "wires": [
+      [
+        "d107c369.daa24"
+      ]
+    ]
+  },
+  {
+    "id": "8491edbd.69d26",
+    "type": "mqtt in",
+    "z": "8434b087.927d2",
+    "name": "",
+    "topic": "hermes/intent/ChangeLightTemperature",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 210,
+    "y": 820,
+    "wires": [
+      [
+        "8c7bf1d6.70dec"
+      ]
+    ]
+  },
+  {
+    "id": "8c76a01a.b353a",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "licht temperature",
+    "server": "f0a0ca75.30ddb8",
+    "friendly_name": "",
+    "device_id": "0x00158d000387e759",
+    "command": "color_temp",
+    "commandType": "z2m_cmd",
+    "payload": "temperature",
+    "payloadType": "msg",
+    "transition": 0,
+    "x": 1330,
+    "y": 800,
+    "wires": []
+  },
+  {
+    "id": "98730a24.619ac8",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "stehlampe temperature",
+    "server": "f0a0ca75.30ddb8",
+    "friendly_name": "",
+    "device_id": "0x588e81fffeb447bc",
+    "command": "color_temp",
+    "commandType": "z2m_cmd",
+    "payload": "temperature",
+    "payloadType": "msg",
+    "transition": 0,
+    "x": 1350,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "fef665d5.e89528",
+    "type": "debug",
+    "z": "8434b087.927d2",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "8c7bf1d6.70dec",
+    "type": "function",
+    "z": "8434b087.927d2",
+    "name": "Switch-Case-Slots",
+    "func": "var message = {\n    cmd: \"\",\n    name: \"\",\n    state: \"\",\n    brightness: \"\",\n    color: \"\",\n    temperature: \"\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"cmd\":\n                message.cmd = msg.payload.slots[i].value.value;\n            break;\n            case \"name\":\n                message.name = msg.payload.slots[i].value.value;\n            break;\n            case \"state\":\n                message.state = msg.payload.slots[i].value.value;\n            break;\n            case \"brightness\":\n                message.brightness = msg.payload.slots[i].value.value;\n            break;\n                case \"color\":\n                message.color = msg.payload.slots[i].value.value;\n            break;\n                case \"temperature\":\n                message.temperature = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn message;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 530,
+    "y": 820,
+    "wires": [
+      [
+        "c00dfec0.60ed5"
+      ]
+    ]
+  },
+  {
+    "id": "2c6622be.aab98e",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "garagenlicht temperature",
+    "server": "8b64cc7d.86179",
+    "friendly_name": "Franz",
+    "device_id": "0x00158d000520f47d",
+    "command": "color_temp",
+    "commandType": "z2m_cmd",
+    "payload": "temperature",
+    "payloadType": "msg",
+    "transition": "1",
+    "x": 1350,
+    "y": 840,
+    "wires": []
+  },
+  {
+    "id": "c00dfec0.60ed5",
+    "type": "function",
+    "z": "8434b087.927d2",
+    "name": "Transform temp to kelvin",
+    "func": "switch(msg.temperature) {\n    case \"warmweiß\":\n        msg.temperature = 400;\n    break;  \n    case \"kaltweiß\":\n        msg.temperature = 50;\n    break;\n    default:\n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 790,
+    "y": 820,
+    "wires": [
+      [
+        "fef665d5.e89528",
+        "fb59ad7c.d43a1"
+      ]
+    ]
+  },
+  {
+    "id": "b351c78f.85c3c8",
+    "type": "zigbee2mqtt-out",
+    "z": "8434b087.927d2",
+    "name": "stehlampe RGB",
+    "server": "f0a0ca75.30ddb8",
+    "friendly_name": "",
+    "device_id": "0x588e81fffeb447bc",
+    "command": "color_hex",
+    "commandType": "z2m_cmd",
+    "payload": "payload",
+    "payloadType": "msg",
+    "transition": 0,
+    "x": 1320,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "2f2b3e0e.539a12",
+    "type": "switch",
+    "z": "8434b087.927d2",
+    "name": "Switch device",
+    "property": "name",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "licht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "garagenlicht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "stehlampe",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "alle lampen",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 1040,
+    "y": 640,
+    "wires": [
+      [
+        "9ec2d84f.914368"
+      ],
+      [
+        "fb10fcf7.13138"
+      ],
+      [
+        "b351c78f.85c3c8"
+      ],
+      [
+        "9ec2d84f.914368",
+        "fb10fcf7.13138",
+        "b351c78f.85c3c8"
+      ]
+    ]
+  },
+  {
+    "id": "aeb8f170.1ce58",
+    "type": "comment",
+    "z": "8434b087.927d2",
+    "name": "Change light color",
+    "info": "",
+    "x": 150,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "4c666faa.05567",
+    "type": "comment",
+    "z": "8434b087.927d2",
+    "name": "Change light temperature",
+    "info": "",
+    "x": 170,
+    "y": 760,
+    "wires": []
+  },
+  {
+    "id": "fb59ad7c.d43a1",
+    "type": "switch",
+    "z": "8434b087.927d2",
+    "name": "Switch device",
+    "property": "name",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "licht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "garagenlicht",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "stehlampe",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "alle lampen",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 1040,
+    "y": 820,
+    "wires": [
+      [
+        "8c76a01a.b353a"
+      ],
+      [
+        "2c6622be.aab98e"
+      ],
+      [
+        "98730a24.619ac8"
+      ],
+      [
+        "8c76a01a.b353a",
+        "2c6622be.aab98e",
+        "98730a24.619ac8"
       ]
     ]
   },
@@ -196,9 +887,54 @@
     "willPayload": ""
   },
   {
-    "id": "7c9dbd0a.c040e4",
+    "id": "8b64cc7d.86179",
     "type": "zigbee2mqtt-server",
-    "name": "Licht",
+    "name": "localer server",
+    "host": "127.0.0.1",
+    "mqtt_port": "1883",
+    "mqtt_username": "",
+    "mqtt_password": "",
+    "tls": "",
+    "usetls": false,
+    "base_topic": "zigbee2mqtt"
+  },
+  {
+    "id": "8451e792.d55f88",
+    "type": "zigbee2mqtt-server",
+    "name": "",
+    "host": "192.168.178.80",
+    "mqtt_port": "1883",
+    "mqtt_username": "",
+    "mqtt_password": "",
+    "tls": "",
+    "usetls": false,
+    "base_topic": "zigbee2mqtt"
+  },
+  {
+    "id": "e19fa228.bc1cf",
+    "type": "mqtt-broker",
+    "name": "mqtt",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  },
+  {
+    "id": "f0a0ca75.30ddb8",
+    "type": "zigbee2mqtt-server",
+    "name": "MQTT-Z",
     "host": "127.0.0.1",
     "mqtt_port": "1883",
     "mqtt_username": "",
