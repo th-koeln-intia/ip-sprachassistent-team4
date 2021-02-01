@@ -1,1 +1,282 @@
-[{"id":"d0c8931c.04b4","type":"tab","label":"Top News Notice","disabled":false,"info":""},{"id":"c9e93c06.3786a","type":"http request","z":"d0c8931c.04b4","name":"EconomicNews","method":"GET","ret":"txt","paytoqs":"ignore","url":"https://www.n-tv.de/wirtschaft/","tls":"","persist":false,"proxy":"","authType":"","x":598,"y":920,"wires":[["40443547.c64d4c"]]},{"id":"40443547.c64d4c","type":"html","z":"d0c8931c.04b4","name":"GetTopEconomyNew","property":"payload","outproperty":"payload","tag":".col-xs-12.col-sm-7.col-md-8 article.teaser.teaser--wide.teaser--hero","ret":"text","as":"single","x":826,"y":920,"wires":[["8c4335e9.777168"]]},{"id":"8c4335e9.777168","type":"function","z":"d0c8931c.04b4","name":"GetTopEconomicNewForTTS","func":"\nmsg.payload = {text: msg.payload[0]}  \n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1099,"y":920,"wires":[["41d038c5.6ba6a8"]]},{"id":"41d038c5.6ba6a8","type":"mqtt out","z":"d0c8931c.04b4","name":"","topic":"hermes/tts/say","qos":"2","retain":"true","broker":"f80b985a.2ffa78","x":1380,"y":980,"wires":[]},{"id":"5a123759.d0c548","type":"mqtt in","z":"d0c8931c.04b4","name":"GetNotificationForNews","topic":"hermes/intent/GetNotificationForNews","qos":"2","datatype":"json","broker":"f80b985a.2ffa78","x":162,"y":977,"wires":[["ed7c39ab.063cd8"]]},{"id":"ed7c39ab.063cd8","type":"switch","z":"d0c8931c.04b4","name":"NotificationSelector","property":"payload.asrTokens[0][2].value","propertyType":"msg","rules":[{"t":"eq","v":"Wirtschaft","vt":"str"},{"t":"eq","v":"Politik","vt":"str"},{"t":"eq","v":"Sport","vt":"str"}],"checkall":"false","repair":false,"outputs":3,"x":383,"y":977,"wires":[["c9e93c06.3786a"],["3a998481.468ebc"],["a4620145.89e58"]]},{"id":"3a998481.468ebc","type":"http request","z":"d0c8931c.04b4","name":"PoliticNews","method":"GET","ret":"txt","paytoqs":"ignore","url":"https://www.n-tv.de/politik/","tls":"","persist":false,"proxy":"","authType":"","x":592,"y":978,"wires":[["b8ed98ad.29c9e8"]]},{"id":"b8ed98ad.29c9e8","type":"html","z":"d0c8931c.04b4","name":"GetTopPoliticNews","property":"payload","outproperty":"payload","tag":".col-xs-12.col-sm-7.col-md-8 article.teaser.teaser--wide.teaser--hero","ret":"text","as":"single","x":811,"y":978,"wires":[["7a23867e.5e7f78"]]},{"id":"7a23867e.5e7f78","type":"function","z":"d0c8931c.04b4","name":"GetTopPoliticNewForTTS","func":"\n msg.payload ={\n     politic: msg.payload[0]\n } \n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1107,"y":979,"wires":[["41d038c5.6ba6a8"]]},{"id":"a4620145.89e58","type":"http request","z":"d0c8931c.04b4","name":"SportNews","method":"GET","ret":"txt","paytoqs":"ignore","url":"https://www.n-tv.de/sport/","tls":"","persist":false,"proxy":"","authType":"","x":592,"y":1040,"wires":[["c1e2e53c.a886c8"]]},{"id":"c1e2e53c.a886c8","type":"html","z":"d0c8931c.04b4","name":"GetTopSportNews","property":"payload","outproperty":"payload","tag":".col-xs-12.col-sm-7.col-md-8 article.teaser.teaser--wide.teaser--hero","ret":"text","as":"single","x":812,"y":1040,"wires":[["d578ff62.1adad"]]},{"id":"d578ff62.1adad","type":"function","z":"d0c8931c.04b4","name":"GetTopSportNewForTTS","func":"\nmsg.payload = {text: msg.payload[0]}  \n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","x":1108,"y":1040,"wires":[["41d038c5.6ba6a8"]]},{"id":"721af4aa.3dd42c","type":"comment","z":"d0c8931c.04b4","name":"GetNOtificationForTopNews : politic,economy and sport","info":"","x":273,"y":840,"wires":[]},{"id":"f80b985a.2ffa78","type":"mqtt-broker","name":"","broker":"127.0.0.1","port":"1883","clientid":"","usetls":false,"compatmode":false,"keepalive":"60","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""}]
+[
+  {
+    "id": "285dda0a.a85846",
+    "type": "tab",
+    "label": "Top News Notice",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "acb542ef.b78a8",
+    "type": "http request",
+    "z": "285dda0a.a85846",
+    "name": "EconomicNews",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "https://www.n-tv.de/wirtschaft/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 580,
+    "y": 160,
+    "wires": [
+      [
+        "b3f4d86e.8410c8"
+      ]
+    ]
+  },
+  {
+    "id": "b3f4d86e.8410c8",
+    "type": "html",
+    "z": "285dda0a.a85846",
+    "name": "GetTopEconomyNew",
+    "property": "payload",
+    "outproperty": "payload",
+    "tag": ".col-xs-12.col-sm-7.col-md-8 article.teaser.teaser--wide.teaser--hero",
+    "ret": "text",
+    "as": "single",
+    "x": 808,
+    "y": 160,
+    "wires": [
+      [
+        "2801d06f.5888f"
+      ]
+    ]
+  },
+  {
+    "id": "2801d06f.5888f",
+    "type": "function",
+    "z": "285dda0a.a85846",
+    "name": "GetTopEconomicNewForTTS",
+    "func": "\nmsg.payload = {text: msg.payload[0]}  \n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1081,
+    "y": 160,
+    "wires": [
+      [
+        "bc43c44f.b0bfa8"
+      ]
+    ]
+  },
+  {
+    "id": "bc43c44f.b0bfa8",
+    "type": "mqtt out",
+    "z": "285dda0a.a85846",
+    "name": "",
+    "topic": "hermes/tts/say",
+    "qos": "2",
+    "retain": "true",
+    "broker": "f80b985a.2ffa78",
+    "x": 1362,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "535e698e.e510d8",
+    "type": "mqtt in",
+    "z": "285dda0a.a85846",
+    "name": "GetNotificationForNews",
+    "topic": "hermes/intent/GetNotificationForNews",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "f80b985a.2ffa78",
+    "x": 144,
+    "y": 217,
+    "wires": [
+      [
+        "38fc77b0.8a5f68"
+      ]
+    ]
+  },
+  {
+    "id": "38fc77b0.8a5f68",
+    "type": "switch",
+    "z": "285dda0a.a85846",
+    "name": "NotificationSelector",
+    "property": "payload.asrTokens[0][2].value",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Wirtschaft",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "Politik",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "Sport",
+        "vt": "str"
+      }
+    ],
+    "checkall": "false",
+    "repair": false,
+    "outputs": 3,
+    "x": 365,
+    "y": 217,
+    "wires": [
+      [
+        "acb542ef.b78a8"
+      ],
+      [
+        "d668aa09.18e558"
+      ],
+      [
+        "4a213b6a.62e114"
+      ]
+    ]
+  },
+  {
+    "id": "d668aa09.18e558",
+    "type": "http request",
+    "z": "285dda0a.a85846",
+    "name": "PoliticNews",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "https://www.n-tv.de/politik/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 574,
+    "y": 218,
+    "wires": [
+      [
+        "e4a7a96f.3bac88"
+      ]
+    ]
+  },
+  {
+    "id": "e4a7a96f.3bac88",
+    "type": "html",
+    "z": "285dda0a.a85846",
+    "name": "GetTopPoliticNews",
+    "property": "payload",
+    "outproperty": "payload",
+    "tag": ".col-xs-12.col-sm-7.col-md-8 article.teaser.teaser--wide.teaser--hero",
+    "ret": "text",
+    "as": "single",
+    "x": 793,
+    "y": 218,
+    "wires": [
+      [
+        "1a506c52.249c64"
+      ]
+    ]
+  },
+  {
+    "id": "1a506c52.249c64",
+    "type": "function",
+    "z": "285dda0a.a85846",
+    "name": "GetTopPoliticNewForTTS",
+    "func": "\n msg.payload ={\n     politic: msg.payload[0]\n } \n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1089,
+    "y": 219,
+    "wires": [
+      [
+        "bc43c44f.b0bfa8"
+      ]
+    ]
+  },
+  {
+    "id": "4a213b6a.62e114",
+    "type": "http request",
+    "z": "285dda0a.a85846",
+    "name": "SportNews",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "https://www.n-tv.de/sport/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 574,
+    "y": 280,
+    "wires": [
+      [
+        "9a6b6b94.99bd98"
+      ]
+    ]
+  },
+  {
+    "id": "9a6b6b94.99bd98",
+    "type": "html",
+    "z": "285dda0a.a85846",
+    "name": "GetTopSportNews",
+    "property": "payload",
+    "outproperty": "payload",
+    "tag": ".col-xs-12.col-sm-7.col-md-8 article.teaser.teaser--wide.teaser--hero",
+    "ret": "text",
+    "as": "single",
+    "x": 794,
+    "y": 280,
+    "wires": [
+      [
+        "3c23fa8.0c4c706"
+      ]
+    ]
+  },
+  {
+    "id": "3c23fa8.0c4c706",
+    "type": "function",
+    "z": "285dda0a.a85846",
+    "name": "GetTopSportNewForTTS",
+    "func": "\nmsg.payload = {text: msg.payload[0]}  \n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1090,
+    "y": 280,
+    "wires": [
+      [
+        "bc43c44f.b0bfa8"
+      ]
+    ]
+  },
+  {
+    "id": "14a0f51a.ff3afb",
+    "type": "comment",
+    "z": "285dda0a.a85846",
+    "name": "Get notification for top news for the topics politic,economy and sport",
+    "info": "",
+    "x": 280,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "f80b985a.2ffa78",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  }
+]

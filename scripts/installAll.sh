@@ -100,6 +100,7 @@ else
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/profile.json -O /home/$USER/.config/rhasspy/profiles/de/profile.json
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/sentences.ini -O /home/$USER/.config/rhasspy/profiles/de/sentences.ini
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/cities -O /home/$USER/.config/rhasspy/profiles/de/slots/cities
+    wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/data/ExchangeCountries -O /home/$USER/.config/rhasspy/profiles/de/slots/ExchangeCountries
     sudo systemctl restart rhasspy
 
     echo "hlc"

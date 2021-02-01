@@ -36,3 +36,50 @@ schlagzeilen abspielen
 
 #GetTopTenNews
 top ten Nachrichten abspielen
+
+#SetTimer
+stelle einen Timer auf 1 Stunde
+stelle einen Timer auf 5 Minuten
+stelle einen Timer auf 30 Sekunden
+setze einen Timer für 5 Minuten und 30 Sekunden
+setze einen Timer für 1 Stunde und 30 Minuten
+setze einen Timer für 2 Stunden 5 Minuten und 20 Sekunden
+
+Timer 1 Stunde
+Timer 5 Minuten
+Timer 30 Sekunden
+Timer 5 Minuten und 30 Sekunden
+Timer 1 Stunde und 30 Minuten
+Timer 2 Stunden 5 Minuten und 20 Sekunden
+
+#StopTimer
+stop
+timer stop
+stop timer
+stoppe den timer
+schalte den timer aus
+
+#GetNextTimer
+Wie lange noch
+Wie lange geht der Timer
+Wie lange geht der nächste Timer
+Wie lange geht der nächste Timer noch
+
+#GetAllTimers
+Welche Timer sind gestellt
+
+#DeleteNextTimer
+Nächsten Timer löschen
+Timer löschen
+
+[DeleteTimerById]
+Timer 1 löschen
+Timer 3 löschen
+
+[DeleteAllTimers]
+Alle Timer löschen
+
+[GetTime]
+wie spät ist es
+sag mir die uhrzeit
+wir viel uhr haben wir

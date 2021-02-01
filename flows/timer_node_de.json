@@ -33,7 +33,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 410,
+    "x": 450,
     "y": 160,
     "wires": [
       [
@@ -53,7 +53,7 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 1210,
+    "x": 1390,
     "y": 140,
     "wires": []
   },
@@ -84,7 +84,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 430,
+    "x": 470,
     "y": 200,
     "wires": [
       [
@@ -119,7 +119,7 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 430,
+    "x": 470,
     "y": 240,
     "wires": [
       [
@@ -132,7 +132,7 @@
     "type": "small-timer",
     "z": "69dd8697.2f0df8",
     "name": "",
-    "x": 610,
+    "x": 690,
     "y": 200,
     "wires": [
       [
@@ -169,12 +169,17 @@
         "t": "eq",
         "v": "removed",
         "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "undefined",
+        "vt": "str"
       }
     ],
     "checkall": "true",
     "repair": false,
-    "outputs": 4,
-    "x": 770,
+    "outputs": 5,
+    "x": 850,
     "y": 200,
     "wires": [
       [
@@ -184,10 +189,13 @@
         "f8f51378.51d1f"
       ],
       [
-        "acebb02e.8964d"
+        "2ce1f2e4.e741de"
       ],
       [
         "9949a5ab.8f82e8"
+      ],
+      [
+        "b5b0368b.eff188"
       ]
     ]
   },
@@ -195,13 +203,13 @@
     "id": "f8f51378.51d1f",
     "type": "function",
     "z": "69dd8697.2f0df8",
-    "name": "",
-    "func": "let message = {\n    payload: {\n    text: \"Der Timer läuft noch \"\n    }   \n}\n\nif (msg.payload.restTime.days > 0) {\n    message.payload.text += msg.payload.restTime.days + \" Tage \"\n}\n\nif (msg.payload.restTime.hours > 0) {\n    message.payload.text += msg.payload.restTime.hours + \" Stunden \"\n}\n\nif (msg.payload.restTime.minutes > 0) {\n    message.payload.text += msg.payload.restTime.minutes + \" Minuten \"\n}\n\nif (msg.payload.restTime.seconds > 0) {\n    message.payload.text += \"und \" + msg.payload.restTime.seconds + \" Sekunden\"\n}\n\nreturn message;\n",
+    "name": "TTS timer's rest time ",
+    "func": "let message = {\n    payload: {\n    text: \"Der Timer läuft noch \"\n    }   \n}\n\nif (msg.payload.restTime.days == 1) {\n    message.payload.text += \" einen Tag \";\n} else if (msg.payload.restTime.days > 1) {\n    message.payload.text += msg.payload.restTime.days + \" Tage \";\n}\n\nif (msg.payload.restTime.hours == 1) {\n    message.payload.text += \" eine Stunde \";\n} else if (msg.payload.restTime.hours > 1) {\n    message.payload.text += msg.payload.restTime.hours + \" Stunden \";\n}\n\nif (msg.payload.restTime.minutes == 1) {\n    message.payload.text += \" eine Minute \";\n} else if (msg.payload.restTime.minutes > 1) {\n    message.payload.text += msg.payload.restTime.minutes + \" Minuten \";\n}\n\nif (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds == 1) {\n        message.payload.text += \" eine Sekunde\";\n    } else if (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds > 1) {\n    message.payload.text += \"und \" + msg.payload.restTime.seconds + \" Sekunden\";\n}\n\nreturn message;\n",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 980,
+    "x": 1100,
     "y": 180,
     "wires": [
       [
@@ -219,40 +227,21 @@
     "qos": "",
     "retain": "",
     "broker": "e19fa228.bc1cf",
-    "x": 1220,
+    "x": 1400,
     "y": 300,
     "wires": []
-  },
-  {
-    "id": "acebb02e.8964d",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "func": "msg.payload = {\n    text: \"Klingelingeling!\"\n}\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 980,
-    "y": 220,
-    "wires": [
-      [
-        "d4744dfb.636fb",
-        "b5dfb421.06aa48"
-      ]
-    ]
   },
   {
     "id": "9949a5ab.8f82e8",
     "type": "function",
     "z": "69dd8697.2f0df8",
-    "name": "",
+    "name": "TTS timer removed",
     "func": "msg.payload = {\n    text: \"Timer gelöscht!\"\n}\nreturn msg;\n",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 980,
+    "x": 1110,
     "y": 260,
     "wires": [
       [
@@ -266,14 +255,14 @@
     "type": "debug",
     "z": "69dd8697.2f0df8",
     "name": "",
-    "active": false,
+    "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 790,
+    "x": 870,
     "y": 140,
     "wires": []
   },
@@ -281,13 +270,13 @@
     "id": "de246698.0a31e8",
     "type": "function",
     "z": "69dd8697.2f0df8",
-    "name": "",
+    "name": "TTS timer set",
     "func": "msg.payload = {\n    text: \"Timer gestellt!\"\n}\nreturn msg;\n",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 980,
+    "x": 1120,
     "y": 140,
     "wires": [
       [
@@ -300,14 +289,14 @@
     "id": "1cc4d34a.db1dad",
     "type": "function",
     "z": "69dd8697.2f0df8",
-    "name": "",
-    "func": "let timers = msg.payload.timers;\n\nlet message = {\n    payload: {\n    text: \"\"\n    }   \n}\n\nif (timers) {\n    if (timers.length === 0) {\n        message.payload.text = \"Es sind keine Timer gestellt.\"\n    } else if (timers.length === 1) {\n        message.payload.text = \"Es ist ein Timer gestellt.\"\n    } else if (timers.length > 1) {\n        message.payload.text = \"Es sind \" + timers.length + \" Timer gestellt.\"\n    }\n    for(let i = 0; i < timers.length; i++) {\n            message.payload.text += \" Timer \" + i+1 + \" läuft noch \";\n            \n            if (timers[i].restTime.days > 0) {\n                message.payload.text += timers[i].restTime.days + \" Tage \"\n            }\n            \n            if (timers[i].restTime.hours > 0) {\n                message.payload.text += timers[i].restTime.hours + \" Stunden \"\n            }\n            \n            if (timers[i].restTime.minutes > 0) {\n                message.payload.text += timers[i].restTime.minutes + \" Minuten \"\n            }\n            \n            if (timers[i].restTime.seconds > 0) {\n                message.payload.text += \"und \" + timers[i].restTime.seconds + \" Sekunden. \"\n            }\n        }\n    return message;\n}",
+    "name": "TTS list timers",
+    "func": "let timers = msg.payload.timers;\n\nlet message = {\n    payload: {\n    text: \"\"\n    }   \n}\n\nif (timers) {\n    if (timers.length === 0) {\n        message.payload.text = \"Es sind keine Timer gestellt.\"\n    } else if (timers.length === 1) {\n        message.payload.text = \"Es ist ein Timer gestellt.\"\n    } else if (timers.length > 1) {\n        message.payload.text = \"Es sind \" + timers.length + \" Timer gestellt.\"\n    }\n    for(let i = 0; i < timers.length; i++) {\n        message.payload.text += \" Timer \" + timers[i].id + \" läuft noch \";\n        \n        if (timers[i].restTime.days == 1) {\n            message.payload.text += \" einen Tag \";\n        } else if (timers[i].restTime.days > 1) {\n            message.payload.text += timers[i].restTime.days + \" Tage \";\n        }\n        \n        if (timers[i].restTime.hours == 1) {\n            message.payload.text += \" eine Stunde \";\n        } else if (timers[i].restTime.hours > 1) {\n            message.payload.text += timers[i].restTime.hours + \" Stunden \";\n        }\n        \n        if (timers[i].restTime.minutes == 1) {\n            message.payload.text += \" eine Minute \";\n        } else if (timers[i].restTime.minutes > 1) {\n            message.payload.text += timers[i].restTime.minutes + \" Minuten \";\n        }\n        \n        if (timers[i].restTime.days == 0 && timers[i].restTime.hours == 0 &&\n            timers[i].restTime.minutes == 0 && timers[i].restTime.seconds == 1) {\n                message.payload.text += \" eine Sekunde\";\n        } else if (timers[i].restTime.seconds > 1) {\n            message.payload.text += \"und \" + timers[i].restTime.seconds + \" Sekunden\";\n        }\n        \n        message.payload.text += \". \";\n        \n    }\n    return message;\n}",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 980,
-    "y": 300,
+    "x": 1120,
+    "y": 340,
     "wires": [
       [
         "d4744dfb.636fb",
@@ -316,7 +305,299 @@
     ]
   },
   {
+    "id": "2f848e80.dd3792",
+    "type": "mqtt in",
+    "z": "69dd8697.2f0df8",
+    "name": "",
+    "topic": "hermes/intent/StopTimer",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "7d5a3618.9ef98",
+    "x": 710,
+    "y": 480,
+    "wires": [
+      [
+        "f0ddbae2.ed26a8"
+      ]
+    ]
+  },
+  {
+    "id": "ae3676a6.5f9908",
+    "type": "inject",
+    "z": "69dd8697.2f0df8",
+    "name": "stop Timer",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "stop",
+    "payloadType": "str",
+    "x": 760,
+    "y": 520,
+    "wires": [
+      [
+        "f0ddbae2.ed26a8"
+      ]
+    ]
+  },
+  {
+    "id": "f0ddbae2.ed26a8",
+    "type": "function",
+    "z": "69dd8697.2f0df8",
+    "name": " stop ringing",
+    "func": "flow.set(\"timerRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 970,
+    "y": 480,
+    "wires": [
+      [
+        "dd38d334.1560b"
+      ]
+    ]
+  },
+  {
+    "id": "2ce1f2e4.e741de",
+    "type": "function",
+    "z": "69dd8697.2f0df8",
+    "name": " start ringing",
+    "func": "flow.set(\"timerRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1130,
+    "y": 220,
+    "wires": [
+      [
+        "dd38d334.1560b"
+      ]
+    ]
+  },
+  {
+    "id": "68204f68.d0b2a",
+    "type": "switch",
+    "z": "69dd8697.2f0df8",
+    "name": "checkTimerRinging",
+    "property": "timerRinging",
+    "propertyType": "flow",
+    "rules": [
+      {
+        "t": "gt",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 1430,
+    "y": 460,
+    "wires": [
+      [
+        "dd38d334.1560b"
+      ]
+    ]
+  },
+  {
+    "id": "dd38d334.1560b",
+    "type": "PlaySound",
+    "z": "69dd8697.2f0df8",
+    "name": "",
+    "playerOptions": "{}",
+    "audioURI": "/home/pi/.node-red/alarm.mp3",
+    "options": "{\"afplay\" : [\"-l0\"]}",
+    "x": 1210,
+    "y": 460,
+    "wires": [
+      [
+        "68204f68.d0b2a"
+      ]
+    ]
+  },
+  {
+    "id": "b0b9d406.ad2bb8",
+    "type": "mqtt in",
+    "z": "69dd8697.2f0df8",
+    "name": "",
+    "topic": "hermes/intent/DeleteNextTimer",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 170,
+    "y": 280,
+    "wires": [
+      [
+        "a3d3fa3b.ceccb8"
+      ]
+    ]
+  },
+  {
+    "id": "a3d3fa3b.ceccb8",
+    "type": "function",
+    "z": "69dd8697.2f0df8",
+    "name": "Remove next timer",
+    "func": "msg.action = \"removeNextTimer\";\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 450,
+    "y": 280,
+    "wires": [
+      [
+        "569f5332.1688ac"
+      ]
+    ]
+  },
+  {
+    "id": "9808681a.593bc8",
+    "type": "function",
+    "z": "69dd8697.2f0df8",
+    "name": "Remove timer by ID",
+    "func": "if (msg.payload.slots[0].slotName.toString() === \"timer_id\" &&\n    msg.payload.slots[0].value.value > 0) {\n\n    let timer_id = msg.payload.slots[0].value.value;\n\n    msg.action = \"removeTimerByID\";\n\n    msg.timer = {\n        id: timer_id\n    }\n\n    return msg;\n}",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 440,
+    "y": 360,
+    "wires": [
+      [
+        "569f5332.1688ac"
+      ]
+    ]
+  },
+  {
+    "id": "4bd83e8a.52151",
+    "type": "function",
+    "z": "69dd8697.2f0df8",
+    "name": "Remove all timers",
+    "func": "msg.action = \"removeAllTimers\";\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 450,
+    "y": 320,
+    "wires": [
+      [
+        "569f5332.1688ac"
+      ]
+    ]
+  },
+  {
+    "id": "4b778924.a53fa8",
+    "type": "mqtt in",
+    "z": "69dd8697.2f0df8",
+    "name": "",
+    "topic": "hermes/intent/DeleteAllTimers",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 180,
+    "y": 320,
+    "wires": [
+      [
+        "4bd83e8a.52151"
+      ]
+    ]
+  },
+  {
+    "id": "470bef5b.b8c03",
+    "type": "mqtt in",
+    "z": "69dd8697.2f0df8",
+    "name": "",
+    "topic": "hermes/intent/DeleteTimerById",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 170,
+    "y": 360,
+    "wires": [
+      [
+        "9808681a.593bc8"
+      ]
+    ]
+  },
+  {
+    "id": "cf398186.c0b7e",
+    "type": "inject",
+    "z": "69dd8697.2f0df8",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 370,
+    "y": 60,
+    "wires": [
+      [
+        "149925d1.810d4a"
+      ]
+    ]
+  },
+  {
+    "id": "b5b0368b.eff188",
+    "type": "function",
+    "z": "69dd8697.2f0df8",
+    "name": "TTS timer undefined",
+    "func": "msg.payload = {\n    text: \"Timer nicht gefunden!\"\n}\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1100,
+    "y": 300,
+    "wires": [
+      [
+        "d4744dfb.636fb"
+      ]
+    ]
+  },
+  {
     "id": "e19fa228.bc1cf",
+    "type": "mqtt-broker",
+    "name": "mqtt",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  },
+  {
+    "id": "7d5a3618.9ef98",
     "type": "mqtt-broker",
     "name": "mqtt",
     "broker": "127.0.0.1",
