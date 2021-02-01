@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Manual installation
-grand_parent: Installation
+grand_parent: Installation4
 title: Setup Software
 nav_order: 1
 ---
@@ -27,30 +27,42 @@ Copy and paste the commands to your console.
 
 #### Update and upgrade Raspberry pi
 {: .no_toc }
-`sudo apt-get update`
-`sudo apt-get upgrade -y`
-
+```bash
+sudo apt-get update
+sudo apt-get upgrade -y
+```
 This may take a while.
 
 #### Go to pi's home directory
 {: .no_toc }
-`cd ~`
+```bash
+cd ~
+```
 
 #### Clone seeed-voicecard
 {: .no_toc }
-`git clone https://github.com/respeaker/seeed-voicecard.git`
+```bash
+git clone https://github.com/respeaker/seeed-voicecard.git
+```
 
 #### Change directory
 {: .no_toc }
-`cd seeed-voicecard`
+```bash
+cd seeed-voicecar
+```
 
 #### Install seeed-voicecard
 {: .no_toc }
-`sudo ./install.sh`
+```bash
+sudo ./install.sh
+```
+
 
 #### Reboot
 {: .no_toc }
-`sudo reboot`
+```bash
+sudo reboot
+```
 
 The driver should now be installed. 
 
@@ -138,38 +150,52 @@ arecord -L
 Please check if there is an ac108 device and a device named `seeed4micvoicec`. 
 You can make a test record of 5 seconds with this command:
 
-`arecord -Dac108 -f S32_LE -r 16000 -c 4 -d 5 hello.wav`
+```bash
+arecord -Dac108 -f S32_LE -r 16000 -c 4 -d 5 hello.wav
+```
 
 Play the command with:
 
-`aplay hello.wav`
+```bash
+aplay hello.wav
+```
     
 If you could hear your recording everything works! Great!
 
-## 2. Install a MQTT-Server
+## 2. Install a [MQTT-Server](/pages/knowledge/mqtt)
 
 Install Mosquitto and Mosquitto-Clients:
-`sudo apt-get install mosquitto mosquitto-clients -y`
+```bash
+sudo apt-get install mosquitto mosquitto-clients -y
+```
 
-## 3. Update Node.js and install Node-RED
+## 3. Update Node.js and install [Node-RED](/pages/knowledge/node-red)
 
-First you need to download and execute a script to update Node.js and install Node-RED.
+First you need to download and execute a script to update Node.js and install [Node-RED](/pages/knowledge/node-red).
 
 #### Go to pi's home directory
 {: .no_toc }
-`cd ~`
+```bash
+cd ~
+```
 
-### Download Script to update Node.js and install Node-RED
+### Download Script to update Node.js and install [Node-RED](/pages/knowledge/node-red)
 {: .no_toc }
-`wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered`
+```bash
+wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+```
 
 ### Make the downloaded file executable
 {: .no_toc }
-`sudo chmod 755 ./update-nodejs-and-nodered`
+```bash
+sudo chmod 755 ./update-nodejs-and-nodered
+```
 
 ### Execute the file
 {: .no_toc }
-`./update-nodejs-and-nodered`
+```bash
+./update-nodejs-and-nodered
+```
 
 #### Notes
 {: .no_toc }
@@ -178,23 +204,35 @@ First you need to download and execute a script to update Node.js and install No
 * If you get the message "rm: cannot remove '/usr/bin/update-nodejs-and-nodered': No such file or directory" 
 the folder could be in your actually location. You can delete the folder by yourself.
 
-### Enable Node-RED at boot 
+### Enable [Node-RED](/pages/knowledge/node-red) at boot 
 {: .no_toc }
-To start Node-RED at boot execute `sudo systemctl enable nodered.service`.
+To start [Node-RED](/pages/knowledge/node-red) at boot run this command:
+```bash
+sudo systemctl enable nodered.service
+```
 
-Now start Node-RED with `sudo systemctl start nodered.service` or restart your Raspberry Pi.
+Now start [Node-RED](/pages/knowledge/node-red) by restarting your raspberry or with this command: 
+```bash
+sudo systemctl start nodered.service
+``` 
 
 ### Finished!
 {: .no_toc }
-The NodeRed server is now accessable at the IP of your Raspberry PI under port 1880. http://<ip-adress>:1880. Test it!
+The [Node-RED](/pages/knowledge/node-red) server is now accessable at the IP of your Raspberry PI under port 1880:
+```
+http://<ip-adress>:1880
+```
+ Test it!
 
-## 4. Install Zigbee2MQTT
+## 4. Install [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt)
 
-To install Zigbee2MQTT follow this script:
+To install [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) follow this script:
 
-### Clone Zigbee2MQTT repository
+### Clone [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) repository
 {: .no_toc }
-`sudo git clone https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt`
+```bash
+sudo git clone https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt
+```
 
 ### Set rights to user pi
 {: .no_toc }
@@ -202,59 +240,81 @@ To install Zigbee2MQTT follow this script:
 
 ### Enter folder
 {: .no_toc }
-`cd /opt/zigbee2mqtt`
+```bash
+cd /opt/zigbee2mqtt
+```
 
 ### Install python env
 {: .no_toc }
-`python3 -m venv .`
+```bash
+python3 -m venv .
+```
 
 ### Activate environment
 {: .no_toc }
-`source /opt/zigbee2mqtt/bin/activate`
+```bash
+source /opt/zigbee2mqtt/bin/activate
+```
 
 ### Upgrade pip, wheel and setuptools
 {: .no_toc }
-`pip install --upgrade pip wheel setuptools`
+```bash
+pip install --upgrade pip wheel setuptools
+```
 
 ### Install node environment
 {: .no_toc }
-`pip install nodeenv`
+```bash
+pip install nodeenv
+```
 
 ### Init node environment
 {: .no_toc }
-`nodeenv -p -n 10.15.1`
+```bash
+nodeenv -p -n 10.15.1
+```
 
 ### Deactivate and activate environment to be sure
 {: .no_toc }
-`deactivate`
-`source /opt/zigbee2mqtt/bin/activate`
+```bash
+deactivate
+source /opt/zigbee2mqtt/bin/activate
+```
 
 ### Install dependencies
 {: .no_toc }
-`cd /opt/zigbee2mqtt`
-`npm ci`
+```bash
+cd /opt/zigbee2mqtt
+npm ci
+```
 
 ### Deactivate environment
 {: .no_toc }
 Enter `deactivate` to deactivate the environment.
 
-### Start and test Zigbee2MQTT
+### Start and test [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt)
 {: .no_toc }
-Start Zigbee2MQTT and test if the connection works.
+Start [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) and test if the connection works.
 
 Tip: Use the [mqtt explorer](https://mqtt-explorer.com){:target="_blank"} to see incoming messages.
 
 #### Enter folder
 {: .no_toc }
-`cd /opt/zigbee2mqtt`
+```bash
+cd /opt/zigbee2mqtt
+```
 
 #### Activate environment
 {: .no_toc }
-`source /opt/zigbee2mqtt/bin/activate`
+```bash
+source /opt/zigbee2mqtt/bin/activate
+```
 
 #### Start
 {: .no_toc }
-`npm start`
+```bash
+npm start
+```
 
 Now you can turn on and off your Zigbee device to see if everything works.
 An output could look like this:
@@ -273,9 +333,9 @@ Press ctrl + c to quit.
 {: .no_toc }
 Enter `deactivate` to deactivate the environment.
 
-### Enable Zigbee2MQTT at boot
+### Enable [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) at boot
 {: .no_toc }
-To start zigbee2mqtt at boot create a service:
+To start [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) at boot create a service:
  
 Execute `sudo nano /etc/systemd/system/zigbee2mqtt.service` and copy and paste the following content: 
 
@@ -296,9 +356,15 @@ User=pi
 WantedBy=multi-user.target
 ```
 
-Enable the new service with `sudo systemctl enable zigbee2mqtt.service`.
+Enable the new service with 
+```bash
+sudo systemctl enable zigbee2mqtt.service
+```
 
-Now start the service with `sudo systemctl start zigbee2mqtt.service` or restart your Raspberry Pi.
+Now start the service by restarting your Raspberry Pi or with this command: 
+```bash
+sudo systemctl start zigbee2mqtt.service
+```
 
 ## 5. Optional install Hermes Led Control for Respeaker Leds
 
@@ -307,19 +373,27 @@ With this setting you always can see when the respeaker is active.
 
 ### Go to pi's home directory
 {: .no_toc }
-`cd ~`
+```bash
+cd ~
+```
 
 ### Download script
 {: .no_toc }
-`wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh`
+```bash
+wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh
+```
 
 ### Make the script executable
 {: .no_toc }
-`sudo chmod +x hlc_download.sh`
+```bash
+sudo chmod +x hlc_download.sh
+```
 
 ###  Execute the script
 {: .no_toc }
-`sudo ./hlc_download.sh`
+```bash
+sudo ./hlc_download.sh
+```
 
 Answer the questions like following:
 * What assistant engine are you using? Enter 2 for rhasspy
@@ -333,30 +407,37 @@ Later you will configure Rhasspy to work with Hermes Led Control.
 
 [Read more about Hermes Led Control](https://github.com/project-alice-assistant/HermesLedControl/wiki){:target="_blank"}
 
-## 6. Install Rhasspy native
+## 6. Install [Rhasspy](/pages/knowledge/rhasspy) native
 
 ### Go to pi's home directory
 {: .no_toc }
-`cd ~`
+```bash
+cd ~
+```
 
-### Download Rhaspy V2.5.7 to
+### Download [Rhasspy](/pages/knowledge/rhasspy) V2.5.7 to
 {: .no_toc }
 You can get the latest version from [github](https://github.com/rhasspy/rhasspy/releases/){:target="_blank"}
 
 Download with command:
-`wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb`
+```bash
+wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb
+```
 
 ### Make the downloaded file executable
 {: .no_toc }
 Install Rhasspy with command:
-`sudo apt install ./rhasspy_2.5.7_armhf.deb -y`
+```bash
+sudo apt install ./rhasspy_2.5.7_armhf.deb -y
+```
 
 ### Edit profile.json
 {: .no_toc }
-Get the 
-Open the profile.json file with the command:
+Get the open the profile.json file with the command:
 
-`sudo nano /home/pi/.config/rhasspy/profiles/de/profile.json`
+```bash 
+sudo nano /home/pi/.config/rhasspy/profiles/de/profile.json
+```
 
 Find the entry "microphone" and change it to:
 
@@ -369,15 +450,19 @@ Find the entry "microphone" and change it to:
 }
 ```
 
-### Start Rhasspy
+### Start [Rhasspy](/pages/knowledge/rhasspy)
 {: .no_toc }
-Start Rhasspy and check if rhasspy runs without problems.
-`rhasspy --profile de`
+Start [Rhasspy](/pages/knowledge/rhasspy) and check if rhasspy runs without problems.
+```bash
+rhasspy --profile de
+```
 
 If an error occures like `PermissionError: [Errno 13] Permission denied: '/home/pi/.config/rhasspy/profiles/de'`
 you need to give your user permission to the folder `/home/pi/.config/rhasspy`
 
-`sudo chown -R pi:pi /home/pi/.config/rhasspy`
+```bash
+sudo chown -R pi:pi /home/pi/.config/rhasspy
+```
 
 ### Start Rhasspy as service
 {: .no_toc }
@@ -408,22 +493,32 @@ WantedBy=multi-user.target
 [Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy.service)
 
 Now enable the service:   
-``systemctl enable rhasspy``    
+```bash
+systemctl enable rhasspy
+```    
 And start it with:    
-``systemctl start rhasspy``    
+```bash
+systemctl start rhasspy
+```
 You can stop it with:    
-``systemctl stop rhasspy``
+```bash
+systemctl stop rhasspy
+```
 After saving settings in Rhasspy you need to restart rhasspy manual in the console with the command:
-``systemctl restart rhasspy``
+```bash
+systemctl restart rhasspy
+```
 
-## (6). Install Rhasspy with Docker (not recomment)
-To install Rhasspy pull the docker image with the command
+## (6). Install Rhasspy with [Docker](/pages/knowledge/docker) (not recomment)
+To install Rhasspy pull the [Docker](/pages/knowledge/docker) image with the command
 
-`docker pull rhasspy/rhasspy`
+```bash
+docker pull rhasspy/rhasspy
+```
 
 This may take a while.
 
-### Run Rhasspy docker image
+### Run Rhasspy [Docker](/pages/knowledge/docker) image
 {: .no_toc }
 Run the Rhasspy docker image with the command
 
@@ -446,10 +541,10 @@ Have a look to more [useful docker commands](/pages/knowledge/docker)
 {: .no_toc }
 Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
 
-## 7. Install Deepspeech 0.7.4
+## 7. Install [Deepspeech](/pages/knowledge/deepspeech) 0.7.4
 
-Deepspeech is the Speech To Text program for Rhasspy in this project. You need to install it in a different way than 
-the Rhasspy documentation says. Otherwise it will not work.    
+[Deepspeech](/pages/knowledge/deepspeech) is the Speech To Text program for Rhasspy in this project. You need to install it differently than
+the Rhasspy documentation says. Otherwise, it will not work.    
 
 ### Install choices
 {: .no_toc }
@@ -462,7 +557,7 @@ You have different choices to install Deepspeech:
 #### install-rhasspy-deepspeech.sh
 {: .no_toc }
 
-You can install Deepspeech with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech.sh)
+You can install [Deepspeech](/pages/knowledge/deepspeech) with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech.sh)
 
 Download script: 
 ```
@@ -470,7 +565,9 @@ wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team
 ```
 
 Make script executable: 
-``sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh``
+```bash
+sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh
+```
 
 Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
 
@@ -533,12 +630,12 @@ deactivate
 
 After going through these commands, you have a service named ``rhasspy-asr-deepspeech-hermes``.
 
-## 8. Install Snips-NLU 
+## 8. Install [Snips-NLU](/pages/knowledge/intent-recognition)
 
 ### Install choices
 {: .no_toc }
 
-You have different choices to install Snips-NLU:
+You have different choices to install [Snips-NLU](/pages/knowledge/intent-recognition):
 
 * Use the ``snips-nlu-install.sh`` script
 * Alternative install step-by-step
@@ -546,7 +643,7 @@ You have different choices to install Snips-NLU:
 #### snips-nlu-install.sh
 {: .no_toc }
 
-You can install Snips-NLU with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu_venv.sh)
+You can install [Snips-NLU](/pages/knowledge/intent-recognition) with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu_venv.sh)
 
 Change directory to home folder: ``cd $HOME``
 
@@ -580,7 +677,7 @@ Execute script:
    ```bash
    pip install snips-nlu
    ```
-4. Do Snips NLU rebirth
+4. Do [Snips NLU rebirth](https://github.com/jr-k/snips-nlu-rebirth)
 
 4.1 ``sudo apt install libatlas3-base libgfortran5``
 

@@ -51,5 +51,11 @@ sudo reboot
 
 ## 5. Additional Settings
 Your raspberry is now setup for using rhasspy. Please setup a [wakeword](/pages/installation/manual/configuration.html#3-wake-word)
-and install scripts or create some at [nodered](/pages/knowledge/node-red).
-You can find node on this adress: `<ip of raspberry>:1880`
+and install skills or create some at [nodered](/pages/knowledge/node-red).
+
+You can find node-red on this adress: `<ip of raspberry>:1880`
+
+## Finish!
+
+Congratulations! Finished the installation of rhasspy!
+Git 

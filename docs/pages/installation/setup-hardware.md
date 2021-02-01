@@ -23,8 +23,8 @@ To build your own voice assistant, you will need at least the following things:
 * Raspberry Pi 3b/3b+/4 with Power Cable
 * Micro-SD-Card with min. 16gb
 * RESPEAKER 4-Mic-Array
-* Zigbee2MQTT adapter, like **Texas Instruments CC2531** or **ConBee2** 
-([or other compatible adapters](https://www.zigbee2mqtt.io/information/supported_adapters){:target="_blank"})
+* Zigbee2MQTT adapter, like [**Texas Instruments CC2531**](/pages/knowledge/zigbee/cc2531) or [**ConBee2**](/pages/knowledge/zigbee/conbee2)
+  or ([other compatible adapters](https://www.zigbee2mqtt.io/information/supported_adapters){:target="_blank"})
 * Zigbee LED Light Bulb or any other Zigbee device
 * Speaker with 3.5mm jack
 
@@ -71,7 +71,7 @@ network={
  psk="<Password for your wireless LAN>"
 }
 ```
-you can use the command ` sudo rasi-config` for additional setting (e.g : change your time zone, set the language, Keybord layout etc..)
+you can use the command `sudo rasi-config` for additional setting (e.g : change your time zone, set the language, Keybord layout etc..)
 
 Read more about a headless setup 
 [here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
@@ -86,6 +86,7 @@ Attach the RESPEAKER 4-Mic-Array to the Raspberry Pi and plugin the Zigbee Adapt
 ## Finish!
 
 Congratulations! You mastered the first step to your own Voice Assistant! 
+Go to the [next step](/pages/installation/auto-install-script/auto-installation)!
  
 
 
