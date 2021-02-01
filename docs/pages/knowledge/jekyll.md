@@ -22,7 +22,7 @@ parent: Knowledge
 ## Create a new Jekyll site
 After installation, run these commands in a folder to create a new Jekyll static site
 - `jekyll new SITENAME` -> This will create a site with a bunch of files inside the folder named 'SITENAME'
-- Then enter in that folder name and run the following command, e.g `on Window OS `:
+-  In this folder named `SITENAME`, run the following command, e.g. `on Windows OS`:
 
     - Run `bundle lock -- add-platform ruby`
     - Run `bundle lock --add-platform x86_64-linux`

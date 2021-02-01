@@ -22,7 +22,7 @@ moderate training time.
 Please install snips nlu with the instruction in [Setup Software](/pages/installation/manual/setup-software#8-install-snips-nlu).
 In the service file from snips nlu you can set a path for the engine and dataset.yml and you there you can also set the language.
 We creates our own install instruction, because the command rhasspy-snips-nlu is not installed in the rhaspy virtual enviroment.
-So we decided to install it in our own and communicate with ot via MQTT.
+So we decided to install it on our own and communicate with it via MQTT.
 
 The following instruction does not work, it's the old way to install Snips NLU.
 To use Snips NLU you need to add the following config to your [profile](/pages/knowledge/profiles):
