@@ -22,8 +22,9 @@ When a device publishes a message, it'll be send to the broker. The broker sends
 that subscribed the specific topic. Messages are normally not stored by the Broker. The broker only passes the 
 messages to the devices!
 
-![Raspberry Pi with RESPEAKER and ConBee2](../../assets/MQTT.jpg)
-*Resource: [behrtech.com](https://behrtech.com/blog/mqtt-in-the-iot-architecture/){:target="_blank"}*
+![MQTT Architecture](../../assets/MQTT.jpg)
+
+Resource: [behrtech.com](https://behrtech.com/blog/mqtt-in-the-iot-architecture/){:target="_blank"}
 
 ## Client name requirements 
 - Client names MUST be unique.
