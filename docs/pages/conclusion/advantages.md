@@ -26,6 +26,6 @@ For example it is possible to train rhasspy to use your own voice for text to sp
  
 Unlike for example google assistant, you can set your own custom wake word with rhasspy and change it frequently as you want.
  
-## automated installation
+## Automated installation
  
 It is possible to use a script or a docker to get rhasspy ready to use on other computers.
