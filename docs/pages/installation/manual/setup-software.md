@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Manual installation
-grand_parent: Installation4
+grand_parent: Installation
 title: Setup Software
 nav_order: 1
 ---
@@ -380,7 +380,7 @@ cd ~
 ### Download script
 {: .no_toc }
 ```bash
-wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh
+wget https://gist.github.com/Sh4der/8476895a0863ca6062103315ac122954/raw/f5c83b34eaafbd0b315d17282c1fc52b672e008a/hlc_download.sh
 ```
 
 ### Make the script executable
@@ -398,7 +398,7 @@ sudo ./hlc_download.sh
 Answer the questions like following:
 * What assistant engine are you using? Enter 2 for rhasspy
 * What's the path to your assistant config file? Press Enter 
-(Path Should be like _/home/pi/.config/rhasspy/profiles/de/profile.json_)
+(Path Should be like (_/home/pi/.config/rhasspy/profiles/de/profile.json_)
 * What device do you wish to control with SLC? Enter 2 for respeaker4
 * What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google
 * Do you need to install / configure your respeaker4? Enter 2 for no 

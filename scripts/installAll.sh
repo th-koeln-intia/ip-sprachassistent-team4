@@ -105,7 +105,7 @@ else
 
     echo "hlc"
     read -p "Press [Enter] key to continue..."
-    wget https://gist.githubusercontent.com/Psychokiller1888/a9826f92c5a3c5d03f34d182fda1ce4c/raw/cbb53252dd55dc4e9f5f6064a493f0981cf133fb/hlc_download.sh
+    wget https://gist.github.com/Sh4der/8476895a0863ca6062103315ac122954/raw/f5c83b34eaafbd0b315d17282c1fc52b672e008a/hlc_download.sh
     sudo chmod +x hlc_download.sh
     sudo ./hlc_download.sh
 
