@@ -33,7 +33,7 @@ The TTS output is :
 ```
 The following figure shows the nodes used.
 
-![Exchange rate](/assets/ExchangeRate.png)
+![Exchange rate](../../assets/exchange_rate.png)
 
 # Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/exchange_rate.json){:target="_blank"}
