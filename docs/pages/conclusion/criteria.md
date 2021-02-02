@@ -15,7 +15,7 @@ parent: Conclusion
 
 # Criteria
 
-The goal for this topic is to setup some metrics, how we can avaluate the performance of rhasspy.
+The goal for this topic is to set up some metrics, how we can evaluate the performance of the voice assistant.
 
 |metrics|description |
 |----------------|-------------------------------------------------------------------------------------|
