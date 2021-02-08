@@ -35,6 +35,7 @@ And it is required to press enter after every installation part.
 Your raspberry also will restart and continue the script after relogin.
 
 Answer the questions like following:
+* Choose your language! Type en for english or de for german: (en/de)
 * What assistant engine are you using? Enter 2 for rhasspy
 * What's the path to your assistant config file? Press Enter 
 (Path Should be like (_/home/pi/.config/rhasspy/profiles/de/profile.json_)
@@ -42,18 +43,24 @@ Answer the questions like following:
 * What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google
 * Do you need to install / configure your respeaker4? Enter 2 for no 
 
-## 4. Reboot
-After installation please reboot your raspberry:
-```
-sudo reboot
-```
+## 4. Next steps
+All necessary software is now installed on your Raspberry Pi. Now you need to make a few configurations:
 
-## 5. Additional Settings
-Your raspberry is now setup for using rhasspy. Please setup a [wakeword](/pages/installation/manual/configuration.html#3-wake-word)
-and install skills or create some at [nodered](/pages/knowledge/node-red).
+- Set a [wakeword](/pages/installation/manual/configuration.html#3-wake-word)
+- Add [zigbee devices](/pages/knowledge/zigbee/zigbee2mqtt)
 
-You can find node-red on this adress: `<ip of raspberry>:1880`
+Depending if you choosed english or german in the installation script, all skills will be automatically installed
+in this language.
 
-## Finish!
+The [skills](/pages/skills/) itself are realized as flows in node-red. Visit node-red application 
+under http://ip_of_raspberry_pi:1880/
+
+After connecting your zigbee devices, you can use them inside the flows.
+For example you added a zigbee lamp called "livingroom". Open http://ip_of_raspberry_pi:1880/, open the flow
+"Light Control" and double click on the node "zigbee2mqtt/licht/set". `licht` is actually the device name. 
+Change it to `livingroom` and click `deploy` on the top right corner of the page. After this your light should
+turn on or off depending on your command.
+
+## 5. Finish!
 
 Congratulations! Finished the installation of rhasspy!
