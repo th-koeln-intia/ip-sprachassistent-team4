@@ -31,4 +31,4 @@ Raven is our [wake word](/pages/knowledge/wake-word) system. We use it before yo
 ## Conclusion
 If you keep in mind that your [wake word](/pages/knowledge/wake-word) is not too short or similar to common words, 
 it is a really good [wake word](/pages/knowledge/wake-word) system.
-This rules are ruling nearly every [wake word](/pages/knowledge/wake-word) system.
+These rules apply to all systems that use a [wake word](/pages/knowledge/wake-word).
