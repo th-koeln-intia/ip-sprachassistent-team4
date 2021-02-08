@@ -17,8 +17,9 @@ grand_parent: Conclusion
 
 # Hermes LED Control
 
-## Adventages
 
-## Disadventages
+## Advantages
+
+## Disadvantages
 
 ## Conclusion

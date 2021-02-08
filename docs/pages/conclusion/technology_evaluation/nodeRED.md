@@ -17,8 +17,8 @@ grand_parent: Conclusion
 
 # Node-Red
 
-## Adventages
+## Advantages
 
-## Disadventages
+## Disadvantages
 
 ## Conclusion

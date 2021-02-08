@@ -17,8 +17,8 @@ grand_parent: Conclusion
 
 # Snips NLU
 
-## Adventages
+## Advantages
 
-## Disadventages
+## Disadvantages
 
 ## Conclusion

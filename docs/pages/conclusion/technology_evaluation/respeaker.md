@@ -17,8 +17,8 @@ grand_parent: Conclusion
 
 # Respeaker
 
-## Adventages
+## Advantages
 
-## Disadventages
+## Disadvantages
 
 ## Conclusion

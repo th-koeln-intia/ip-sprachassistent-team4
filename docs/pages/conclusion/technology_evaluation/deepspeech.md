@@ -19,14 +19,14 @@ grand_parent: Conclusion
 [Deepspeech](/pages/knowledge/speech-to-text) is our speech to text system. It creates written text out of spoken text
 really quickly
 
-## Adventages
+## Advantages
 - Fast install for the english version
 - Can be trained with new words really fast
 - There are pretrained models available
 - It does not consume much cpu load
 - If you add [pronouncing](https://rhasspy.readthedocs.io/en/latest/usage/#words-page) to english words, [Deepspeech](/pages/knowledge/speech-to-text) can also understand them
 
-## Disadventages
+## Disadvantages
 - Only one german pretrained model found
 - Models are not compatible with other versions
 - For a german installation it must be installed [manually](/pages/knowledge/deepspeech) without help by rhasspy

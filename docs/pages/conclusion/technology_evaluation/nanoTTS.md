@@ -17,8 +17,8 @@ grand_parent: Conclusion
 
 # Nano TTS
 
-## Adventages
+## Advantages
 
-## Disadventages
+## Disadvantages
 
 ## Conclusion
