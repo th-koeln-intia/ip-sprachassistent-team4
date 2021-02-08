@@ -52,6 +52,16 @@ jq -s '[.[][]]' *.json > flows_sherlock.json
 #Copy the new file to node-red folder
 cp ~/tmp/ip-sprachassistent-team4/flows/flows_sherlock.json ~/.node-red/
 
+#Check if settings.js exists
+FILE=/home/pi/.node-red/settings.js
+if [ -f "$FILE" ]; then
+    echo "$FILE exists. Continue editing settings.js"
+else
+    echo "$FILE does not exist. Downloading default settings.js from github repository."
+    #Get default settings.js
+    wget https://raw.githubusercontent.com/node-red/node-red/master/packages/node_modules/node-red/settings.js -O ~/.node-red/settings.js
+fi
+
 #Edit ~./node-red/settings.js
 #Change default flows_<hostname>.json
 sed -i "s/    \/\/flowFile: 'flows.json',/    flowFile: 'flows_sherlock.json',/1" ~/.node-red/settings.js
