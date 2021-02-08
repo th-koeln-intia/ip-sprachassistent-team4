@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Criteria
-parent: Conclusion
+parent: Technology Evaluation
 ---
 
 <details close markdown="block">

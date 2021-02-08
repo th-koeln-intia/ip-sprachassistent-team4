@@ -2,7 +2,6 @@
 layout: default
 title: Raven
 parent: Technology Evaluation
-grand_parent: Conclusion
 ---
 
 <details close markdown="block">
