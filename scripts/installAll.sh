@@ -16,7 +16,7 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     echo "Voicecard"
     read -p "Press [Enter] key to continue..."
     #install seeed-voicecard
-    git clone https://github.com/respeaker/seeed-voicecard.git
+    git clone https://github.com/HinTak/seeed-voicecard.git
     cd seeed-voicecard
     sudo ./install.sh
 
@@ -62,6 +62,7 @@ else
 
     #enable nodered
     sudo systemctl enable nodered.service
+    sudo systemctl start nodered.service
 
     #install npm packages and import example flows
     wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install-node-red-npm-packages-and-flows.sh -O $WORKFOLDER/install-node-red-npm-packages-and-flows
@@ -122,4 +123,6 @@ else
     chmod +x $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 
+    echo "Installation complete! Your raspberry pi will reboot now."
+    sudo reboot
 fi
