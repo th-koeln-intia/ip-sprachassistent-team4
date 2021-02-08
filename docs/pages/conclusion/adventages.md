@@ -13,6 +13,8 @@ parent: Conclusion
 {:toc}
 </details>
 
+# Adventages
+
 ## Keep Your Privacy
  
 Unlike other voice assistants like Google, Alexa, etc, Rhasspy doesn’t share data across the internet and this is very interesting for people, who are concerned about their privacy.
