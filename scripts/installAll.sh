@@ -25,6 +25,10 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     echo "if [[ -n \$SSH_CONNECTION ]]; then bash $STARTFOLDER/$(basename $0); fi" >> ~/.bashrc
     echo "$STARTFOLDER/$(basename $0)" >> $WORKFOLDER/rhasspy-resume-after-reboot
 
+    # Remove piwiz from autostart to avoid the repeating sound output
+    # "To install the screen reader press control alt space"
+    sudo rm /etc/xdg/autostart/piwiz.desktop
+
     #reboot
     echo "Don't panic, your system will reboot, after your next login the Installation continue."
     read -p "Press [Enter] key to reboot..."
