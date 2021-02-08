@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Deepspeech
+title: Respeaker
 parent: Technology Evaluation
 grand_parent: Conclusion
 ---
@@ -15,7 +15,7 @@ grand_parent: Conclusion
 </details>
 
 
-# Deepspeech
+# Respeaker
 
 ## Adventages
 

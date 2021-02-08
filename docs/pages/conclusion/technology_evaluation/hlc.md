@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deepspeech
-parent: Technology Evaluation
+parent: Hermes LED Control
 grand_parent: Conclusion
 ---
 
@@ -15,7 +15,7 @@ grand_parent: Conclusion
 </details>
 
 
-# Deepspeech
+# Hermes LED Control
 
 ## Adventages
 
