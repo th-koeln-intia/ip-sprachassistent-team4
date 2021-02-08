@@ -2,7 +2,6 @@
 layout: default
 title: Snips NLU
 parent: Technology Evaluation
-grand_parent: Conclusion
 ---
 
 <details close markdown="block">

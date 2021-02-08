@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Deepspeech
-parent: Hermes LED Control
-grand_parent: Conclusion
+title: Nano TTS
+parent: Technology Evaluation
 ---
 
 <details close markdown="block">
@@ -15,8 +14,7 @@ grand_parent: Conclusion
 </details>
 
 
-# Hermes LED Control
-
+# Nano TTS
 
 ## Advantages
 

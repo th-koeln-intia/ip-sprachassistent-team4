@@ -2,7 +2,6 @@
 layout: default
 title: Version dependencies
 parent: Technology Evaluation
-grand_parent: Conclusion
 ---
 <details close markdown="block">
   <summary>

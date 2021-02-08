@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Nano TTS
+title: Respeaker
 parent: Technology Evaluation
-grand_parent: Conclusion
 ---
 
 <details close markdown="block">
@@ -15,7 +14,7 @@ grand_parent: Conclusion
 </details>
 
 
-# Nano TTS
+# Respeaker
 
 ## Advantages
 
