@@ -15,11 +15,11 @@ parent: Knowledge
 
 # Node-RED
 
-Node-RED is described as flow base programming for the internet of things. Node-Red  is installed by default on your Raspberry Pi but as you will like to use it with the rhasspy , it is  useful to reinstall it and start Node-Red as service on Rhasspy.
+Node-RED is described as flow base programming for the internet of things. Node-Red is installed by default on your Raspberry Pi but as you will like to use it with the rhasspy , it is useful to reinstall it and start Node-Red as service on Rhasspy.
 
 # Installation of node-RED
 
-this command shows how to install Node-Red , Nodejs , Mosquitto as your MQTT Server in a simple line of commands.
+This command shows how to install Node-Red , Nodejs , Mosquitto as your MQTT Server in a simple line of commands.
 
 ```
 sudo apt-get install mosquitto mosquitto-clients -y
