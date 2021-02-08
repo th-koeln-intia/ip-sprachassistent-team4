@@ -26,13 +26,18 @@ dependencies, but this did not work in practice. Therefore we install to the pre
 installation script. 
 
 ## Seeed-voicecard
-Since December 15, 2021 there is an update of the linux kernel to version 5.10.0 and ongoing. 
-The seeed-voicecard drivers cannot be installed with the current versions 5.10.x and higher. Installing raspbian with 
-the Raspberry Pi imager always installs the latest version and thus the incompatible kernel version 5.10.x.
-To fix this problem, we tested two options. One option was a downgrade to kernel version 5.4.83 from December 14, 2021. 
-The downgrade failed and the Raspberry Pi would not boot anymore.
-Alternatively, we downloaded a raspbian image from the raspbian archive dated January 11, 2021 using kernel 
-version 5.4.83. This image can also be installed with the Raspberry Pi imager.
+Since December 15, 2021 there is an update of the Linux kernel to version 5.10.0.
+The seeed-voicecard drivers cannot be installed with the current versions 5.10.x and higher. The installation of 
+raspbian with the Raspberry Pi imager always installs the latest version and thus the incompatible kernel version 
+5.10.x. 
+To fix this problem, we tested three possibilities. One way was to downgrade to kernel version 5.4.83 from 
+December 14, 2021. The downgrade failed and the Raspberry Pi would not boot anymore.
+Alternatively, we used a Raspbian image from the Raspbian archive dated January 11, 2021 with kernel version 5.4.83. 
+This image can also be installed with the Raspberry Pi Imager. It turned out that the installation script from 
+seeed-voicecard automatically upgraded to the new kernel version.
+Through research we were able to find an adapted installation script in a fork of the original seeed-voicecard 
+git repository. This is the third option. By switching to the forked repository, the drivers for the microphone array 
+can now be used again. In the future it has to be observed how future updates of the kernel will affect seeed-voicecard.
 
 ## Conclusion
 Due to the fact that we use many different software and drivers in this project, which all have to be coordinated with 
