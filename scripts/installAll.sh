@@ -1,8 +1,10 @@
 #!/bin/bash
 WORKFOLDER=/home/pi/installFiles
 STARTFOLDER=$(pwd)
+language=""
 
 if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
+
     echo "Update"
     read -p "Press [Enter] key to continue..."
     #update
@@ -28,7 +30,26 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     read -p "Press [Enter] key to reboot..."
     sudo reboot
 else
-    echo "Welcome back. The Installation continue."
+    echo "Welcome back. The Installation continues."
+
+    # Check language
+    echo -e "Choose your language!"
+    echo -e "Type en for english or de for german:"
+
+    while :
+    do
+      read -n 2 language
+
+      if [ "$language" = "en" ]; then
+        echo -e "\nYou choosed en"
+        break
+      elif [ "$language" = "de" ]; then
+        echo -e "\nYou choosed de"
+        break
+      else
+        echo -e "\nChoose between en or de!"
+      fi
+    done
 
     #remove from autostart
     sed -i '$d' ~/.bashrc
@@ -90,18 +111,19 @@ else
     echo "rhasspy systemd"
     read -p "Press [Enter] key to continue..."
     ########profile.json
-    sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy.service -O /etc/systemd/system/rhasspy.service
+
+    sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy_$language.service -O /etc/systemd/system/rhasspy.service
 
     sudo systemctl enable rhasspy
 
     echo "configs"
     read -p "Press [Enter] key to continue..."
-    mkdir -p /home/$USER/.config/rhasspy/profiles/de/slots
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/custom_words.txt -O /home/$USER/.config/rhasspy/profiles/de/custom_words.txt
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/profile.json -O /home/$USER/.config/rhasspy/profiles/de/profile.json
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/sentences.ini -O /home/$USER/.config/rhasspy/profiles/de/sentences.ini
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/cities -O /home/$USER/.config/rhasspy/profiles/de/slots/cities
-    wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/data/ExchangeCountries -O /home/$USER/.config/rhasspy/profiles/de/slots/ExchangeCountries
+    mkdir -p /home/$USER/.config/rhasspy/profiles/$language/slots
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/custom_words_$language.txt -O /home/$USER/.config/rhasspy/profiles/$language/custom_words.txt
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/profile_$language.json -O /home/$USER/.config/rhasspy/profiles/$language/profile.json
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/sentences_$language.ini -O /home/$USER/.config/rhasspy/profiles/$language/sentences.ini
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/cities_$language -O /home/$USER/.config/rhasspy/profiles/$language/slots/cities
+    wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/data/exchange_countries_$language -O /home/$USER/.config/rhasspy/profiles/$language/slots/ExchangeCountries
     sudo systemctl restart rhasspy
 
     echo "hlc"
@@ -113,13 +135,13 @@ else
     echo "deepspeech"
     read -p "Press [Enter] key to continue..."
     #deepspeech
-    wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install-rhasspy-deepspeech.sh -O $WORKFOLDER/install-rhasspy-deepspeech.sh
+    wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install_rhasspy_deepspeech_$language.sh -O $WORKFOLDER/install-rhasspy-deepspeech.sh
     chmod +x ./install-rhasspy-deepspeech.sh
     ./install-rhasspy-deepspeech.sh
     echo "snips"
     read -p "Press [Enter] key to continue..."
     #snips
-    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install-rhasspy-snips-nlu_venv.sh -O $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
+    wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install_rhasspy_snips_nlu_venv_$language.sh -O $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     chmod +x $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 

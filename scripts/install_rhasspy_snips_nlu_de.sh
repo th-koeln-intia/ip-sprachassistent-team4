@@ -24,7 +24,7 @@ sudo pip3 install $HOME/snips-nlu/snips_nlu-0.20.2-py3-none-any.whl
 # Install rhasspy-snips-nlu-hermes
 sudo pip3 install rhasspy-snips-nlu-hermes
 
-# Download language en
+# Download language de
 snips-nlu download de
 
 # Create dirs for snips engine
