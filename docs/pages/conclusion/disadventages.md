@@ -13,7 +13,7 @@ parent: Conclusion
 {:toc}
 </details>
 
-# Disadvantages
+# Disadventages
  
 ## Not easy to setup
  
