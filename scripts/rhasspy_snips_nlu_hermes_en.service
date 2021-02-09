@@ -1,0 +1,21 @@
+[Unit]
+Description=rhasspy-snips-nlu-hermes
+After=syslog.target network.target rhasspy.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/.config/rhasspy
+ExecStart=/bin/bash -lc 'rhasspy-snips-nlu-hermes --language en --engine-path /home/pi/.config/rhasspy/profiles/en/snips/engine --dataset-path /home/pi/.config/rhasspy/profiles/en/snips/dataset.yaml --host 127.0.0.1 --port 1883'
+User=pi
+Group=pi
+
+RestartSec=1
+Restart=on-failure
+
+StandardOutput=syslog
+StandardError=syslog
+
+SyslogIdentifier=rhasspy-snips-nlu-hermes
+
+[Install]
+WantedBy=multi-user.target

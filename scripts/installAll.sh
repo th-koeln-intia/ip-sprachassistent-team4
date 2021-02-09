@@ -7,6 +7,7 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
 
     echo "Update"
     read -p "Press [Enter] key to continue..."
+
     #update
     sudo apt update
     sudo apt upgrade -y
@@ -17,6 +18,7 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     cd $WORKFOLDER
     echo "Voicecard"
     read -p "Press [Enter] key to continue..."
+
     #install seeed-voicecard
     git clone https://github.com/HinTak/seeed-voicecard.git
     cd seeed-voicecard
@@ -25,8 +27,8 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     echo "if [[ -n \$SSH_CONNECTION ]]; then bash $STARTFOLDER/$(basename $0); fi" >> ~/.bashrc
     echo "$STARTFOLDER/$(basename $0)" >> $WORKFOLDER/rhasspy-resume-after-reboot
 
-    # Remove piwiz from autostart to avoid the repeating sound output
-    # "To install the screen reader press control alt space"
+    #Remove piwiz from autostart to avoid the repeating sound output
+    #"To install the screen reader press control alt space"
     sudo rm /etc/xdg/autostart/piwiz.desktop
 
     #reboot
@@ -60,17 +62,11 @@ else
     rm -f $WORKFOLDER/rhasspy-resume-after-reboot
     echo "conf"
     read -p "Press [Enter] key to continues..."
-    #edit asound.conf
-    sudo 'echo "ctl.!default {
-           type pulse
-       }" >> /etc/asound.conf'
 
-    sudo sed "s/type asym/type pulse/g" /etc/asound.conf
-    sudo sed '/capture.pcm "ac108"/a hint.description "Default Audio Device"' /etc/asound.conf
+    #overwrite asound.conf
+    sudo wget 'https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/asound.conf' -O /etc/asound.conf
 
-    
-    #set default device
-
+    #install mqtt
     cd $WORKFOLDER
     echo "MQTT"
     read -p "Press [Enter] key to continue..."
@@ -80,12 +76,11 @@ else
     read -p "Press [Enter] key to continue..."
 
     cd $WORKFOLDER
+
     #install nodered
     wget https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered -O $WORKFOLDER/update-nodejs-and-nodered
     sudo chmod +x $WORKFOLDER/update-nodejs-and-nodered
     $WORKFOLDER/update-nodejs-and-nodered --confirm-root --confirm-install --confirm-pi
-
-    #enable nodered
     sudo systemctl enable nodered.service
     sudo systemctl start nodered.service
 
@@ -94,6 +89,7 @@ else
     chmod +x install-node-red-npm-packages-and-flows
     ./install-node-red-npm-packages-and-flows
 
+    #install zigbee
     echo "zigbee"
     read -p "Press [Enter] key to continue..."
     install zigbee2mqtt
@@ -105,19 +101,16 @@ else
     sudo systemctl enable zigbee2mqtt.service
     sudo systemctl start zigbee2mqtt.service
 
+    #install rhasspy
     echo "rhasspy"
-    read -p "Press [Enter] key to start reboot..."
-    # rhasspy
+    read -p "Press [Enter] key to continue..."
     cd $WORKFOLDER
     wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb
     sudo apt install ./rhasspy_2.5.7_armhf.deb -y
 
     echo "rhasspy systemd"
     read -p "Press [Enter] key to continue..."
-    ########profile.json
-
     sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy_$language.service -O /etc/systemd/system/rhasspy.service
-
     sudo systemctl enable rhasspy
 
     echo "configs"
@@ -130,6 +123,7 @@ else
     wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/data/exchange_countries_$language -O /home/$USER/.config/rhasspy/profiles/$language/slots/ExchangeCountries
     sudo systemctl restart rhasspy
 
+    #install hermes led control
     echo "hlc"
     echo "$(tput setaf 3) Answer the questions after you pressed enter like following: "
     echo "* What assistant engine are you using? Enter 2 for rhasspy"
@@ -143,19 +137,21 @@ else
     sudo chmod +x hlc_download.sh
     sudo ./hlc_download.sh
 
+    #install deepspeech
     echo "deepspeech"
     read -p "Press [Enter] key to continue..."
-    #deepspeech
     wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install_rhasspy_deepspeech_$language.sh -O $WORKFOLDER/install-rhasspy-deepspeech.sh
     chmod +x ./install-rhasspy-deepspeech.sh
     ./install-rhasspy-deepspeech.sh
+
+    #install snips nlu
     echo "snips"
     read -p "Press [Enter] key to continue..."
-    #snips
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install_rhasspy_snips_nlu_venv_$language.sh -O $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     chmod +x $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 
+    #installation complete
     echo "Installation complete! Your raspberry pi will reboot now."
     sudo reboot
 fi
