@@ -27,7 +27,7 @@ You also need to add the node [node-red-contrib-join-wait](https://flows.nodered
 After installing the `mpg123` and the `join-wait` node, 
 import our flow from [our github repository](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/news_in_100_seconds_de.json){:target="_blank"}
 
-![Example headlines flow](../../../assets/play_news_german_tagesschau_in_100_seconds.png)
+[![Example headlines flow](../../../assets/play_news_german_tagesschau_in_100_seconds.png)](../../../assets/play_news_german_tagesschau_in_100_seconds.png)
 
 ## Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/news_in_100_seconds_de.json){:target="_blank"}

@@ -31,7 +31,7 @@ top new from sport
 The TTS will then output the first message from the corresponding topic.
 
 
-![top_news_notification](../../../assets/top_news_notification.png)
+[![top_news_notification](../../../assets/top_news_notification.png)](../../../assets/top_news_notification.png)
 
 # Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/top_news_notification.json){:target="_blank"}

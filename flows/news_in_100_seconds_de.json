@@ -1,603 +1,572 @@
 [
   {
-    "id": "e0c627ae.a69358",
-    "type": "tab",
-    "label": "German news in 100 seconds",
-    "disabled": false,
-    "info": ""
+      "id": "1196e34d.8263ad",
+      "type": "tab",
+      "label": "German news in 100 seconds",
+      "disabled": false,
+      "info": ""
   },
   {
-    "id": "f01978b3.d5dec8",
-    "type": "http request",
-    "z": "e0c627ae.a69358",
-    "name": "http request",
-    "method": "GET",
-    "ret": "txt",
-    "paytoqs": "ignore",
-    "url": "https://www.tagesschau.de/export/podcast/hi/tagesschau-in-100-sekunden/",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "x": 130,
-    "y": 220,
-    "wires": [
-      [
-        "f36056e5.30be48"
+      "id": "39ac47b2.429f08",
+      "type": "http request",
+      "z": "1196e34d.8263ad",
+      "name": "http request",
+      "method": "GET",
+      "ret": "txt",
+      "paytoqs": "ignore",
+      "url": "https://www.tagesschau.de/export/podcast/hi/tagesschau-in-100-sekunden/",
+      "tls": "",
+      "persist": false,
+      "proxy": "",
+      "authType": "",
+      "x": 371,
+      "y": 180,
+      "wires": [
+          [
+              "2136852f.414f5a"
+          ]
       ]
-    ]
   },
   {
-    "id": "9a57fd3f.329fe",
-    "type": "inject",
-    "z": "e0c627ae.a69358",
-    "name": "manual start",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "str",
-    "x": 170,
-    "y": 100,
-    "wires": [
-      [
-        "f01978b3.d5dec8"
-      ]
-    ]
-  },
-  {
-    "id": "f36056e5.30be48",
-    "type": "xml",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "property": "payload",
-    "attr": "",
-    "chr": "",
-    "x": 290,
-    "y": 220,
-    "wires": [
-      [
-        "c09b6011.8f98b",
-        "76e09338.5a05fc"
-      ]
-    ]
-  },
-  {
-    "id": "c09b6011.8f98b",
-    "type": "function",
-    "z": "e0c627ae.a69358",
-    "name": "create curl command",
-    "func": "var url = msg.payload.rss.channel[0].item[0].enclosure[0].$.url;\n\nvar cmd = \"mkdir -p /home/pi/.node-red/news; curl -X GET '\" + url + \"' -o /home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3\"\n\nmsg.payload = cmd;\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 500,
-    "y": 200,
-    "wires": [
-      [
-        "42654d1b.2b4004"
-      ]
-    ]
-  },
-  {
-    "id": "42654d1b.2b4004",
-    "type": "exec",
-    "z": "e0c627ae.a69358",
-    "command": "",
-    "addpay": true,
-    "append": "",
-    "useSpawn": "false",
-    "timer": "",
-    "oldrc": false,
-    "name": "download newest tagesschau clip",
-    "x": 800,
-    "y": 200,
-    "wires": [
-      [
-        "db513881.7d1e98"
+      "id": "8fabdb4f.932b68",
+      "type": "inject",
+      "z": "1196e34d.8263ad",
+      "name": "manual start",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
       ],
-      [
-        "db513881.7d1e98"
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "",
+      "payloadType": "str",
+      "x": 173,
+      "y": 213,
+      "wires": [
+          [
+              "39ac47b2.429f08"
+          ]
+      ]
+  },
+  {
+      "id": "2136852f.414f5a",
+      "type": "xml",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "property": "payload",
+      "attr": "",
+      "chr": "",
+      "x": 522,
+      "y": 180,
+      "wires": [
+          [
+              "36763932.9fe9e6",
+              "67f07846.371a58"
+          ]
+      ]
+  },
+  {
+      "id": "36763932.9fe9e6",
+      "type": "function",
+      "z": "1196e34d.8263ad",
+      "name": "create curl command",
+      "func": "var url = msg.payload.rss.channel[0].item[0].enclosure[0].$.url;\n\nvar cmd = \"mkdir -p /home/pi/.node-red/news; curl -X GET '\" + url + \"' -o /home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3\"\n\nmsg.payload = cmd;\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 714,
+      "y": 180,
+      "wires": [
+          [
+              "6007eeef.2eaac"
+          ]
+      ]
+  },
+  {
+      "id": "6007eeef.2eaac",
+      "type": "exec",
+      "z": "1196e34d.8263ad",
+      "command": "",
+      "addpay": true,
+      "append": "",
+      "useSpawn": "false",
+      "timer": "",
+      "oldrc": false,
+      "name": "download newest tagesschau clip",
+      "x": 980,
+      "y": 180,
+      "wires": [
+          [],
+          [],
+          [
+              "99cb13f5.dc692"
+          ]
+      ]
+  },
+  {
+      "id": "96f1d781.696518",
+      "type": "switch",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "property": "payload.code",
+      "propertyType": "msg",
+      "rules": [
+          {
+              "t": "eq",
+              "v": "0",
+              "vt": "str"
+          },
+          {
+              "t": "gt",
+              "v": "0",
+              "vt": "str"
+          }
       ],
-      [
-        "b9898acb.bcf528"
+      "checkall": "true",
+      "repair": false,
+      "outputs": 2,
+      "x": 130,
+      "y": 367,
+      "wires": [
+          [
+              "2a59977a.64d278"
+          ],
+          []
       ]
-    ]
   },
   {
-    "id": "b9898acb.bcf528",
-    "type": "switch",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "property": "payload.code",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "0",
-        "vt": "str"
-      },
-      {
-        "t": "gt",
-        "v": "0",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 870,
-    "y": 260,
-    "wires": [
-      [
-        "8d0b69cc.b2b228"
+      "id": "a53306a7.e55618",
+      "type": "mqtt in",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "topic": "hermes/intent/PlayNews",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 138,
+      "y": 140,
+      "wires": [
+          [
+              "39ac47b2.429f08"
+          ]
+      ]
+  },
+  {
+      "id": "eb97c7b.e8afa38",
+      "type": "mqtt in",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "topic": "hermes/intent/Stop",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 837,
+      "y": 407,
+      "wires": [
+          [
+              "ab1f22d2.5893c"
+          ]
+      ]
+  },
+  {
+      "id": "2a59977a.64d278",
+      "type": "change",
+      "z": "1196e34d.8263ad",
+      "name": "Set path_1",
+      "rules": [
+          {
+              "t": "set",
+              "p": "paths",
+              "pt": "msg",
+              "to": "path_1",
+              "tot": "str"
+          }
       ],
-      []
-    ]
-  },
-  {
-    "id": "efde2075.fd29e",
-    "type": "mqtt in",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "topic": "hermes/intent/PlayNews",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 130,
-    "y": 140,
-    "wires": [
-      [
-        "f01978b3.d5dec8"
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 287,
+      "y": 360,
+      "wires": [
+          [
+              "4a7110df.82439"
+          ]
       ]
-    ]
   },
   {
-    "id": "eeaf5d5.e9e8ba",
-    "type": "mqtt in",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "topic": "hermes/intent/Stop",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 690,
-    "y": 480,
-    "wires": [
-      [
-        "f4732938.470c98"
-      ]
-    ]
-  },
-  {
-    "id": "db513881.7d1e98",
-    "type": "debug",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "active": false,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1070,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "8d0b69cc.b2b228",
-    "type": "change",
-    "z": "e0c627ae.a69358",
-    "name": "Set path_1",
-    "rules": [
-      {
-        "t": "set",
-        "p": "paths",
-        "pt": "msg",
-        "to": "path_1",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 130,
-    "y": 380,
-    "wires": [
-      [
-        "959a4717.0b5138"
-      ]
-    ]
-  },
-  {
-    "id": "93c1545b.dca6f8",
-    "type": "change",
-    "z": "e0c627ae.a69358",
-    "name": "Set path_2",
-    "rules": [
-      {
-        "t": "set",
-        "p": "paths",
-        "pt": "msg",
-        "to": "path_2",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 130,
-    "y": 420,
-    "wires": [
-      [
-        "959a4717.0b5138"
-      ]
-    ]
-  },
-  {
-    "id": "959a4717.0b5138",
-    "type": "join-wait",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "paths": "[\"path_1\", \"path_2\"]",
-    "pathsToExpire": "",
-    "pathTopic": "paths",
-    "pathTopicType": "msg",
-    "correlationTopic": "",
-    "correlationTopicType": "msg",
-    "timeout": "5",
-    "timeoutUnits": "1000",
-    "exactOrder": "false",
-    "firstMsg": "true",
-    "mapPayload": "true",
-    "disableComplete": false,
-    "x": 320,
-    "y": 400,
-    "wires": [
-      [
-        "73c2a86a.463e88"
+      "id": "f4ecf7b.511fd08",
+      "type": "change",
+      "z": "1196e34d.8263ad",
+      "name": "Set path_2",
+      "rules": [
+          {
+              "t": "set",
+              "p": "paths",
+              "pt": "msg",
+              "to": "path_2",
+              "tot": "str"
+          }
       ],
-      [
-        "337256a2.04446a"
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 287,
+      "y": 296,
+      "wires": [
+          [
+              "4a7110df.82439"
+          ]
       ]
-    ]
   },
   {
-    "id": "76e09338.5a05fc",
-    "type": "function",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "func": "let description = msg.payload.rss.channel[0].item[0].description[0];\n\nmsg.payload = description;\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 120,
-    "y": 280,
-    "wires": [
-      [
-        "93c1545b.dca6f8"
+      "id": "4a7110df.82439",
+      "type": "join-wait",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "paths": "[\"path_1\", \"path_2\"]",
+      "pathsToExpire": "",
+      "pathTopic": "paths",
+      "pathTopicType": "msg",
+      "correlationTopic": "",
+      "correlationTopicType": "msg",
+      "timeout": "5",
+      "timeoutUnits": "1000",
+      "exactOrder": "false",
+      "firstMsg": "true",
+      "mapPayload": "true",
+      "disableComplete": false,
+      "x": 480,
+      "y": 333,
+      "wires": [
+          [
+              "d5bb1bc8.3d5048"
+          ],
+          []
       ]
-    ]
   },
   {
-    "id": "6c3f9fa.184ee6",
-    "type": "mqtt out",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "topic": "hermes/tts/say",
-    "qos": "",
-    "retain": "",
-    "broker": "e19fa228.bc1cf",
-    "x": 700,
-    "y": 420,
-    "wires": []
-  },
-  {
-    "id": "73c2a86a.463e88",
-    "type": "function",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "func": "let text = msg.payload;\n\nmsg.payload = {\n    text: text\n};\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 480,
-    "y": 380,
-    "wires": [
-      [
-        "6c3f9fa.184ee6",
-        "e88b85b7.f7f588"
+      "id": "67f07846.371a58",
+      "type": "function",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "func": "let description = msg.payload.rss.channel[0].item[0].description[0];\n\nmsg.payload = description;\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 140,
+      "y": 296,
+      "wires": [
+          [
+              "f4ecf7b.511fd08"
+          ]
       ]
-    ]
   },
   {
-    "id": "e88b85b7.f7f588",
-    "type": "delay",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "pauseType": "delay",
-    "timeout": "7500",
-    "timeoutUnits": "milliseconds",
-    "rate": "1",
-    "nbRateUnits": "1",
-    "rateUnits": "second",
-    "randomFirst": "1",
-    "randomLast": "5",
-    "randomUnits": "seconds",
-    "drop": false,
-    "x": 720,
-    "y": 380,
-    "wires": [
-      [
-        "6f3eeabc.0b7b54"
+      "id": "5642fef8.30be6",
+      "type": "mqtt out",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "topic": "hermes/tts/say",
+      "qos": "",
+      "retain": "",
+      "broker": "e19fa228.bc1cf",
+      "x": 829,
+      "y": 358,
+      "wires": []
+  },
+  {
+      "id": "d5bb1bc8.3d5048",
+      "type": "function",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "func": "let text = msg.payload;\n\nmsg.payload = {\n    text: text\n};\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 640,
+      "y": 327,
+      "wires": [
+          [
+              "5642fef8.30be6",
+              "dbbf07.435c20f8"
+          ]
       ]
-    ]
   },
   {
-    "id": "337256a2.04446a",
-    "type": "debug",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 490,
-    "y": 420,
-    "wires": []
+      "id": "dbbf07.435c20f8",
+      "type": "delay",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "pauseType": "delay",
+      "timeout": "7500",
+      "timeoutUnits": "milliseconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "x": 841,
+      "y": 289,
+      "wires": [
+          [
+              "1a927ca.9624c83"
+          ]
+      ]
   },
   {
-    "id": "c12be574.39fea8",
-    "type": "comment",
-    "z": "e0c627ae.a69358",
-    "name": "Download and start playing german news tagesschau in 100 seconds",
-    "info": "",
-    "x": 260,
-    "y": 40,
-    "wires": []
+      "id": "962c2adf.4cf5f8",
+      "type": "comment",
+      "z": "1196e34d.8263ad",
+      "name": "Download and start playing german news tagesschau in 100 seconds",
+      "info": "",
+      "x": 540,
+      "y": 121,
+      "wires": []
   },
   {
-    "id": "6e478248.fffd3c",
-    "type": "exec",
-    "z": "e0c627ae.a69358",
-    "command": "",
-    "addpay": true,
-    "append": "",
-    "useSpawn": "false",
-    "timer": "",
-    "oldrc": false,
-    "name": "start play sound clip",
-    "x": 1120,
-    "y": 520,
-    "wires": [
-      [
-        "6dd89863.040188"
+      "id": "107e9b00.998075",
+      "type": "exec",
+      "z": "1196e34d.8263ad",
+      "command": "",
+      "addpay": true,
+      "append": "",
+      "useSpawn": "false",
+      "timer": "",
+      "oldrc": false,
+      "name": "start play sound clip",
+      "x": 1280,
+      "y": 345,
+      "wires": [
+          [],
+          [],
+          []
+      ]
+  },
+  {
+      "id": "66d58dc1.a82804",
+      "type": "inject",
+      "z": "1196e34d.8263ad",
+      "name": "manual start",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
       ],
-      [
-        "6dd89863.040188"
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "ffplay ~/.node-red/news/tagesschau_in_100_sekunden.mp3",
+      "payloadType": "str",
+      "x": 870,
+      "y": 227,
+      "wires": [
+          [
+              "1a927ca.9624c83"
+          ]
+      ]
+  },
+  {
+      "id": "13df5c2a.d84534",
+      "type": "change",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "rules": [
+          {
+              "t": "set",
+              "p": "pid",
+              "pt": "flow",
+              "to": "payload",
+              "tot": "msg"
+          }
       ],
-      [
-        "6dd89863.040188"
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 460,
+      "y": 478,
+      "wires": [
+          []
       ]
-    ]
   },
   {
-    "id": "8a7d2224.dc814",
-    "type": "inject",
-    "z": "e0c627ae.a69358",
-    "name": "manual start",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "ffplay ~/.node-red/news/tagesschau_in_100_sekunden.mp3",
-    "payloadType": "str",
-    "x": 750,
-    "y": 340,
-    "wires": [
-      [
-        "6f3eeabc.0b7b54"
+      "id": "7e053418.cf1cdc",
+      "type": "function",
+      "z": "1196e34d.8263ad",
+      "name": "get pid",
+      "func": "if(msg.status.text){\n    if(msg.status.text.match(/pid/g)){\n        let pid = msg.status.text.split(':');\n        msg.payload = pid[1];\n        return msg;\n    } else {\n        msg.payload = false;\n        return msg;\n    }\n} else {\n    msg.payload = false;\n    return msg;\n}",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 290,
+      "y": 478,
+      "wires": [
+          [
+              "13df5c2a.d84534"
+          ]
       ]
-    ]
   },
   {
-    "id": "6dd89863.040188",
-    "type": "debug",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1350,
-    "y": 520,
-    "wires": []
-  },
-  {
-    "id": "b909e542.18bab8",
-    "type": "change",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "pid",
-        "pt": "flow",
-        "to": "payload",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 400,
-    "y": 600,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "ef785fa3.a41398",
-    "type": "function",
-    "z": "e0c627ae.a69358",
-    "name": "get pid",
-    "func": "if(msg.status.text){\n    if(msg.status.text.match(/pid/g)){\n        let pid = msg.status.text.split(':');\n        msg.payload = pid[1];\n        return msg;\n    } else {\n        msg.payload = false;\n        return msg;\n    }\n} else {\n    msg.payload = false;\n    return msg;\n}",
-    "outputs": 1,
-    "noerr": 0,
-    "x": 230,
-    "y": 600,
-    "wires": [
-      [
-        "b909e542.18bab8"
+      "id": "8c630bc3.e646f8",
+      "type": "status",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "scope": [
+          "107e9b00.998075"
+      ],
+      "x": 140,
+      "y": 478,
+      "wires": [
+          [
+              "7e053418.cf1cdc"
+          ]
       ]
-    ]
   },
   {
-    "id": "236b0228.77bc06",
-    "type": "status",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "scope": [
-      "6e478248.fffd3c"
-    ],
-    "x": 80,
-    "y": 600,
-    "wires": [
-      [
-        "ef785fa3.a41398"
+      "id": "4e7d9178.e931d",
+      "type": "inject",
+      "z": "1196e34d.8263ad",
+      "name": "manual stop",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "kill",
+      "payloadType": "str",
+      "x": 857,
+      "y": 467,
+      "wires": [
+          [
+              "ab1f22d2.5893c"
+          ]
       ]
-    ]
   },
   {
-    "id": "2e3b5f21.97595",
-    "type": "inject",
-    "z": "e0c627ae.a69358",
-    "name": "manual stop",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "kill",
-    "payloadType": "str",
-    "x": 710,
-    "y": 520,
-    "wires": [
-      [
-        "f4732938.470c98"
+      "id": "ab1f22d2.5893c",
+      "type": "function",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "func": "msg.payload = \"kill \" + flow.get(\"pid\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1047,
+      "y": 438,
+      "wires": [
+          [
+              "107e9b00.998075"
+          ]
       ]
-    ]
   },
   {
-    "id": "f4732938.470c98",
-    "type": "function",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "func": "msg.payload = \"kill \" + flow.get(\"pid\");\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 920,
-    "y": 520,
-    "wires": [
-      [
-        "6e478248.fffd3c"
+      "id": "1a927ca.9624c83",
+      "type": "function",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "func": "msg.payload = \"mpg123 -a /dev/audio /home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1055,
+      "y": 256,
+      "wires": [
+          [
+              "107e9b00.998075"
+          ]
       ]
-    ]
   },
   {
-    "id": "6f3eeabc.0b7b54",
-    "type": "function",
-    "z": "e0c627ae.a69358",
-    "name": "",
-    "func": "msg.payload = \"mpg123 -a /dev/audio /home/pi/.node-red/news/tagesschau_in_100_sekunden.mp3\";\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 920,
-    "y": 480,
-    "wires": [
-      [
-        "6e478248.fffd3c"
+      "id": "2a569b02.973fe4",
+      "type": "comment",
+      "z": "1196e34d.8263ad",
+      "name": "Get and save pid of playing sound clip",
+      "info": "",
+      "x": 230,
+      "y": 418,
+      "wires": []
+  },
+  {
+      "id": "165dc7bf.cb35c8",
+      "type": "link in",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "links": [
+          "99cb13f5.dc692"
+      ],
+      "x": 42,
+      "y": 367,
+      "wires": [
+          [
+              "96f1d781.696518"
+          ]
       ]
-    ]
   },
   {
-    "id": "ef0c227c.f6b4d",
-    "type": "comment",
-    "z": "e0c627ae.a69358",
-    "name": "Get and save pid of playing sound clip",
-    "info": "",
-    "x": 170,
-    "y": 540,
-    "wires": []
+      "id": "99cb13f5.dc692",
+      "type": "link out",
+      "z": "1196e34d.8263ad",
+      "name": "",
+      "links": [
+          "165dc7bf.cb35c8"
+      ],
+      "x": 1165,
+      "y": 193,
+      "wires": []
   },
   {
-    "id": "e19fa228.bc1cf",
-    "type": "mqtt-broker",
-    "name": "mqtt",
-    "broker": "127.0.0.1",
-    "port": "1883",
-    "clientid": "",
-    "usetls": false,
-    "compatmode": false,
-    "keepalive": "60",
-    "cleansession": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthPayload": "",
-    "closeTopic": "",
-    "closeQos": "0",
-    "closePayload": "",
-    "willTopic": "",
-    "willQos": "0",
-    "willPayload": ""
+      "id": "e19fa228.bc1cf",
+      "type": "mqtt-broker",
+      "name": "mqtt",
+      "broker": "127.0.0.1",
+      "port": "1883",
+      "clientid": "",
+      "usetls": false,
+      "compatmode": false,
+      "keepalive": "60",
+      "cleansession": true,
+      "birthTopic": "",
+      "birthQos": "0",
+      "birthPayload": "",
+      "closeTopic": "",
+      "closeQos": "0",
+      "closePayload": "",
+      "willTopic": "",
+      "willQos": "0",
+      "willPayload": ""
   }
 ]

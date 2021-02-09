@@ -1,620 +1,611 @@
 [
   {
-    "id": "69dd8697.2f0df8",
-    "type": "tab",
-    "label": "Timer Node",
-    "disabled": false,
-    "info": ""
+      "id": "ba9a2a21.c30448",
+      "type": "tab",
+      "label": "Timer Node",
+      "disabled": false,
+      "info": ""
   },
   {
-    "id": "7335815a.1e9d7",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/SetTimer",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 200,
-    "y": 160,
-    "wires": [
-      [
-        "59e7d885.75a568"
+      "id": "570677b5.6cf4d8",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/SetTimer",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 200,
+      "y": 100,
+      "wires": [
+          [
+              "b50884b1.745768"
+          ]
       ]
-    ]
   },
   {
-    "id": "59e7d885.75a568",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "Switch-Case-timer",
-    "func": "msg.action = \"setTimer\";\n\nmsg.timer = {\n    seconds: 0,\n    minutes: 0,\n    hours: 0\n}\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"hours\":\n                msg.timer.hours = msg.payload.slots[i].value.value;\n            break;\n            case \"minutes\":\n                msg.timer.minutes = msg.payload.slots[i].value.value;\n            break;\n            case \"seconds\":\n                msg.timer.seconds = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 450,
-    "y": 160,
-    "wires": [
-      [
-        "569f5332.1688ac"
+      "id": "b50884b1.745768",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "Switch-Case-timer",
+      "func": "msg.action = \"setTimer\";\n\nmsg.timer = {\n    seconds: 0,\n    minutes: 0,\n    hours: 0\n}\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"hours\":\n                msg.timer.hours = msg.payload.slots[i].value.value;\n            break;\n            case \"minutes\":\n                msg.timer.minutes = msg.payload.slots[i].value.value;\n            break;\n            case \"seconds\":\n                msg.timer.seconds = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 450,
+      "y": 100,
+      "wires": [
+          [
+              "144611a0.81b1be"
+          ]
       ]
-    ]
   },
   {
-    "id": "b5dfb421.06aa48",
-    "type": "debug",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1390,
-    "y": 140,
-    "wires": []
-  },
-  {
-    "id": "131a07cb.4f8148",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/GetNextTimer",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 180,
-    "y": 200,
-    "wires": [
-      [
-        "149925d1.810d4a"
+      "id": "e88b4e6f.7ed14",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/GetNextTimer",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 180,
+      "y": 200,
+      "wires": [
+          [
+              "c4efcc8c.e4a15"
+          ]
       ]
-    ]
   },
   {
-    "id": "149925d1.810d4a",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "Next timer",
-    "func": "msg.action = \"getNextTimer\";\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 470,
-    "y": 200,
-    "wires": [
-      [
-        "569f5332.1688ac"
+      "id": "c4efcc8c.e4a15",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "Next timer",
+      "func": "msg.action = \"getNextTimer\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 470,
+      "y": 200,
+      "wires": [
+          [
+              "144611a0.81b1be"
+          ]
       ]
-    ]
   },
   {
-    "id": "475a5654.cc1a88",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/GetAllTimers",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 190,
-    "y": 240,
-    "wires": [
-      [
-        "77e02f74.dcccc"
+      "id": "ed767382.38585",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/GetAllTimers",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 190,
+      "y": 240,
+      "wires": [
+          [
+              "36faf43f.8fc48c"
+          ]
       ]
-    ]
   },
   {
-    "id": "77e02f74.dcccc",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "List timers",
-    "func": "msg.action = \"getAllTimers\";\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 470,
-    "y": 240,
-    "wires": [
-      [
-        "569f5332.1688ac"
+      "id": "36faf43f.8fc48c",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "List timers",
+      "func": "msg.action = \"getAllTimers\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 470,
+      "y": 240,
+      "wires": [
+          [
+              "144611a0.81b1be"
+          ]
       ]
-    ]
   },
   {
-    "id": "569f5332.1688ac",
-    "type": "small-timer",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "x": 690,
-    "y": 200,
-    "wires": [
-      [
-        "423cea5f.a60794",
-        "367cab98.e37b84",
-        "1cc4d34a.db1dad"
+      "id": "144611a0.81b1be",
+      "type": "small-timer",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "x": 690,
+      "y": 200,
+      "wires": [
+          [
+              "16f02c69.82c0f4",
+              "57a39728.df4988"
+          ]
       ]
-    ]
   },
   {
-    "id": "423cea5f.a60794",
-    "type": "switch",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "property": "payload.status",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "eq",
-        "v": "created",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "running",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "expired",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "removed",
-        "vt": "str"
-      },
-      {
-        "t": "eq",
-        "v": "undefined",
-        "vt": "str"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 5,
-    "x": 850,
-    "y": 200,
-    "wires": [
-      [
-        "de246698.0a31e8"
+      "id": "16f02c69.82c0f4",
+      "type": "switch",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "property": "payload.status",
+      "propertyType": "msg",
+      "rules": [
+          {
+              "t": "eq",
+              "v": "created",
+              "vt": "str"
+          },
+          {
+              "t": "eq",
+              "v": "running",
+              "vt": "str"
+          },
+          {
+              "t": "eq",
+              "v": "expired",
+              "vt": "str"
+          },
+          {
+              "t": "eq",
+              "v": "removed",
+              "vt": "str"
+          },
+          {
+              "t": "eq",
+              "v": "undefined",
+              "vt": "str"
+          }
       ],
-      [
-        "f8f51378.51d1f"
+      "checkall": "true",
+      "repair": false,
+      "outputs": 5,
+      "x": 870,
+      "y": 200,
+      "wires": [
+          [
+              "9f4c5624.288b78"
+          ],
+          [
+              "1825b036.0ef38"
+          ],
+          [
+              "f52a7d97.52c2b"
+          ],
+          [
+              "d25b2cee.651b3"
+          ],
+          [
+              "807d858d.9014e8"
+          ]
+      ]
+  },
+  {
+      "id": "1825b036.0ef38",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "TTS timer's rest time ",
+      "func": "let message = {\n    payload: {\n    text: \"Der Timer läuft noch \"\n    }   \n}\n\nif (msg.payload.restTime.days == 1) {\n    message.payload.text += \" einen Tag \";\n} else if (msg.payload.restTime.days > 1) {\n    message.payload.text += msg.payload.restTime.days + \" Tage \";\n}\n\nif (msg.payload.restTime.hours == 1) {\n    message.payload.text += \" eine Stunde \";\n} else if (msg.payload.restTime.hours > 1) {\n    message.payload.text += msg.payload.restTime.hours + \" Stunden \";\n}\n\nif (msg.payload.restTime.minutes == 1) {\n    message.payload.text += \" eine Minute \";\n} else if (msg.payload.restTime.minutes > 1) {\n    message.payload.text += msg.payload.restTime.minutes + \" Minuten \";\n}\n\nif (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds == 1) {\n        message.payload.text += \" eine Sekunde\";\n    } else if (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds > 1) {\n    message.payload.text += \"und \" + msg.payload.restTime.seconds + \" Sekunden\";\n}\n\nreturn message;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1104,
+      "y": 155,
+      "wires": [
+          [
+              "bd657567.a47728"
+          ]
+      ]
+  },
+  {
+      "id": "bd657567.a47728",
+      "type": "mqtt out",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/tts/say",
+      "qos": "",
+      "retain": "",
+      "broker": "e19fa228.bc1cf",
+      "x": 1460,
+      "y": 200,
+      "wires": []
+  },
+  {
+      "id": "d25b2cee.651b3",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "TTS timer removed",
+      "func": "msg.payload = {\n    text: \"Timer gelöscht!\"\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1095,
+      "y": 245,
+      "wires": [
+          [
+              "bd657567.a47728"
+          ]
+      ]
+  },
+  {
+      "id": "9f4c5624.288b78",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "TTS timer set",
+      "func": "msg.payload = {\n    text: \"Timer gestellt!\"\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1086,
+      "y": 97,
+      "wires": [
+          [
+              "bd657567.a47728"
+          ]
+      ]
+  },
+  {
+      "id": "57a39728.df4988",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "TTS list timers",
+      "func": "let timers = msg.payload.timers;\n\nlet message = {\n    payload: {\n    text: \"\"\n    }   \n}\n\nif (timers) {\n    if (timers.length === 0) {\n        message.payload.text = \"Es sind keine Timer gestellt.\"\n    } else if (timers.length === 1) {\n        message.payload.text = \"Es ist ein Timer gestellt.\"\n    } else if (timers.length > 1) {\n        message.payload.text = \"Es sind \" + timers.length + \" Timer gestellt.\"\n    }\n    for(let i = 0; i < timers.length; i++) {\n        message.payload.text += \" Timer \" + timers[i].id + \" läuft noch \";\n        \n        if (timers[i].restTime.days == 1) {\n            message.payload.text += \" einen Tag \";\n        } else if (timers[i].restTime.days > 1) {\n            message.payload.text += timers[i].restTime.days + \" Tage \";\n        }\n        \n        if (timers[i].restTime.hours == 1) {\n            message.payload.text += \" eine Stunde \";\n        } else if (timers[i].restTime.hours > 1) {\n            message.payload.text += timers[i].restTime.hours + \" Stunden \";\n        }\n        \n        if (timers[i].restTime.minutes == 1) {\n            message.payload.text += \" eine Minute \";\n        } else if (timers[i].restTime.minutes > 1) {\n            message.payload.text += timers[i].restTime.minutes + \" Minuten \";\n        }\n        \n        if (timers[i].restTime.days == 0 && timers[i].restTime.hours == 0 &&\n            timers[i].restTime.minutes == 0 && timers[i].restTime.seconds == 1) {\n                message.payload.text += \" eine Sekunde\";\n        } else if (timers[i].restTime.seconds > 1) {\n            message.payload.text += \"und \" + timers[i].restTime.seconds + \" Sekunden\";\n        }\n        \n        message.payload.text += \". \";\n        \n    }\n    return message;\n}",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1096,
+      "y": 339,
+      "wires": [
+          [
+              "bd657567.a47728"
+          ]
+      ]
+  },
+  {
+      "id": "8944d083.cda7",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/StopTimer",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "7d5a3618.9ef98",
+      "x": 713,
+      "y": 349,
+      "wires": [
+          [
+              "7f0d9b70.1b33a4"
+          ]
+      ]
+  },
+  {
+      "id": "41840f3f.84cb7",
+      "type": "inject",
+      "z": "ba9a2a21.c30448",
+      "name": "stop Timer",
+      "props": [
+          {
+              "p": "payload"
+          }
       ],
-      [
-        "2ce1f2e4.e741de"
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "stop",
+      "payloadType": "str",
+      "x": 743,
+      "y": 409,
+      "wires": [
+          [
+              "7f0d9b70.1b33a4"
+          ]
+      ]
+  },
+  {
+      "id": "7f0d9b70.1b33a4",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": " stop ringing",
+      "func": "flow.set(\"timerRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 973,
+      "y": 409,
+      "wires": [
+          [
+              "14c3371e.994d69"
+          ]
+      ]
+  },
+  {
+      "id": "f52a7d97.52c2b",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": " start ringing",
+      "func": "flow.set(\"timerRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1075,
+      "y": 199,
+      "wires": [
+          [
+              "2a29ee89.95f372"
+          ]
+      ]
+  },
+  {
+      "id": "6f3e0fca.c41a2",
+      "type": "switch",
+      "z": "ba9a2a21.c30448",
+      "name": "checkTimerRinging",
+      "property": "timerRinging",
+      "propertyType": "flow",
+      "rules": [
+          {
+              "t": "gt",
+              "v": "0",
+              "vt": "num"
+          }
       ],
-      [
-        "9949a5ab.8f82e8"
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1433,
+      "y": 409,
+      "wires": [
+          [
+              "14c3371e.994d69"
+          ]
+      ]
+  },
+  {
+      "id": "14c3371e.994d69",
+      "type": "PlaySound",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "playerOptions": "{}",
+      "audioURI": "/home/pi/.node-red/alarm.mp3",
+      "options": "{\"afplay\" : [\"-l0\"]}",
+      "x": 1213,
+      "y": 409,
+      "wires": [
+          [
+              "6f3e0fca.c41a2"
+          ]
+      ]
+  },
+  {
+      "id": "3f6d8c89.e1a5b4",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/DeleteNextTimer",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 170,
+      "y": 280,
+      "wires": [
+          [
+              "bf578d2a.32ef3"
+          ]
+      ]
+  },
+  {
+      "id": "bf578d2a.32ef3",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "Remove next timer",
+      "func": "msg.action = \"removeNextTimer\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 450,
+      "y": 280,
+      "wires": [
+          [
+              "144611a0.81b1be"
+          ]
+      ]
+  },
+  {
+      "id": "bf063e7e.b9f99",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "Remove timer by ID",
+      "func": "if (msg.payload.slots[0].slotName.toString() === \"timer_id\" &&\n    msg.payload.slots[0].value.value > 0) {\n\n    let timer_id = msg.payload.slots[0].value.value;\n\n    msg.action = \"removeTimerByID\";\n\n    msg.timer = {\n        id: timer_id\n    }\n\n    return msg;\n}",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 440,
+      "y": 360,
+      "wires": [
+          [
+              "144611a0.81b1be"
+          ]
+      ]
+  },
+  {
+      "id": "197b7c33.3c2344",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "Remove all timers",
+      "func": "msg.action = \"removeAllTimers\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 450,
+      "y": 320,
+      "wires": [
+          [
+              "144611a0.81b1be"
+          ]
+      ]
+  },
+  {
+      "id": "7099343.e1faccc",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/DeleteAllTimers",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 180,
+      "y": 320,
+      "wires": [
+          [
+              "197b7c33.3c2344"
+          ]
+      ]
+  },
+  {
+      "id": "a5eacd77.8a6fa",
+      "type": "mqtt in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "topic": "hermes/intent/DeleteTimerById",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "e19fa228.bc1cf",
+      "x": 170,
+      "y": 360,
+      "wires": [
+          [
+              "bf063e7e.b9f99"
+          ]
+      ]
+  },
+  {
+      "id": "e31f2284.153cb",
+      "type": "inject",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
       ],
-      [
-        "b5b0368b.eff188"
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "x": 240,
+      "y": 160,
+      "wires": [
+          [
+              "c4efcc8c.e4a15"
+          ]
       ]
-    ]
   },
   {
-    "id": "f8f51378.51d1f",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "TTS timer's rest time ",
-    "func": "let message = {\n    payload: {\n    text: \"Der Timer läuft noch \"\n    }   \n}\n\nif (msg.payload.restTime.days == 1) {\n    message.payload.text += \" einen Tag \";\n} else if (msg.payload.restTime.days > 1) {\n    message.payload.text += msg.payload.restTime.days + \" Tage \";\n}\n\nif (msg.payload.restTime.hours == 1) {\n    message.payload.text += \" eine Stunde \";\n} else if (msg.payload.restTime.hours > 1) {\n    message.payload.text += msg.payload.restTime.hours + \" Stunden \";\n}\n\nif (msg.payload.restTime.minutes == 1) {\n    message.payload.text += \" eine Minute \";\n} else if (msg.payload.restTime.minutes > 1) {\n    message.payload.text += msg.payload.restTime.minutes + \" Minuten \";\n}\n\nif (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds == 1) {\n        message.payload.text += \" eine Sekunde\";\n    } else if (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds > 1) {\n    message.payload.text += \"und \" + msg.payload.restTime.seconds + \" Sekunden\";\n}\n\nreturn message;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1100,
-    "y": 180,
-    "wires": [
-      [
-        "d4744dfb.636fb",
-        "b5dfb421.06aa48"
+      "id": "807d858d.9014e8",
+      "type": "function",
+      "z": "ba9a2a21.c30448",
+      "name": "TTS timer undefined",
+      "func": "msg.payload = {\n    text: \"Timer nicht gefunden!\"\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1105,
+      "y": 292,
+      "wires": [
+          [
+              "bd657567.a47728"
+          ]
       ]
-    ]
   },
   {
-    "id": "d4744dfb.636fb",
-    "type": "mqtt out",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/tts/say",
-    "qos": "",
-    "retain": "",
-    "broker": "e19fa228.bc1cf",
-    "x": 1400,
-    "y": 300,
-    "wires": []
-  },
-  {
-    "id": "9949a5ab.8f82e8",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "TTS timer removed",
-    "func": "msg.payload = {\n    text: \"Timer gelöscht!\"\n}\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1110,
-    "y": 260,
-    "wires": [
-      [
-        "d4744dfb.636fb",
-        "b5dfb421.06aa48"
+      "id": "cc019efb.b5144",
+      "type": "link in",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "links": [
+          "2a29ee89.95f372"
+      ],
+      "x": 1355,
+      "y": 301,
+      "wires": [
+          [
+              "14c3371e.994d69"
+          ]
       ]
-    ]
   },
   {
-    "id": "367cab98.e37b84",
-    "type": "debug",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 870,
-    "y": 140,
-    "wires": []
+      "id": "2a29ee89.95f372",
+      "type": "link out",
+      "z": "ba9a2a21.c30448",
+      "name": "",
+      "links": [
+          "cc019efb.b5144"
+      ],
+      "x": 1273,
+      "y": 200,
+      "wires": []
   },
   {
-    "id": "de246698.0a31e8",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "TTS timer set",
-    "func": "msg.payload = {\n    text: \"Timer gestellt!\"\n}\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1120,
-    "y": 140,
-    "wires": [
-      [
-        "b5dfb421.06aa48",
-        "d4744dfb.636fb"
-      ]
-    ]
+      "id": "e19fa228.bc1cf",
+      "type": "mqtt-broker",
+      "name": "mqtt",
+      "broker": "127.0.0.1",
+      "port": "1883",
+      "clientid": "",
+      "usetls": false,
+      "compatmode": false,
+      "keepalive": "60",
+      "cleansession": true,
+      "birthTopic": "",
+      "birthQos": "0",
+      "birthPayload": "",
+      "closeTopic": "",
+      "closeQos": "0",
+      "closePayload": "",
+      "willTopic": "",
+      "willQos": "0",
+      "willPayload": ""
   },
   {
-    "id": "1cc4d34a.db1dad",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "TTS list timers",
-    "func": "let timers = msg.payload.timers;\n\nlet message = {\n    payload: {\n    text: \"\"\n    }   \n}\n\nif (timers) {\n    if (timers.length === 0) {\n        message.payload.text = \"Es sind keine Timer gestellt.\"\n    } else if (timers.length === 1) {\n        message.payload.text = \"Es ist ein Timer gestellt.\"\n    } else if (timers.length > 1) {\n        message.payload.text = \"Es sind \" + timers.length + \" Timer gestellt.\"\n    }\n    for(let i = 0; i < timers.length; i++) {\n        message.payload.text += \" Timer \" + timers[i].id + \" läuft noch \";\n        \n        if (timers[i].restTime.days == 1) {\n            message.payload.text += \" einen Tag \";\n        } else if (timers[i].restTime.days > 1) {\n            message.payload.text += timers[i].restTime.days + \" Tage \";\n        }\n        \n        if (timers[i].restTime.hours == 1) {\n            message.payload.text += \" eine Stunde \";\n        } else if (timers[i].restTime.hours > 1) {\n            message.payload.text += timers[i].restTime.hours + \" Stunden \";\n        }\n        \n        if (timers[i].restTime.minutes == 1) {\n            message.payload.text += \" eine Minute \";\n        } else if (timers[i].restTime.minutes > 1) {\n            message.payload.text += timers[i].restTime.minutes + \" Minuten \";\n        }\n        \n        if (timers[i].restTime.days == 0 && timers[i].restTime.hours == 0 &&\n            timers[i].restTime.minutes == 0 && timers[i].restTime.seconds == 1) {\n                message.payload.text += \" eine Sekunde\";\n        } else if (timers[i].restTime.seconds > 1) {\n            message.payload.text += \"und \" + timers[i].restTime.seconds + \" Sekunden\";\n        }\n        \n        message.payload.text += \". \";\n        \n    }\n    return message;\n}",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1120,
-    "y": 340,
-    "wires": [
-      [
-        "d4744dfb.636fb",
-        "b5dfb421.06aa48"
-      ]
-    ]
-  },
-  {
-    "id": "2f848e80.dd3792",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/StopTimer",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "7d5a3618.9ef98",
-    "x": 710,
-    "y": 480,
-    "wires": [
-      [
-        "f0ddbae2.ed26a8"
-      ]
-    ]
-  },
-  {
-    "id": "ae3676a6.5f9908",
-    "type": "inject",
-    "z": "69dd8697.2f0df8",
-    "name": "stop Timer",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "stop",
-    "payloadType": "str",
-    "x": 760,
-    "y": 520,
-    "wires": [
-      [
-        "f0ddbae2.ed26a8"
-      ]
-    ]
-  },
-  {
-    "id": "f0ddbae2.ed26a8",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": " stop ringing",
-    "func": "flow.set(\"timerRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 970,
-    "y": 480,
-    "wires": [
-      [
-        "dd38d334.1560b"
-      ]
-    ]
-  },
-  {
-    "id": "2ce1f2e4.e741de",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": " start ringing",
-    "func": "flow.set(\"timerRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1130,
-    "y": 220,
-    "wires": [
-      [
-        "dd38d334.1560b"
-      ]
-    ]
-  },
-  {
-    "id": "68204f68.d0b2a",
-    "type": "switch",
-    "z": "69dd8697.2f0df8",
-    "name": "checkTimerRinging",
-    "property": "timerRinging",
-    "propertyType": "flow",
-    "rules": [
-      {
-        "t": "gt",
-        "v": "0",
-        "vt": "num"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 1430,
-    "y": 460,
-    "wires": [
-      [
-        "dd38d334.1560b"
-      ]
-    ]
-  },
-  {
-    "id": "dd38d334.1560b",
-    "type": "PlaySound",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "playerOptions": "{}",
-    "audioURI": "/home/pi/.node-red/alarm.mp3",
-    "options": "{\"afplay\" : [\"-l0\"]}",
-    "x": 1210,
-    "y": 460,
-    "wires": [
-      [
-        "68204f68.d0b2a"
-      ]
-    ]
-  },
-  {
-    "id": "b0b9d406.ad2bb8",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/DeleteNextTimer",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 170,
-    "y": 280,
-    "wires": [
-      [
-        "a3d3fa3b.ceccb8"
-      ]
-    ]
-  },
-  {
-    "id": "a3d3fa3b.ceccb8",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "Remove next timer",
-    "func": "msg.action = \"removeNextTimer\";\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 450,
-    "y": 280,
-    "wires": [
-      [
-        "569f5332.1688ac"
-      ]
-    ]
-  },
-  {
-    "id": "9808681a.593bc8",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "Remove timer by ID",
-    "func": "if (msg.payload.slots[0].slotName.toString() === \"timer_id\" &&\n    msg.payload.slots[0].value.value > 0) {\n\n    let timer_id = msg.payload.slots[0].value.value;\n\n    msg.action = \"removeTimerByID\";\n\n    msg.timer = {\n        id: timer_id\n    }\n\n    return msg;\n}",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 440,
-    "y": 360,
-    "wires": [
-      [
-        "569f5332.1688ac"
-      ]
-    ]
-  },
-  {
-    "id": "4bd83e8a.52151",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "Remove all timers",
-    "func": "msg.action = \"removeAllTimers\";\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 450,
-    "y": 320,
-    "wires": [
-      [
-        "569f5332.1688ac"
-      ]
-    ]
-  },
-  {
-    "id": "4b778924.a53fa8",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/DeleteAllTimers",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 180,
-    "y": 320,
-    "wires": [
-      [
-        "4bd83e8a.52151"
-      ]
-    ]
-  },
-  {
-    "id": "470bef5b.b8c03",
-    "type": "mqtt in",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "topic": "hermes/intent/DeleteTimerById",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "e19fa228.bc1cf",
-    "x": 170,
-    "y": 360,
-    "wires": [
-      [
-        "9808681a.593bc8"
-      ]
-    ]
-  },
-  {
-    "id": "cf398186.c0b7e",
-    "type": "inject",
-    "z": "69dd8697.2f0df8",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 370,
-    "y": 60,
-    "wires": [
-      [
-        "149925d1.810d4a"
-      ]
-    ]
-  },
-  {
-    "id": "b5b0368b.eff188",
-    "type": "function",
-    "z": "69dd8697.2f0df8",
-    "name": "TTS timer undefined",
-    "func": "msg.payload = {\n    text: \"Timer nicht gefunden!\"\n}\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1100,
-    "y": 300,
-    "wires": [
-      [
-        "d4744dfb.636fb"
-      ]
-    ]
-  },
-  {
-    "id": "e19fa228.bc1cf",
-    "type": "mqtt-broker",
-    "name": "mqtt",
-    "broker": "127.0.0.1",
-    "port": "1883",
-    "clientid": "",
-    "usetls": false,
-    "compatmode": false,
-    "keepalive": "60",
-    "cleansession": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthPayload": "",
-    "closeTopic": "",
-    "closeQos": "0",
-    "closePayload": "",
-    "willTopic": "",
-    "willQos": "0",
-    "willPayload": ""
-  },
-  {
-    "id": "7d5a3618.9ef98",
-    "type": "mqtt-broker",
-    "name": "mqtt",
-    "broker": "127.0.0.1",
-    "port": "1883",
-    "clientid": "",
-    "usetls": false,
-    "compatmode": false,
-    "keepalive": "60",
-    "cleansession": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthPayload": "",
-    "closeTopic": "",
-    "closeQos": "0",
-    "closePayload": "",
-    "willTopic": "",
-    "willQos": "0",
-    "willPayload": ""
+      "id": "7d5a3618.9ef98",
+      "type": "mqtt-broker",
+      "name": "mqtt",
+      "broker": "127.0.0.1",
+      "port": "1883",
+      "clientid": "",
+      "usetls": false,
+      "compatmode": false,
+      "keepalive": "60",
+      "cleansession": true,
+      "birthTopic": "",
+      "birthQos": "0",
+      "birthPayload": "",
+      "closeTopic": "",
+      "closeQos": "0",
+      "closePayload": "",
+      "willTopic": "",
+      "willQos": "0",
+      "willPayload": ""
   }
 ]

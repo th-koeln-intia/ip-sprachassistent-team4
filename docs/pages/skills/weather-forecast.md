@@ -31,7 +31,8 @@ The only downside to this NODE is that we can only get the weather information o
 4. The switch node will delegate the weather forecast according to the date to a specific function and the hermess Mqtt out node will publish the message set in the function.
  
  
-![setup weather forecast with Node_Red](../../assets/five_days_weather.png)
+[![setup weather forecast with Node_Red](../../assets/five_days_weather.png)](../../assets/five_days_weather.png)
+
  
 ## Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/weather_forecast.json){:target="_blank"}
