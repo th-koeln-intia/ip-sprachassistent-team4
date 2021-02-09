@@ -1,114 +1,219 @@
 [
   {
-    "id": "8434b087.927d2",
+    "id": "31ec3cf9.1fb574",
     "type": "tab",
-    "label": "Light Control",
-    "disabled": false,
+    "label": "German headlines API",
+    "disabled": true,
     "info": ""
   },
   {
-    "id": "a5cf4675.14e658",
-    "type": "mqtt in",
-    "z": "8434b087.927d2",
-    "name": "",
-    "topic": "hermes/intent/LightStatus",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "f80b985a.2ffa78",
-    "x": 290,
-    "y": 240,
-    "wires": [
-      [
-        "aab28f80.3024e"
-      ]
-    ]
-  },
-  {
-    "id": "aab28f80.3024e",
-    "type": "switch",
-    "z": "8434b087.927d2",
-    "name": "",
-    "property": "payload.slots[1].value.value",
-    "propertyType": "msg",
-    "rules": [
+    "id": "64dc83.ec11037c",
+    "type": "inject",
+    "z": "31ec3cf9.1fb574",
+    "name": "manual start",
+    "props": [
       {
-        "t": "eq",
-        "v": "an",
-        "vt": "str"
+        "p": "payload"
       },
       {
-        "t": "eq",
-        "v": "aus",
+        "p": "topic",
         "vt": "str"
       }
     ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 510,
-    "y": 240,
-    "wires": [
-      [
-        "c79a1455.2c9708"
-      ],
-      [
-        "a8dfd7e4.dbc378"
-      ]
-    ]
-  },
-  {
-    "id": "c79a1455.2c9708",
-    "type": "zigbee2mqtt-out",
-    "z": "8434b087.927d2",
-    "name": "Lamp living room ON",
-    "server": "7c9dbd0a.c040e4",
-    "friendly_name": "",
-    "device_id": "0xf0d1b80000175d54",
-    "command": "state",
-    "commandType": "z2m_cmd",
-    "payload": "on",
-    "payloadType": "z2m_payload",
-    "transition": 0,
-    "x": 740,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "a8dfd7e4.dbc378",
-    "type": "zigbee2mqtt-out",
-    "z": "8434b087.927d2",
-    "name": "Lamp living room OFF",
-    "server": "7c9dbd0a.c040e4",
-    "friendly_name": "",
-    "device_id": "0xf0d1b80000175d54",
-    "command": "state",
-    "commandType": "z2m_cmd",
-    "payload": "off",
-    "payloadType": "z2m_payload",
-    "transition": 0,
-    "x": 740,
-    "y": 280,
-    "wires": []
-  },
-  {
-    "id": "a70cd5f1.0111c8",
-    "type": "zigbee2mqtt-bridge",
-    "z": "8434b087.927d2",
-    "name": "",
-    "server": "7c9dbd0a.c040e4",
-    "topic": null,
-    "x": 290,
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 210,
     "y": 120,
     "wires": [
       [
-        "4ad01196.91cf8"
+        "6b0226b5.aab9e8"
       ]
     ]
   },
   {
-    "id": "4ad01196.91cf8",
+    "id": "6b0226b5.aab9e8",
+    "type": "http request",
+    "z": "31ec3cf9.1fb574",
+    "name": "get news for DE",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "https://newsapi.org/v2/top-headlines?country=de&apiKey=f6a6faa276244dc0adef6f010a58f8cf",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 400,
+    "y": 140,
+    "wires": [
+      [
+        "e58e67e8.4674e8"
+      ]
+    ]
+  },
+  {
+    "id": "7a9a4824.7e7528",
     "type": "debug",
-    "z": "8434b087.927d2",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1190,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "e58e67e8.4674e8",
+    "type": "json",
+    "z": "31ec3cf9.1fb574",
+    "name": "parse json",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 590,
+    "y": 140,
+    "wires": [
+      [
+        "9d17f57b.235458"
+      ]
+    ]
+  },
+  {
+    "id": "c5f9b4b6.15afd8",
+    "type": "split",
+    "z": "31ec3cf9.1fb574",
+    "name": "split messages",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 980,
+    "y": 140,
+    "wires": [
+      [
+        "3edf78f8.89f758",
+        "80c09d7e.74808",
+        "6adc05a4.d7ed3c"
+      ]
+    ]
+  },
+  {
+    "id": "9d17f57b.235458",
+    "type": "function",
+    "z": "31ec3cf9.1fb574",
+    "name": "reduce payload",
+    "func": "msg.payload = msg.payload.articles;\nflow.set(\"readout\", 1);\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 780,
+    "y": 140,
+    "wires": [
+      [
+        "c5f9b4b6.15afd8"
+      ]
+    ]
+  },
+  {
+    "id": "5d92560b.9ae4c8",
+    "type": "function",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "func": "let text = msg.payload.title;\n\nmsg.payload = {\n    text: text,\n    siteId: \"default\",\n    id: \"news\"\n};\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 1000,
+    "y": 220,
+    "wires": [
+      [
+        "7a9a4824.7e7528",
+        "594b0d34.445114"
+      ]
+    ]
+  },
+  {
+    "id": "594b0d34.445114",
+    "type": "mqtt out",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "topic": "hermes/tts/say",
+    "qos": "",
+    "retain": "false",
+    "broker": "e19fa228.bc1cf",
+    "x": 1200,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "c4845d80.f5852",
+    "type": "mqtt in",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "topic": "hermes/intent/PlayHeadlines",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 160,
+    "y": 160,
+    "wires": [
+      [
+        "6b0226b5.aab9e8"
+      ]
+    ]
+  },
+  {
+    "id": "acb6c663.46f938",
+    "type": "mqtt in",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "topic": "hermes/tts/sayFinished",
+    "qos": "0",
+    "datatype": "auto",
+    "broker": "e19fa228.bc1cf",
+    "x": 180,
+    "y": 340,
+    "wires": [
+      [
+        "b4912297.6306d"
+      ]
+    ]
+  },
+  {
+    "id": "82559fd5.4c0a6",
+    "type": "mqtt in",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "topic": "hermes/intent/Stop",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "e19fa228.bc1cf",
+    "x": 190,
+    "y": 420,
+    "wires": [
+      [
+        "45de6b0f.eb93f4"
+      ]
+    ]
+  },
+  {
+    "id": "40132cde.a0b144",
+    "type": "debug",
+    "z": "31ec3cf9.1fb574",
     "name": "",
     "active": false,
     "tosidebar": true,
@@ -118,66 +223,317 @@
     "targetType": "full",
     "statusVal": "",
     "statusType": "auto",
-    "x": 490,
-    "y": 120,
+    "x": 610,
+    "y": 480,
     "wires": []
   },
   {
-    "id": "f1851ab5.a1b1e8",
-    "type": "mqtt in",
-    "z": "8434b087.927d2",
-    "name": "",
-    "topic": "hermes/intent/LightBrightness",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "f80b985a.2ffa78",
-    "x": 300,
-    "y": 360,
-    "wires": [
-      [
-        "23ea3ba.8ced2c4"
-      ]
-    ]
-  },
-  {
-    "id": "2f7c4397.5829cc",
-    "type": "zigbee2mqtt-out",
-    "z": "8434b087.927d2",
-    "name": "LightBrightness",
-    "server": "7c9dbd0a.c040e4",
-    "friendly_name": "",
-    "device_id": "0xf0d1b80000175d54",
-    "command": "brightness",
-    "commandType": "z2m_cmd",
-    "payload": "brightness",
-    "payloadType": "msg",
-    "transition": 0,
-    "x": 820,
-    "y": 360,
-    "wires": []
-  },
-  {
-    "id": "23ea3ba.8ced2c4",
+    "id": "45de6b0f.eb93f4",
     "type": "function",
-    "z": "8434b087.927d2",
-    "name": "GetLightBrightness",
-    "func": "\nmsg = {\n         brightness: 255*msg.payload.slots[1].value.value/100\n    }\n    return msg;",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "func": "let text = \"OK\";\nflow.set(\"readout\", 0);\nmsg.payload = {\n    text: text,\n    readout: flow.get(\"readout\")\n};\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 570,
-    "y": 360,
+    "x": 400,
+    "y": 420,
     "wires": [
       [
-        "2f7c4397.5829cc"
+        "40132cde.a0b144",
+        "e55a0b.4f58f5f8"
       ]
     ]
   },
   {
-    "id": "f80b985a.2ffa78",
-    "type": "mqtt-broker",
+    "id": "e55a0b.4f58f5f8",
+    "type": "mqtt out",
+    "z": "31ec3cf9.1fb574",
     "name": "",
+    "topic": "hermes/tts/say",
+    "qos": "",
+    "retain": "false",
+    "broker": "e19fa228.bc1cf",
+    "x": 640,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "3edf78f8.89f758",
+    "type": "debug",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1170,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "80c09d7e.74808",
+    "type": "q-gate",
+    "z": "31ec3cf9.1fb574",
+    "name": "q-gate",
+    "controlTopic": "control",
+    "defaultState": "queueing",
+    "openCmd": "open",
+    "closeCmd": "close",
+    "toggleCmd": "toggle",
+    "queueCmd": "queue",
+    "defaultCmd": "default",
+    "triggerCmd": "trigger",
+    "flushCmd": "flush",
+    "resetCmd": "reset",
+    "peekCmd": "",
+    "dropCmd": "",
+    "statusCmd": "",
+    "maxQueueLength": "0",
+    "keepNewest": false,
+    "qToggle": false,
+    "persist": false,
+    "x": 810,
+    "y": 220,
+    "wires": [
+      [
+        "5d92560b.9ae4c8"
+      ]
+    ]
+  },
+  {
+    "id": "7fda0b84.0b8834",
+    "type": "switch",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "property": "payload.id",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "news",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 510,
+    "y": 340,
+    "wires": [
+      [
+        "a9bc6b0e.750468"
+      ]
+    ]
+  },
+  {
+    "id": "b4912297.6306d",
+    "type": "json",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 370,
+    "y": 340,
+    "wires": [
+      [
+        "7fda0b84.0b8834"
+      ]
+    ]
+  },
+  {
+    "id": "41333515.afbfdc",
+    "type": "delay",
+    "z": "31ec3cf9.1fb574",
+    "name": "delay 5 secs",
+    "pauseType": "delay",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "x": 210,
+    "y": 280,
+    "wires": [
+      [
+        "6f802934.d508b8"
+      ]
+    ]
+  },
+  {
+    "id": "6f802934.d508b8",
+    "type": "function",
+    "z": "31ec3cf9.1fb574",
+    "name": "trigger q-gate",
+    "func": "msg.payload = \"trigger\";\nmsg.topic = \"control\";\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 390,
+    "y": 280,
+    "wires": [
+      [
+        "80c09d7e.74808"
+      ]
+    ]
+  },
+  {
+    "id": "a9bc6b0e.750468",
+    "type": "switch",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "property": "readout",
+    "propertyType": "flow",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "1",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 650,
+    "y": 340,
+    "wires": [
+      [
+        "41333515.afbfdc"
+      ],
+      [
+        "387ecbfd.4d5714",
+        "d1d07c80.5358b"
+      ]
+    ]
+  },
+  {
+    "id": "387ecbfd.4d5714",
+    "type": "debug",
+    "z": "31ec3cf9.1fb574",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 850,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "d1d07c80.5358b",
+    "type": "function",
+    "z": "31ec3cf9.1fb574",
+    "name": "reset q-gate",
+    "func": "msg.payload = \"reset\";\nmsg.topic = \"control\";\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 850,
+    "y": 320,
+    "wires": [
+      [
+        "80c09d7e.74808"
+      ]
+    ]
+  },
+  {
+    "id": "2f69558e.5fc2ca",
+    "type": "delay",
+    "z": "31ec3cf9.1fb574",
+    "name": "delay 1 sec",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "x": 390,
+    "y": 220,
+    "wires": [
+      [
+        "979468d2.c2e8a8"
+      ]
+    ]
+  },
+  {
+    "id": "979468d2.c2e8a8",
+    "type": "function",
+    "z": "31ec3cf9.1fb574",
+    "name": "trigger q-gate",
+    "func": "let message = {\n    payload: \"trigger\",\n    topic: \"control\"\n}\n\nreturn message;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 590,
+    "y": 220,
+    "wires": [
+      [
+        "80c09d7e.74808"
+      ]
+    ]
+  },
+  {
+    "id": "6adc05a4.d7ed3c",
+    "type": "delay",
+    "z": "31ec3cf9.1fb574",
+    "name": "delay 1 msg/m",
+    "pauseType": "rate",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "minute",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": true,
+    "x": 200,
+    "y": 220,
+    "wires": [
+      [
+        "2f69558e.5fc2ca"
+      ]
+    ]
+  },
+  {
+    "id": "43b4bb7e.b59ca4",
+    "type": "comment",
+    "z": "31ec3cf9.1fb574",
+    "name": "Download and start playing german headlines",
+    "info": "",
+    "x": 210,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "e19fa228.bc1cf",
+    "type": "mqtt-broker",
+    "name": "mqtt",
     "broker": "127.0.0.1",
     "port": "1883",
     "clientid": "",
@@ -194,17 +550,5 @@
     "willTopic": "",
     "willQos": "0",
     "willPayload": ""
-  },
-  {
-    "id": "7c9dbd0a.c040e4",
-    "type": "zigbee2mqtt-server",
-    "name": "Licht",
-    "host": "127.0.0.1",
-    "mqtt_port": "1883",
-    "mqtt_username": "",
-    "mqtt_password": "",
-    "tls": "",
-    "usetls": false,
-    "base_topic": "zigbee2mqtt"
   }
 ]
