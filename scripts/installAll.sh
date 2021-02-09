@@ -5,7 +5,9 @@ language=""
 
 if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
 
-    echo "Update"
+    echo "$(tput setaf 2)Welcome to auto installation of sherlock voice assistant! $(tput sgr 0)"
+    echo "$(tput setaf 2)Your system will be updated, upgraded and software will be installed now.$(tput sgr 0)"
+    echo "$(tput setaf 3)Update and upgrade system! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
 
     #update
@@ -16,13 +18,7 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     #setup Workfolder
     mkdir $WORKFOLDER
     cd $WORKFOLDER
-    echo "Voicecard"
     read -p "Press [Enter] key to continue..."
-
-    #install seeed-voicecard
-    git clone https://github.com/HinTak/seeed-voicecard.git
-    cd seeed-voicecard
-    sudo ./install.sh
 
     echo "if [[ -n \$SSH_CONNECTION ]]; then bash $STARTFOLDER/$(basename $0); fi" >> ~/.bashrc
     echo "$STARTFOLDER/$(basename $0)" >> $WORKFOLDER/rhasspy-resume-after-reboot
@@ -32,11 +28,11 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     sudo rm /etc/xdg/autostart/piwiz.desktop
 
     #reboot
-    echo "Don't panic, your system will reboot, after your next login the Installation continue."
+    echo "$(tput setaf 3)Don't panic, your system will reboot, after your next login the Installation continue. $(tput sgr 0)"
     read -p "Press [Enter] key to reboot..."
     sudo reboot
 else
-    echo "Welcome back. The Installation continues."
+    echo "$(tput setaf 2)Welcome back. The Installation continues! $(tput sgr 0)"
 
     # Check language
     echo -e "Choose your language!"
@@ -57,23 +53,30 @@ else
       fi
     done
 
+    #install seeed-voicecard
+    echo "$(tput setaf 3)Install Seeed-Voicecard! $(tput sgr 0)"
+    read -p "Press [Enter] key to continues..."
+    git clone https://github.com/HinTak/seeed-voicecard.git
+    cd seeed-voicecard
+    sudo ./install.sh
+
     #remove from autostart
     sed -i '$d' ~/.bashrc
     rm -f $WORKFOLDER/rhasspy-resume-after-reboot
-    echo "conf"
-    read -p "Press [Enter] key to continues..."
 
     #overwrite asound.conf
+    echo "$(tput setaf 3)download asound.conf! $(tput sgr 0)"
+    read -p "Press [Enter] key to continues..."
     sudo wget 'https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/asound.conf' -O /etc/asound.conf
 
     #install mqtt server
     cd $WORKFOLDER
-    echo "MQTT"
+    echo "$(tput setaf 3)Install MQTT server! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     sudo apt-get install mosquitto mosquitto-clients -y
 
     #install nodered
-    echo "NodeRed"
+    echo "$(tput setaf 3)Install Node-RED! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
 
     cd $WORKFOLDER
@@ -89,8 +92,8 @@ else
     chmod +x install-node-red-npm-packages-and-flows
     ./install-node-red-npm-packages-and-flows
 
-    #install zigbee
-    echo "zigbee"
+    #install zigbee2mqtt
+    echo "$(tput setaf 3)Install zigbee2mqtt! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install_zigbee2mqtt.sh
     chmod +x install_zigbee2mqtt.sh
@@ -100,8 +103,8 @@ else
     sudo systemctl enable zigbee2mqtt.service
     sudo systemctl start zigbee2mqtt.service
 
-    #install rhasspy
-    echo "rhasspy"
+    #install Rhasspy
+    echo "$(tput setaf 3)Install Rhasspy! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     cd $WORKFOLDER
     wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb
@@ -111,7 +114,7 @@ else
     sudo systemctl enable rhasspy
     sudo systemctl start rhasspy
 
-    echo "configs"
+    echo "$(tput setaf 3)Download Rhasspy config files! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     mkdir -p /home/$USER/.config/rhasspy/profiles/$language/slots
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/custom_words_$language.txt -O /home/$USER/.config/rhasspy/profiles/$language/custom_words.txt
@@ -122,7 +125,7 @@ else
     sudo systemctl restart rhasspy
 
     #install hermes led control
-    echo "hlc"
+    echo "$(tput setaf 3)Install Hermes-LED-Control! $(tput sgr 0)"
     echo "$(tput setaf 3) Answer the questions after you pressed enter like following: "
     echo "* What assistant engine are you using? Enter 2 for rhasspy"
     echo "* What's the path to your assistant config file? Type in your path to your profile.json. The default path is this /home/pi/.config/rhasspy/profiles/de/profile.json"
@@ -135,21 +138,21 @@ else
     sudo chmod +x hlc_download.sh
     sudo ./hlc_download.sh
 
-    #install deepspeech
-    echo "deepspeech"
+    #install Deepspeech
+    echo "$(tput setaf 3)Install Deepspeech! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install_rhasspy_deepspeech_$language.sh -O $WORKFOLDER/install-rhasspy-deepspeech.sh
     chmod +x ./install-rhasspy-deepspeech.sh
     ./install-rhasspy-deepspeech.sh
 
-    #install snips nlu
-    echo "snips"
+    #install Snips-NLU
+    echo "$(tput setaf 3)Install Snips-NLU! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install_rhasspy_snips_nlu_venv_$language.sh -O $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     chmod +x $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 
     #installation complete
-    echo "Installation complete! Your raspberry pi will reboot now."
+    echo "$(tput setaf 2)Installation complete! Your raspberry pi will reboot now! $(tput sgr 0)"
     sudo reboot
 fi
