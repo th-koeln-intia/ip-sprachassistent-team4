@@ -66,18 +66,18 @@ else
     #overwrite asound.conf
     sudo wget 'https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/data/asound.conf' -O /etc/asound.conf
 
-    #install mqtt
+    #install mqtt server
     cd $WORKFOLDER
     echo "MQTT"
     read -p "Press [Enter] key to continue..."
-    install mqtt server
     sudo apt-get install mosquitto mosquitto-clients -y
+
+    #install nodered
     echo "NodeRed"
     read -p "Press [Enter] key to continue..."
 
     cd $WORKFOLDER
 
-    #install nodered
     wget https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered -O $WORKFOLDER/update-nodejs-and-nodered
     sudo chmod +x $WORKFOLDER/update-nodejs-and-nodered
     $WORKFOLDER/update-nodejs-and-nodered --confirm-root --confirm-install --confirm-pi
@@ -92,7 +92,6 @@ else
     #install zigbee
     echo "zigbee"
     read -p "Press [Enter] key to continue..."
-    install zigbee2mqtt
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install_zigbee2mqtt.sh
     chmod +x install_zigbee2mqtt.sh
     ./install_zigbee2mqtt.sh
@@ -108,10 +107,9 @@ else
     wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb
     sudo apt install ./rhasspy_2.5.7_armhf.deb -y
 
-    echo "rhasspy systemd"
-    read -p "Press [Enter] key to continue..."
     sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy_$language.service -O /etc/systemd/system/rhasspy.service
     sudo systemctl enable rhasspy
+    sudo systemctl start rhasspy
 
     echo "configs"
     read -p "Press [Enter] key to continue..."
