@@ -49,8 +49,7 @@ sudo ./hlc_download.sh
 
 Answer the questions like following:
 * What assistant engine are you using? Enter 2 for rhasspy
-* What's the path to your assistant config file? Press Enter 
-(Path Should be like (_/home/pi/.config/rhasspy/profiles/de/profile.json_)
+* What's the path to your assistant config file? **Type in your path to your profile.json. The default path is this: `/home/pi/.config/rhasspy/profiles/de/profile.json`**
 * What device do you wish to control with SLC? Enter 2 for respeaker4
 * What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google
 * Do you need to install / configure your respeaker4? Enter 2 for no 
