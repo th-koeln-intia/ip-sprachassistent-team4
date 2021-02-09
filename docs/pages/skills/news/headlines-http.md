@@ -30,7 +30,7 @@ The TTS will then output the first ten news from n-tv web page
 
 Picture below shows the complete nodes used.
 
-![Headlines-http](../../../assets/get_top_news.png)
+[![Headlines-http](../../../assets/get_top_news.png)](../../../assets/get_top_news.png)
 
 # Download the flow
 - [Download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/flows/headlines_http_req_de.json){:target="_blank"}

@@ -1,182 +1,210 @@
 [
-  {
-    "id": "671fb83a.4733e8",
-    "type": "tab",
-    "label": "German headlines http",
-    "disabled": false,
-    "info": ""
-  },
-  {
-    "id": "e6aad99e.4dd218",
-    "type": "http request",
-    "z": "671fb83a.4733e8",
-    "name": "get request",
-    "method": "GET",
-    "ret": "txt",
-    "paytoqs": "ignore",
-    "url": "https://www.n-tv.de",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "x": 430,
-    "y": 100,
-    "wires": [
-      [
-        "d116c8f2.5505b8"
-      ]
-    ]
-  },
-  {
-    "id": "d116c8f2.5505b8",
-    "type": "html",
-    "z": "671fb83a.4733e8",
-    "name": "get table",
-    "property": "payload",
-    "outproperty": "payload",
-    "tag": ".col-xs-12.col-sm-7.col-md-8 article[class=\"teaser teaser--wide teaser--hero \"] span",
-    "ret": "text",
-    "as": "single",
-    "x": 600,
-    "y": 100,
-    "wires": [
-      [
-        "a292444f.a000e8"
-      ]
-    ]
-  },
-  {
-    "id": "2c69c238.7f279e",
-    "type": "function",
-    "z": "671fb83a.4733e8",
-    "name": "GetText",
-    "func": "var result = msg.payload;\nvar News = [];\nif (result !=0){\n    for(var i = 0; i < msg.payload.getTopic.length; i++){\n        News.push(msg.payload.getTopic[i] + \"\\n \" + msg.payload.getTitel[i] + \" \\n\" + msg.payload.getNews[i]) ;\n        \n       }\n    }\n    \n\n//msg.payload = {\n  //  text:{\n    //    new1:  News[0],\n      //  new2:  News[1]\n    //},\n      //siteId : \"default\"\n      //}\nmsg.payload =  News;     \nreturn msg;\n\n\n//msg.payload ={\n//    country: country,\n//    kur : kurs\n//}\n//return msg;\n//forcast[i].dt_txt.indexOf(time) > -1\n//payload.getCurrencyNames[10]\n//payload.getCountries[0]\n//msg.payload = {text:  \"Ein Euro entpricht \"  + ExchangeRate.toPrecision(3) + \" \" + currency , \"siteId\" : \"default\"}",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 260,
-    "y": 180,
-    "wires": [
-      [
-        "9309d278.f42b5"
-      ]
-    ]
-  },
-  {
-    "id": "bbd3168d.9cf2d8",
-    "type": "mqtt in",
-    "z": "671fb83a.4733e8",
-    "name": "",
-    "topic": "hermes/intent/GetTopTenNews",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "f80b985a.2ffa78",
-    "x": 190,
-    "y": 100,
-    "wires": [
-      [
-        "e6aad99e.4dd218"
-      ]
-    ]
-  },
-  {
-    "id": "be6950a3.a4ff5",
-    "type": "mqtt out",
-    "z": "671fb83a.4733e8",
-    "name": "",
-    "topic": "hermes/tts/say",
-    "qos": "2",
-    "retain": "true",
-    "broker": "f80b985a.2ffa78",
-    "x": 840,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "9309d278.f42b5",
-    "type": "split",
-    "z": "671fb83a.4733e8",
-    "name": "split messages",
-    "splt": "\\n",
-    "spltType": "str",
-    "arraySplt": "1",
-    "arraySpltType": "len",
-    "stream": false,
-    "addname": "",
-    "x": 440,
-    "y": 180,
-    "wires": [
-      [
-        "57a5a129.2ffa2"
-      ]
-    ]
-  },
-  {
-    "id": "57a5a129.2ffa2",
-    "type": "function",
-    "z": "671fb83a.4733e8",
-    "name": "GetTextForTTS",
-    "func": "\n      //}\nmsg.payload = {text: msg.payload}      \nreturn msg;\n\n\n//msg.payload ={\n//    country: country,\n//    kur : kurs\n//}\n//return msg;\n//forcast[i].dt_txt.indexOf(time) > -1\n//payload.getCurrencyNames[10]\n//payload.getCountries[0]\n//msg.payload = {text:  \"Ein Euro entpricht \"  + ExchangeRate.toPrecision(3) + \" \" + currency , \"siteId\" : \"default\"}",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 640,
-    "y": 180,
-    "wires": [
-      [
-        "be6950a3.a4ff5"
-      ]
-    ]
-  },
-  {
-    "id": "a292444f.a000e8",
-    "type": "function",
-    "z": "671fb83a.4733e8",
-    "name": "CollectNewsWithoutVideo",
-    "func": "//vstore only the first 10 news\nvar getTopic = [];\nvar getTitel =[];\nvar getNews = [];\nvar getVideo = [];\nvar j= 30;\nvar k = 0;\nvar update = \"update\";\nvar newMessage =[];\n\nvar result = msg.payload;\n\n//If there is an update string on the beginning of the Title, just ignore the “update” String\nif (result !=0){\n    for(var p = 0; p < msg.payload.length ; p++){\n        if (msg.payload[p].includes(\"update\", 0)){\n        newMessage.push(msg.payload[p].replace(\"update\", \"\"));\n        }\n        else\n        newMessage.push(msg.payload[p]);\n    \n    }\n}\n//we remove empty arrays\n    for(var s = 0; s < newMessage.length ; s++){\n        if (newMessage[s].length===0){\n        newMessage.pop(newMessage[p]);\n        }\n    \n    }\n\n//we do not want to get \"Video\" titel\nif (newMessage !=0){\n    for(var i = 0; i < j; i+=3){\n        if(newMessage[i].toString() == \"Video\"){ \n            getVideo.push(i);\n       getTopic.push(newMessage[i+2]);\n         getTitel.push(newMessage[i+3]);\n         getNews.push(newMessage[i+4]);\n         j= j+2;\n           k= i;\n            i= k+2;\n         continue;\n        }\n        else {\n         getTopic.push(result[i]);\n         getTitel.push(result[i+1]);\n         getNews.push(result[i+2]);\n\n\n    }\n\n}\n}\n\n//store topic, titel and new\n\nmsg.payload ={\n    getTopic: getTopic,\n    getTitel: getTitel,\n    getNews: getNews,\n}\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 810,
-    "y": 100,
-    "wires": [
-      [
-        "2c69c238.7f279e"
-      ]
-    ]
-  },
-  {
-    "id": "829d775a.6e8c38",
-    "type": "comment",
-    "z": "671fb83a.4733e8",
-    "name": "Get German Top Ten News",
-    "info": "",
-    "x": 170,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "f80b985a.2ffa78",
-    "type": "mqtt-broker",
-    "name": "",
-    "broker": "127.0.0.1",
-    "port": "1883",
-    "clientid": "",
-    "usetls": false,
-    "compatmode": false,
-    "keepalive": "60",
-    "cleansession": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthPayload": "",
-    "closeTopic": "",
-    "closeQos": "0",
-    "closePayload": "",
-    "willTopic": "",
-    "willQos": "0",
-    "willPayload": ""
-  }
+    {
+        "id": "8a0a7372.d84a8",
+        "type": "tab",
+        "label": "German headlines http",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9e7bb85e.c5b038",
+        "type": "http request",
+        "z": "8a0a7372.d84a8",
+        "name": "get request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://www.n-tv.de",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 398,
+        "y": 100,
+        "wires": [
+            [
+                "a5754562.639358"
+            ]
+        ]
+    },
+    {
+        "id": "a5754562.639358",
+        "type": "html",
+        "z": "8a0a7372.d84a8",
+        "name": "GetTopNews",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": ".col-xs-12.col-sm-7.col-md-8 article[class=\"teaser teaser--wide teaser--hero \"] span",
+        "ret": "text",
+        "as": "single",
+        "x": 581,
+        "y": 100,
+        "wires": [
+            [
+                "c0ecfff5.d509b"
+            ]
+        ]
+    },
+    {
+        "id": "b9d8bd05.f2e26",
+        "type": "function",
+        "z": "8a0a7372.d84a8",
+        "name": "GetText",
+        "func": "var result = msg.payload;\nvar News = [];\nif (result !=0){\n    for(var i = 0; i < msg.payload.getTopic.length; i++){\n        News.push(msg.payload.getTopic[i] + \"\\n \" + msg.payload.getTitel[i] + \" \\n\" + msg.payload.getNews[i]) ;\n        \n       }\n    }\n    \n\n//msg.payload = {\n  //  text:{\n    //    new1:  News[0],\n      //  new2:  News[1]\n    //},\n      //siteId : \"default\"\n      //}\nmsg.payload =  News;     \nreturn msg;\n\n\n//msg.payload ={\n//    country: country,\n//    kur : kurs\n//}\n//return msg;\n//forcast[i].dt_txt.indexOf(time) > -1\n//payload.getCurrencyNames[10]\n//payload.getCountries[0]\n//msg.payload = {text:  \"Ein Euro entpricht \"  + ExchangeRate.toPrecision(3) + \" \" + currency , \"siteId\" : \"default\"}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 295,
+        "y": 160,
+        "wires": [
+            [
+                "2369f913.b18936"
+            ]
+        ]
+    },
+    {
+        "id": "c53fffb3.5ed35",
+        "type": "mqtt in",
+        "z": "8a0a7372.d84a8",
+        "name": "GetTopTenNews",
+        "topic": "hermes/intent/GetTopTenNews",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "f80b985a.2ffa78",
+        "x": 228,
+        "y": 100,
+        "wires": [
+            [
+                "9e7bb85e.c5b038"
+            ]
+        ]
+    },
+    {
+        "id": "6f3c2a28.477174",
+        "type": "mqtt out",
+        "z": "8a0a7372.d84a8",
+        "name": "",
+        "topic": "hermes/tts/say",
+        "qos": "2",
+        "retain": "true",
+        "broker": "f80b985a.2ffa78",
+        "x": 905,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "2369f913.b18936",
+        "type": "split",
+        "z": "8a0a7372.d84a8",
+        "name": "split messages",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": "1",
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 475,
+        "y": 160,
+        "wires": [
+            [
+                "194fe0ab.1adb8f"
+            ]
+        ]
+    },
+    {
+        "id": "194fe0ab.1adb8f",
+        "type": "function",
+        "z": "8a0a7372.d84a8",
+        "name": "GetTextForTTS",
+        "func": "\nmsg.payload = {text: msg.payload}      \nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 675,
+        "y": 160,
+        "wires": [
+            [
+                "6f3c2a28.477174"
+            ]
+        ]
+    },
+    {
+        "id": "c0ecfff5.d509b",
+        "type": "function",
+        "z": "8a0a7372.d84a8",
+        "name": "CollectNewsWithoutVideo",
+        "func": "//vstore only the first 10 news\nvar getTopic = [];\nvar getTitel =[];\nvar getNews = [];\nvar getVideo = [];\nvar j= 30;\nvar k = 0;\nvar update = \"update\";\nvar newMessage =[];\n\nvar result = msg.payload;\n\n//If there is an update string on the beginning of the Title, just ignore the “update” String\nif (result !=0){\n    for(var p = 0; p < msg.payload.length ; p++){\n        if (msg.payload[p].includes(\"update\", 0)){\n        newMessage.push(msg.payload[p].replace(\"update\", \"\"));\n        }\n        else\n        newMessage.push(msg.payload[p]);\n    \n    }\n}\n//we remove empty arrays\n    for(var s = 0; s < newMessage.length ; s++){\n        if (newMessage[s].length===0){\n        newMessage.pop(newMessage[p]);\n        }\n    \n    }\n\n//we do not want to get \"Video\" titel\nif (newMessage !=0){\n    for(var i = 0; i < j; i+=3){\n        if(newMessage[i].toString() == \"Video\"){ \n            getVideo.push(i);\n       getTopic.push(newMessage[i+2]);\n         getTitel.push(newMessage[i+3]);\n         getNews.push(newMessage[i+4]);\n         j= j+2;\n           k= i;\n            i= k+2;\n         continue;\n        }\n        else {\n         getTopic.push(result[i]);\n         getTitel.push(result[i+1]);\n         getNews.push(result[i+2]);\n\n\n    }\n\n}\n}\n\n//store topic, titel and new\n\nmsg.payload ={\n    getTopic: getTopic,\n    getTitel: getTitel,\n    getNews: getNews,\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 802,
+        "y": 100,
+        "wires": [
+            [
+                "4f252d2d.bd97f4"
+            ]
+        ]
+    },
+    {
+        "id": "4f252d2d.bd97f4",
+        "type": "link out",
+        "z": "8a0a7372.d84a8",
+        "name": "",
+        "links": [
+            "dc035ea7.b993b"
+        ],
+        "x": 970,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "dc035ea7.b993b",
+        "type": "link in",
+        "z": "8a0a7372.d84a8",
+        "name": "",
+        "links": [
+            "4f252d2d.bd97f4"
+        ],
+        "x": 165,
+        "y": 160,
+        "wires": [
+            [
+                "b9d8bd05.f2e26"
+            ]
+        ]
+    },
+    {
+        "id": "d299ee27.9e79e",
+        "type": "comment",
+        "z": "8a0a7372.d84a8",
+        "name": "Get German Top Ten News",
+        "info": "",
+        "x": 298,
+        "y": 53,
+        "wires": []
+    },
+    {
+        "id": "f80b985a.2ffa78",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
 ]

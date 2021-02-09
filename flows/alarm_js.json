@@ -1,560 +1,570 @@
 [
   {
-    "id": "2d05d3a9.a6b97c",
-    "type": "tab",
-    "label": "Alarm JS",
-    "disabled": true,
-    "info": ""
+      "id": "2d05d3a9.a6b97c",
+      "type": "tab",
+      "label": "Alarm JS",
+      "disabled": true,
+      "info": ""
   },
   {
-    "id": "fd43be92.3ef1d",
-    "type": "mqtt in",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "topic": "hermes/intent/SetAlarmClock",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "7d5a3618.9ef98",
-    "x": 260,
-    "y": 180,
-    "wires": [
-      [
-        "4db533cc.a64a9c"
+      "id": "fd43be92.3ef1d",
+      "type": "mqtt in",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "topic": "hermes/intent/SetAlarmClock",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "7d5a3618.9ef98",
+      "x": 259,
+      "y": 183,
+      "wires": [
+          [
+              "4db533cc.a64a9c"
+          ]
       ]
-    ]
   },
   {
-    "id": "4db533cc.a64a9c",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "createAlarmObject",
-    "func": "var seconds = 0;\nvar minutes = 0;\nvar hours = 0;\n\nfor(var i = 0; i < msg.payload.slots.length; i++)\n{\n    if(msg.payload.slots[i].slotName === \"seconds\")\n        seconds = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"minutes\")\n        minutes = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"hours\")\n        hours = msg.payload.slots[i].value.value;\n}\nvar alarmSetAt = new Date();\nvar alarmAt = new Date(alarmSetAt.getFullYear(), alarmSetAt.getMonth(), alarmSetAt.getDate(), hours, minutes, seconds);\nnode.warn(alarmSetAt.getTime());\nnode.warn(alarmAt.getTime());\nif(alarmSetAt.getTime() > alarmAt.getTime())\n    alarmAt.setDate(alarmAt.getDate() + 1);\n\nmsg.payload = {alarmSet : alarmSetAt, alarmAt : alarmAt};\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 490,
-    "y": 180,
-    "wires": [
-      [
-        "7602abbc.1fe80c",
-        "6c1a4319.95c85c"
+      "id": "4db533cc.a64a9c",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "createAlarmObject",
+      "func": "var seconds = 0;\nvar minutes = 0;\nvar hours = 0;\n\nfor(var i = 0; i < msg.payload.slots.length; i++)\n{\n    if(msg.payload.slots[i].slotName === \"seconds\")\n        seconds = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"minutes\")\n        minutes = msg.payload.slots[i].value.value;\n    if(msg.payload.slots[i].slotName === \"hours\")\n        hours = msg.payload.slots[i].value.value;\n}\nvar alarmSetAt = new Date();\nvar alarmAt = new Date(alarmSetAt.getFullYear(), alarmSetAt.getMonth(), alarmSetAt.getDate(), hours, minutes, seconds);\nnode.warn(alarmSetAt.getTime());\nnode.warn(alarmAt.getTime());\nif(alarmSetAt.getTime() > alarmAt.getTime())\n    alarmAt.setDate(alarmAt.getDate() + 1);\n\nmsg.payload = {alarmSet : alarmSetAt, alarmAt : alarmAt};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 490,
+      "y": 183,
+      "wires": [
+          [
+              "7602abbc.1fe80c",
+              "6c1a4319.95c85c"
+          ]
       ]
-    ]
   },
   {
-    "id": "888b8cbd.dc101",
-    "type": "json",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "property": "payload",
-    "action": "",
-    "pretty": false,
-    "x": 1250,
-    "y": 240,
-    "wires": [
-      [
-        "659e0cf8.ddf42c"
+      "id": "888b8cbd.dc101",
+      "type": "json",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "property": "payload",
+      "action": "",
+      "pretty": false,
+      "x": 948,
+      "y": 240,
+      "wires": [
+          [
+              "659e0cf8.ddf42c"
+          ]
       ]
-    ]
   },
   {
-    "id": "659e0cf8.ddf42c",
-    "type": "file",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "filename": "/home/pi/.config/rhasspy/profiles/de/data/alarms.json",
-    "appendNewline": false,
-    "createDir": true,
-    "overwriteFile": "true",
-    "encoding": "none",
-    "x": 1580,
-    "y": 240,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "be372548.e6b75",
-    "type": "inject",
-    "z": "2d05d3a9.a6b97c",
-    "name": "loadAlarms",
-    "props": [],
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payloadType": "str",
-    "x": 230,
-    "y": 120,
-    "wires": [
-      [
-        "bc235892.93c9e"
+      "id": "659e0cf8.ddf42c",
+      "type": "file",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "filename": "/home/pi/.config/rhasspy/profiles/de/data/alarms.json",
+      "appendNewline": false,
+      "createDir": true,
+      "overwriteFile": "true",
+      "encoding": "none",
+      "x": 1236,
+      "y": 240,
+      "wires": [
+          []
       ]
-    ]
   },
   {
-    "id": "d2a10616.deb7d8",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "setAlarmsGlobal",
-    "func": "\n                \nglobal.set(\"alarms\", msg.payload);\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1280,
-    "y": 120,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "bc235892.93c9e",
-    "type": "file in",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "filename": "/home/pi/.config/rhasspy/profiles/de/data/alarms.json",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "x": 600,
-    "y": 120,
-    "wires": [
-      [
-        "f765fcf7.f50d"
+      "id": "be372548.e6b75",
+      "type": "inject",
+      "z": "2d05d3a9.a6b97c",
+      "name": "loadAlarms",
+      "props": [],
+      "repeat": "",
+      "crontab": "",
+      "once": true,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payloadType": "str",
+      "x": 235,
+      "y": 129,
+      "wires": [
+          [
+              "bc235892.93c9e"
+          ]
       ]
-    ]
   },
   {
-    "id": "f765fcf7.f50d",
-    "type": "json",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "property": "payload",
-    "action": "",
-    "pretty": false,
-    "x": 970,
-    "y": 120,
-    "wires": [
-      [
-        "d2a10616.deb7d8"
+      "id": "d2a10616.deb7d8",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "setAlarmsGlobal",
+      "func": "\n                \nglobal.set(\"alarms\", msg.payload);\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 1062,
+      "y": 129,
+      "wires": [
+          []
       ]
-    ]
   },
   {
-    "id": "f3d1698a.4b983",
-    "type": "inject",
-    "z": "2d05d3a9.a6b97c",
-    "name": "saveAlarms",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 230,
-    "y": 240,
-    "wires": [
-      [
-        "6c1a4319.95c85c"
+      "id": "bc235892.93c9e",
+      "type": "file in",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "filename": "/home/pi/.config/rhasspy/profiles/de/data/alarms.json",
+      "format": "utf8",
+      "chunk": false,
+      "sendError": false,
+      "encoding": "none",
+      "x": 600,
+      "y": 129,
+      "wires": [
+          [
+              "f765fcf7.f50d"
+          ]
       ]
-    ]
   },
   {
-    "id": "6c1a4319.95c85c",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "addToGlobalAlarms",
-    "func": "\nvar alarms = global.get(\"alarms\");\nif(alarms === undefined)\n    alarms = [];\n\nif(msg.payload != null)\n{\n    alarms.push(msg.payload);\n    global.set(\"alarms\", alarms);\n}\n\nmsg.payload = alarms;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 750,
-    "y": 240,
-    "wires": [
-      [
-        "888b8cbd.dc101"
+      "id": "f765fcf7.f50d",
+      "type": "json",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "property": "payload",
+      "action": "",
+      "pretty": false,
+      "x": 896,
+      "y": 129,
+      "wires": [
+          [
+              "d2a10616.deb7d8"
+          ]
       ]
-    ]
   },
   {
-    "id": "be63342a.642308",
-    "type": "inject",
-    "z": "2d05d3a9.a6b97c",
-    "name": "resetAlarms",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "[]",
-    "payloadType": "str",
-    "x": 230,
-    "y": 280,
-    "wires": [
-      [
-        "be0d499a.64d5b"
+      "id": "f3d1698a.4b983",
+      "type": "inject",
+      "z": "2d05d3a9.a6b97c",
+      "name": "saveAlarms",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "x": 235,
+      "y": 240,
+      "wires": [
+          [
+              "6c1a4319.95c85c"
+          ]
       ]
-    ]
   },
   {
-    "id": "be0d499a.64d5b",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "resetAllAlarms",
-    "func": "global.set(\"alarms\", []);\nmsg.payload = null;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 480,
-    "y": 280,
-    "wires": [
-      [
-        "6c1a4319.95c85c"
+      "id": "6c1a4319.95c85c",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "addToGlobalAlarms",
+      "func": "\nvar alarms = global.get(\"alarms\");\nif(alarms === undefined)\n    alarms = [];\n\nif(msg.payload != null)\n{\n    alarms.push(msg.payload);\n    global.set(\"alarms\", alarms);\n}\n\nmsg.payload = alarms;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 750,
+      "y": 240,
+      "wires": [
+          [
+              "888b8cbd.dc101"
+          ]
       ]
-    ]
   },
   {
-    "id": "f5377fa5.89fdb8",
-    "type": "inject",
-    "z": "2d05d3a9.a6b97c",
-    "name": "refreshAlarms",
-    "props": [
-      {
-        "p": "payload.alarms",
-        "v": "alarms",
-        "vt": "global"
-      }
-    ],
-    "repeat": "1",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payloadType": "str",
-    "x": 240,
-    "y": 340,
-    "wires": [
-      [
-        "753bec7d.12734c"
+      "id": "be63342a.642308",
+      "type": "inject",
+      "z": "2d05d3a9.a6b97c",
+      "name": "resetAlarms",
+      "props": [
+          {
+              "p": "payload"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "[]",
+      "payloadType": "str",
+      "x": 235,
+      "y": 284,
+      "wires": [
+          [
+              "be0d499a.64d5b"
+          ]
       ]
-    ]
   },
   {
-    "id": "753bec7d.12734c",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "checkAllAlarms",
-    "func": "var dateNow = new Date();\nvar readyAlarms = [];\n\nfor(var i = 0; i < msg.payload.alarms.length; i++)\n{\n    var thenTime = new Date(msg.payload.alarms[i].alarmAt);\n    //node.warn(\"now=\"+dateNow.getTime());\n    //node.warn(\"then=\"+thenTime.getTime());\n\n    if(dateNow.getTime() >= thenTime.getTime())\n    {\n        readyAlarms.push(msg.payload.alarms[i]);\n    }\n}\n\nif(readyAlarms.length > 0)\n    msg.payload = readyAlarms;\nelse\n    msg.payload = null;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 480,
-    "y": 340,
-    "wires": [
-      [
-        "90b3dac3.d1086"
+      "id": "be0d499a.64d5b",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "resetAllAlarms",
+      "func": "global.set(\"alarms\", []);\nmsg.payload = null;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 496,
+      "y": 283,
+      "wires": [
+          [
+              "6c1a4319.95c85c"
+          ]
       ]
-    ]
   },
   {
-    "id": "d31ae009.e959a",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "removeFromGlobalAlarms",
-    "func": "\nvar alarms = global.get(\"alarms\");\nif(alarms === undefined)\n    alarms = [];\n\nif(msg.payload != null)\n{\n    for(var i = 0; i < msg.payload.length; i++)\n    {\n        for( var j = 0; j < alarms.length; j++) \n        { \n            if (alarms[j].alarmSet.toString() == msg.payload[i].alarmSet.toString() && alarms[j].alarmAt.toString() == msg.payload[i].alarmAt.toString())\n            {\n                alarms.splice(j, 1); \n            }\n            /*\n            node.warn(typeof timers[j].timerSet);\n            node.warn(typeof msg.payload[i].timerSet);\n            node.warn(timers[j].timerSet.toString() === msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet.toString() == msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet);\n            node.warn(msg.payload[i].timerSet);\n            */\n        }\n        //node.warn(timers);\n    }\n    \n    \n    global.set(\"alarms\", alarms);\n}\n\nmsg.payload = alarms;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 1040,
-    "y": 320,
-    "wires": [
-      [
-        "888b8cbd.dc101"
+      "id": "f5377fa5.89fdb8",
+      "type": "inject",
+      "z": "2d05d3a9.a6b97c",
+      "name": "refreshAlarms",
+      "props": [
+          {
+              "p": "payload.alarms",
+              "v": "alarms",
+              "vt": "global"
+          }
+      ],
+      "repeat": "1",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payloadType": "str",
+      "x": 245,
+      "y": 340,
+      "wires": [
+          [
+              "753bec7d.12734c"
+          ]
       ]
-    ]
   },
   {
-    "id": "a225dec5.9fbe3",
-    "type": "PlaySound",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "playerOptions": "{}",
-    "audioURI": "/home/pi/.config/rhasspy/profiles/de/data/alarm.mp3",
-    "options": "{\"afplay\" : [\"-l0\"]}",
-    "x": 1290,
-    "y": 420,
-    "wires": [
-      [
-        "9dece1de.3ff91"
+      "id": "753bec7d.12734c",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "checkAllAlarms",
+      "func": "var dateNow = new Date();\nvar readyAlarms = [];\n\nfor(var i = 0; i < msg.payload.alarms.length; i++)\n{\n    var thenTime = new Date(msg.payload.alarms[i].alarmAt);\n    //node.warn(\"now=\"+dateNow.getTime());\n    //node.warn(\"then=\"+thenTime.getTime());\n\n    if(dateNow.getTime() >= thenTime.getTime())\n    {\n        readyAlarms.push(msg.payload.alarms[i]);\n    }\n}\n\nif(readyAlarms.length > 0)\n    msg.payload = readyAlarms;\nelse\n    msg.payload = null;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 480,
+      "y": 340,
+      "wires": [
+          [
+              "90b3dac3.d1086"
+          ]
       ]
-    ]
   },
   {
-    "id": "cab8dca7.80ce",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": " startRinging",
-    "func": "global.set(\"alarmRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 990,
-    "y": 380,
-    "wires": [
-      [
-        "a225dec5.9fbe3"
+      "id": "d31ae009.e959a",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "removeFromGlobalAlarms",
+      "func": "\nvar alarms = global.get(\"alarms\");\nif(alarms === undefined)\n    alarms = [];\n\nif(msg.payload != null)\n{\n    for(var i = 0; i < msg.payload.length; i++)\n    {\n        for( var j = 0; j < alarms.length; j++) \n        { \n            if (alarms[j].alarmSet.toString() == msg.payload[i].alarmSet.toString() && alarms[j].alarmAt.toString() == msg.payload[i].alarmAt.toString())\n            {\n                alarms.splice(j, 1); \n            }\n            /*\n            node.warn(typeof timers[j].timerSet);\n            node.warn(typeof msg.payload[i].timerSet);\n            node.warn(timers[j].timerSet.toString() === msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet.toString() == msg.payload[i].timerSet.toString());\n            node.warn(timers[j].timerSet);\n            node.warn(msg.payload[i].timerSet);\n            */\n        }\n        //node.warn(timers);\n    }\n    \n    \n    global.set(\"alarms\", alarms);\n}\n\nmsg.payload = alarms;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 991,
+      "y": 318,
+      "wires": [
+          [
+              "888b8cbd.dc101"
+          ]
       ]
-    ]
   },
   {
-    "id": "8dc8cb19.a882e",
-    "type": "inject",
-    "z": "2d05d3a9.a6b97c",
-    "name": "stopAlarms",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "stop",
-    "payloadType": "str",
-    "x": 220,
-    "y": 480,
-    "wires": [
-      [
-        "941f1f30.19c8d8"
+      "id": "a225dec5.9fbe3",
+      "type": "PlaySound",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "playerOptions": "{}",
+      "audioURI": "/home/pi/.config/rhasspy/profiles/de/data/alarm.mp3",
+      "options": "{\"afplay\" : [\"-l0\"]}",
+      "x": 1164,
+      "y": 362,
+      "wires": [
+          [
+              "9dece1de.3ff91"
+          ]
       ]
-    ]
   },
   {
-    "id": "90b3dac3.d1086",
-    "type": "switch",
-    "z": "2d05d3a9.a6b97c",
-    "name": "checkNotNull",
-    "property": "payload",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "nnull"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 730,
-    "y": 340,
-    "wires": [
-      [
-        "cab8dca7.80ce",
-        "d31ae009.e959a"
+      "id": "cab8dca7.80ce",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": " startRinging",
+      "func": "global.set(\"alarmRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 952,
+      "y": 362,
+      "wires": [
+          [
+              "a225dec5.9fbe3"
+          ]
       ]
-    ]
   },
   {
-    "id": "941f1f30.19c8d8",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": " stopRinging",
-    "func": "global.set(\"alarmRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 990,
-    "y": 420,
-    "wires": [
-      [
-        "a225dec5.9fbe3"
+      "id": "8dc8cb19.a882e",
+      "type": "inject",
+      "z": "2d05d3a9.a6b97c",
+      "name": "stopAlarms",
+      "props": [
+          {
+              "p": "payload"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "stop",
+      "payloadType": "str",
+      "x": 734,
+      "y": 440,
+      "wires": [
+          [
+              "941f1f30.19c8d8"
+          ]
       ]
-    ]
   },
   {
-    "id": "7602abbc.1fe80c",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "createTTSText",
-    "func": "\n\nvar alarmAt = new Date(msg.payload.alarmAt);\nvar hours = alarmAt.getHours();\nvar minutes = alarmAt.getMinutes();\nvar seconds = alarmAt.getSeconds();\n\nvar text = \"Es wurde ein Wecker für \";\nif(hours !== 0)\n    text += hours + \" Uhr \";\nif(minutes !== 0)\n    text += \"und \" + minutes + \" Minuten \";\nif(seconds !== 0)\n    text += \"und \" + seconds + \" Sekunden \";\n    \ntext += \"gesetzt.\";\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\n\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 740,
-    "y": 180,
-    "wires": [
-      [
-        "3a02c5ae.0e63b2"
+      "id": "90b3dac3.d1086",
+      "type": "switch",
+      "z": "2d05d3a9.a6b97c",
+      "name": "checkNotNull",
+      "property": "payload",
+      "propertyType": "msg",
+      "rules": [
+          {
+              "t": "nnull"
+          }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 730,
+      "y": 340,
+      "wires": [
+          [
+              "cab8dca7.80ce",
+              "d31ae009.e959a"
+          ]
       ]
-    ]
   },
   {
-    "id": "3a02c5ae.0e63b2",
-    "type": "mqtt out",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "topic": "hermes/tts/say",
-    "qos": "2",
-    "retain": "false",
-    "broker": "7d5a3618.9ef98",
-    "x": 1000,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "eeeb0f51.686d78",
-    "type": "mqtt in",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "topic": "hermes/intent/StopAlarmClock",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "7d5a3618.9ef98",
-    "x": 260,
-    "y": 420,
-    "wires": [
-      [
-        "941f1f30.19c8d8"
+      "id": "941f1f30.19c8d8",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": " stopRinging",
+      "func": "global.set(\"alarmRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 960,
+      "y": 414,
+      "wires": [
+          [
+              "a225dec5.9fbe3"
+          ]
       ]
-    ]
   },
   {
-    "id": "9dece1de.3ff91",
-    "type": "switch",
-    "z": "2d05d3a9.a6b97c",
-    "name": "checkAlarmRinging",
-    "property": "alarmRinging",
-    "propertyType": "global",
-    "rules": [
-      {
-        "t": "gt",
-        "v": "0",
-        "vt": "num"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 1,
-    "x": 1470,
-    "y": 420,
-    "wires": [
-      [
-        "a225dec5.9fbe3"
+      "id": "7602abbc.1fe80c",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "createTTSText",
+      "func": "\n\nvar alarmAt = new Date(msg.payload.alarmAt);\nvar hours = alarmAt.getHours();\nvar minutes = alarmAt.getMinutes();\nvar seconds = alarmAt.getSeconds();\n\nvar text = \"Es wurde ein Wecker für \";\nif(hours !== 0)\n    text += hours + \" Uhr \";\nif(minutes !== 0)\n    text += \"und \" + minutes + \" Minuten \";\nif(seconds !== 0)\n    text += \"und \" + seconds + \" Sekunden \";\n    \ntext += \"gesetzt.\";\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\n\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 740,
+      "y": 183,
+      "wires": [
+          [
+              "3a02c5ae.0e63b2"
+          ]
       ]
-    ]
   },
   {
-    "id": "1aaca940.132267",
-    "type": "mqtt in",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "topic": "hermes/intent/NextAlarm",
-    "qos": "2",
-    "datatype": "json",
-    "broker": "7d5a3618.9ef98",
-    "x": 250,
-    "y": 560,
-    "wires": [
-      [
-        "abf9d04e.4f075"
+      "id": "3a02c5ae.0e63b2",
+      "type": "mqtt out",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "topic": "hermes/tts/say",
+      "qos": "2",
+      "retain": "false",
+      "broker": "7d5a3618.9ef98",
+      "x": 1000,
+      "y": 183,
+      "wires": []
+  },
+  {
+      "id": "eeeb0f51.686d78",
+      "type": "mqtt in",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "topic": "hermes/intent/StopAlarmClock",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "7d5a3618.9ef98",
+      "x": 676,
+      "y": 388,
+      "wires": [
+          [
+              "941f1f30.19c8d8"
+          ]
       ]
-    ]
   },
   {
-    "id": "abf9d04e.4f075",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "checkAllAlarms",
-    "func": "var alarms = global.get(\"alarms\");\nvar nextDate = new Date(new Date().getFullYear()+2000, 0, 0, 0, 0, 0);\n\nfor(var i = 0; i < alarms.length; i++)\n{\n    var thenTime = new Date(alarms[i].alarmAt);\n    if(nextDate.getTime() > thenTime.getTime())\n    {\n        nextDate = new Date(thenTime);\n    }\n}\n\nmsg.payload = nextDate;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 480,
-    "y": 560,
-    "wires": [
-      [
-        "b2db5893.58589"
+      "id": "9dece1de.3ff91",
+      "type": "switch",
+      "z": "2d05d3a9.a6b97c",
+      "name": "checkAlarmRinging",
+      "property": "alarmRinging",
+      "propertyType": "global",
+      "rules": [
+          {
+              "t": "gt",
+              "v": "0",
+              "vt": "num"
+          }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1344,
+      "y": 362,
+      "wires": [
+          [
+              "a225dec5.9fbe3"
+          ]
       ]
-    ]
   },
   {
-    "id": "b2db5893.58589",
-    "type": "function",
-    "z": "2d05d3a9.a6b97c",
-    "name": "createAnswerText",
-    "func": "\nvar currentDate = new Date();\n\nvar alarmDate = new Date(msg.payload);\n\nvar text = \"Der nächste Wecker geht \"\nif(currentDate.getFullYear() == alarmDate.getFullYear() && currentDate.getMonth() == alarmDate.getMonth() && currentDate.getDay() == alarmDate.getDay())\n    text += \"Heute \";\nelse if(currentDate.getFullYear() == alarmDate.getFullYear() && currentDate.getMonth() == alarmDate.getMonth() && currentDate.getDay()+1 == alarmDate.getDay())\n    text += \"Morgen \";\nelse\n    text += \"Am \" + alarmDate.getDay() + \"ten \" + alarmDate.getMonth() + \"ten \" + alarmDate.getFullYear() + \" \";\n\ntext += \"um \" + alarmDate.getHours() + \" Uhr \";\nif(alarmDate.getMinutes() !== 0)\n    text += alarmDate.getMinutes();\n\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "x": 730,
-    "y": 560,
-    "wires": [
-      [
-        "70226f39.0593f8"
+      "id": "1aaca940.132267",
+      "type": "mqtt in",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "topic": "hermes/intent/NextAlarm",
+      "qos": "2",
+      "datatype": "json",
+      "broker": "7d5a3618.9ef98",
+      "x": 250,
+      "y": 487,
+      "wires": [
+          [
+              "abf9d04e.4f075"
+          ]
       ]
-    ]
   },
   {
-    "id": "70226f39.0593f8",
-    "type": "mqtt out",
-    "z": "2d05d3a9.a6b97c",
-    "name": "",
-    "topic": "hermes/tts/say",
-    "qos": "2",
-    "retain": "false",
-    "broker": "7d5a3618.9ef98",
-    "x": 980,
-    "y": 560,
-    "wires": []
+      "id": "abf9d04e.4f075",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "checkAllAlarms",
+      "func": "var alarms = global.get(\"alarms\");\nvar nextDate = new Date(new Date().getFullYear()+2000, 0, 0, 0, 0, 0);\n\nfor(var i = 0; i < alarms.length; i++)\n{\n    var thenTime = new Date(alarms[i].alarmAt);\n    if(nextDate.getTime() > thenTime.getTime())\n    {\n        nextDate = new Date(thenTime);\n    }\n}\n\nmsg.payload = nextDate;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 480,
+      "y": 487,
+      "wires": [
+          [
+              "b2db5893.58589"
+          ]
+      ]
   },
   {
-    "id": "7d5a3618.9ef98",
-    "type": "mqtt-broker",
-    "name": "mqtt",
-    "broker": "127.0.0.1",
-    "port": "1883",
-    "clientid": "",
-    "usetls": false,
-    "compatmode": false,
-    "keepalive": "60",
-    "cleansession": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthPayload": "",
-    "closeTopic": "",
-    "closeQos": "0",
-    "closePayload": "",
-    "willTopic": "",
-    "willQos": "0",
-    "willPayload": ""
+      "id": "b2db5893.58589",
+      "type": "function",
+      "z": "2d05d3a9.a6b97c",
+      "name": "createAnswerText",
+      "func": "\nvar currentDate = new Date();\n\nvar alarmDate = new Date(msg.payload);\n\nvar text = \"Der nächste Wecker geht \"\nif(currentDate.getFullYear() == alarmDate.getFullYear() && currentDate.getMonth() == alarmDate.getMonth() && currentDate.getDay() == alarmDate.getDay())\n    text += \"Heute \";\nelse if(currentDate.getFullYear() == alarmDate.getFullYear() && currentDate.getMonth() == alarmDate.getMonth() && currentDate.getDay()+1 == alarmDate.getDay())\n    text += \"Morgen \";\nelse\n    text += \"Am \" + alarmDate.getDay() + \"ten \" + alarmDate.getMonth() + \"ten \" + alarmDate.getFullYear() + \" \";\n\ntext += \"um \" + alarmDate.getHours() + \" Uhr \";\nif(alarmDate.getMinutes() !== 0)\n    text += alarmDate.getMinutes();\n\nmsg.payload = {text: text, siteId: \"default\", id: \"testID\"};\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "x": 730,
+      "y": 487,
+      "wires": [
+          [
+              "70226f39.0593f8"
+          ]
+      ]
+  },
+  {
+      "id": "70226f39.0593f8",
+      "type": "mqtt out",
+      "z": "2d05d3a9.a6b97c",
+      "name": "",
+      "topic": "hermes/tts/say",
+      "qos": "2",
+      "retain": "false",
+      "broker": "7d5a3618.9ef98",
+      "x": 980,
+      "y": 487,
+      "wires": []
+  },
+  {
+      "id": "49c3fea.1561c",
+      "type": "comment",
+      "z": "2d05d3a9.a6b97c",
+      "name": "Alarm JS",
+      "info": "",
+      "x": 640,
+      "y": 91,
+      "wires": []
+  },
+  {
+      "id": "7d5a3618.9ef98",
+      "type": "mqtt-broker",
+      "name": "mqtt",
+      "broker": "127.0.0.1",
+      "port": "1883",
+      "clientid": "",
+      "usetls": false,
+      "compatmode": false,
+      "keepalive": "60",
+      "cleansession": true,
+      "birthTopic": "",
+      "birthQos": "0",
+      "birthPayload": "",
+      "closeTopic": "",
+      "closeQos": "0",
+      "closePayload": "",
+      "willTopic": "",
+      "willQos": "0",
+      "willPayload": ""
   }
 ]
