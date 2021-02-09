@@ -22,7 +22,7 @@ npm uninstall node-red-node-openweathermap
 wget https://raw.githubusercontent.com/node-red/node-red/master/packages/node_modules/node-red/settings.js -O ~/.node-red/settings.js
 
 #Remove all slots
-sudo rm ~/.config/rhasspy/profiles/de/slots/*
+#sudo rm ~/.config/rhasspy/profiles/de/slots/*
 
 #Start node-red service
 sudo systemctl start nodered.service
