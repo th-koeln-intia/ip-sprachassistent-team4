@@ -1,9 +1,8 @@
 ---
 layout: default
-title: Installation
-has_children: true
-parent: Auto installation
-grand_parent: Installation
+title: Auto installation
+parent: Installation
+nav_order: 1
 ---
 
 <details close markdown="block">
