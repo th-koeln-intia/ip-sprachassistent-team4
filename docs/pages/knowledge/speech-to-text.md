@@ -14,19 +14,17 @@ parent: Knowledge
 </details>
 
 # Speech To text
-The concept behind Speech To Text (STT) is the conversion from spoken word into text.
+The concept behind Speech To Text (STT) is the conversion from spoken words into text.
 There are some STT systems, for example Pocketsphinx, Kaldi, DeepSpeech, Remote HTTP Server, External Command.
 In this project we focus on DeepSpeech. 
  
 ## MQTT API
-When the MQTT message ``hermes/asr/startListening`` with a ``sessionID`` is send the STT starts listening on the 
-audio frame at ``hermes/audioServer/<siteId>/audioFrame``. 
+When the MQTT message ``hermes/asr/startListening`` with a ``sessionID`` is sent, the STT starts listening on the audio frame at ``hermes/audioServer/<siteId>/audioFrame``. 
 When silence is detected the message ``hermes/asr/stopListening`` is sent with the same ``sessionID`` as in the ``hermes/asr/startListening`` message.
 The transcripted text is sent with the Message ``hermes/asr/textCaptured``, it's in the text attribute. When an error occurred, the STT publishes the message ``hermes/error/asr``
  
 ## DeepSpeech
-DeepSpeech combines the acoustic model and pronunciation dictionary into a single neural network. It still uses a 
-language model.
+DeepSpeech combines the acoustic model and pronunciation dictionary into a single neural network. It still uses a language model.
 - Acoustic Model: Maps acoustic/speech features to likely phonemes in a given language
 - Pronunciation Dictionary: Needed to train an acoustic model and to do speech recognition
 - Grapheme to phoneme (G2P Model): Can be used to guess the phonetic pronunciation of words
@@ -60,7 +58,6 @@ If you want to optimize the recognition of your Wake Word, you can adjust these 
       "vad_mode": 3
     }
   }
-}
 ```
  
 * `skip_sec` is how many seconds of audio should be ignored before recording
