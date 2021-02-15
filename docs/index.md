@@ -16,7 +16,7 @@ has_toc: true
 
 
 # Welcome To Sherlock
-Sherlock is a simple to use offline voice assistant, it's based on the [rhasspy project](https://rhasspy.readthedocs.io/en/latest/). 
+Sherlock is a simple to use offline voice assistant, it's based on the [Rhasspy project](https://rhasspy.readthedocs.io/en/latest/). 
 It's an opensource project and is working local offline on your [Raspberry Pi](https://de.wikipedia.org/wiki/Raspberry_Pi). 
 So you don't need to worry about your privacy, it stays all on your own device. Unlike the Google Assiustant or Alexa, 
 they upload all you say to them to their cloud to process it. This is not a good way, when you want to have a good privacy for example for vulnerable person.
@@ -32,7 +32,7 @@ they upload all you say to them to their cloud to process it. This is not a good
 # How to use
 This website is separated in three parts. One part is [Installation](/pages/installation), a tutorial for 
 installing Sherlock. The second one is the [Knowledge](pages/knowledge) section. There you find interesting 
-background informations about rhasspy and the surrounding programs. The third one is [Skills](/pages/skills) which contains 
+background informations about Rhasspy and the surrounding programs. The third one is [Skills](/pages/skills) which contains 
 the preset skills for Sherlock and how to configure them.
 
 # Why Sherlock?

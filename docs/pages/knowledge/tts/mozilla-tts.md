@@ -17,17 +17,14 @@ grand_parent: Knowledge
 # Important this is not working on the Raspberry Pi!
 
 # Mozilla TTS
-Mozilla TTS is the counter part to deepspeech. Mozilla TTS is build on a neural network, and gets really impressive results.
-During implementation we find out that Mozilla TTS runs too slow on an Raspberry.
-
-
+Mozilla TTS is the counter part to deepspeech. Mozilla TTS is build on a neural network, and gets really impressive 
+results. During implementation we find out that Mozilla TTS runs too slow on an Raspberry.
 
 # Pros
-- Good pronouncing
+- Good pronunciation
 - Clear and fluid language
-- A pretraing german model is available
-- It's possible to create an own dataset with an own voice (24h audio files are needed)
-- German male voice for Sherlock
+- A pretrained german model with a male voice is available
+- It’s possible to create an own dataset with an own voice (24h audio files are needed)
 
 # Cons
 - It's not fast, it runs *really really slow* on a Raspberry Pi for the weather forecast it takes 1 minutes and 17 seconds to answer.

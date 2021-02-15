@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Deepspeech
+title: DeepSpeech
 parent: Knowledge
 ---
 
@@ -13,12 +13,12 @@ parent: Knowledge
 {:toc}
 </details>
 
-# Deepspeech
+# DeepSpeech
 
 # Why this topic?
-Deespspeech is not working if you let rhasspy doing the setup for it. Rhasspy installs the deepspeech version 0.6.1. 
-After you installed it, rhasspy downloads the language model and trains the model with your sentence.ini.
-When you train deepspeech you maybe find this error message in the rhasspy log (``sudo journalctl -fu rhasspy``):
+Deespspeech is not working if you let Rhasspy doing the setup for it. Rhasspy installs the DeepSpeech version 0.6.1. 
+After you installed it, Rhasspy downloads the language model and trains the model with your sentence.ini.
+When you train DeepSpeech you maybe find this error message in the Rhasspy log (``sudo journalctl -fu rhasspy``):
 ```
  Reading /tmp/tmpkyyqii0l
 Dec 07 10:26:46 raspberrypi rhasspy[20549]: ----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
@@ -54,13 +54,13 @@ the ``Tensorflow lite`` model file ends with ``*.tflite'' and the normal with ``
  - [The third solution is to port a newer version of deepspeech to rhasspy](#the-third-solution-is-to-port-a-newer-version-of-deepspeech-to-rhasspy)
 
 ## The first solution is to find a german language model for version 0.6.1
-There are many language models for deepspeech, but to find a pretrained german model for the right version is really hard. 
+There are many language models for DeepSpeech, but to find a pretrained german model for the right version is really hard. 
 I found two webpages with pretrained german models : [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german) [Jaco-Assistant/deepspeech-polyglot](https://gitlab.com/Jaco-Assistant/deepspeech-polyglot)
-But there is no version for deepspeech 0.6.1. You can search for yourself, maybe you are luckier than I.
+But there is no version for DeepSpeech 0.6.1. You can search for yourself, maybe you are luckier than I.
 
 ## The second solution is to train an own model
-You can also try to train your own Language Model. So the goal is to create from voice files a model deepspeech can use to understand voice.
-I don't want to explain how this work, you can look in the [Documentation of Deepspeech](https://deepspeech.readthedocs.io/en/v0.6.1/TRAINING.html) for version 0.6.1, 
+You can also try to train your own Language Model. So the goal is to create from voice files a model DeepSpeech can use to understand voice.
+I don't want to explain how this work, you can look in the [Documentation of DeepSpeech](https://deepspeech.readthedocs.io/en/v0.6.1/TRAINING.html) for version 0.6.1, 
 there is a description how to train your own model. You also need one ore more german datasets to train your model the german language.
 There are many free german Datasets available, you can take a look on [this](https://gitlab.com/Jaco-Assistant/deepspeech-polyglot) repository, 
 there are many german datasets listed.
@@ -69,14 +69,14 @@ I ended up with 3 days only converting ``*.tsv`` files to ``*.csv``. The dataset
 It took too long for me so I interrupted this process and deleted the folder. When you think you have a **really** fast(I mean **really really really** fast)
 Computer you can try it yourself. Good luck!
 
-## The third solution is to port a newer version of deepspeech to rhasspy
+## The third solution is to port a newer version of DeepSpeech to rhasspy
 I chose to use one of there datasets: [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german).
-The user [AASHISHAG](https://github.com/AASHISHAG/) combined many datasets to train the datasets for deepspeech.
+The user [AASHISHAG](https://github.com/AASHISHAG/) combined many datasets to train the datasets for DeepSpeech.
 There are two possible datasets >0.6.1, the version 0.9.0 with a total dataset length of 3172h and a dataset for version 0.7.4 with a dataset length of 2924h.
-I decided to test both deepspech versions first starting with version 0.9.0.
-Please make sure that you use python3 either with an python3 virtual enviroment or python3 direkt.
+I decided to test both DeepSpeech versions first starting with version 0.9.0.
+Please make sure that you use python3 either with a python3 virtual environment or python3 direct.
 
-So I downloaded deepspeech 0.9.0:
+So I downloaded DeepSpeech 0.9.0:
 ```bash
 pip install deepspeech==0.9.0
 ```
@@ -84,7 +84,7 @@ Recorded an example text:
 ```bash
 arecord -q -D ac108 -r 16000 -f S16_LE -c 1 audio_input.wav
 ```
-And fed it to deepspeech with the dataset for 0.9.0:
+And fed it to DeepSpeech with the dataset for 0.9.0:
 ```bash
 deepspeech --model deepspeech-0.9.0-models.tflite --scorer deepspeech-0.9.0-models.scorer --audio audio_input.wav
 ```
@@ -153,7 +153,7 @@ First download the prebuild binaries and install all dependencies:
 ```bash
 wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/docs/tools/deepspeech_train_tools.tar.gz
 ```
-These binaries are only for raspberry, or on other armv7 platforms.     
+These binaries are only for Raspberry, or on other armv7 platforms.     
 
 Now unpack it with:
 ```bash
@@ -196,7 +196,7 @@ ${TOOLSFOLDER} is the folder where the tools will be saved.
 ### First get the Deesepeech source code for version 0.7.4:
 ```bash
 git clone https://github.com/mozilla/DeepSpeech.git
-cd Deepspeech
+cd DeepSpeech
 git rm -rf .
 git checkout tags/v0.7.4 .
 cd ${WORK}
@@ -247,7 +247,7 @@ Switch the directory:
 ```bash
 cd ${WORK}/DeepSpeech/native_client/ctcdecode
 ```
-When you are on a raspberry Pi ow want to build for a raspberry pi please change the variable PYTHON_PLATFORM_NAME in ${WORK}/DeepSpeech/native_client/definitions.mk from
+When you are on a Raspberry Pi ow want to build for a Raspberry Pi please change the variable PYTHON_PLATFORM_NAME in ${WORK}/DeepSpeech/native_client/definitions.mk from
 this:
 ```bash
 PYTHON_PLATFORM_NAME := --plat-name manylinux1_x86_64
@@ -279,16 +279,16 @@ cd DeepSpeech
 python setup.py bdist_wheel -d  .
 cp deepspeech_training-0.7.4-py3-none-any.whl ${TOOLSFOLDER}/packages
 ```
-Deepspeech_training is now build and copied to ${TOOLSFOLDER}. Don't forget to go back to ${WORK}.
+DeepSpeech_training is now build and copied to ${TOOLSFOLDER}. Don't forget to go back to ${WORK}.
 
 ### Build tensorflow 1.15.4
-Deepspeech_training requires tensorflow 1.15.2, which can't be installed with pip.
+DeepSpeech_training requires tensorflow 1.15.2, which can't be installed with pip.
 For the tools binary I use the binary from [here](https://github.com/Qengineering/TensorFlow-Raspberry-Pi/raw/master/tensorflow-1.15.2-cp37-cp37m-linux_armv7l.whl).
 I used a precompied binary because I had no success to build it.
 
 But you can try to build it for yourself:
 I used this to build it from source. Please make sure you have docker installed.
-To build the tensorflow package for raspberry, type these commands:
+To build the tensorflow package for Raspberry Pi, type these commands:
 ```bash
 git clone https://github.com/tensorflow/tensorflow
 git rm -rf .

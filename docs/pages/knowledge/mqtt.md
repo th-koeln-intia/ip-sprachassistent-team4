@@ -17,7 +17,7 @@ parent: Knowledge
 ## What is MQTT
 MQTT is the communication protocol we use to communicate with all devices in our home system.    
 It's based on a publish/subscribe model on topics. The publisher sends a 
-message to topic to a MQTT-Broker. Every network needs one broker. The broker is running on the raspberry pi. 
+message to topic to a MQTT-Broker. Every network needs one broker. The broker is running on the Raspberry Pi. 
 When a device publishes a message, it'll be send to the broker. The broker sends the message to all devices 
 that subscribed the specific topic. Messages are normally not stored by the Broker. The broker only passes the 
 messages to the devices!

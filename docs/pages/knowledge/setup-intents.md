@@ -14,7 +14,7 @@ parent: Knowledge
 
 # Setup Intents
 
-The intents are defined in the ``sentence.ini``, You can edit it on the rhasspy page under Sentences.
+The intents are defined in the ``sentence.ini``, You can edit it on the Rhasspy page under Sentences.
 Here is an example with many variations: 
 ```
 [GetTime]

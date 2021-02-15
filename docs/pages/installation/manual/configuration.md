@@ -19,9 +19,9 @@ nav_order: 2
 
 ## 0. Which systems are we using?
 We are using the following systems: 
-- [Wakeword](/pages/knowledge/wake-word) -> Raven
-- [Speech to Text](/pages/knowledge/speech-to-text) -> [Deepspeech](/pages/knowledge/deepspeech)
-- [Intent Recognition](/pages/knowledge/intent-recognition) -> [Snips NLU](/pages/knowledge/intent-recognition#how-to-use-snips-nlu)
+- [Wake word](/pages/knowledge/wake-word) -> Raven
+- [Speech to Text](/pages/knowledge/speech-to-text) -> [DeepSpeech](/pages/knowledge/deepspeech)
+- [Intent Recognition](/pages/knowledge/intent-recognition) -> [Snips-NLU](/pages/knowledge/intent-recognition#how-to-use-snips-nlu)
 - [Text to Speech](/pages/knowledge/text-to-speech) -> NanoTTS
 - Dialogue Management -> ?
 
@@ -32,8 +32,8 @@ We need to set up all of these above, and some more:
 - [Intent Handling](/pages/knowledge/intent-handling) 
 
 I'll go through the settings with the order on the settings page.
-You can find the settings page on ``<ip of your raspberry>:12101``, and then at the gears on the left.
-To apply all settings you need to click th e save button on the top or bottom, your raspberry will restart.
+You can find the settings page on ``<ip of your Raspberry Pi>:12101``, and then at the gears on the left.
+To apply all settings you need to click th e save button on the top or bottom, your Raspberry Pi will restart.
 
 ## 1. [MQTT](/pages/knowledge/mqtt#what-is-mqtt)
 For background information click on the topic header.
@@ -41,7 +41,7 @@ For background information click on the topic header.
 When you have done all steps, in the [installation instruction](/pages/installation/manual/setup-software#2-install-a-mqtt-server) you have already a running [MQTT](/pages/knowledge/mqtt#what-is-mqtt) server on your Raspberry.
 To use it you choose ``External`` in the drop down menu next to the [MQTT](/pages/knowledge/mqtt#what-is-mqtt) button in the Rhasspy settings.
 Now you can set up a hostname, a port, an username and a password. We only need to set up the host and the port.
-The host ip is the local ip of you raspberry pi (``127.0.0.1``). When you use Hermes Led Control the host ip MUST be a IP and should
+The host ip is the local ip of your Raspberry Pi (``127.0.0.1``). When you use Hermes Led Control the host ip MUST be a IP and should
 NOT be the alias ``localhost``!. As port, you need the port ``1883``. The username and password is only needed if you installed one.
 
 ## 2. Audio Recording
@@ -59,11 +59,11 @@ Press the first one and say your Wake Word, then the second, and then the third.
 ``Minimum Matches`` this is a number between 1 and 3. It specifies how many wav files needs to match the detection.
 
 ## 4. [Speech to Text](/pages/knowledge/speech-to-text)
-As STT this project is using [Deepspeech](/pages/knowledge/deepspeech) 0.7.4, please make sureyou have [installed](/pages/installation/manual/setup-software#7-install-deepspeech-074) it.
-In the rhasspy config you must set the dropdown menu to ``Hermes MQTT``. Since you installed this custom version of [Deepspeech](/pages/knowledge/deepspeech) 0.7.4, you *can't* use the option
-[Mozilla Deepspeech](https://github.com/mozilla/DeepSpeech). This is because the default [Deepspeech](/pages/knowledge/deepspeech) 0.6.1 of rhasspy can't load the default pretrained language model and there is 
+As STT this project is using [DeepSpeech](/pages/knowledge/deepspeech) 0.7.4, please make sureyou have [installed](/pages/installation/manual/setup-software#7-install-deepspeech-074) it.
+In the rhasspy config you must set the dropdown menu to ``Hermes MQTT``. Since you installed this custom version of [DeepSpeech](/pages/knowledge/deepspeech) 0.7.4, you *can't* use the option
+[Mozilla DeepSpeech](https://github.com/mozilla/DeepSpeech). This is because the default [DeepSpeech](/pages/knowledge/deepspeech) 0.6.1 of rhasspy can't load the default pretrained language model and there is 
 no german pretrained language model for this version. We found a good german pretrained language model at [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german), 
-but there is no model for [Deepspeech](/pages/knowledge/deepspeech) 0.6.1 so we port [rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech) and [rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes) to a new version. 
+but there is no model for [DeepSpeech](/pages/knowledge/deepspeech) 0.6.1 so we port [rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech) and [rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes) to a new version. 
 Transcribing works very good but training does not workin. But it's in developement.
 Please check in your ``.config/rhasspy/profilesprofile.json`` if this exists:
 ```json
@@ -74,7 +74,7 @@ Please check in your ``.config/rhasspy/profilesprofile.json`` if this exists:
 If there are any other line in the curly braces, please delete them.
 
 ## 5. [Intent Recognition](/pages/knowledge/intent-recognition)
-For the Intent Recognition you installed [Snips-NLU](/pages/knowledge/intent-recognition). It is installed as an extra server on your raspberry.
+For the Intent Recognition you installed [Snips-NLU](/pages/knowledge/intent-recognition). It is installed as an extra server on your Raspberry Pi.
 This server starts automaticly, so here you just need to choose Hermes MQTT in the rhasspy settings.
 
 ## 6. [Text to Speech](/pages/knowledge/text-to-speech)

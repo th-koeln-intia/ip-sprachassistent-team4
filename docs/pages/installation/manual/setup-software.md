@@ -22,10 +22,10 @@ Login to your Raspberry Pi and solve the following steps.
 ## 1. Configure Audio
 ### Install ac108 codec
 {: .no_toc }
-Your Raspberry Pi needs the ac108 codec to make the Respeaker work.
+Your Raspberry Pi needs the ac108 codec to make the ReSpeaker work.
 Copy and paste the commands to your console. 
 
-#### Update and upgrade Raspberry pi
+#### Update and upgrade Raspberry Pi
 {: .no_toc }
 ```bash
 sudo apt-get update
@@ -68,7 +68,7 @@ The driver should now be installed.
 
 ### Set Default Audio Device
 {: .no_toc }
-Next you need to edit the file `/etc/asound.conf` to make the Respeaker as your default audio device.
+Next you need to edit the file `/etc/asound.conf` to make the ReSpeaker as your default audio device.
 
 Use nano or any editor: `sudo nano /etc/asound.conf`
 
@@ -211,7 +211,7 @@ To start [Node-RED](/pages/knowledge/node-red) at boot run this command:
 sudo systemctl enable nodered.service
 ```
 
-Now start [Node-RED](/pages/knowledge/node-red) by restarting your raspberry or with this command: 
+Now start [Node-RED](/pages/knowledge/node-red) by restarting your Raspberry Pi or with this command: 
 ```bash
 sudo systemctl start nodered.service
 ``` 
@@ -366,10 +366,10 @@ Now start the service by restarting your Raspberry Pi or with this command:
 sudo systemctl start zigbee2mqtt.service
 ```
 
-## 5. Optional install Hermes Led Control for Respeaker Leds
+## 5. Optional install Hermes Led Control for ReSpeaker LEDs
 
-Hermes Led Control controls the leds of the respeaker device. For example, when you say the Wake Word, the leds turn on.
-With this setting you always can see when the respeaker is active.
+Hermes Led Control controls the LEDs of the ReSpeaker device. For example, when you say the Wake Word, the LEDs turn on.
+With this setting you always can see when the ReSpeaker is active.
 
 ### Go to pi's home directory
 {: .no_toc }
@@ -396,7 +396,7 @@ sudo ./hlc_download.sh
 ```
 
 Answer the questions like following:
-* What assistant engine are you using? Enter 2 for rhasspy
+* What assistant engine are you using? Enter 2 for Rhasspy
 * What's the path to your assistant config file? Press Enter 
 (Path Should be like (_/home/pi/.config/rhasspy/profiles/de/profile.json_)
 * What device do you wish to control with SLC? Enter 2 for respeaker4
@@ -541,15 +541,15 @@ Have a look to more [useful docker commands](/pages/knowledge/docker)
 {: .no_toc }
 Rhasspy is now accessible at the IP of your Raspberry PI under port 12101. `http://<ip-adress>:12101`. Test it!
 
-## 7. Install [Deepspeech](/pages/knowledge/deepspeech) 0.7.4
+## 7. Install [DeepSpeech](/pages/knowledge/deepspeech) 0.7.4
 
-[Deepspeech](/pages/knowledge/deepspeech) is the Speech To Text program for Rhasspy in this project. You need to install it differently than
+[DeepSpeech](/pages/knowledge/deepspeech) is the Speech to Text program for Rhasspy in this project. You need to install it differently than
 the Rhasspy documentation says. Otherwise, it will not work.    
 
 ### Install choices
 {: .no_toc }
 
-You have different choices to install Deepspeech:
+You have different choices to install DeepSpeech:
 
 * Use the ``install-rhasspy-deepspeech.sh`` script
 * Alternative install step-by-step
@@ -557,7 +557,7 @@ You have different choices to install Deepspeech:
 #### install-rhasspy-deepspeech.sh
 {: .no_toc }
 
-You can install [Deepspeech](/pages/knowledge/deepspeech) with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech.sh)
+You can install [DeepSpeech](/pages/knowledge/deepspeech) with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech.sh)
 
 Download script: 
 ```
@@ -677,11 +677,11 @@ Execute script:
    ```bash
    pip install snips-nlu
    ```
-4. Do [Snips NLU rebirth](https://github.com/jr-k/snips-nlu-rebirth)
+4. Do [Snips-NLU rebirth](https://github.com/jr-k/snips-nlu-rebirth)
 
 4.1 ``sudo apt install libatlas3-base libgfortran5``
 
-5. Install Rhasspy Snips NLU Hermes ``pip3 install rhasspy-snips-nlu-hermes``
+5. Install Rhasspy Snips-NLU Hermes ``pip3 install rhasspy-snips-nlu-hermes``
 
 6. Start Client for MQTT-Server ``rhasspy-snips-nlu-hermes --language de --engine-path /home/pi/.config/rhasspy/profiles/de/snips/engine --dataset-path /home/pi/.config/rhasspy/profiles/de/snips/dataset.yaml --host 127.0.0.1 --port 1883``
 

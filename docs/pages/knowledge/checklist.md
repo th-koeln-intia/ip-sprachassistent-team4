@@ -26,7 +26,7 @@ Mosquitto:
 ```
 sudo systemctl status mosquitto
 ```
-Deepspeech:
+DeepSpeech:
 ```bash
 sudo systemctl status rhasspy-asr-deepspeech-hermes
 ```
@@ -57,7 +57,7 @@ Check the status again, when it is running everything is ok.
   This error appears when the model for deepepeech and snips is missing.
 
 # 2. Check train function
-Open rhasspy GUI `<ip of your raspberry pi>:12101` and click train. there is a setup sentences.ini it should work.
+Open Rhasspy GUI `<ip of your Raspberry Pi>:12101` and click train. there is a setup sentences.ini it should work.
 After near 60 seconds this message with a different time should appear: `Training completed in 59.34 second(s)`
 When you got an error please open with `journalctl` the log of deepspeech and snips and train again to search for an error. 
 Maybe there is an syntax error in sentence.ini or a model is missing.
@@ -68,7 +68,7 @@ sudo journalctl -fu rhasspy-snips-nlu-hermes
 ```
 
 # 3. Check snips
-When the training was successfull, you can try out an intent. Go on the rhasspy GUI and type this:
+When the training was successfull, you can try out an intent. Go on the Rhasspy GUI and type this:
 [![Rhasspy snips test](/assets/check_snips.png)](/assets/check_snips.png){:target="_blank"}  
 You should see, that the Intent `GetTime` is triggered.
 If not, open the log for snips and look for errors:
@@ -77,9 +77,9 @@ sudo journalctl -fu rhasspy-snips-nlu-hermes
 ```
 
 # 4. Check microphone and Hermes Led Control
-First setup a [wakeword](/pages/installation/manual/configuration.html#3-wake-word), after that you can try it.
-The LEDs on the raspberry should now blink. Your wakeword got recogniced.
+First setup a [wake word](/pages/installation/manual/configuration.html#3-wake-word), after that you can try it.
+The LEDs on the Raspberry Pi should now blink. Your wake word got recognized.
 
 # 5. Check Node-Red
-Check if you can access Node-Red `<ip of your raspberry>:1880`.
+Check if you can access Node-Red `<ip of your Raspberry Pi>:1880`.
 When you can access it you can try your flows. This part is your part.

@@ -23,14 +23,14 @@ There are 4 Microphones mounted on and 12 LEDs for visual feedback. The 12 LEDs 
 light in nearly every RGB color and they can be addressed directly. With a tool like
 [Hermes Led Control](/pages/knowledge/hlc).
 
-Thank to the 4 microphones you can also find the direction from where the sound 
-comes the microphone recognices.
+Thanks to the 4 microphones you can also find the direction from where the sound 
+comes the microphone recognizes.
 
 # Assembling
 After you unpack it you can stack it directly on the Raspberry Pi.
 
 # Installing driver
-Before you can use it you need to install the driver for the AC108 mountet on the Respeaker.
+Before you can use it you need to install the driver for the AC108 mounted on the ReSpeaker.
 
 ````bash
 sudo apt-get update

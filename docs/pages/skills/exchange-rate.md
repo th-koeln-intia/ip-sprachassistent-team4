@@ -16,7 +16,7 @@ parent: Skills
 # Exchange Rate
 The goal of this theme is to allow the user to get the exchange rate for a specific currency for a specific country converted to Euro.
 To get all the information about the current exchange rate, we use the API with the URL `https://wechselkurse-euro.de/`. From this URL we can extract the table for different countries and their currency value corresponding to €1.
-We need a HTTP request node to fecht the value from the internet and some knowledge of css to load the information we are looking for. Since the values are represented in two different tables, we also need a join node to combine the two tables. Finally, a function called GetAll combines the two tables and sends them to another function called GetTextForTTs, which forwards the message to the TTS node.
+We need a HTTP request node to fetch the value from the internet and some knowledge of css to load the information we are looking for. Since the values are represented in two different tables, we also need a join node to combine the two tables. Finally, a function called GetAll combines the two tables and sends them to another function called GetTextForTTs, which forwards the message to the TTS node.
 For the intent, we also use a custom slot called ExchangeCounties to store different countries.
 The intent is something like the following:
 

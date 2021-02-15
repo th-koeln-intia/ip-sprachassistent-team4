@@ -15,10 +15,10 @@ grand_parent: Installation
 {:toc}
 </details>
 
-# Autoinstall script
+# Auto installation script
 
-## 1. Setup raspberry pi
-First make sure you installed the raspberry and it's operating system correctly with the user ``pi``.
+## 1. Setup Raspberry Pi
+First make sure you installed the Raspberry and it's operating system correctly with the user ``pi``.
 
 ## 2. Run the installation script
 Download this script you can [download](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/installAll.sh) it manual
@@ -32,7 +32,7 @@ chmod +x installAll.sh
 ## 3. During installation
 This installation requires some user inputs. So you will be asked for a password really early.
 And it is required to press enter after every installation part.
-Your raspberry also will restart and continue the script after relogin.
+Your Raspberry Pi also will restart and continue the script after relogin.
 
 Answer the questions like following:
 * Choose your language! Type en for english or de for german: (en/de)
@@ -45,7 +45,7 @@ Answer the questions like following:
 ## 4. Next steps
 All necessary software is now installed on your Raspberry Pi. Now you need to make a few configurations:
 
-- Set a [wakeword](/pages/installation/manual/configuration.html#3-wake-word)
+- Set a [wake word](/pages/installation/manual/configuration.html#3-wake-word)
 - Add [zigbee devices](/pages/knowledge/zigbee/zigbee2mqtt)
 
 Depending if you choosed english or german in the installation script, all skills will be automatically installed

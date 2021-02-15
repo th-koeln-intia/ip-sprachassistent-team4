@@ -1,6 +1,6 @@
----
+ ---
 layout: default
-title: Nano TTS
+title: Zigbee adapter ConBee2
 parent: Technology Evaluation
 ---
 
@@ -13,8 +13,7 @@ parent: Technology Evaluation
 {:toc}
 </details>
 
-
-# Nano TTS
+# Zigbee adapter ConBee2
 
 ## Advantages
 

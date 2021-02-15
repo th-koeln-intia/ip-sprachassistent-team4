@@ -36,12 +36,12 @@ initial stage of training
 - Language Model Mixing: Possibility to mix the language with a pre-built model
  
 ### Open Transcription
-By default deepspeech only knows the words you wrote in the sentence.ini. For us it's sufficient to recognise the 
+By default DeepSpeech only knows the words you wrote in the sentence.ini. For us it's sufficient to recognize the 
 intents of the user. But when you want to add a chat functionality to your voice assistant it would be good to be 
 able to transcript open text and not only the words in the sentence.ini. You can activate the open transcription, 
 by set ``speech_to_text.deepspeech.open_transcription`` ìn your profile.json to ``true``, or by check the checkbox 
-for open transcription the rhasspy settings menu under text to speech.    
-When you restart your rhasspy now, rhasspy asks you to download 2GB of data. After it's done, Rhasspy starts the training, 
+for open transcription the Rhasspy settings menu under text to speech.    
+When you restart your Rhasspy now, Rhasspy asks you to download 2GB of data. After it's done, Rhasspy starts the training, 
 and the opentranscription is available. 
  
 ### Silence Detection

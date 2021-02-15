@@ -14,43 +14,22 @@ parent: Technology Evaluation
 </details>
 
 # Rhasspy
+[Rhasspy](/pages/knowledge/rhasspy) is an open source, fully offline set of voice assistant services for many 
+human languages ([see rhasspy.readthedocs.io](https://rhasspy.readthedocs.io/){:target="_blank"}).
+Rhasspy combines all needed tools for a voice assistant, from wake word to intent handling.
 
-# Adventages
+# Advantages
+- It is easy to install Rhasspy with an installation script
+- Unlike other voice assistants like Google, Alexa, etc, Rhasspy does not share data across the internet and 
+  this is very interesting for people, who are concerned about their privacy
+- Once you have chosen Rhasspy as your voice assistant, you can add additional features for your needs. E.g. 
+  it is possible to train Rhasspy to use your own voice for text to speech engine
 
-## Keep Your Privacy
+# Disadvantages
+- Not easy to set up. To get Rhasspy running on a device like Raspberry Pi, many settings are required. 
+  In most of the cases, you can find problem solving on different websites, but they are not always 
+  updated. You need some more effort to get the correct setting
  
-Unlike other voice assistants like Google, Alexa, etc, Rhasspy doesn’t share data across the internet and this is very interesting for people, who are concerned about their privacy.
- 
-## Extendable
- 
-Once you have rhasspy as your voice assistance you can add additional features for your needs.
-For example it is possible to train rhasspy to use your own voice for text to speech engine.
- 
-## Self Wake Word
- 
-Unlike for example google assistant, you can set your own custom wake word with rhasspy and change it frequently as you want.
- 
-## Automated installation
- 
-It is possible to use a script or a docker to get rhasspy ready to use on other computers.
-
-# Disadventages
- 
-## Not easy to setup
- 
-To get rhasspy running on a device like rhaspberry, many settings are required. In most of the cases, there is documentation available on web sites but they are not always updated and you need some more effort to get the correct setting. The information is also distributed on different pages and you need to find the relevant usages, which correspond to your current topic.
- 
-## Speech-To-text is not reliable
- 
-The Speech-To-text engine takes too much time to recognize a voice command and sometimes the recognition is not reliable.
- 
-## Artificial Text-to-Speech voice
- 
-Text-to-speech voice is very artificial and most of the time, much effort is needed to understand the output if you do not know what exactly is being spoken.
-
-
 ## Conclusion
-Rhasspy is a really nice system which can work very good after installation. It has some limitatations, that doesn't work well.
-Especially the speech to text system can be very annoying on the raspberry pi. Deepspeech ist build on a neural net and the raspberry pi 
-is not build for such complex calculations. But if you have a clean installation of rhasspy the process time of rhasspy is really good.
-Keep it clean and your rhasspy will work well.
+Rhasspy is an easy-to-install control centre for various software, which together enable an offline-capable 
+voice assistant. 

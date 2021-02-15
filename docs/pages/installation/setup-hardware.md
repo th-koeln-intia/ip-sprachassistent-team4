@@ -22,7 +22,7 @@ To build your own voice assistant, you will need at least the following things:
 
 * Raspberry Pi 3b/3b+/4 with Power Cable
 * Micro-SD-Card with min. 16gb
-* RESPEAKER 4-Mic-Array
+* ReSpeaker 4-Mic-Array
 * Zigbee2MQTT adapter, like [**Texas Instruments CC2531**](/pages/knowledge/zigbee/cc2531) or [**ConBee2**](/pages/knowledge/zigbee/conbee2)
   or ([other compatible adapters](https://www.zigbee2mqtt.io/information/supported_adapters){:target="_blank"})
 * Zigbee LED Light Bulb or any other Zigbee device
@@ -76,11 +76,11 @@ you can use the command `sudo rasi-config` for additional setting (e.g : change 
 Read more about a headless setup 
 [here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
 
-## Plugin RESPEAKER and Zigbee Adapter
+## Plugin ReSpeaker and Zigbee Adapter
 
-Attach the RESPEAKER 4-Mic-Array to the Raspberry Pi and plugin the Zigbee Adapter.
+Attach the ReSpeaker 4-Mic-Array to the Raspberry Pi and plugin the Zigbee Adapter.
 
-![Raspberry Pi with RESPEAKER and ConBee2](../../assets/rpi_respeaker_conbee2.jpg)
+![Raspberry Pi with ReSpeaker and ConBee2](../../assets/rpi_respeaker_conbee2.jpg)
 
 
 ## Finish!

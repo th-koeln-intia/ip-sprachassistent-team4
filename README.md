@@ -1,9 +1,9 @@
 # [Voice Assistant Sherlock](https://ip-team4.intia.de)
 This is a Project to create Proof of Concept for a Voice Assistant. 
 We we are using these Tools:
-- Wakeword:  [Raven](https://github.com/rhasspy/rhasspy-wake-raven) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/wake-word))
-- Speech-To-Text: [Deepspeech](https://github.com/mozilla/DeepSpeech) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/deepspeech))
-- Intent Recognition: [Snips NLU](https://github.com/snipsco/snips-nlu) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/intent-recognition))
+- Wake word:  [Raven](https://github.com/rhasspy/rhasspy-wake-raven) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/wake-word))
+- Speech to Text: [DeepSpeech](https://github.com/mozilla/DeepSpeech) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/deepspeech))
+- Intent Recognition: [Snips-NLU](https://github.com/snipsco/snips-nlu) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/intent-recognition))
 - Intent Handling: [NodeRed](https://nodered.org/) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/node-red))
 - Text-To-Speech: [NanoTTS](https://github.com/gmn/nanotts) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/tts/nano-tts))
 - 
@@ -23,8 +23,8 @@ We we are using these Tools:
 - [X] Update documentation and git
 - [X] Installation script
 - [ ] Revise the documentation
-- [ ] Make images smaller
-- [ ] Setup hardware at the bottom of the page refer to the installation
+- [X] Make images smaller
+- [X] Setup hardware at the bottom of the page refer to the installation
 - [ ] Correct installation arrangement
 - [ ] Technology rating section with rating of all technologies write down with personal rating and conclusion.
 - [ ] Explanation Why Node-Red the Why is actually missing

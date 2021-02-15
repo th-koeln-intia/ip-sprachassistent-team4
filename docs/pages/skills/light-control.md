@@ -23,7 +23,7 @@ To start with Node Red setting, your device should be connected to Zigbee2MQTT b
 We used 4 different nodes in this flow. I explain them from the left to the right.
 ### MQTT IN nodes
 This is a Node to subscribe a [MQTT](/pages/knowledge/mqtt) topic. These nodes subscripbes to the four intents we want to use to control the light.
-They connect to the local [MQTT](/pages/knowledge/mqtt) server on the raspberry pi (`127.0.0.1:1883`) and subscribes to their topic.
+They connect to the local [MQTT](/pages/knowledge/mqtt) server on the Raspberry Pi (`127.0.0.1:1883`) and subscribes to their topic.
 When a topic enters the [MQTT](/pages/knowledge/mqtt) server ont data send with the topic is placed into `msg.payload`.
 ### Function
 A Function Nodes are used to run javascript(JS) code. This JS code usually processes the payload of the message enters this node.

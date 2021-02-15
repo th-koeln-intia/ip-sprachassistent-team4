@@ -18,7 +18,7 @@ grand_parent: Skills
 Here is a flow to get the latest audio clip from the german news tv program "tagesschau". The clip is about
 100 seconds long. 
 
-To use this flow, you need to install the package `mpg123` on your raspberry pi:
+To use this flow, you need to install the package `mpg123` on your Raspberry Pi:
 
 `sudo apt install mpg123 -y`
 

@@ -16,8 +16,7 @@ nav_order: 1
 
 # What is Rhasspy?
 Rhasspy is an open source, fully offline voice assistant toolkit.
-Rhasspy combines all needed tools for a voice assistant, from
-hotword to the intent handling.
+Rhasspy combines all needed tools for a voice assistant, from wake word to intent handling.
  
 # Speech To Text
 This is the primary function of rhasppy and allows Rhasspy to convert a voice command to a JSON event.
@@ -32,7 +31,7 @@ The offline transcription of voice commands in Rhasspy is handled by one of thre
  
 # Text To Speech
 Some commands produce a voice feedback, this voice feedback will be created with a TTS(Text-To-Speech)-system.
-There are different text to speech systems, rhasspy combines them in one MQTT API. 
+There are different text to speech systems, Rhasspy combines them in one MQTT API. 
 These are available: flite (only in english), picotts, nanotts, marytts, opentts, wavenet.
  
 [Read more about Text To Speech](/pages/knowledge/text-to-speech)
@@ -46,10 +45,10 @@ protocol.
  
 # Intent Recognition
 The voice command is transcribed from Text-To-Speech system and after that the intent needs to be recognized and as 
-result, the rhasspy will produce a JSON event. The are different intent recognition systems:
+result, the Rhasspy will produce a JSON event. The are different intent recognition systems:
 - Fsticuffs (if you plan  to recognize the voice from your training set, this will be the best)
 - Fuzzywuzzy
-- Snips NLU (NLU -> Natural Language Understanding)
+- Snips-NLU (NLU -> Natural Language Understanding)
 - RasaNLU
 - Mycroft Adapt (Not supported yet in 2.5), 
 - Flair (also not supported in 2.5)

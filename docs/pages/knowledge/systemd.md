@@ -16,12 +16,12 @@ parent: Knowledge
 # Systemd
 
 ## Why this section?
-When you want to start rhasspy the normal way you quickly notice that you can't find any sound device. And your microphone does not work anymore. This is not what we expect. 
-The interesting part is, that everything is working again, when you start rhasspy again manually in the commandline. So there must be something, that systemd does the other way,
+When you want to start Rhasspy the normal way you quickly notice that you can't find any sound device. And your microphone does not work anymore. This is not what we expect. 
+The interesting part is, that everything is working again, when you start Rhasspy again manually in the commandline. So there must be something, that systemd does the other way,
 than the user with a manuall start does.
 
 ## So what is the Problem?
-When you take a look in the log of rhasspy you may see the following message:
+When you take a look in the log of Rhasspy you may see the following message:
 ```
 ...
 INFO supervisord started with pid 700
@@ -49,10 +49,10 @@ With this:
 ``ExecStart=/bin/bash -lc "rhasspy --profile de 2>&1 | cat"``    
 [Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy.service)    
 This redirects all output to the ``cat`` commanand and prints it to the normal standard console.
-When you save your rhasspy settings you need to manually restart rhasspy.
+When you save your Rhasspy settings you need to manually restart Rhasspy.
 
-## Solution 2 editing the rhasspy run script
-The other way is to edit the rhasspy run script ``/usr/bin/rhasspy``. Go down to this:
+## Solution 2 editing the Rhasspy run script
+The other way is to edit the Rhasspy run script ``/usr/bin/rhasspy``. Go down to this:
 ```
 log_path="${profile_dir}/supervisord.log"
 ```
@@ -61,8 +61,8 @@ And paste this line above:
 sed -i "s,/dev/stdout,${config_home}/rhasspy/rhasspy.log,g" "${conf_path}"
 ```
 This edits the supervisor.conf file after it was created. The path ``/dev/stdout`` will be replaced by the path ``${config_home}/rhasspy/rhasspy.log``.
-So supervisor creates a log file in the rhasspy folder instead printing all output to ``/dev/stdout``
-When you save your rhasspy settings you need to manually restart rhasspy.
+So supervisor creates a log file in the Rhasspy folder instead printing all output to ``/dev/stdout``
+When you save your Rhasspy settings you need to manually restart Rhasspy.
 
 
 ## Useful links to understand the problem

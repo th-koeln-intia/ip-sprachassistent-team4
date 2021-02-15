@@ -22,11 +22,11 @@ It's simple and fast and easy to understand.
 - Fast and lightweight
 - Easy to understand
 - Easy to install
-- can not read long text
+- Can read long text
 
 # Cons
 - The language is not fluid, it sounds really robotic
-- No good pronouncing
+- No good pronunciation
 - No german male voice
 
 # Install

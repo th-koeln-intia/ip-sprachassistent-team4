@@ -14,8 +14,9 @@ parent: Knowledge
 </details>
 
 # Node-RED
-
-Node-RED is described as flow base programming for the internet of things. Node-Red is installed by default on your Raspberry Pi but as you will like to use it with the rhasspy , it is useful to reinstall it and start Node-Red as service on Rhasspy.
+Node-RED is described as flow-base programming for the Internet of Things. Node-RED is installed on your Raspberry Pi 
+by default, but since you want to use it with Rhasspy, it makes sense to reinstall it and start Node-RED 
+as a service on rhasspy.
 
 # Installation of node-RED
 

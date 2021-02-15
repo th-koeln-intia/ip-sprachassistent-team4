@@ -27,10 +27,10 @@ The goal of a Wake Word system is to recognize the Wake Word with the greatest p
 and false positive detections are not welcome.
 
 ## How does Rhasspy listen to a Wake Word?
-Rhasspy itself won't listen to a Wake Word. It listens for MQTT messages on the topic `'hermes/hotword/<wakeword>/detected'`.
+Rhasspy itself won't listen to a Wake Word. It listens for MQTT messages on the topic `'hermes/hotword/<wake word>/detected'`.
 You can disable/enable the Wake Word with the message `'hermes/hotword/toggleOff'`.
 
-## Who sets the `'hermes/hotword/<wakeword>/detected` message'?
+## Who sets the `'hermes/hotword/<wake word>/detected` message'?
 There are many programs for Wake Word handling like Raven, Porcupine, Snowboy, Mycroft precise, Pocketsphinx.
 In this project we are using Raven for the Wake Word processor. With Raven you can train a Wake Word with only 
 3 WAV file (16-bit 16Khz) templates. 

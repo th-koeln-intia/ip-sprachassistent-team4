@@ -6,4 +6,4 @@ has_children: true
 ---
 
 # Installation
-Here is the tutorial for installing rhasspy. Go through it from top to down.
+Here is the tutorial for installing Rhasspy. Go through it from top to down.

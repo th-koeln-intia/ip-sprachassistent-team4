@@ -138,8 +138,8 @@ else
     sudo chmod +x hlc_download.sh
     sudo ./hlc_download.sh
 
-    #install Deepspeech
-    echo "$(tput setaf 3)Install Deepspeech! $(tput sgr 0)"
+    #install DeepSpeech
+    echo "$(tput setaf 3)Install DeepSpeech! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/scripts/install_rhasspy_deepspeech_$language.sh -O $WORKFOLDER/install-rhasspy-deepspeech.sh
     chmod +x ./install-rhasspy-deepspeech.sh
@@ -153,6 +153,6 @@ else
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 
     #installation complete
-    echo "$(tput setaf 2)Installation complete! Your raspberry pi will reboot now! $(tput sgr 0)"
+    echo "$(tput setaf 2)Installation complete! Your Raspberry Pi will reboot now! $(tput sgr 0)"
     sudo reboot
 fi

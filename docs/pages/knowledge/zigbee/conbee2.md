@@ -56,7 +56,7 @@ sudo apt update
 ```
 
 ## Using deCONZ
-The Phoscon app is hosted on the port 8080 on your raspberry. When you open it, you see your conbee2 device, select it.
+The Phoscon app is hosted on the port 8080 on your Raspberry Pi. When you open it, you see your conbee2 device, select it.
 Now you must setup a password, after that it searches for zigbee devices. Feel free to play with it.
 Deconz also offers an UI on an X-Server. when you start deconz in an graphical enviroment you see another window. I don't want to explain more, it's not important for this project.
 But feel free to play with it. When you are ready with playing keep in mind, that you mnust stop deCONZ and start the zigbee2mqtt service again to make your zigbee devices

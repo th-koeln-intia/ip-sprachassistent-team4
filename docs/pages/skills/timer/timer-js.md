@@ -23,7 +23,7 @@ We created a timer feature in NodeRed with JS Functions. Here is a small overvie
 - `PlaySound` node from [node-red-contrib-play-sound](https://flows.nodered.org/node/node-red-contrib-play-sound)
 
 ## Features
-- It can load and save timers from a file. So when the raspberry turns off and on, the alarms are will be loaded again.
+- It can load and save timers from a file. So when the Raspberry Pi turns off and on, the alarms are will be loaded again.
 - Set a timer via voice you can set hours, minutes and seconds.
 - You can clear all timers.
 - Stop a timer via voice
