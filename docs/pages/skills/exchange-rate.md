@@ -24,7 +24,9 @@ The intent is something like the following:
 [GetExchangeRate]
 Exchange rate for ($ExchangeCountries){country}
 ```
-The slot list named ExchangeCountries can be downloaded from [here ](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/data/ExchangeCountries).
+The slot list named ExchangeCountries can be downloaded for
+- [english here](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/data/exchange_countries_en)
+- [german here](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/data/exchange_countries_de)
 
 From the intent we get the country name and pass it to the table to get the currency value and currency name. 
 The TTS output is : 

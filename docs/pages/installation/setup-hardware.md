@@ -30,7 +30,7 @@ To build your own voice assistant, you will need at least the following things:
 
 ## Setup Raspberry Pi
 
-The easiest way to setup a Raspberry Pi is to use the 
+The easiest way to set up a Raspberry Pi is to use the 
 [**Raspberry Pi Imager**](https://www.raspberrypi.org/software/){:target="_blank"}.
 
 Steps:

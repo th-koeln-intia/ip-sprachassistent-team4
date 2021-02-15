@@ -48,7 +48,7 @@ git clone https://github.com/respeaker/seeed-voicecard.git
 #### Change directory
 {: .no_toc }
 ```bash
-cd seeed-voicecar
+cd seeed-voicecard
 ```
 
 #### Install seeed-voicecard
@@ -464,9 +464,38 @@ you need to give your user permission to the folder `/home/pi/.config/rhasspy`
 sudo chown -R pi:pi /home/pi/.config/rhasspy
 ```
 
-### Start Rhasspy as service
+### Start Rhasspy as service (english)
 {: .no_toc }
 Create the file ``/etc/system.d/system/rhasspy.service`` and put the following code inside:
+
+```bash
+[Unit]
+Description=Rhasspy
+After=syslog.target network.target seed-voicecard.service sound.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/.config/rhasspy
+ExecStart=/bin/bash -lc 'rhasspy --profile en 2>&1 | cat'
+User=pi
+Group=pi
+
+RestartSec=1
+Restart=on-failure
+
+StandardOutput=syslog
+StandardError=syslog
+
+SyslogIdentifier=rhasspy
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Start Rhasspy as service (german)
+{: .no_toc }
+Create the file ``/etc/system.d/system/rhasspy.service`` and put the following code inside:
+
 ```bash
 [Unit]
 Description=Rhasspy
@@ -490,13 +519,16 @@ SyslogIdentifier=rhasspy
 [Install]
 WantedBy=multi-user.target
 ```
-[Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy.service)
+
+Have a look on the rhasspy.service file
+- [english rhasspy.service](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy_en.service)
+- [german rhasspy.service](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy_de.service)
 
 Now enable the service:   
 ```bash
 systemctl enable rhasspy
 ```    
-And start it with:    
+Start it with:    
 ```bash
 systemctl start rhasspy
 ```
@@ -552,16 +584,36 @@ the Rhasspy documentation says. Otherwise, it will not work.
 You have different choices to install DeepSpeech:
 
 * Use the ``install-rhasspy-deepspeech.sh`` script
-* Alternative install step-by-step
+* Alternative installation step-by-step
 
-#### install-rhasspy-deepspeech.sh
+#### Auto installation script
 {: .no_toc }
 
-You can install [DeepSpeech](/pages/knowledge/deepspeech) with the [install-rhasspy-deepspeech.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech.sh)
+You can install [DeepSpeech](/pages/knowledge/deepspeech) with a pretrained english or german model.
+
+##### English pretrained model
+
+The DeepSpeech installation script for an english pretrained model is available in our git repository: [install-rhasspy-deepspeech_en.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech_en.sh)
+
+Download script:
+```
+wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install_rhasspy_deepspeech_en.sh -O $HOME/tmp/install-rhasspy-deepspeech.sh
+```
+
+Make script executable:
+```bash
+sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh
+```
+
+Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
+
+
+##### German pretrained model
+The DeepSpeech installation script for a german pretrained model is available in our git repository: [install-rhasspy-deepspeech_de.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-deepspeech_de.sh)
 
 Download script: 
 ```
-wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-deepspeech.sh -P $HOME/tmp
+wget -N https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install_rhasspy_deepspeech_de.sh -O $HOME/tmp/install-rhasspy-deepspeech.sh
 ```
 
 Make script executable: 
@@ -571,7 +623,7 @@ sudo chmod +x $HOME/tmp/./install-rhasspy-deepspeech.sh
 
 Execute script: ``$HOME/tmp/./install-rhasspy-deepspeech.sh``
 
-#### Alternative install step-by-step
+#### Alternative installation step-by-step
 {: .no_toc }
 
 We are using german pretrained model files for ``deepspech 0.7.4`` from this repository: 
@@ -638,29 +690,35 @@ After going through these commands, you have a service named ``rhasspy-asr-deeps
 You have different choices to install [Snips-NLU](/pages/knowledge/intent-recognition):
 
 * Use the ``snips-nlu-install.sh`` script
-* Alternative install step-by-step
+* Alternative installation step-by-step
 
-#### snips-nlu-install.sh
+#### Auto installation script
 {: .no_toc }
 
-You can install [Snips-NLU](/pages/knowledge/intent-recognition) with the [snips-nlu-install.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [snips-nlu-install_venv.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu_venv.sh)
+The Snips-NLU auto installation script is available in english and german.
+
+##### English auto installation script
+You can install [Snips-NLU](/pages/knowledge/intent-recognition) with the english [snips-nlu-install_en.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install-rhasspy-snips-nlu.sh) or with a virtual enviroment [install-rhasspy-snips-nlu_venv_en.sh](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/install_rhasspy_snips_nlu_venv_en.sh) script.
 
 Change directory to home folder: ``cd $HOME``
 
 Download script: 
 ```bash
-wget https://raw.githubusercontent.com/th-koeln-intia/ip-sprachassistent-team4/master/docs/scripts/install-rhasspy-snips-nlu.sh -P $HOME/tmp
+wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy_snips_nlu_hermes_venv_en.service -O $HOME/tmp/install-rhasspy-snips-nlu_venv.sh
 ```
 
 Make script executable: 
 ```bash
-sudo chmod +x ./snips-nlu-install.sh
+sudo chmod +x ./install-rhasspy-snips-nlu_venv.sh
 ```
 
 Execute script: 
 ```bash
 ./snips-nlu-install.sh
 ```
+
+##### German auto installation script
+
 
 #### Alternative install step-by-step
 {: .no_toc }
