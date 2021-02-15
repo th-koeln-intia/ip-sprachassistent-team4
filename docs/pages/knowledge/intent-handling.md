@@ -50,7 +50,7 @@ When you want to use it merge this into your [profile.json](/pages/knowledge/pro
 
 ## Home Assistant
 This is maybe the best solution for this project. With Home Assistant you can handle the intents easy with yaml scripts.
-It's easy to setup and there is also an app for your smartphone available, so you can control your home very easy with your smartphone.
+It's easy to set up and there is also an app for your smartphone available, so you can control your home very easy with your smartphone.
 To install it merge this into your [profile.json](/pages/knowledge/profiles):
 ```json
 "handle": {

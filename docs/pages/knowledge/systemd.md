@@ -43,12 +43,24 @@ Systemd:
 In the bash the link points to a normal file. But in systemd, the link points to a socket, that can't be opened with the ``open`` command.
 
 ## Solution 1 in the service
+
 You can edit the ``/etc/system.d/system/rhasspy.service``. By simply replacing this:    
+
+### english
+``ExecStart=/usr/bin/rhasspy --profile en``    
+With this:    
+``ExecStart=/bin/bash -lc "rhasspy --profile en 2>&1 | cat"``    
+
+### german
 ``ExecStart=/usr/bin/rhasspy --profile de``    
 With this:    
-``ExecStart=/bin/bash -lc "rhasspy --profile de 2>&1 | cat"``    
-[Here is the full file.](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy.service)    
-This redirects all output to the ``cat`` commanand and prints it to the normal standard console.
+``ExecStart=/bin/bash -lc "rhasspy --profile de 2>&1 | cat"``
+
+Have a look on the rhasspy.service file
+- [english rhasspy.service](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy_en.service)
+- [german rhasspy.service](https://github.com/th-koeln-intia/ip-sprachassistent-team4/blob/master/scripts/rhasspy_de.service)
+
+This redirects all output to the ``cat`` command and prints it to the normal standard console.
 When you save your Rhasspy settings you need to manually restart Rhasspy.
 
 ## Solution 2 editing the Rhasspy run script

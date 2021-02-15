@@ -5,7 +5,6 @@ After=syslog.target network.target seed-voicecard.service sound.target
 [Service]
 Type=simple
 WorkingDirectory=/home/pi/.config/rhasspy
-#ExecStart=/usr/bin/rhasspy --profile de
 ExecStart=/bin/bash -lc 'rhasspy --profile de 2>&1 | cat'
 User=pi
 Group=pi

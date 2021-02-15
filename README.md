@@ -30,6 +30,7 @@ We we are using these Tools:
 - [ ] Explanation Why Node-Red the Why is actually missing
 - [ ] Link to knowledge entries on all possible pages
 - [ ] Check all images
+- [ ] Check manual installation page against auto installation script 
 
 
 ## Documentation
