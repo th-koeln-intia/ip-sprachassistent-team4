@@ -16,7 +16,7 @@ parent: Knowledge
 
 # [ReSpeaker 4 Mic Array for Raspberry Pi](https://wiki.seeedstudio.com/ReSpeaker_4_Mic_Array_for_Raspberry_Pi/)
 
-![Respeaker 4 Mic](https://respeaker.io/assets/images/4_mic_array.jpg)
+![ReSpeaker 4 Mic](https://respeaker.io/assets/images/4_mic_array.jpg)
 
 The ReSpeaker 4 Mic Array is a HAT(Hardware attached on top) for the Raspberry PI.
 There are 4 Microphones mounted on and 12 LEDs for visual feedback. The 12 LEDs can emit

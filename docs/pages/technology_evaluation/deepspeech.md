@@ -16,7 +16,7 @@ parent: Technology Evaluation
 
 # [DeepSpeech](/pages/knowledge/speech-to-text)
 In our project, [DeepSpeech](/pages/knowledge/speech-to-text) was used as a Speech to Text (STT) system.
-STT converts spoken words into text. DeepSpeech works with a neural network to transcribe the spoken words into 
+STT converts spoken words into text. DeepSpeech works with a neural network to transcript the spoken words into 
 text.
 
 ## Advantages

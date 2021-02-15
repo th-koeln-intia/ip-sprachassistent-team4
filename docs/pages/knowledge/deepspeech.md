@@ -16,7 +16,7 @@ parent: Knowledge
 # DeepSpeech
 
 # Why this topic?
-Deespspeech is not working if you let Rhasspy doing the setup for it. Rhasspy installs the DeepSpeech version 0.6.1. 
+DeepSpeech is not working if you let Rhasspy doing the setup for it. Rhasspy installs the DeepSpeech version 0.6.1. 
 After you installed it, Rhasspy downloads the language model and trains the model with your sentence.ini.
 When you train DeepSpeech you maybe find this error message in the Rhasspy log (``sudo journalctl -fu rhasspy``):
 ```
@@ -26,7 +26,7 @@ Dec 07 10:26:46 raspberrypi rhasspy[20549]: The ARPA file is missing <unk>.  Sub
 Dec 07 10:26:46 raspberrypi rhasspy[20549]: ****************************************************************************************************
 Dec 07 10:26:46 raspberrypi rhasspy[20549]: SUCCESS
 ```
-This means, that the tool rhasspy-asr-deespeech fails to generate the arpa file and then fails load it to generate a new model.
+This means, that the tool rhasspy-asr-deepspeech fails to generate the arpa file and then fails load it to generate a new model.
 If you ignore this message and say something you get this message in the log:
 ```
 Dec 07 10:45:10 raspberrypi rhasspy[20549]: [DEBUG:2020-12-07 10:45:10,607] rhasspyasr_deepspeech_hermes: Transcribing 62444 byte(s) of audio data
@@ -43,9 +43,9 @@ Dec 07 10:45:10 raspberrypi rhasspy[20549]:   File "rhasspyasr_deepspeech/transc
 Dec 07 10:45:10 raspberrypi rhasspy[20549]:   File "deepspeech/__init__.py", line 42, in __init__
 Dec 07 10:45:10 raspberrypi rhasspy[20549]: RuntimeError: CreateModel failed with error code 12288 
 ```
-Here you can see, that rhasspy_deepspeech starts transcribing and trys to load the language model in out_graph.pb.
+Here you can see, that rhasspy_deepspeech starts transcribing and tries to load the language model in out_graph.pb.
 You see, it fails and the first error already tells us the problem. The loaded Model has the wrong identifier, it should be ``TFL3`` and not ``inpu``.
-This means that the model rhasspy downloaded is not valid for rhasspberry pi. The Raspberry Pi is runnig with ``Tensorflow lite'' which identifier is ``TFL3``.
+This means that the model rhasspy downloaded is not valid for Raspberry Pi. The Raspberry Pi is running with ``Tensorflow lite'' which identifier is ``TFL3``.
 the ``Tensorflow lite`` model file ends with ``*.tflite'' and the normal with ``*.pb`` or ``*.pbmm``
 
 # Possible solutions
@@ -64,7 +64,7 @@ I don't want to explain how this work, you can look in the [Documentation of Dee
 there is a description how to train your own model. You also need one ore more german datasets to train your model the german language.
 There are many free german Datasets available, you can take a look on [this](https://gitlab.com/Jaco-Assistant/deepspeech-polyglot) repository, 
 there are many german datasets listed.
-I tried to train a german model with this documentation, setup everythnig and downloaded the ``Mozilla Common Voice German`` dataset.
+I tried to train a german model with this documentation, setup everything and downloaded the ``Mozilla Common Voice German`` dataset.
 I ended up with 3 days only converting ``*.tsv`` files to ``*.csv``. The dataset was all on a ssd. The dataset folder expands from 20gb to round about 160gb.
 It took too long for me so I interrupted this process and deleted the folder. When you think you have a **really** fast(I mean **really really really** fast)
 Computer you can try it yourself. Good luck!
@@ -95,7 +95,7 @@ TensorFlow: v2.3.0-6-g23ad988
 DeepSpeech: v0.9.0-0-g2d04fbe
 Segmentation fault
 ```
-Segmentation fault errors are mostly very tricky, so I skipped deepspeech 0.9.0 and tried the same with deeospeech 0.7.4.
+Segmentation fault errors are mostly very tricky, so I skipped deepspeech 0.9.0 and tried the same with DeepSpeech 0.7.4.
 So I downloaded deepspeech 0.7.4:
 ```bash
 pip install deepspeech==0.7.4
@@ -116,29 +116,29 @@ Running inference.
 das ist ein test
 Inference took 1.874s for 2.250s audio file.
 ```
-You see everything works fine. The text I said was transcripted successfull.
+You see everything works fine. The text I said was transcript successful.
 
 The version 0.7.4 of deepspeech seems to work well.
 
 Now we know the which version works fine with the german language model, but how does ``Rhasspy`` communicate with deepspeech?
 
 Rhasspy is using to control many all services including [STT](/pages/knowledge/speech-to-text) and deepspeech.
-The mqtt client for deepspeech is the program [rhaspy-asr-deepspeech-hermes](https://github.com/rhasspy/rhasspy-asr-deepspeech-hermes).
-And the program uses this libary: [rhasspy-asr-deepspeech](https://github.com/rhasspy/rhasspy-asr-deepspeech).
+The mqtt client for deepspeech is the program [rhasspy-asr-deepspeech-hermes](https://github.com/rhasspy/rhasspy-asr-deepspeech-hermes).
+And the program uses this library: [rhasspy-asr-deepspeech](https://github.com/rhasspy/rhasspy-asr-deepspeech).
 
-[Rhaspy-asr-deepspeech-hermes](https://github.com/rhasspy/rhasspy-asr-deepspeech-hermes) submits to the ``startListening`` and ``textCaptured`` and other topic.
+[Rhasspy-asr-deepspeech-hermes](https://github.com/rhasspy/rhasspy-asr-deepspeech-hermes) submits to the ``startListening`` and ``textCaptured`` and other topic.
 And communicates through the [rhasspy-asr-deepspeech](https://github.com/rhasspy/rhasspy-asr-deepspeech) with deepspeech.
 
 ## Changes from deepspeech 0.6.1 to deepspeech 0.7.4
 There are 3 important changes between deepspeech 0.6.1 and deepspeech 0.7.4.
 
 - The first change is the file format of the language model:    
-In deepspeech 0.6.1 the language model is seperated in three files, the outer_graph.pb or outer_graph.tflite, the lm.binary and a trie file.
-And in deepspeech 0.7.4 the language model is only seperated in two files the outer_graph.pb or outer_graph.tflite and a scorer file.
+In deepspeech 0.6.1 the language model is separated in three files, the outer_graph.pb or outer_graph.tflite, the lm.binary and a trie file.
+And in deepspeech 0.7.4 the language model is only separated in two files the outer_graph.pb or outer_graph.tflite and a scorer file.
 The scorer file is build with a trie and lm.binary file, so it is only a combined file of them two.
 - The Python API has also changed [0.6.1](https://deepspeech.readthedocs.io/en/v0.6.1/Python-API.html) / [0.7.4](https://deepspeech.readthedocs.io/en/v0.7.4/Python-API.html):
-  -  The ``class Model`` is splittet up in two classes in ``class Model(*args, **kwargs)`` an in ``class Stream(native_stream)`` so the part to transcribe Streams is seperated in an own class.
-  - ``enableDecoderWithLM(*args, **kwargs)`` splitted in ``enableExternalScorer(scorer_path)`` and ``setScorerAlphaBeta(alpha, beta)``
+  -  The ``class Model`` is split up in two classes in ``class Model(*args, **kwargs)`` an in ``class Stream(native_stream)`` so the part to transcript Streams is separated in an own class.
+  - ``enableDecoderWithLM(*args, **kwargs)`` split in ``enableExternalScorer(scorer_path)`` and ``setScorerAlphaBeta(alpha, beta)``
 - The Metadata returned by sttWithMetadata(audio_buffer, num_results=1) has changed. [0.6.1](https://deepspeech.readthedocs.io/en/v0.6.1/Python-API.html#metadata) / [0.7.4](https://deepspeech.readthedocs.io/en/v0.7.4/Python-API.html#metadata)
 
 ### Changes in rhasspy-ar-deepspeech and rhasspy-asr-deepspeech-hermes
@@ -146,8 +146,8 @@ I adapt ``rhasspy-asr-deepspeech`` and ``rhasspy-asr-deepspeech-hermes`` so they
 You can find them here: [Sh4der/rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes), 
 [Sh4der/rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech)
 
-## How to create a scorer from a vocabular file
-Please make sure you work with python3 in a virtual enviroment or with pip3.
+## How to create a scorer from a vocabulary file
+Please make sure you work with python3 in a virtual environment or with pip3.
 
 First download the prebuild binaries and install all dependencies: 
 ```bash
@@ -177,8 +177,8 @@ Now get out your vocabulary file. First we create a lm.binary, a vocab5000.txt.
 mkdir out
 python generate_lm.py --input_txt vocabulary.txt --output_dir out --top_k 500000 --kenlm_bins kenlm/   --arpa_order 5 --max_arpa_memory "50%" --arpa_prune "0|0|1" --binary_a_bits 255 --binary_q_bits 8 --binary_type trie --discount_fallback
 ``` 
-Additional you need an alphabeth.txt, it should be a german one(with ä, ü, ö, etc.), you can get one from here 
-[AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german) from the google drive for
+Additional you need an alphabet.txt, it should be a german one(with ä, ü, ö, etc.), you can get one from here 
+[AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german) from the Google Drive for
 deepspeech 0.7.4. 
 
 Or with this command: 
@@ -190,10 +190,10 @@ Now you can create a scorer file:
 python3 generate_package.py --alphabet alphabet.txt --lm out/lm.binary --vocab out/vocab-500000.txt --package kenlm.scorer --default_alpha 0.931289039105002 --default_beta 1.1834137581510284
 ```
 
-## Build tool binaries from source and create the tools folder
+## Build tool binaries from source code and create the tools folder
 ${WORK} is the work directory you are working in.
 ${TOOLSFOLDER} is the folder where the tools will be saved.
-### First get the Deesepeech source code for version 0.7.4:
+### First get the DeepSpeech source code for version 0.7.4:
 ```bash
 git clone https://github.com/mozilla/DeepSpeech.git
 cd DeepSpeech
@@ -201,12 +201,12 @@ git rm -rf .
 git checkout tags/v0.7.4 .
 cd ${WORK}
 ```
-Copy the generate_lm.py and the generate_package.py to the ${TOOLSFOLDER}:
+Copy the `generate_lm.py` and the generate_package.py to the ${TOOLSFOLDER}:
 ```bash
 cp ${WORK}/DeepSpeech/data/lm/generate_lm.py ${TOOLSFOLDER}/generate_lm.py
 cp ${WORK}/DeepSpeech/data/lm/generate_package.py ${TOOLSFOLDER}/generate_package.py
 ```
-You also need to build kenlm it's used to create the scorer file.
+You also need to build Kenlm it's used to create the scorer file.
 
 ### Build Kenlm
 Kenlm is used to generate the language model.
@@ -273,7 +273,7 @@ cd ${WORK}
 ```
 
 ### Build deepspeech_training
-This module is used by generate_package.py. An you can build it really easy:
+This module is used by generate_package.py. And you can build it really easy:
 ```bash
 cd DeepSpeech
 python setup.py bdist_wheel -d  .
@@ -284,10 +284,10 @@ DeepSpeech_training is now build and copied to ${TOOLSFOLDER}. Don't forget to g
 ### Build tensorflow 1.15.4
 DeepSpeech_training requires tensorflow 1.15.2, which can't be installed with pip.
 For the tools binary I use the binary from [here](https://github.com/Qengineering/TensorFlow-Raspberry-Pi/raw/master/tensorflow-1.15.2-cp37-cp37m-linux_armv7l.whl).
-I used a precompied binary because I had no success to build it.
+I used a precompiled binary because I had no success to build it.
 
 But you can try to build it for yourself:
-I used this to build it from source. Please make sure you have docker installed.
+I used this to build it from source code. Please make sure you have docker installed.
 To build the tensorflow package for Raspberry Pi, type these commands:
 ```bash
 git clone https://github.com/tensorflow/tensorflow

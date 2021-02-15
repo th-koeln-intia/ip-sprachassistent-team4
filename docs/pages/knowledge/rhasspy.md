@@ -19,12 +19,12 @@ Rhasspy is an open source, fully offline voice assistant toolkit.
 Rhasspy combines all needed tools for a voice assistant, from wake word to intent handling.
  
 # Speech To Text
-This is the primary function of rhasppy and allows Rhasspy to convert a voice command to a JSON event.
+This is the primary function of Rhasspy and allows Rhasspy to convert a voice command to a JSON event.
 The offline transcription of voice commands in Rhasspy is handled by one of three open source systems:
  
 - Pocketsphinx
 - Kaldi
-- DeepSpeech (This tool are we using)
+- DeepSpeech (The tool we are using)
  
 [Read more about Speech To Text](/pages/knowledge/speech-to-text)
  
@@ -37,15 +37,15 @@ These are available: flite (only in english), picotts, nanotts, marytts, opentts
 [Read more about Text To Speech](/pages/knowledge/text-to-speech)
  
 # Intent Handling
-After a successful recognition of intent, Rhasppy will send a JSON even to a home Assistant or a remote Rhasspy server.
+After a successful recognition of intent, Rhasspy will send a JSON even to a home Assistant or a remote Rhasspy server.
 The Intent handling systems are: Home Assistant, Remote HTTP Server, external command. Rhasspy publishes intent over MQTT 
 protocol.
  
 [Read more about intent handling](/pages/knowledge/intent-handling)
  
 # Intent Recognition
-The voice command is transcribed from Text-To-Speech system and after that the intent needs to be recognized and as 
-result, the Rhasspy will produce a JSON event. The are different intent recognition systems:
+The voice command is transcripted from Text-To-Speech system and after that the intent needs to be recognized and as 
+result, the Rhasspy will produce a JSON event. There are different intent recognition systems:
 - Fsticuffs (if you plan  to recognize the voice from your training set, this will be the best)
 - Fuzzywuzzy
 - Snips-NLU (NLU -> Natural Language Understanding)
@@ -59,7 +59,7 @@ result, the Rhasspy will produce a JSON event. The are different intent recognit
  
 # Wake Word
 A wake word is used to activate the voice assistant. also called "hot word".
-Rhasppy can listen to a wake world through different systemes. It is also possible to wake rhaspy with a 
+Rhasspy can listen to a wake world through different systems. It is also possible to wake Rhasspy with a 
 HTTP Post verb. The best system is Porcupine.
  
 [Read more about Wake Word](/pages/knowledge/wake-word)
@@ -82,5 +82,5 @@ can be in the form of a spoken phrase or an action.
 There are different voice assistants such as Siri, Alexa and Google Home.
 These voice assistants mentioned above all use the internet to process your commands and data on a cloud and many people are concerned about 
 how they use private data. 
-Other voice assistants like Rhasspy, Jasper, etc. are able to work without sharing our data over internet and these 
-are very interesting for people who are concerned about the privacies.
+Other voice assistants like Rhasspy, Jasper, etc. are able to work without sharing our data over internet, and these 
+are very interesting for people who are concerned about the privacy.

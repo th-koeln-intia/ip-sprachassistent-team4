@@ -15,9 +15,11 @@ parent: Knowledge
 
 # Node-RED
 Node-RED is described as flow-base programming for the Internet of Things. 
-It provides a browser-based editor that makes it easy to wire together flows using the wide range of nodes in the palette that can be deployed to its runtime in a single-click.
+It provides a browser-based editor that makes it easy to wire together flows using the wide range of nodes in the 
+palette that can be deployed to its runtime in a single-click.
  
-Node-Red has different nodes which allows us to control our devices according to our needs. We will use this home automation for our current projekt.
+Node-Red has different nodes which allows us to control our devices according to our needs. We will use this home 
+automation for our current project.
 
 # Installation of node-RED
 
@@ -44,7 +46,8 @@ node-red-start # start node-red to make the change activ
 ```
 # Nodes
 
-Once you have Node-REDE opened, you can see different Nodes available and over the menu button , you can add additional new packets.
+Once you have Node-RED opened, you can see different Nodes available and over the menu button , you can add 
+additional new packets.
 Here are some important Nodes : 
 
 - Switch: Checks, according to individual conditions, to which output the node sends the message should be forwarded.
@@ -57,7 +60,8 @@ hand back
 - RBE: Blocks further messages at the inbox until a change takes place. Here can
 either the complete payload can be checked, or just a single property of the
 Payload
-- HTML: Extracts certain elements from a complex HTML construct using CSS selectors. Very practical for quickly collecting individual values.
+- HTML: Extracts certain elements from a complex HTML construct using CSS selectors. Very practical for quickly 
+  collecting individual values.
 - Delay: Delays the incoming message by the set (or a random) time until it arrives
 the output is passed on
 - Trigger: Converts messages into a "status". E.g. ensure that the

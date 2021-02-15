@@ -15,12 +15,12 @@ parent: Knowledge
 
 # Checklist
 
-After installation you can test if your installation is successfull.
+After installation, you can test if your installation is successful.
 
 # 1. Check if all services are running
 First you can check if every service we installed is running.
 When you run the `sudo systemctl status <servicename>` you can check if everything works fine.
-Look at the point `Active` it should be `active (running)`. And you can look down at the status for an error.
+Look at the point `Active` it should be `active (running)`. You can look down at the status for an error.
 
 Mosquitto:
 ```
@@ -54,13 +54,14 @@ sudo systemctl restart <servicename>
 ```
 Check the status again, when it is running everything is ok.
 - There is also a common error. It could be, that some data is missing. you should see it in the log in the status.
-  This error appears when the model for deepepeech and snips is missing.
+  This error appears when the model for DeepSpeech and snips is missing.
 
 # 2. Check train function
 Open Rhasspy GUI `<ip of your Raspberry Pi>:12101` and click train. there is a setup sentences.ini it should work.
 After near 60 seconds this message with a different time should appear: `Training completed in 59.34 second(s)`
-When you got an error please open with `journalctl` the log of deepspeech and snips and train again to search for an error. 
-Maybe there is an syntax error in sentence.ini or a model is missing.
+When you got an error please open with `journalctl` the log of deepspeech and snips and train again to search for 
+an error. 
+Maybe there is a syntax error in sentence.ini or a model is missing.
 Here are the commands for the logs:
 ```bash
 sudo journalctl -fu rhasspy-asr-deepspeech-hermes
@@ -68,7 +69,7 @@ sudo journalctl -fu rhasspy-snips-nlu-hermes
 ```
 
 # 3. Check snips
-When the training was successfull, you can try out an intent. Go on the Rhasspy GUI and type this:
+When the training was successful, you can try out an intent. Go on the Rhasspy GUI and type this:
 [![Rhasspy snips test](/assets/check_snips.png)](/assets/check_snips.png){:target="_blank"}  
 You should see, that the Intent `GetTime` is triggered.
 If not, open the log for snips and look for errors:
@@ -77,7 +78,7 @@ sudo journalctl -fu rhasspy-snips-nlu-hermes
 ```
 
 # 4. Check microphone and Hermes Led Control
-First setup a [wake word](/pages/installation/manual/configuration.html#3-wake-word), after that you can try it.
+First set up a [wake word](/pages/installation/manual/configuration.html#3-wake-word), after that you can try it.
 The LEDs on the Raspberry Pi should now blink. Your wake word got recognized.
 
 # 5. Check Node-Red

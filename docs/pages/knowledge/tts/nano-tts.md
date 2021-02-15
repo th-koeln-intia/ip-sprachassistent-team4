@@ -15,7 +15,8 @@ grand_parent: Knowledge
 </details>
 
 # NanoTTS
-NanoTTS is a speech syntesizer, that is an improved version of picoTTS. PicoTTS is the TTS that is build in in all android phones.
+NanoTTS is a speech synthesizer, that is an improved version of picoTTS. PicoTTS is the TTS that is build in all 
+android phones.
 It's simple and fast and easy to understand.
 
 # Pros

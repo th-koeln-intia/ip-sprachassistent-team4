@@ -20,19 +20,19 @@ give it a task to proceed.
 There are 4 scenarios a program can detect as a Wake Word:
 - true positive: The Wake Word was spoken and was detected correctly.
 - false negative: The Wake Word was spoken and was not detected by the program.
-- false positive: The Wake Word was not spoken but the program detected a word as the Wake Word.
-- true negative: The Wake Word was spoken and the program does not detect the Wake Word.     
+- false positive: The Wake Word was not spoken, but the program detected a word as the Wake Word.
+- true negative: The Wake Word was spoken, and the program does not detect the Wake Word.     
 
 The goal of a Wake Word system is to recognize the Wake Word with the greatest possible precision. So false negative 
 and false positive detections are not welcome.
 
 ## How does Rhasspy listen to a Wake Word?
-Rhasspy itself won't listen to a Wake Word. It listens for MQTT messages on the topic `'hermes/hotword/<wake word>/detected'`.
+Rhasspy itself won't listen to a Wake Word. It listens for MQTT messages on the topic `'hermes/hotword/<Wake Word>/detected'`.
 You can disable/enable the Wake Word with the message `'hermes/hotword/toggleOff'`.
 
-## Who sets the `'hermes/hotword/<wake word>/detected` message'?
+## Who sets the `'hermes/hotword/<Wake Word>/detected` message'?
 There are many programs for Wake Word handling like Raven, Porcupine, Snowboy, Mycroft precise, Pocketsphinx.
-In this project we are using Raven for the Wake Word processor. With Raven you can train a Wake Word with only 
+In this project we are using Raven for the Wake Word processor. With Raven, you can train a Wake Word with only 
 3 WAV file (16-bit 16Khz) templates. 
 
 ## Add Raven to Rhasspy

@@ -43,10 +43,10 @@ else
       read -n 2 language
 
       if [ "$language" = "en" ]; then
-        echo -e "\nYou choosed en"
+        echo -e "\nYou chose en"
         break
       elif [ "$language" = "de" ]; then
-        echo -e "\nYou choosed de"
+        echo -e "\nYou chose de"
         break
       else
         echo -e "\nChoose between en or de!"
@@ -130,7 +130,7 @@ else
     echo "* What assistant engine are you using? Enter 2 for rhasspy"
     echo "* What's the path to your assistant config file? Type in your path to your profile.json. The default path is this /home/pi/.config/rhasspy/profiles/de/profile.json"
     echo "* What device do you wish to control with SLC? Enter 2 for respeaker4"
-    echo "* What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google"
+    echo "* What pattern do you want to use? Choose your preferred Led pattern. For example 1 for google"
     echo "* Do you need to install / configure your respeaker4? Enter 2 for no $(tput sgr 0)"
     
     read -p "Press [Enter] key to continue..."

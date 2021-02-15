@@ -27,4 +27,4 @@ Messages are sent to it, which are then available to all services like on a bull
   Anyone who has access to the same network could publish or subscribe to topics. Thus, one could control or influence almost the entire rhasspy voice assistant.
 
 ## Conclusion
-Mosquitto is a really powerfull MQTT server, there is not much to go wrong. It does what it was created for.
+Mosquitto is a really powerful MQTT server, there is not much to go wrong. It does what it was created for.

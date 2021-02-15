@@ -21,7 +21,7 @@ nav_order: 0
 To build your own voice assistant, you will need at least the following things:
 
 * Raspberry Pi 3b/3b+/4 with Power Cable
-* Micro-SD-Card with min. 16gb
+* Micro-SD-Card with a min of 16gb
 * ReSpeaker 4-Mic-Array
 * Zigbee2MQTT adapter, like [**Texas Instruments CC2531**](/pages/knowledge/zigbee/cc2531) or [**ConBee2**](/pages/knowledge/zigbee/conbee2)
   or ([other compatible adapters](https://www.zigbee2mqtt.io/information/supported_adapters){:target="_blank"})
@@ -40,15 +40,15 @@ Steps:
 4. Click Button **Write**
 5. Done!
 
-You can attach a screen, keyboard and mouse to enable SSH and configure WIFI connection.
+You can attach a screen, keyboard and mouse to enable SSH and configure WI-FI connection.
 
 The username is ``pi`` and the password is ``raspberry``. 
 You should [change the password](https://www.raspberrypi.org/documentation/linux/usage/users.md){:target="_blank"} 
 immediately.
 
-## Optionally SSH and WIFI configuration
+## Optionally SSH and WI-FI configuration
 
-If you want to start the Raspberry Pi headless, you can enable SSH and configure the WIFI connection before starting.
+If you want to start the Raspberry Pi headless, you can enable SSH and configure the WI-FI connection before starting.
 
 ## Enable SSH
 {: .no_toc }
@@ -71,20 +71,19 @@ network={
  psk="<Password for your wireless LAN>"
 }
 ```
-you can use the command `sudo rasi-config` for additional setting (e.g : change your time zone, set the language, Keybord layout etc..)
+you can use the command `sudo rasi-config` for additional setting (e.g : change your time zone, set the language, 
+Keyboard layout etc.)
 
 Read more about a headless setup 
 [here](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md){:target="_blank"}.
 
 ## Plugin ReSpeaker and Zigbee Adapter
-
 Attach the ReSpeaker 4-Mic-Array to the Raspberry Pi and plugin the Zigbee Adapter.
 
 ![Raspberry Pi with ReSpeaker and ConBee2](../../assets/rpi_respeaker_conbee2.jpg)
 
 
 ## Finish!
-
 Congratulations! You mastered the first step to your own Voice Assistant! 
 Go to the [next step](/pages/installation/auto-install-script/auto-installation)!
  

@@ -8,7 +8,7 @@ nav_order: 3
 
 # News
 
-We tested different sources for news. Feef free to try them out.
+We tested different sources for news. Feel free to try them out.
 
 
 
