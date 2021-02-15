@@ -85,7 +85,7 @@ Attach the ReSpeaker 4-Mic-Array to the Raspberry Pi and plugin the Zigbee Adapt
 
 ## Finish!
 Congratulations! You mastered the first step to your own Voice Assistant! 
-Go to the [next step](/pages/installation/auto-install-script/auto-installation)!
+Go to the [next step](/pages/installation/auto-installation)!
  
 
 
