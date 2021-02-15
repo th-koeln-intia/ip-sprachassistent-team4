@@ -35,7 +35,7 @@ results. During implementation we find out that Mozilla TTS runs too slow on an 
 
 # Install 
 ## Auto Linux x86/x64
-The automatic installation only workd for linux x86 or x64 and NOT on arm:
+The automatic installation only worked for linux x86 or x64 and NOT on armv:
 ```bash
 git clone https://github.com/Sh4der/MQTTMozillaTTSGerman
 mkdir .venv
@@ -47,7 +47,7 @@ MQTTMozillaTTSGerman --tts_model /home/pi/.config/rhasspy/profiles/de/TTS/tts_mo
 ```
 
 ## Manual for testing arm
-This manual installation for arm. There is no service or somethin simular. Actually it's only for testing:
+This manual installation for armv. There is no service or something similar. Actually it's only for testing:
 Download MQTTMozillaTTSGerman:
 ```bash
 git clone https://github.com/Sh4der/MQTTMozillaTTSGerman
@@ -57,13 +57,13 @@ source .venv/bin/activate
 ```
 Build pytorch:
 ```bash
-# Download the repository anc checkuot v1.5.0
+# Download the repository anc checkout v1.5.0
 git clone https://github.com/pytorch/pytorch
 cd pytorch 
 git checkout tags/v1.5.0
 git submodule update --init --recursive
 
-# Install all libaries
+# Install all libraries
 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools libatomic-ops-dev
 pip install pyyaml
 # Add libatomic-ops-dev to the linker

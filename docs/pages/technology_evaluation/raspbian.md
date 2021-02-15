@@ -30,5 +30,5 @@ Raspbian is the operating system we used on our Raspberry Pi.
 - There are many packages installed we don't need
 
 ## Conclusion
-Raspbian is a really good operating system espacilly when you don't want to set up thousand things.
+Raspbian is a good operating system especially when you don't want to set up thousand things.
 Beginner can start direct without much configuration. It is a good base for the rhasspy voice assistant.

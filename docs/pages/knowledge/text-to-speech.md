@@ -19,12 +19,15 @@ After handling the voice command, it's common to give the user a response in the
 Rhasspy uses a text to speech system (TTS) to generate a voice out of text.
 
 ## MQTT API
-To trigger the TTS to say something, you must publish the MQTT message ``/hermes/tts/say`` with the attribute ``text`` and the attribute ``siteId``.
-The attribute ``text`` must contain the text you want to hear from the TTS. After you send it out, the TTS produces a voice wav file and plays it on the speaker of your rhasspy.
-When rhasspy finished playing the wavfile, the MQTT messaage ``hermes/tts/sayFinished`` is send with the same siteId as ``/hermes/tts/say``.
+To trigger the TTS to say something, you must publish the MQTT message ``/hermes/tts/say`` with the attribute ``text`` 
+and the attribute ``siteId``.
+The attribute ``text`` must contain the text you want to hear from the TTS. After you send it out, the TTS produces a 
+voice wav file and plays it on the speaker of your rhasspy.
+When rhasspy finished playing the WAV file, the MQTT message ``hermes/tts/sayFinished`` is send with the same siteId 
+as ``/hermes/tts/say``.
 
 ## What systems are available?
-There are different text to speech systems and the list below shows some examples with the available language:
+There are different text to speech systems, and the list below shows some examples with the available language:
 
 |system | en | de | es | fr | it | nl | ru | el | hi | zh | vi | pt | ca | 
 |---|---|--|--|---|---|---|---|---|---|---|---|---|---|
@@ -47,6 +50,6 @@ There are different text to speech systems and the list below shows some example
 
 *MaryTTS*: has a MaryTTS Docker image available with many voices included. Use a remote MaryTTS web server.
 
-*OpenTTS*: Uses a remote OpenTTS, supports many different text to speech system such as Mozilla TTS.
+*OpenTTS*: Uses a remote OpenTTS, supports different text to speech systems such as Mozilla TTS.
 
 *Google WaveNet*: requires a google account and internet connection to function 

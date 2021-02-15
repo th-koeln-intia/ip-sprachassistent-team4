@@ -218,7 +218,7 @@ sudo systemctl start nodered.service
 
 ### Finished!
 {: .no_toc }
-The [Node-RED](/pages/knowledge/node-red) server is now accessable at the IP of your Raspberry PI under port 1880:
+The [Node-RED](/pages/knowledge/node-red) server is now accessible at the IP of your Raspberry PI under port 1880:
 ```
 http://<ip-adress>:1880
 ```
@@ -400,7 +400,7 @@ Answer the questions like following:
 * What's the path to your assistant config file? Press Enter 
 (Path Should be like (_/home/pi/.config/rhasspy/profiles/de/profile.json_)
 * What device do you wish to control with SLC? Enter 2 for respeaker4
-* What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google
+* What pattern do you want to use? Choose your preferred Led pattern. For example 1 for google
 * Do you need to install / configure your respeaker4? Enter 2 for no 
 
 Later you will configure Rhasspy to work with Hermes Led Control.
@@ -457,7 +457,7 @@ Start [Rhasspy](/pages/knowledge/rhasspy) and check if rhasspy runs without prob
 rhasspy --profile de
 ```
 
-If an error occures like `PermissionError: [Errno 13] Permission denied: '/home/pi/.config/rhasspy/profiles/de'`
+If an error occurs like `PermissionError: [Errno 13] Permission denied: '/home/pi/.config/rhasspy/profiles/de'`
 you need to give your user permission to the folder `/home/pi/.config/rhasspy`
 
 ```bash
@@ -541,7 +541,7 @@ After saving settings in Rhasspy you need to restart rhasspy manual in the conso
 systemctl restart rhasspy
 ```
 
-## (6). Install Rhasspy with [Docker](/pages/knowledge/docker) (not recomment)
+## (6). Install Rhasspy with [Docker](/pages/knowledge/docker) (not recommend)
 To install Rhasspy pull the [Docker](/pages/knowledge/docker) image with the command
 
 ```bash
@@ -626,7 +626,7 @@ Execute script: ``$HOME/tmp/./install_rhasspy_deepspeech.sh``
 #### Alternative installation step-by-step
 {: .no_toc }
 
-We are using german pretrained model files for ``deepspech 0.7.4`` from this repository: 
+We are using german pretrained model files for ``deepspeech 0.7.4`` from this repository: 
 [AASHISHAG/deepspeech-german](https://github.com/AASHISHAG/deepspeech-german).
 
 You need the files ``output_graph.tflite`` and ``kenlm.scorer``. You can download them manually from 

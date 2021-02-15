@@ -16,7 +16,7 @@ parent: Knowledge
 # Hermes LED Control
 
 HLC (Hermes LED Control) is a tool, that subscribes various topics, to react with visual 
-effects on the ReSpeaker. For example if a hotword is detected  HLC will trigger a LED 
+effects on the ReSpeaker. For example if a Wake Word is detected HLC will trigger a LED 
 effect to show the user that rhasspy listens for a command.
 
 # Installation
@@ -51,7 +51,7 @@ Answer the questions like following:
 * What assistant engine are you using? Enter 2 for rhasspy
 * What's the path to your assistant config file? **Type in your path to your profile.json. The default path is this: `/home/pi/.config/rhasspy/profiles/de/profile.json`**
 * What device do you wish to control with SLC? Enter 2 for respeaker4
-* What pattern do you want to use? Choose your prefered Led pattern. For example 1 for google
+* What pattern do you want to use? Choose your preferred Led pattern. For example 1 for google
 * Do you need to install / configure your respeaker4? Enter 2 for no 
 
 Later you will configure Rhasspy to work with Hermes Led Control.

@@ -31,8 +31,8 @@ We created a alarm feature in NodeRed with JS Functions. Here is a small overvie
 - 1 second refresh time.
 - TTS tells you which time you set the alarm
 
-## Savefile
-The alarm sound is setup to this file:
+## Save file
+The alarm sound is set up to this file:
 ```
 /home/pi/.config/rhasspy/profiles/de/data/alarms.json
 ```
@@ -42,7 +42,7 @@ Tha alarm sound is setup here:
 ```
 /home/pi/.config/rhasspy/profiles/de/data/alarm.mp3
 ```
-You can edit it or set another path. Important is that you use an absolut path to link the mp3 file. Otherwise NodeRed looks in its own workfolder.
+You can edit it or set another path. Important is that you use an absolut path to link the mp3 file. Otherwise, NodeRed looks in its own workfolder.
 
 ## Description
 I start to describe the flow from top to bottom. so we start with the loading the alarms from a file.
@@ -128,7 +128,7 @@ After this function the alarm list will be saved with the node `file` to the fil
 
 ### Injection `resetAlarms`
 [![Reset alarms](/assets/alarmJSReset.png)](/assets/alarmJSReset.png){:target="_blank"}  
-This part is for deleting all alarms from the global list and from the savefile.
+This part is for deleting all alarms from the global list and from the save file.
 After you click on `resetAlarms` the functions `resetAllAlarms` starts.
 This function sets the global `alarms` array to an empty array:
 ```javascript
@@ -136,13 +136,13 @@ global.set("alarms", []);
 msg.payload = null;
 return msg;
 ```
-After this the alarms will be saved in the savefile again.
+After this the alarms will be saved in the save file again.
 
 ### Injection `refreshAlarms`
 [![Check alarms](/assets/alarmJSCheck.png)](/assets/alarmJSCheck.png){:target="_blank"}  
 The injection `refreshAlarms` triggers the function `checkAllAlarms` every second.
 `checkAllAlarms` goes through every alarm in the global alarm list and checks if it's time to ring.
-When a alarm is out of time it will be add to the `readyAlarms` array, which will be the output for the function. 
+When a alarm is out of time it will be added to the `readyAlarms` array, which will be the output for the function. 
 If `readyAlarms` is empty the function will return `null`. 
 
 Here is the Code:

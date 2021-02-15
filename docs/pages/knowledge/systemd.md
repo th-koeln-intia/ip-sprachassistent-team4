@@ -16,9 +16,11 @@ parent: Knowledge
 # Systemd
 
 ## Why this section?
-When you want to start Rhasspy the normal way you quickly notice that you can't find any sound device. And your microphone does not work anymore. This is not what we expect. 
-The interesting part is, that everything is working again, when you start Rhasspy again manually in the commandline. So there must be something, that systemd does the other way,
-than the user with a manuall start does.
+When you want to start Rhasspy the normal way you quickly notice that you can't find any sound device. 
+Your microphone does not work anymore. This is not what we expect. 
+The interesting part is, that everything is working again, when you start Rhasspy again manually in the commandline. 
+So there must be something, that systemd does the other way,
+than the user with a manually start does.
 
 ## So what is the Problem?
 When you take a look in the log of Rhasspy you may see the following message:
@@ -30,9 +32,12 @@ INFO spawnerr: unknown error making dispatchers for 'intent_handling': ENXIO
 INFO spawnerr: unknown error making dispatchers for 'wake_word': ENXIO
 ...
 ```
-This means, that the program supervisord tries to open a file. The Error 'ENXIO' is from the linux open command. and means, that the file the program trys to open is a socket. And a sockent can't be opened by the ``open`` command
-When you take a look into the supervisor.conf in the profile directory, you can see, that ``/dev/stdout`` is set as log file for all supervisor tasks. 
-When you inspect the file ``/dev/stdout`` with ``readlink`` in the normal bash and then with a systemd service, you get this results:
+This means, that the program supervisord tries to open a file. The Error 'ENXIO' is from the linux open command and 
+means, that the file the program tries to open is a socket. A socket can't be opened by the ``open`` command
+When you take a look into the supervisor.conf in the profile directory, you can see, that ``/dev/stdout`` is set as 
+log file for all supervisor tasks. 
+When you inspect the file ``/dev/stdout`` with ``readlink`` in the normal bash and then with a systemd service, you 
+get this results:
 ```
 Bash:
 /dev/stdout -> /proc/self/fd/1 -> /dev/pts/X
@@ -40,7 +45,8 @@ Bash:
 Systemd:
 /dev/stdout -> /proc/self/fd/1 -> socket:[Y]
 ```
-In the bash the link points to a normal file. But in systemd, the link points to a socket, that can't be opened with the ``open`` command.
+In the bash the link points to a normal file. But in systemd, the link points to a socket, that can't be opened with 
+the ``open`` command.
 
 ## Solution 1 in the service
 
@@ -72,7 +78,8 @@ And paste this line above:
 ```
 sed -i "s,/dev/stdout,${config_home}/rhasspy/rhasspy.log,g" "${conf_path}"
 ```
-This edits the supervisor.conf file after it was created. The path ``/dev/stdout`` will be replaced by the path ``${config_home}/rhasspy/rhasspy.log``.
+This edits the supervisor.conf file after it was created. The path ``/dev/stdout`` will be replaced by the path 
+``${config_home}/rhasspy/rhasspy.log``.
 So supervisor creates a log file in the Rhasspy folder instead printing all output to ``/dev/stdout``
 When you save your Rhasspy settings you need to manually restart Rhasspy.
 

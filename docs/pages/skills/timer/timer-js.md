@@ -27,18 +27,18 @@ We created a timer feature in NodeRed with JS Functions. Here is a small overvie
 - Set a timer via voice you can set hours, minutes and seconds.
 - You can clear all timers.
 - Stop a timer via voice
-- And you can ask when the next timer is set answer via TTS.
+- You can ask when the next timer is set. The answer will be output via TTS.
 - 1 second refresh time.
 - TTS tells you what time the timer was set
 
-## Savefile
+## Save file
 The timers are saved in the profile folder: 
 ```
 /home/pi/.config/rhasspy/profiles/de/data/timers.json
 ```
 
 ## Timer sound
-The timer sound is setup to this file:
+The timer sound is set up to this file:
 ```
 /home/pi/.config/rhasspy/profiles/de/data/alarm.mp3
 ```
@@ -133,7 +133,7 @@ After this function the timer list will be saved with the node `file` to the fil
 
 ### Injection `resetTimers`
 [![Reset all timers](/assets/timerJSReset.png)](/assets/timerJSReset.png){:target="_blank"}  
-This part is for deleting all timers from the global list and from the savefile.
+This part is for deleting all timers from the global list and from the save file.
 After you click on `resetTimers` the functions `resetAllTimers` starts.
 This function sets the global `timers` array to an empty array:
 ```javascript
@@ -141,7 +141,7 @@ global.set("timers", []);
 msg.payload = null;
 return msg;
 ```
-After this the timers will be saved in the savefile again.
+After this the timers will be saved in the save file again.
 
 ### Injection `refreshTimers`
 [![Check timers](/assets/timerJSCheck.png)](/assets/timerJSCheck.png){:target="_blank"}  
