@@ -16,7 +16,7 @@ parent: Skills
 There are different ways to set up a light. This example is based on setting a light with Hermes and 
 [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) protocol.
 To start with Node Red setting, your device should be connected to Zigbee2MQTT broker. Have a look on 
-[zigbee2mqtt](/pages/knowledge/zigbee/zigbee2mqtt) to see how you can connect your devices.
+[Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) to see how you can connect your devices.
 
 [![setup light with Node_Red](/assets/LightControl.png)](/assets/LightControl.png)
 
@@ -91,7 +91,7 @@ return message;
 
 #### Transform input function
 This function transforms the message from Switch-Case-Slots function in a format 
-[Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) needs it. The actual message for zigbee2mqtt will be placed into 
+[Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) needs it. The actual message for Zigbee2MQTT will be placed into 
 `msg.payload`.
 The description is shown later on this [page](/pages/skills/light-control#zigbee2mqtt-basic-message-syntax).
 

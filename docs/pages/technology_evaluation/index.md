@@ -16,14 +16,20 @@ In addition to the subpages, we evaluate the software used in a clear table.
 
 | Service                         | Technology         | Installation             | Configuration     | Usability | Error rate |
 |---------------------------------|--------------------|--------------------------|-------------------|-----------|------------|
-| Speech to Text                  | DeepSpeech         | Hard without experience* | easy              | medium    | high       |
-| LED Control                     | Hermes LED Control | Medium                   | easy              | good      | none       |
-| Text to Speech                  | Mozilla TTS        | Hard                     | easy              | bad       | medium     |
-| Text to Speech                  | Nano TTS           | Easy                     | easy (in Rhasspy) | good      | none       |
-| Intent Handling                 | Node-RED           | Easy                     | easy              | medium    | low        |
-| Wake Word                       | Raven              | Easy                     | easy (in Rhasspy) | good      | low        |
-| Set of voice assistant services | Rhasspy            | Easy                     | easy              | medium    | none       |
-| Microphone                      | ReSpeaker          | Medium                   | none              | good      | none       |
-| Intent Recognition              | Snips-NLU          | Hard without experience  | medium            | good      | low        |
+| Speech to Text                  | DeepSpeech         | Hard without experience* | Easy              | Medium    | High       |
+| LED Control                     | Hermes LED Control | Medium                   | Easy              | Good      | None       |
+| Text to Speech                  | Mozilla TTS        | Hard                     | Easy              | Bad       | Medium     |
+| Text to Speech                  | Nano TTS           | Easy                     | Easy (in Rhasspy) | Good      | None       |
+| Intent Handling                 | Node-RED           | Easy                     | Easy              | Medium    | Low        |
+| Wake Word                       | Raven              | Easy                     | Easy (in Rhasspy) | Good      | Low        |
+| Set of voice assistant services | Rhasspy            | Easy                     | Easy              | Medium    | None       |
+| Microphone                      | ReSpeaker          | Medium                   | None              | Good      | None       |
+| Intent Recognition              | Snips-NLU          | Hard without experience  | Medium            | Good      | Low        |
+| MQTT broker                     | Mosquitto          | Easy                     | Easy              | Good      | None       |
+| Single Board Computer           | Raspberry Pi       | Easy                     | None              | Good      | None       |
+| Operating System                | Raspbian           | Easy                     | Medium            | Good      | Medium     |
+| Zigbee Adapter                  | CC2531             | Easy                     | None              | Good      | None       |
+| Zigbee Adapter                  | ConBee2            | Easy                     | None              | Good      | None       |
+| Bridge from Zigbee to MQTT      | Zigbee2MQTT        | Easy                     | Medium            | Medium    | None       |
 
-*as for german pretrained model
+*as for German pretrained model

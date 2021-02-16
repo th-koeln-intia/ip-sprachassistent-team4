@@ -92,7 +92,7 @@ else
     chmod +x install-node-red-npm-packages-and-flows
     ./install-node-red-npm-packages-and-flows
 
-    #install zigbee2mqtt
+    #install Zigbee2MQTT
     echo "$(tput setaf 3)Install zigbee2mqtt! $(tput sgr 0)"
     read -p "Press [Enter] key to continue..."
     wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/install_zigbee2mqtt.sh

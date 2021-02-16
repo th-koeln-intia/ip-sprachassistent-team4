@@ -34,7 +34,7 @@ Snips:
 ```bash
 sudo systemctl status rhasspy-snips-nlu-hermes
 ```
-Zigbee2mqtt:
+Zigbee2MQTT:
 ```bash
 sudo systemctl status zigbee2mqtt
 ```

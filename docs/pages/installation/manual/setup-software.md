@@ -296,7 +296,7 @@ Enter `deactivate` to deactivate the environment.
 {: .no_toc }
 Start [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt) and test if the connection works.
 
-Tip: Use the [mqtt explorer](https://mqtt-explorer.com){:target="_blank"} to see incoming messages.
+Tip: Use the [MQTT explorer](https://mqtt-explorer.com){:target="_blank"} to see incoming messages.
 
 #### Enter folder
 {: .no_toc }
