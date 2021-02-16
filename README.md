@@ -25,13 +25,14 @@ We we are using these Tools:
 - [ ] Revise the documentation
 - [X] Make images smaller
 - [X] Setup hardware at the bottom of the page refer to the installation
-- [ ] Correct installation arrangement
-- [ ] Technology rating section with rating of all technologies write down with personal rating and conclusion.
-- [ ] Explanation Why Node-Red the Why is actually missing
+- [X] Correct installation arrangement
+- [X] Technology rating section with rating of all technologies write down with personal rating and conclusion.
 - [ ] Link to knowledge entries on all possible pages
-- [ ] Check all images
-- [ ] Check manual installation page against auto installation script 
-
+- [X] Check all images
+- [ ] Check manual installation page against auto installation script (Workfolder should be /pi/home/installFiles)
+- [ ] Snsert flow for alarm with node
+- [ ] Revise sentence.ini
+- [ ] Add text to the diagrams in the evaluation index
 
 ## Documentation
 The documentation is created in form of a GitHub page following the official documentation:  
