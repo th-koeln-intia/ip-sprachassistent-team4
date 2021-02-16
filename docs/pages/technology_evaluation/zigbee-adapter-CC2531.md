@@ -23,6 +23,7 @@ The [CC2531](/pages/knowledge/zigbee/cc2531) is a USB enabled true system-on-chi
 
 ## Disadvantages
 - Not very powerful and has a limited rang of ~30 m line of sight
+- It's just an unprotected circuit board
 
 ## Conclusion
 Once installed, the C2531 is very easy to use and is suitable for systems that require ultra-low power consumption.
