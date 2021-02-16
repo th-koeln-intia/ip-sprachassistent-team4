@@ -1,17 +1,16 @@
 ---
-layout: default
-title: Technology Evaluation
-has_children: true
-nav_order: 5
+layout: default title: Technology Evaluation has_children: true nav_order: 5
 ---
 
 # Technology Evaluation
-This section of the documentation is about the technology evaluation of the software we used and partly tested. 
-After a short explanation, we highlight the advantages and disadvantages of the respective software. We then briefly 
-summarise these in a conclusion and supplement this with a personal opinion and experiences.
-Each sub-page deals with a separate topic.
+
+This section of the documentation is about the technology evaluation of the software we used and partly tested. After a
+short explanation, we highlight the advantages and disadvantages of the respective software. We then briefly summarise
+these in a conclusion and supplement this with a personal opinion and experiences. Each sub-page deals with a separate
+topic.
 
 # Overview
+
 In addition to the subpages, we evaluate the software used in a clear table.
 
 | Service                         | Technology         | Installation             | Configuration     | Usability | Error rate |
@@ -35,6 +34,8 @@ In addition to the subpages, we evaluate the software used in a clear table.
 *as for German pretrained model
 
 # Software/Hardware overview
+
+In the following component diagram, all the technologies listed above have been brought together in relation.
 
 <img src='../../assets/software_hardware_overview.png' width='500' alt="Software and hardware overview">
 
