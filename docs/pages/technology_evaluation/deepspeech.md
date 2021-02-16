@@ -51,4 +51,6 @@ It can be trained well and quickly with new words. Unfortunately, for pre-traine
 there is usually little to no choice.
 However, it should be noted that DeepSpeech is still under development. Therefore, it can be hoped that there will 
 be further updates in the future and that DeepSpeech will be improved in usability and functionality.
+It should be noted that there may be problems with speech impediments or people with a strong accent. 
+The more unclear the person speaks, the worse DeepSpeech understands what was said.
 
