@@ -36,4 +36,5 @@ In addition to the subpages, we evaluate the software used in a clear table.
 
 # Software/Hardware overview
 
-![Software and hardware overview](../../assets/software_hardware_overview.png =500x)
+<img src='../../assets/software_hardware_overview.png' width='500' alt="Software and hardware overview">
+
