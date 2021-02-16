@@ -1,5 +1,8 @@
 ---
-layout: default title: Zigbee2MQTT parent: Zigbee grand_parent: Knowledge
+layout: default 
+title: Zigbee2MQTT 
+parent: Zigbee 
+grand_parent: Knowledge
 ---
 
 <details close markdown="block">

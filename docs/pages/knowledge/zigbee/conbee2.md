@@ -1,5 +1,8 @@
 ---
-layout: default title: Zigbee Adapter ConBee2 parent: Zigbee grand_parent: Knowledge
+layout: default 
+title: Zigbee Adapter ConBee2 
+parent: Zigbee 
+grand_parent: Knowledge
 ---
 
 <details close markdown="block">

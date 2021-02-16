@@ -1,5 +1,7 @@
  ---
-layout: default title: Zigbee2MQTT parent: Technology Evaluation
+layout: default 
+title: Zigbee2MQTT 
+parent: Technology Evaluation
 ---
 
 <details close markdown="block">

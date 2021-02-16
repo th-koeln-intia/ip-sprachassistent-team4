@@ -1,5 +1,7 @@
 ---
-layout: default title: Mosquitto parent: Technology Evaluation
+layout: default 
+title: Mosquitto 
+parent: Technology Evaluation
 ---
 
 <details close markdown="block">

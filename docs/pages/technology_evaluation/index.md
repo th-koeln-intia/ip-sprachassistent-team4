@@ -1,5 +1,8 @@
 ---
-layout: default title: Technology Evaluation has_children: true nav_order: 5
+layout: default 
+title: Technology Evaluation 
+has_children: true 
+nav_order: 5
 ---
 
 # Technology Evaluation
