@@ -33,3 +33,7 @@ In addition to the subpages, we evaluate the software used in a clear table.
 | Bridge from Zigbee to MQTT      | Zigbee2MQTT        | Easy                     | Medium            | Medium    | None       |
 
 *as for German pretrained model
+
+# Software/Hardware overview
+
+![Software and hardware overview](../../assets/software_hardware_overview.png){ width=50% }
