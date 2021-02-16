@@ -1,0 +1,39 @@
+@startuml
+
+[**DeepSpeech**] as deepspeech <<Speech to Text>>
+[**Hermes LED Control**] as hlc <<LED Control>>
+[**Mosquitto**] as mosquitto <<MQTT broker>> #DeepSkyBlue
+[**Nano TTS**] as nanotts <<Text to Speech>>
+[**Node-RED**] as nodered <<Intent Handling>>
+[**Raspberry Pi**] as raspberrypi <<Single Board Computer>>
+[**Raspbian**] as raspbian <<Operating System>>
+[**Raven**] as raven <<Wake Word>>
+[**Respeaker**] as respeaker <<Microphone>>
+[**Rhasspy**] as rhasspy <<Set of voice \nassistant services>>
+[**Snips-NLU**] as snipsnlu <<Intent Recognition>>
+[**Zigbee2MQTT**] as zigbee2mqtt <<Bridge from \nZigbee to MQTT>>
+[**CC2531/ConBee2**] as zigbeeadapter <<Zigbee Adapter>>
+[**Light**] as light <<Zigbee device >>
+[**Sensor**] as sensor <<Zigbee device >>
+
+zigbeeadapter --- zigbee2mqtt
+zigbee2mqtt -- mosquitto
+mosquitto --- nodered
+mosquitto --- nanotts
+
+mosquitto --- hlc
+raven - mosquitto
+mosquitto - snipsnlu
+
+rhasspy -- mosquitto
+deepspeech -- mosquitto
+
+respeaker --- rhasspy
+
+raspbian - raspberrypi
+raspberrypi -- respeaker
+raspberrypi -- zigbeeadapter
+
+
+
+@enduml

@@ -57,5 +57,5 @@ without an Internet connection.
 
 In the following component diagram, all the technologies listed above have been brought together in relation.
 
-<img src='../../assets/software_hardware_overview.png' width='500' alt="Software and hardware overview">
+<img src='../../assets/diagrams/software_hardware_overview.png' width='500' alt="Software and hardware overview">
 

@@ -1,0 +1,50 @@
+@startuml
+together {
+    [**Respeaker**] as respeaker <<Microphone>>
+    [**Rhasspy**] as rhasspy <<Set of voice \nassistant services>>
+}
+
+together {
+    [**Light**] as light <<Zigbee device >>
+    [**Sensor**] as sensor <<Zigbee device >>
+}
+
+together {
+    [**Raven**] as raven <<Wake Word>>
+    [**DeepSpeech**] as deepspeech <<Speech to Text>>
+    [**Snips-NLU**] as snipsnlu <<Intent Recognition>>
+    [**Node-RED**] as nodered <<Intent Handling>>
+    [**Nano TTS**] as nanotts <<Text to Speech>>
+}
+
+[                       **Hermes LED Control**                       ] as hlc <<LED Control>>
+[**CC2531/ConBee2**] as zigbeeadapter <<Zigbee Adapter>>
+[**Zigbee2MQTT**] as zigbee2mqtt <<Bridge from \nZigbee to MQTT>>
+
+hlc <-d- raven : hermes/hotword/default/detected
+hlc <-d- deepspeech : hermes/asr/stopListening
+hlc <-d- snipsnlu : hermes/nlu/intentNotRecognized
+hlc <-d- nodered : hermes/tts/say
+hlc <-d- nanotts : hermes/tts/sayFinished
+
+rhasspy <-- respeaker : audiostream
+raven <-- rhasspy : hermes/audioServer/defa/playBytes/+
+
+raven -> deepspeech : rhasspy/asr/default/default/audioCaptured
+deepspeech -> snipsnlu : hermes/asr/textCaptured
+snipsnlu -> nodered : hermes/nlu/<intent>/+
+nodered -> nanotts : hermes/tts/say
+
+nodered <--> zigbee2mqtt : zigbee2mqtt/+/set\nzigbee2mqtt/+/get
+zigbee2mqtt <--> zigbeeadapter
+zigbeeadapter <--> light
+zigbeeadapter <--> sensor
+
+legend right
+  **Legend**
+  + : Single Layer Wildcard
+endlegend
+
+
+
+@enduml
