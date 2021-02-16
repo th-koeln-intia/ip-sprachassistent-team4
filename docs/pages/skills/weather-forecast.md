@@ -1,5 +1,7 @@
 ---
-layout: default title: Weather forecast parent: Skills
+layout: default 
+title: Weather forecast 
+parent: Skills
 ---
 <details close markdown="block">
   <summary>

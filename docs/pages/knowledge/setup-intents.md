@@ -1,5 +1,7 @@
 ---
-layout: default title: Setup Intents parent: Knowledge
+layout: default 
+title: Setup Intents 
+parent: Knowledge
 ---
 <details close markdown="block">
   <summary>
@@ -19,7 +21,7 @@ with many variations:
 [GetTime]
 wie spät ist es
 sag mir die uhrzeit
-wir viel uhr haben wir
+wie viel uhr haben wir
 
 [GetGarageState]
 ist das garagentor (offen | geschlossen)
