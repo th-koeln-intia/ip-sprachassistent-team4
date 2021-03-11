@@ -14,7 +14,7 @@ parent: Technology Evaluation
 </details>
 
 
-# Node-RED
+# [Node-RED](/pages/knowledge/node-red)
 [Node-RED](/pages/knowledge/node-red) is used for the intent handling in our project. Node-RED is described as 
 flow-base visual programming as a part of the Internet of Things.
 

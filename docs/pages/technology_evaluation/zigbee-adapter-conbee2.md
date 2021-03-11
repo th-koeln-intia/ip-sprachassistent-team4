@@ -13,7 +13,7 @@ parent: Technology Evaluation
 {:toc}
 </details>
 
-# Zigbee adapter Phoscon ConBee2
+# [Conbee2 Zigbee Adapter](/pages/knowledge/zigbee/conbee2)
 The [Conbee2 Zigbee Adapter](/pages/knowledge/zigbee/conbee2) is a small usb stick, which makes it possible to communicate with other Zigbee devices.
 With this tool you can connect light bulbs and sensors that are compatible wth the Zigbee protocoll.
 

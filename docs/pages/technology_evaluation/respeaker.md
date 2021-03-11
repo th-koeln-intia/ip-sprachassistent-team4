@@ -14,7 +14,7 @@ parent: Technology Evaluation
 </details>
 
 
-# ReSpeaker
+# [ReSpeaker](/pages/knowledge/respeaker-4-mic)
 ReSpeaker 4-Mic Array for Raspberry Pi is our microphone we used in this project.
 There are 4 microphones mounted on one circuit board.
 

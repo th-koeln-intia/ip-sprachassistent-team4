@@ -13,7 +13,7 @@ parent: Technology Evaluation
 {:toc}
 </details>
 
-# Zigbee2MQTT
+# [Zigbee2MQTT](/pages/knowledge/zigbee/zigbee2mqtt)
 
 Zigbee2MQTT allows you to use your Zigbee devices without the vendors bridge or gateway.
 

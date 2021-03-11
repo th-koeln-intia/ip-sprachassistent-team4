@@ -14,7 +14,7 @@ parent: Technology Evaluation
 </details>
 
 
-# Snips-NLU
+# [Snips-NLU](/pages/knowledge/intent-recognition)
 [Snips-NLU](/pages/knowledge/intent-recognition) is a program to convert transcribed spoken sentences into intents and 
 then publishes a MQTT topic based on the intent name.
 This is necessary to be able to react according to the spoken commands with the intent handler.
