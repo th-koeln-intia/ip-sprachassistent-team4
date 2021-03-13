@@ -1,0 +1,611 @@
+[
+    {
+        "id": "3bbd8444.25f6fc",
+        "type": "tab",
+        "label": "Alarm Node",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "46700dd8.2ca394",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/SetAlarm",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "e19fa228.bc1cf",
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "36e5a476.2b5164"
+            ]
+        ]
+    },
+    {
+        "id": "36e5a476.2b5164",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "Switch-Case-timer",
+        "func": "msg.action = \"setTimer\";\n\nmsg.timer = {\n    seconds: 0,\n    minutes: 0,\n    hours: 0\n}\n\nvar timeNow = new Date();\ntimeNow.setHours(timeNow.getHours() + 1);\nvar time = new Date(timeNow);\n\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"hours\":\n                //msg.timer.hours = msg.payload.slots[i].value.value;\n                node.warn(time.getHours())\n                node.warn(msg.payload.slots[i].value.value)\n                if(time.getHours() >= msg.payload.slots[i].value.value)\n                    time.setDate(time.getDate() + 1);\n                time.setHours(msg.payload.slots[i].value.value)\n                time.setMinutes(0)\n                time.setSeconds(0)\n                break;\n            case \"minutes\":\n                //msg.timer.minutes = msg.payload.slots[i].value.value;\n                time.setMinutes(msg.payload.slots[i].value.value)\n                break;\n            case \"seconds\":\n                //msg.timer.seconds = msg.payload.slots[i].value.value;\n                time.setSeconds(msg.payload.slots[i].value.value)\n                break;\n            default:\n    }\n}\n\nvar diff = time.valueOf() - timeNow.valueOf();\nvar hours = diff/1000/60/60;\nvar minutes = (hours - Math.floor(hours)) * 60 \nvar seconds = (minutes - Math.floor(minutes)) * 60\n\n\nmsg.timer.hours = Math.floor(hours); // Convert milliseconds to hours\nmsg.timer.minutes = Math.floor(minutes); // Convert milliseconds to minutes\nmsg.timer.seconds = Math.floor(seconds); // Convert milliseconds to seconds\nnode.warn(time);\nnode.warn(timeNow);\nnode.warn(msg.timer);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 100,
+        "wires": [
+            [
+                "82e52a8a.06bd98"
+            ]
+        ]
+    },
+    {
+        "id": "819e13b2.edf51",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/GetNextAlarm",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "e19fa228.bc1cf",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "834870c.ae27e1"
+            ]
+        ]
+    },
+    {
+        "id": "834870c.ae27e1",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "Next timer",
+        "func": "msg.action = \"getNextTimer\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "82e52a8a.06bd98"
+            ]
+        ]
+    },
+    {
+        "id": "a9cdae14.3efca",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/GetAllAlarms",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "e19fa228.bc1cf",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "294de085.91f8f"
+            ]
+        ]
+    },
+    {
+        "id": "294de085.91f8f",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "List timers",
+        "func": "msg.action = \"getAllTimers\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "82e52a8a.06bd98"
+            ]
+        ]
+    },
+    {
+        "id": "82e52a8a.06bd98",
+        "type": "small-timer",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "1e5e6be0.e9371c",
+                "2fd030a2.2875c"
+            ]
+        ]
+    },
+    {
+        "id": "1e5e6be0.e9371c",
+        "type": "switch",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "created",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "running",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "expired",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "removed",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "undefined",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 870,
+        "y": 200,
+        "wires": [
+            [
+                "e9677566.ef598"
+            ],
+            [
+                "d7fc9861.729f88"
+            ],
+            [
+                "fba362e7.f739c8"
+            ],
+            [
+                "e8d56d61.321e3"
+            ],
+            [
+                "fb8338e7.e1a2a8"
+            ]
+        ]
+    },
+    {
+        "id": "d7fc9861.729f88",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "TTS alarm 's rest time ",
+        "func": "let message = {\n    payload: {\n    text: \"Der Wecker läuft noch \"\n    }   \n}\n\nif (msg.payload.restTime.days == 1) {\n    message.payload.text += \" einen Tag \";\n} else if (msg.payload.restTime.days > 1) {\n    message.payload.text += msg.payload.restTime.days + \" Tage \";\n}\n\nif (msg.payload.restTime.hours == 1) {\n    message.payload.text += \" eine Stunde \";\n} else if (msg.payload.restTime.hours > 1) {\n    message.payload.text += msg.payload.restTime.hours + \" Stunden \";\n}\n\nif (msg.payload.restTime.minutes == 1) {\n    message.payload.text += \" eine Minute \";\n} else if (msg.payload.restTime.minutes > 1) {\n    message.payload.text += msg.payload.restTime.minutes + \" Minuten \";\n}\n\nif (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds == 1) {\n        message.payload.text += \" eine Sekunde\";\n    } else if (msg.payload.restTime.days == 0 && msg.payload.restTime.hours == 0 &&\n    msg.payload.restTime.minutes == 0 && msg.payload.restTime.seconds > 1) {\n    message.payload.text += \"und \" + msg.payload.restTime.seconds + \" Sekunden\";\n}\n\nreturn message;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1104,
+        "y": 155,
+        "wires": [
+            [
+                "86172a90.eb7b8"
+            ]
+        ]
+    },
+    {
+        "id": "86172a90.eb7b8",
+        "type": "mqtt out",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/tts/say",
+        "qos": "",
+        "retain": "",
+        "broker": "e19fa228.bc1cf",
+        "x": 1460,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e8d56d61.321e3",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "TTS alarm removed",
+        "func": "msg.payload = {\n    text: \"Wecker gelöscht!\"\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1105,
+        "y": 245,
+        "wires": [
+            [
+                "86172a90.eb7b8"
+            ]
+        ]
+    },
+    {
+        "id": "e9677566.ef598",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "TTS alarm set",
+        "func": "msg.payload = {\n    text: \"Wecker gestellt!\"\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1086,
+        "y": 97,
+        "wires": [
+            [
+                "86172a90.eb7b8"
+            ]
+        ]
+    },
+    {
+        "id": "2fd030a2.2875c",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "TTS list alarms",
+        "func": "let timers = msg.payload.timers;\n\nlet message = {\n    payload: {\n    text: \"\"\n    }   \n}\n\nif (timers) {\n    if (timers.length === 0) {\n        message.payload.text = \"Es sind keine Wecker gestellt.\"\n    } else if (timers.length === 1) {\n        message.payload.text = \"Es ist ein Wecker gestellt.\"\n    } else if (timers.length > 1) {\n        message.payload.text = \"Es sind \" + timers.length + \" Wecker gestellt.\"\n    }\n    for(let i = 0; i < timers.length; i++) {\n        message.payload.text += \" Wecker \" + timers[i].id + \" läuft noch \";\n        \n        if (timers[i].restTime.days == 1) {\n            message.payload.text += \" einen Tag \";\n        } else if (timers[i].restTime.days > 1) {\n            message.payload.text += timers[i].restTime.days + \" Tage \";\n        }\n        \n        if (timers[i].restTime.hours == 1) {\n            message.payload.text += \" eine Stunde \";\n        } else if (timers[i].restTime.hours > 1) {\n            message.payload.text += timers[i].restTime.hours + \" Stunden \";\n        }\n        \n        if (timers[i].restTime.minutes == 1) {\n            message.payload.text += \" eine Minute \";\n        } else if (timers[i].restTime.minutes > 1) {\n            message.payload.text += timers[i].restTime.minutes + \" Minuten \";\n        }\n        \n        if (timers[i].restTime.days == 0 && timers[i].restTime.hours == 0 &&\n            timers[i].restTime.minutes == 0 && timers[i].restTime.seconds == 1) {\n                message.payload.text += \" eine Sekunde\";\n        } else if (timers[i].restTime.seconds > 1) {\n            message.payload.text += \"und \" + timers[i].restTime.seconds + \" Sekunden\";\n        }\n        \n        message.payload.text += \". \";\n        \n    }\n    return message;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1096,
+        "y": 339,
+        "wires": [
+            [
+                "86172a90.eb7b8"
+            ]
+        ]
+    },
+    {
+        "id": "efa2fe67.24e26",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/StopAlarm",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "7d5a3618.9ef98",
+        "x": 713,
+        "y": 349,
+        "wires": [
+            [
+                "e5b1c29.01d794"
+            ]
+        ]
+    },
+    {
+        "id": "509c6683.93d1c",
+        "type": "inject",
+        "z": "3bbd8444.25f6fc",
+        "name": "stop Timer",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 743,
+        "y": 409,
+        "wires": [
+            [
+                "e5b1c29.01d794"
+            ]
+        ]
+    },
+    {
+        "id": "e5b1c29.01d794",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": " stop ringing",
+        "func": "flow.set(\"alarmRinging\", 0);\nmsg.payload = \"stop\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 973,
+        "y": 409,
+        "wires": [
+            [
+                "4c2aea8d.be699c"
+            ]
+        ]
+    },
+    {
+        "id": "fba362e7.f739c8",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": " start ringing",
+        "func": "flow.set(\"alarmRinging\", 1);\nmsg.payload = \"start\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1075,
+        "y": 199,
+        "wires": [
+            [
+                "831f4c8a.9b6b3"
+            ]
+        ]
+    },
+    {
+        "id": "d3611bdf.8dd738",
+        "type": "switch",
+        "z": "3bbd8444.25f6fc",
+        "name": "checkTimerRinging",
+        "property": "alarmRinging",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1433,
+        "y": 409,
+        "wires": [
+            [
+                "4c2aea8d.be699c"
+            ]
+        ]
+    },
+    {
+        "id": "4c2aea8d.be699c",
+        "type": "PlaySound",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "playerOptions": "{}",
+        "audioURI": "/home/pi/.node-red/alarm.mp3",
+        "options": "{\"afplay\" : [\"-l0\"]}",
+        "x": 1213,
+        "y": 409,
+        "wires": [
+            [
+                "d3611bdf.8dd738"
+            ]
+        ]
+    },
+    {
+        "id": "a57146d2.125c6",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/DeleteNextAlarm",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "e19fa228.bc1cf",
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "1cb331df.aa2da6"
+            ]
+        ]
+    },
+    {
+        "id": "1cb331df.aa2da6",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "Remove next timer",
+        "func": "msg.action = \"removeNextTimer\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "82e52a8a.06bd98"
+            ]
+        ]
+    },
+    {
+        "id": "4db55081.0acbf8",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "Remove timer by ID",
+        "func": "if (msg.payload.slots[0].slotName.toString() === \"timer_id\" &&\n    msg.payload.slots[0].value.value > 0) {\n\n    let timer_id = msg.payload.slots[0].value.value;\n\n    msg.action = \"removeTimerByID\";\n\n    msg.timer = {\n        id: timer_id\n    }\n\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "82e52a8a.06bd98"
+            ]
+        ]
+    },
+    {
+        "id": "207af335.9d0ab4",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "Remove all timers",
+        "func": "msg.action = \"removeAllTimers\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "82e52a8a.06bd98"
+            ]
+        ]
+    },
+    {
+        "id": "914f16e8.7cfff",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/DeleteAllAlarms",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "e19fa228.bc1cf",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "207af335.9d0ab4"
+            ]
+        ]
+    },
+    {
+        "id": "b655a617.21b42",
+        "type": "mqtt in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "topic": "hermes/intent/DeleteAlarmById",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "e19fa228.bc1cf",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "4db55081.0acbf8"
+            ]
+        ]
+    },
+    {
+        "id": "c09b485d.fb3a88",
+        "type": "inject",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "834870c.ae27e1"
+            ]
+        ]
+    },
+    {
+        "id": "fb8338e7.e1a2a8",
+        "type": "function",
+        "z": "3bbd8444.25f6fc",
+        "name": "TTS alarm undefined",
+        "func": "msg.payload = {\n    text: \"Wecker nicht gefunden!\"\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1105,
+        "y": 292,
+        "wires": [
+            [
+                "86172a90.eb7b8"
+            ]
+        ]
+    },
+    {
+        "id": "ea3bf1a5.e78c48",
+        "type": "link in",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "links": [
+            "831f4c8a.9b6b3"
+        ],
+        "x": 1355,
+        "y": 301,
+        "wires": [
+            [
+                "4c2aea8d.be699c"
+            ]
+        ]
+    },
+    {
+        "id": "831f4c8a.9b6b3",
+        "type": "link out",
+        "z": "3bbd8444.25f6fc",
+        "name": "",
+        "links": [
+            "ea3bf1a5.e78c48"
+        ],
+        "x": 1273,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e19fa228.bc1cf",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "7d5a3618.9ef98",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

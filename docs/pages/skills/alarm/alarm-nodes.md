@@ -15,9 +15,10 @@ grand_parent: Skills
 </details>
 
 # AlarmNodes
-The base idea was to set up an alarm with node based on the TimerNode but setting Timer with node was not successful 
-as we expected because of some drop back relating to the node. For this reason we decided to set up an alarm with 
-JavaScript.
-To have a kick view on drop back for the node, please refer to this [link](/pages/skills/timer/timer-nodes){:target="_blank"}.
+We add an alarm skill by using our [own timer node](https://github.com/kevinbischof/node-red-contrib-smalltimer){:target="_blank"}
+It looks the same as our [timer implementation with a node](/pages/skills/timer/timer-nodes){:target="_blank"}. The only difference is, the word 'Timer' was replaced by
+the word 'alarm', and there is a change in the function 'Switch-Case-timer'. Instead to passes the time straight
+to the timer node we calculate the time difference between now and when the alarm should ring.
+This difference is passed to the node. It will ring when the time is up.
 
-For the implementation with Javascript, check [alarmJS](/pages/skills/timer/timer-js){:target="_blank"}.
+![Timer with node small-timer](/assets/timer_small-timer-flow_version2.png)

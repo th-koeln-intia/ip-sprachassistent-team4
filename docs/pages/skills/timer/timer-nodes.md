@@ -30,7 +30,7 @@ As already discussed we were not able to find a method how we can inject the sta
 
 # Our own timer node
 
-![Timer with node small-timer](/assets/timer_small-timer-flow.png)
+[![Timer with node small-timer](/assets/timer_small-timer-flow_version2.png)](/assets/timer_small-timer-flow_version2.png){:target="_blank"}
 
 node-red-contrib-smalltimer: [github.com/kevinbischof/node-red-contrib-smalltimer](https://github.com/kevinbischof/node-red-contrib-smalltimer)
 
