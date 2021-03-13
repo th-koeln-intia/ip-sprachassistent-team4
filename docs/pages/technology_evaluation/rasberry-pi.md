@@ -13,7 +13,7 @@ parent: Technology Evaluation
 {:toc}
 </details>
 
-# Raspberry Pi
+# Raspberry Pi 
 The Raspberry Pi is the single board computer we used to run the rhasspy system on it. There are different versions available
 with lower and higher CPU power and memory. We used the [Raspberry Pi 3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/) and 
 the [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?variant=raspberry-pi-4-model-b-4gb)

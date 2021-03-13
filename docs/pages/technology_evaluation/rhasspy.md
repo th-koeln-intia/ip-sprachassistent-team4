@@ -13,7 +13,7 @@ parent: Technology Evaluation
 {:toc}
 </details>
 
-# Rhasspy
+# [Rhasspy](/pages/knowledge/rhasspy)
 [Rhasspy](/pages/knowledge/rhasspy) is an open source, fully offline set of voice assistant services for many 
 human languages ([see rhasspy.readthedocs.io](https://rhasspy.readthedocs.io/){:target="_blank"}).
 Rhasspy combines all needed tools for a voice assistant, from wake word to intent handling.

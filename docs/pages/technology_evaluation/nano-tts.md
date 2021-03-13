@@ -14,7 +14,7 @@ parent: Technology Evaluation
 </details>
 
 
-# Nano TTS
+# [Nano TTS](/pages/knowledge/tts/nano-tts)
 [Nano TTS](/pages/knowledge/tts/nano-tts) is a text to speech system that we used in our project.
 
 ## Advantages

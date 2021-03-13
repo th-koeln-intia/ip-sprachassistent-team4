@@ -14,7 +14,7 @@ parent: Technology Evaluation
 </details>
 
 
-# Mozilla TTS
+# [Mozilla TTS](/pages/knowledge/tts/mozilla-tts)
 In our project we tested [Mozilla Text to Speech TTS](/pages/knowledge/tts/mozilla-tts) as a counterpart to Mozilla 
 DeepSpeech (STT). TTS converts text into speech. 
 

@@ -1,4 +1,4 @@
- ---
+---
 layout: default
 title: Zigbee adapter CC2531
 parent: Technology Evaluation
@@ -13,7 +13,7 @@ parent: Technology Evaluation
 {:toc}
 </details>
 
-# Zigbee adapter CC2531
+# [Zigbee adapter CC2531 ](/pages/knowledge/zigbee/cc2531)
 The [CC2531](/pages/knowledge/zigbee/cc2531) is a USB enabled true system-on-chip (SoC) solution for IEEE 802.15.4, ZigBee and RF4CE applications.
 
 ## Advantages
