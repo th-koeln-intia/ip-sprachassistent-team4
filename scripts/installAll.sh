@@ -132,6 +132,9 @@ else
     chmod +x $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
     $WORKFOLDER/install-rhasspy-snips-nlu_venv.sh
 
+    #train rhasspy
+    curl -X POST http://localhost:12101/api/train
+
     #installation complete
     echo "$(tput setaf 2)Installation complete! Your Raspberry Pi will reboot now! $(tput sgr 0)"
     sudo reboot
