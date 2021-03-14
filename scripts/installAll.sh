@@ -26,6 +26,8 @@ if [ ! -f $WORKFOLDER/rhasspy-resume-after-reboot ]; then
     sudo rm /etc/xdg/autostart/piwiz.desktop
 
     #reboot
+    echo "$(tput setaf 3)Your system will be rebooted now. Please reconnect to your Raspberry Pi. $(tput sgr 0)"
+    echo "$(tput setaf 3)If the installation doesn't continue, restart the installation with 'sudo ./installAll.sh'. $(tput sgr 0)"
     sudo reboot
 else
     echo "$(tput setaf 2)Welcome back. The Installation continues! $(tput sgr 0)"
