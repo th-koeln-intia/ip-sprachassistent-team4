@@ -1,300 +1,300 @@
 [
-  {
-      "id": "723fa79d.0d9fd8",
-      "type": "tab",
-      "label": "Weather Forecast",
-      "disabled": false,
-      "info": ""
-  },
-  {
-      "id": "a972cd62.34c22",
-      "type": "mqtt in",
-      "z": "723fa79d.0d9fd8",
-      "name": "",
-      "topic": "hermes/intent/GetWeather",
-      "qos": "2",
-      "datatype": "json",
-      "broker": "f80b985a.2ffa78",
-      "x": 150,
-      "y": 200,
-      "wires": [
-          [
-              "9b324ba.68246b8"
-          ]
-      ]
-  },
-  {
-      "id": "47a1773a.913f18",
-      "type": "openweathermap",
-      "z": "723fa79d.0d9fd8",
-      "name": "SetCity",
-      "wtype": "forecast",
-      "lon": "",
-      "lat": "",
-      "city": "",
-      "country": "",
-      "language": "de",
-      "x": 600,
-      "y": 200,
-      "wires": [
-          [
-              "141b81f6.7c7e1e"
-          ]
-      ]
-  },
-  {
-      "id": "141b81f6.7c7e1e",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "GetTempAndDesciption",
-      "func": "var today = new Date();\nvar time = today.getHours();\nwhile( time%3 !=0){\n    time = time +1;\n}\ntime = time + \":\" + \"00\" + \":\" + \"00\";\nvar temp = [];\nvar description = [];\nvar forcast = msg.payload;\nvar city = msg.location.city;\nfor (var i= 0; i < 40; i++){\n    if (forcast[i].dt_txt.indexOf(time) > -1){\n        temp.push(forcast[i].main.temp)\n        description.push(forcast[i].weather[0].description)\n    }\n}\n\nmsg.payload = {\n        temp : temp,\n        description: description,\n        city : city,\n        day : msg.date,\n        time : time\n    }\n    \nreturn msg;\n\n",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 810,
-      "y": 200,
-      "wires": [
-          [
-              "d5ff4ae1.c552c8"
-          ]
-      ]
-  },
-  {
-      "id": "c4e56c0.dcc4f98",
-      "type": "mqtt out",
-      "z": "723fa79d.0d9fd8",
-      "name": "",
-      "topic": "hermes/tts/say",
-      "qos": "",
-      "retain": "",
-      "broker": "f80b985a.2ffa78",
-      "x": 800,
-      "y": 340,
-      "wires": []
-  },
-  {
-      "id": "db50c2c.b3f984",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "GetTempToday",
-      "func": "\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[0],2) + \" Grad \" + \"und \" + msg.payload.description[0] , \"siteId\" : \"default\"}\nreturn msg;\n",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 420,
-      "y": 260,
-      "wires": [
-          [
-              "c4e56c0.dcc4f98"
-          ]
-      ]
-  },
-  {
-      "id": "daed7fb6.515e3",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "GetTempIn2Day",
-      "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[2],2) + \" Grad \" + \"und \" + msg.payload.description[2] , \"siteId\" : \"default\"}\nreturn msg;",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 420,
-      "y": 345,
-      "wires": [
-          [
-              "c4e56c0.dcc4f98"
-          ]
-      ]
-  },
-  {
-      "id": "8e81c4b4.253798",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "GetTempTomorrow",
-      "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[1],2) + \" Grad \" + \"und \" + msg.payload.description[1] , \"siteId\" : \"default\"}\nreturn msg;\n\n",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 430,
-      "y": 300,
-      "wires": [
-          [
-              "c4e56c0.dcc4f98"
-          ]
-      ]
-  },
-  {
-      "id": "2d9b94f4.c0702c",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "GetTempIn3Day",
-      "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[3],2) + \" Grad \" + \"und \" + msg.payload.description[3] , \"siteId\" : \"default\"}\nreturn msg;",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 420,
-      "y": 390,
-      "wires": [
-          [
-              "c4e56c0.dcc4f98"
-          ]
-      ]
-  },
-  {
-      "id": "63f79b82.773ce4",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "GetTempIn4Day",
-      "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[4],2) + \" Grad \" + \"und \" + msg.payload.description[4] , \"siteId\" : \"default\"}\nreturn msg;",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 420,
-      "y": 435,
-      "wires": [
-          [
-              "c4e56c0.dcc4f98"
-          ]
-      ]
-  },
-  {
-      "id": "91bdd3c0.1239f",
-      "type": "switch",
-      "z": "723fa79d.0d9fd8",
-      "name": "SelectDay",
-      "property": "payload.day",
-      "propertyType": "msg",
-      "rules": [
-          {
-              "t": "eq",
-              "v": "heute",
-              "vt": "str"
-          },
-          {
-              "t": "eq",
-              "v": "morgen",
-              "vt": "str"
-          },
-          {
-              "t": "eq",
-              "v": "in zwei tagen",
-              "vt": "str"
-          },
-          {
-              "t": "eq",
-              "v": "in drei tagen",
-              "vt": "str"
-          },
-          {
-              "t": "eq",
-              "v": "in vier tagen",
-              "vt": "str"
-          }
-      ],
-      "checkall": "true",
-      "repair": false,
-      "outputs": 5,
-      "x": 170,
-      "y": 340,
-      "wires": [
-          [
-              "db50c2c.b3f984"
-          ],
-          [
-              "8e81c4b4.253798"
-          ],
-          [
-              "daed7fb6.515e3"
-          ],
-          [
-              "2d9b94f4.c0702c"
-          ],
-          [
-              "63f79b82.773ce4"
-          ]
-      ]
-  },
-  {
-      "id": "323a298d.038ff6",
-      "type": "comment",
-      "z": "723fa79d.0d9fd8",
-      "name": "Get Weather for a german city",
-      "info": "",
-      "x": 160,
-      "y": 140,
-      "wires": []
-  },
-  {
-      "id": "9b324ba.68246b8",
-      "type": "function",
-      "z": "723fa79d.0d9fd8",
-      "name": "Switch-Case-Slots",
-      "func": "const umlautMap = {\n  '\\u00dc': 'UE',\n  '\\u00c4': 'AE',\n  '\\u00d6': 'OE',\n  '\\u00fc': 'ue',\n  '\\u00e4': 'ae',\n  '\\u00f6': 'oe',\n  '\\u00df': 'ss',\n}\n\nfunction replaceUmlaute(str) {\n  return str\n    .replace(/[\\u00dc|\\u00c4|\\u00d6][a-z]/g, (a) => {\n      const big = umlautMap[a.slice(0, 1)];\n      return big.charAt(0) + big.charAt(1).toLowerCase() + a.slice(1);\n    })\n    .replace(new RegExp('['+Object.keys(umlautMap).join('|')+']',\"g\"),\n      (a) => umlautMap[a]\n    );\n}\n\nvar message = {\n    location: {\n        city: \"\",\n        country: \"germany\"\n    },\n    date: \"heute\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"city\":\n                message.location.city = replaceUmlaute(msg.payload.slots[i].value.value);\n            break;\n            case \"date\":\n                message.location.date = msg.payload.slots[i].value.value.toLowerCase();\n            break;\n            default:\n    }\n}\n\nreturn message;",
-      "outputs": 1,
-      "noerr": 0,
-      "initialize": "",
-      "finalize": "",
-      "x": 390,
-      "y": 200,
-      "wires": [
-          [
-              "47a1773a.913f18"
-          ]
-      ]
-  },
-  {
-      "id": "a186d05a.67a7f",
-      "type": "link in",
-      "z": "723fa79d.0d9fd8",
-      "name": "",
-      "links": [
-          "d5ff4ae1.c552c8"
-      ],
-      "x": 59,
-      "y": 340,
-      "wires": [
-          [
-              "91bdd3c0.1239f"
-          ]
-      ]
-  },
-  {
-      "id": "d5ff4ae1.c552c8",
-      "type": "link out",
-      "z": "723fa79d.0d9fd8",
-      "name": "",
-      "links": [
-          "a186d05a.67a7f"
-      ],
-      "x": 975,
-      "y": 200,
-      "wires": []
-  },
-  {
-      "id": "f80b985a.2ffa78",
-      "type": "mqtt-broker",
-      "name": "",
-      "broker": "127.0.0.1",
-      "port": "1883",
-      "clientid": "",
-      "usetls": false,
-      "compatmode": false,
-      "keepalive": "60",
-      "cleansession": true,
-      "birthTopic": "",
-      "birthQos": "0",
-      "birthPayload": "",
-      "closeTopic": "",
-      "closeQos": "0",
-      "closePayload": "",
-      "willTopic": "",
-      "willQos": "0",
-      "willPayload": ""
-  }
+    {
+        "id": "723fa79d.0d9fd8",
+        "type": "tab",
+        "label": "Weather Forecast",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a972cd62.34c22",
+        "type": "mqtt in",
+        "z": "723fa79d.0d9fd8",
+        "name": "",
+        "topic": "hermes/intent/GetWeather",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "f80b985a.2ffa78",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "9b324ba.68246b8"
+            ]
+        ]
+    },
+    {
+        "id": "47a1773a.913f18",
+        "type": "openweathermap",
+        "z": "723fa79d.0d9fd8",
+        "name": "SetCity",
+        "wtype": "forecast",
+        "lon": "",
+        "lat": "",
+        "city": "",
+        "country": "",
+        "language": "de",
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "141b81f6.7c7e1e"
+            ]
+        ]
+    },
+    {
+        "id": "141b81f6.7c7e1e",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "GetTempAndDesciption",
+        "func": "var today = new Date();\nvar time = today.getHours();\nwhile( time%3 !=0){\n    time = time +1;\n}\ntime = time + \":\" + \"00\" + \":\" + \"00\";\nvar temp = [];\nvar description = [];\nvar forcast = msg.payload;\nvar city = msg.location.city;\nfor (var i= 0; i < 40; i++){\n    if (forcast[i].dt_txt.indexOf(time) > -1){\n        temp.push(forcast[i].main.temp)\n        description.push(forcast[i].weather[0].description)\n    }\n}\n\nmsg.payload = {\n        temp : temp,\n        description: description,\n        city : city,\n        day : msg.date,\n        time : time\n    }\n    \nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 810,
+        "y": 200,
+        "wires": [
+            [
+                "d5ff4ae1.c552c8"
+            ]
+        ]
+    },
+    {
+        "id": "c4e56c0.dcc4f98",
+        "type": "mqtt out",
+        "z": "723fa79d.0d9fd8",
+        "name": "",
+        "topic": "hermes/tts/say",
+        "qos": "",
+        "retain": "",
+        "broker": "f80b985a.2ffa78",
+        "x": 800,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "db50c2c.b3f984",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "GetTempToday",
+        "func": "\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[0],2) + \" Grad \" + \"und \" + msg.payload.description[0] , \"siteId\" : \"default\"}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "c4e56c0.dcc4f98"
+            ]
+        ]
+    },
+    {
+        "id": "daed7fb6.515e3",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "GetTempIn2Day",
+        "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[2],2) + \" Grad \" + \"und \" + msg.payload.description[2] , \"siteId\" : \"default\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 345,
+        "wires": [
+            [
+                "c4e56c0.dcc4f98"
+            ]
+        ]
+    },
+    {
+        "id": "8e81c4b4.253798",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "GetTempTomorrow",
+        "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[1],2) + \" Grad \" + \"und \" + msg.payload.description[1] , \"siteId\" : \"default\"}\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "c4e56c0.dcc4f98"
+            ]
+        ]
+    },
+    {
+        "id": "2d9b94f4.c0702c",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "GetTempIn3Day",
+        "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[3],2) + \" Grad \" + \"und \" + msg.payload.description[3] , \"siteId\" : \"default\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 390,
+        "wires": [
+            [
+                "c4e56c0.dcc4f98"
+            ]
+        ]
+    },
+    {
+        "id": "63f79b82.773ce4",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "GetTempIn4Day",
+        "func": "\n\nmsg.payload = {text:  \"Das Wetter \" + msg.payload.day + \" in \" + msg.payload.city + \" um \" + msg.payload.time + \" zeigt\" + \" eine Temperature von \" + Math.round(msg.payload.temp[4],2) + \" Grad \" + \"und \" + msg.payload.description[4] , \"siteId\" : \"default\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 435,
+        "wires": [
+            [
+                "c4e56c0.dcc4f98"
+            ]
+        ]
+    },
+    {
+        "id": "91bdd3c0.1239f",
+        "type": "switch",
+        "z": "723fa79d.0d9fd8",
+        "name": "SelectDay",
+        "property": "payload.day",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "heute",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "morgen",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "in zwei tagen",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "in drei tagen",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "in vier tagen",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "db50c2c.b3f984"
+            ],
+            [
+                "8e81c4b4.253798"
+            ],
+            [
+                "daed7fb6.515e3"
+            ],
+            [
+                "2d9b94f4.c0702c"
+            ],
+            [
+                "63f79b82.773ce4"
+            ]
+        ]
+    },
+    {
+        "id": "323a298d.038ff6",
+        "type": "comment",
+        "z": "723fa79d.0d9fd8",
+        "name": "Get Weather for a german city",
+        "info": "",
+        "x": 160,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9b324ba.68246b8",
+        "type": "function",
+        "z": "723fa79d.0d9fd8",
+        "name": "Switch-Case-Slots",
+        "func": "const umlautMap = {\n  '\\u00dc': 'UE',\n  '\\u00c4': 'AE',\n  '\\u00d6': 'OE',\n  '\\u00fc': 'ue',\n  '\\u00e4': 'ae',\n  '\\u00f6': 'oe',\n  '\\u00df': 'ss',\n}\n\nfunction replaceUmlaute(str) {\n  return str\n    .replace(/[\\u00dc|\\u00c4|\\u00d6][a-z]/g, (a) => {\n      const big = umlautMap[a.slice(0, 1)];\n      return big.charAt(0) + big.charAt(1).toLowerCase() + a.slice(1);\n    })\n    .replace(new RegExp('['+Object.keys(umlautMap).join('|')+']',\"g\"),\n      (a) => umlautMap[a]\n    );\n}\n\nvar message = {\n    location: {\n        city: msg.payload.slots[1].value.value,\n        country: \"germany\"},\n    date: msg.payload.slots[0].value.value.toLowerCase()\n};\n\n\nreturn message;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "47a1773a.913f18"
+            ]
+        ]
+    },
+    {
+        "id": "a186d05a.67a7f",
+        "type": "link in",
+        "z": "723fa79d.0d9fd8",
+        "name": "",
+        "links": [
+            "d5ff4ae1.c552c8"
+        ],
+        "x": 59,
+        "y": 340,
+        "wires": [
+            [
+                "91bdd3c0.1239f"
+            ]
+        ]
+    },
+    {
+        "id": "d5ff4ae1.c552c8",
+        "type": "link out",
+        "z": "723fa79d.0d9fd8",
+        "name": "",
+        "links": [
+            "a186d05a.67a7f"
+        ],
+        "x": 975,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f80b985a.2ffa78",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
 ]
