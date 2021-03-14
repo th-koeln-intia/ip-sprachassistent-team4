@@ -1,4 +1,9 @@
+#SetVolume
+Setze die Lautstärke auf 75 Prozent
+Lautstärke 100 Prozent
+
 #GetExchangeRate
+Wie ist der Wechselkurs für Japan
 Wechselkurs für Japan
 
 #ChangeLightState
@@ -6,21 +11,26 @@ Mach das Licht an
 Mach die Stehlampe an
 Mach das Garagenlicht an
 Mach alle Lampen an
+Schalte alle Lampen aus
 Schalte das Garagenlicht aus
+Stehlampe aus
+Alle Lampen an
 
 #ChangeLightBrightness
 Setze das Garagenlicht auf 50 Prozent
+Helligkeit Stehlampe 20 Prozent
+Stehlampe 100 Prozent
+Alle Lampen 10 Prozent
 
 #ChangeLightTemperature
 Mach die Stehlampe warmweiß
 Mach das Garagenlicht kaltweiß
+Garagenlicht warmweiß
+Alle Lampen kaltweiß
 
 #ChangeLightColor
-Mach das Garagenlicht blau
-
-#SetVolume
-Lautstärke 75 Prozent
-Lautstärke 100 Prozent
+Mach die Stehlampe blau
+Stehlampe blau
 
 #GetWeather
 Wie ist das Wetter in Köln
@@ -28,8 +38,10 @@ Wie wird das Wetter morgen in Brunsbüttel
 Wie wird das Wetter in zwei Tagen in München
 Wie wird das Wetter in drei Tagen in Gummersbach
 
-#PlayNews
-nachrichten abspielen
+#Read100SekNews
+nachrichten in 100 sekunden
+lese 100 sekunden news vor
+was gibt es neues bei 100 sekunden
 
 #PlayHeadlines
 schlagzeilen abspielen
@@ -79,7 +91,7 @@ Timer 3 löschen
 [DeleteAllTimers]
 Alle Timer löschen
 
-[GetTime]
+#GetTime
 wie spät ist es
 sag mir die uhrzeit
 wir viel uhr haben wir

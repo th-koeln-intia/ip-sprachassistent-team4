@@ -118,7 +118,7 @@
         "type": "function",
         "z": "8434b087.927d2",
         "name": "Switch-Case-Slots",
-        "func": "var message = {\n    cmd: \"\",\n    name: \"\",\n    state: \"\",\n    brightness: \"\",\n    color: \"\",\n    temperature: \"\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"cmd\":\n                message.cmd = msg.payload.slots[i].value.value;\n            break;\n            case \"name\":\n                message.name = msg.payload.slots[i].value.value;\n            break;\n            case \"state\":\n                message.state = msg.payload.slots[i].value.value;\n            break;\n            case \"brightness\":\n                message.brightness = msg.payload.slots[i].value.value;\n            break;\n                case \"color\":\n                message.color = msg.payload.slots[i].value.value;\n            break;\n                case \"temperature\":\n                message.temperature = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn message;",
+        "func": "var message = {\n    name: \"\",\n    state: \"\",\n    brightness: \"\",\n    color: \"\",\n    temperature: \"\"\n};\n\nfor (var i = 0; i < msg.payload.slots.length; i++) {\n        switch(msg.payload.slots[i].slotName) {\n            case \"name\":\n                message.name = msg.payload.slots[i].value.value;\n            break;\n            case \"state\":\n                message.state = msg.payload.slots[i].value.value;\n            break;\n            case \"brightness\":\n                message.brightness = msg.payload.slots[i].value.value;\n            break;\n                case \"color\":\n                message.color = msg.payload.slots[i].value.value;\n            break;\n                case \"temperature\":\n                message.temperature = msg.payload.slots[i].value.value;\n            break;\n            default:\n    }\n}\n\nreturn message;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -156,7 +156,7 @@
             },
             {
                 "t": "eq",
-                "v": "alle lampen",
+                "v": "lampen",
                 "vt": "str"
             }
         ],
@@ -194,8 +194,7 @@
         "y": 200,
         "wires": [
             [
-                "effba0ba.e806c",
-                "db47b771.0e30c8"
+                "effba0ba.e806c"
             ]
         ]
     },
@@ -209,23 +208,6 @@
         "retain": "",
         "broker": "f80b985a.2ffa78",
         "x": 1290,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "db47b771.0e30c8",
-        "type": "debug",
-        "z": "8434b087.927d2",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1010,
         "y": 280,
         "wires": []
     },
