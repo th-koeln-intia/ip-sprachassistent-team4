@@ -1,304 +1,304 @@
 [
-   {
-       "id": "13bfe052.758b6",
-       "type": "tab",
-       "label": "exchange_rate",
-       "disabled": false,
-       "info": ""
-   },
-   {
-       "id": "85c5083b.3bd2c8",
-       "type": "http request",
-       "z": "13bfe052.758b6",
-       "name": "EuroExchangeRate",
-       "method": "GET",
-       "ret": "txt",
-       "paytoqs": "ignore",
-       "url": "https://wechselkurse-euro.de/",
-       "tls": "",
-       "persist": false,
-       "proxy": "",
-       "authType": "",
-       "x": 568,
-       "y": 120,
-       "wires": [
-           [
-               "f42ecc65.b54f6"
-           ]
-       ]
-   },
-   {
-       "id": "641e27b1.2ced08",
-       "type": "html",
-       "z": "13bfe052.758b6",
-       "name": "GetExchangeFirstTable",
-       "property": "payload",
-       "outproperty": "payload",
-       "tag": ".table_responsive.mb10social td",
-       "ret": "text",
-       "as": "single",
-       "x": 311,
-       "y": 171,
-       "wires": [
-           [
-               "302b9c9a.20aa24"
-           ]
-       ]
-   },
-   {
-       "id": "4e2d48b.23b85b8",
-       "type": "function",
-       "z": "13bfe052.758b6",
-       "name": "GetTextForTTS",
-       "func": "//var country = flow.get(\"country\");\nvar country = flow.get(\"country\");\nvar result = msg.payload;\nvar ExchangeRate =0;\nvar currency ;\nif (result !=0){\n    for(var i = 0; i < msg.payload.getCountries.length; i++){\n        if ((msg.payload.getCountries[i]).toString() == country.toString()) {\n            ExchangeRate = Number (msg.payload.getExchanges[i]);\n            currency = msg.payload.getCurrencyNames[i];\n            break;\n        }\n    }\n    \n}\n\n\nmsg.payload = {text:  \"Ein Euro entpricht \"  + ExchangeRate.toPrecision(3) + \" \" + currency , \"siteId\" : \"default\"}\nreturn msg;\n\n\n\n//msg.payload ={\n//    country: country,\n//    kur : kurs\n//}\n//return msg;\n//forcast[i].dt_txt.indexOf(time) > -1\n//payload.getCurrencyNames[10]\n//payload.getCountries[0]\n//msg.payload = {text:  \"Ein Euro entpricht \"  + ExchangeRate.toPrecision(3) + \" \" + currency , \"siteId\" : \"default\"}",
-       "outputs": 1,
-       "noerr": 0,
-       "initialize": "",
-       "finalize": "",
-       "x": 550,
-       "y": 294,
-       "wires": [
-           [
-               "2eefc20.b02e13e"
-           ]
-       ]
-   },
-   {
-       "id": "639240c.e2184c",
-       "type": "mqtt in",
-       "z": "13bfe052.758b6",
-       "name": "ExchangeRate",
-       "topic": "hermes/intent/GetExchangeRate",
-       "qos": "2",
-       "datatype": "json",
-       "broker": "f80b985a.2ffa78",
-       "x": 160,
-       "y": 120,
-       "wires": [
-           [
-               "b0e5001.aa032"
-           ]
-       ]
-   },
-   {
-       "id": "b0e5001.aa032",
-       "type": "function",
-       "z": "13bfe052.758b6",
-       "name": "GetCountry",
-       "func": "msg.payload = {\n                 \"country\":  msg.payload.slots[0].value.value,\n                 \"URL\" : \"https://wechselkurse-euro.de\"\n        }\nflow.set('country', msg.payload.country);  \nreturn msg;",
-       "outputs": 1,
-       "noerr": 0,
-       "initialize": "",
-       "finalize": "",
-       "x": 330,
-       "y": 120,
-       "wires": [
-           [
-               "85c5083b.3bd2c8"
-           ]
-       ]
-   },
-   {
-       "id": "2eefc20.b02e13e",
-       "type": "mqtt out",
-       "z": "13bfe052.758b6",
-       "name": "",
-       "topic": "hermes/tts/say",
-       "qos": "",
-       "retain": "",
-       "broker": "f80b985a.2ffa78",
-       "x": 737,
-       "y": 294,
-       "wires": []
-   },
-   {
-       "id": "302b9c9a.20aa24",
-       "type": "function",
-       "z": "13bfe052.758b6",
-       "name": "GetFirstTable",
-       "func": "//var country = flow.get(\"country\");\nvar getCountryFirstTable = [];\nvar getCurrencyNameFirstTable =[];\nvar getKursFirstTable = [];\n\nvar result = msg.payload;\nif (result !=0){\n    for(var i = 2; i < msg.payload.length; i+=10){\n       getCountryFirstTable.push(result[i]);\n    }\n    for(var j = 5; j < msg.payload.length; j+=10){\n       getKursFirstTable.push(result[j]);\n    }\n    for(var k = 4; k < msg.payload.length; k+=10){\n       getCurrencyNameFirstTable.push(result[k]);\n    }\n}\n\n\nmsg.payload ={\n    getCountryFirstTable: getCountryFirstTable,\n    getKursFirstTable: getKursFirstTable,\n    getCurrencyNameFirstTable: getCurrencyNameFirstTable\n}\nreturn msg;",
-       "outputs": 1,
-       "noerr": 0,
-       "initialize": "",
-       "finalize": "",
-       "x": 592,
-       "y": 171,
-       "wires": [
-           [
-               "c455a09a.e3148"
-           ]
-       ]
-   },
-   {
-       "id": "42df764b.c71418",
-       "type": "function",
-       "z": "13bfe052.758b6",
-       "name": "GetAll",
-       "func": "//var country = flow.get(\"country\");\nvar getCountries = [];\nvar getExchanges = [];\nvar getCurrencyNames =[];\nvar result = msg.payload;\nif (result !=0){\n    getCountries=result.getCountrySecondTable;\n    getExchanges = result.getKursSecondTable;\n    getCurrencyNames =result.getCurrencyNameSecondTable;\n\n    for(var j = 0; j < msg.payload.getCountryFirstTable.length; j++){\n       getCountries.push(msg.payload.getCountryFirstTable[j]);\n       getExchanges.push(msg.payload.getKursFirstTable[j]);\n       getCurrencyNames.push(msg.payload.getCurrencyNameFirstTable[j])\n    }\n}\n\n    msg.payload ={\n     \n        getCountries: getCountries,\n        getExchanges :getExchanges,\n        getCurrencyNames : getCurrencyNames\n    }\n\nreturn msg;\n\n",
-       "outputs": 1,
-       "noerr": 0,
-       "initialize": "",
-       "finalize": "",
-       "x": 372,
-       "y": 294,
-       "wires": [
-           [
-               "4e2d48b.23b85b8"
-           ]
-       ]
-   },
-   {
-       "id": "b3ab46ca.8fa148",
-       "type": "join",
-       "z": "13bfe052.758b6",
-       "name": "JoinTable",
-       "mode": "custom",
-       "build": "merged",
-       "property": "payload",
-       "propertyType": "msg",
-       "key": "topic",
-       "joiner": "\\n",
-       "joinerType": "str",
-       "accumulate": false,
-       "timeout": "",
-       "count": "6",
-       "reduceRight": false,
-       "reduceExp": "",
-       "reduceInit": "",
-       "reduceInitType": "num",
-       "reduceFixup": "",
-       "x": 202,
-       "y": 294,
-       "wires": [
-           [
-               "42df764b.c71418"
-           ]
-       ]
-   },
-   {
-       "id": "3fbd47fb.1e9c08",
-       "type": "html",
-       "z": "13bfe052.758b6",
-       "name": "GetExchangeSecondTable",
-       "property": "payload",
-       "outproperty": "payload",
-       "tag": ".table_responsive.mb20-mt td",
-       "ret": "text",
-       "as": "single",
-       "x": 322,
-       "y": 239,
-       "wires": [
-           [
-               "ef70dceb.dc118"
-           ]
-       ]
-   },
-   {
-       "id": "ef70dceb.dc118",
-       "type": "function",
-       "z": "13bfe052.758b6",
-       "name": "GetSecondTable",
-       "func": "//var country = flow.get(\"country\");\nvar getCountrySecondTable = [];\nvar getKursSecondTable = [];\nvar getCurrencyNameSecondTable = [];\nvar result = msg.payload;\n\nif (result !=0){\n    for(var i = 2; i < msg.payload.length; i+=10){\n       getCountrySecondTable.push(result[i]);\n    }\n    for(var j = 5; j < msg.payload.length; j+=10){\n       getKursSecondTable.push(result[j]);\n    }\n    for(var k = 4; k < msg.payload.length; k+=10){\n       getCurrencyNameSecondTable.push(result[k]);\n    }\n}\n\n\nmsg.payload ={\n    getCountrySecondTable: getCountrySecondTable,\n    getKursSecondTable: getKursSecondTable,\n    getCurrencyNameSecondTable: getCurrencyNameSecondTable\n}\nreturn msg;",
-       "outputs": 1,
-       "noerr": 0,
-       "initialize": "",
-       "finalize": "",
-       "x": 572,
-       "y": 239,
-       "wires": [
-           [
-               "c455a09a.e3148"
-           ]
-       ]
-   },
-   {
-       "id": "47b5bbd.a392744",
-       "type": "comment",
-       "z": "13bfe052.758b6",
-       "name": "Get exchange rate from Euro to currencies from different countries",
-       "info": "",
-       "x": 410,
-       "y": 60,
-       "wires": []
-   },
-   {
-       "id": "f42ecc65.b54f6",
-       "type": "link out",
-       "z": "13bfe052.758b6",
-       "name": "",
-       "links": [
-           "7d289d74.9acd14"
-       ],
-       "x": 803,
-       "y": 120,
-       "wires": []
-   },
-   {
-       "id": "7d289d74.9acd14",
-       "type": "link in",
-       "z": "13bfe052.758b6",
-       "name": "",
-       "links": [
-           "f42ecc65.b54f6"
-       ],
-       "x": 96,
-       "y": 205,
-       "wires": [
-           [
-               "641e27b1.2ced08",
-               "3fbd47fb.1e9c08"
-           ]
-       ]
-   },
-   {
-       "id": "c455a09a.e3148",
-       "type": "link out",
-       "z": "13bfe052.758b6",
-       "name": "",
-       "links": [
-           "c61a42ff.082cf"
-       ],
-       "x": 803,
-       "y": 200,
-       "wires": [],
-       "icon": "node-red/bluetooth.png"
-   },
-   {
-       "id": "c61a42ff.082cf",
-       "type": "link in",
-       "z": "13bfe052.758b6",
-       "name": "",
-       "links": [
-           "c455a09a.e3148"
-       ],
-       "x": 97,
-       "y": 294,
-       "wires": [
-           [
-               "b3ab46ca.8fa148"
-           ]
-       ],
-       "icon": "node-red/bluetooth.png"
-   },
-   {
-       "id": "f80b985a.2ffa78",
-       "type": "mqtt-broker",
-       "name": "",
-       "broker": "127.0.0.1",
-       "port": "1883",
-       "clientid": "",
-       "usetls": false,
-       "compatmode": false,
-       "keepalive": "60",
-       "cleansession": true,
-       "birthTopic": "",
-       "birthQos": "0",
-       "birthPayload": "",
-       "closeTopic": "",
-       "closeQos": "0",
-       "closePayload": "",
-       "willTopic": "",
-       "willQos": "0",
-       "willPayload": ""
-   }
+    {
+        "id": "13bfe052.758b6",
+        "type": "tab",
+        "label": "exchange_rate",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "85c5083b.3bd2c8",
+        "type": "http request",
+        "z": "13bfe052.758b6",
+        "name": "EuroExchangeRate",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://wechselkurse-euro.de/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 568,
+        "y": 120,
+        "wires": [
+            [
+                "f42ecc65.b54f6"
+            ]
+        ]
+    },
+    {
+        "id": "641e27b1.2ced08",
+        "type": "html",
+        "z": "13bfe052.758b6",
+        "name": "GetExchangeFirstTable",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": ".table_responsive.mb10social td",
+        "ret": "text",
+        "as": "single",
+        "x": 311,
+        "y": 171,
+        "wires": [
+            [
+                "302b9c9a.20aa24"
+            ]
+        ]
+    },
+    {
+        "id": "4e2d48b.23b85b8",
+        "type": "function",
+        "z": "13bfe052.758b6",
+        "name": "GetTextForTTS",
+        "func": "\nvar country = flow.get(\"country\");\nvar result = msg.payload;\nvar ExchangeRate =0;\nvar currency ;\nif (result !=0){\n    for(var i = 0; i < msg.payload.getCountries.length; i++){\n        if ((msg.payload.getCountries[i]).toString() == country.toString()) {\n            ExchangeRate = Number (msg.payload.getExchanges[i]);\n            currency = msg.payload.getCurrencyNames[i];\n            break;\n        }\n    }\n    \n}\n\n\nmsg.payload = {text:  \"Ein Euro entpricht \"  + ExchangeRate.toPrecision(3) + \" \" + currency , \"siteId\" : \"default\"}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 550,
+        "y": 294,
+        "wires": [
+            [
+                "2eefc20.b02e13e"
+            ]
+        ]
+    },
+    {
+        "id": "639240c.e2184c",
+        "type": "mqtt in",
+        "z": "13bfe052.758b6",
+        "name": "ExchangeRate",
+        "topic": "hermes/intent/GetExchangeRate",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "f80b985a.2ffa78",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "b0e5001.aa032"
+            ]
+        ]
+    },
+    {
+        "id": "b0e5001.aa032",
+        "type": "function",
+        "z": "13bfe052.758b6",
+        "name": "GetCountry",
+        "func": "msg.payload = {\n                 \"country\":  msg.payload.slots[0].value.value,\n                 \"URL\" : \"https://wechselkurse-euro.de\"\n        }\nflow.set('country', msg.payload.country);  \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "85c5083b.3bd2c8"
+            ]
+        ]
+    },
+    {
+        "id": "2eefc20.b02e13e",
+        "type": "mqtt out",
+        "z": "13bfe052.758b6",
+        "name": "",
+        "topic": "hermes/tts/say",
+        "qos": "",
+        "retain": "",
+        "broker": "f80b985a.2ffa78",
+        "x": 737,
+        "y": 294,
+        "wires": []
+    },
+    {
+        "id": "302b9c9a.20aa24",
+        "type": "function",
+        "z": "13bfe052.758b6",
+        "name": "GetFirstTable",
+        "func": "var getCountryFirstTable = [];\nvar getCurrencyNameFirstTable =[];\nvar getKursFirstTable = [];\n\nvar result = msg.payload;\nif (result !=0){\n    for(var i = 2; i < msg.payload.length; i+=10){\n       getCountryFirstTable.push(result[i]);\n    }\n    for(var j = 5; j < msg.payload.length; j+=10){\n       getKursFirstTable.push(result[j]);\n    }\n    for(var k = 4; k < msg.payload.length; k+=10){\n       getCurrencyNameFirstTable.push(result[k]);\n    }\n}\n\n\nmsg.payload ={\n    getCountryFirstTable: getCountryFirstTable,\n    getKursFirstTable: getKursFirstTable,\n    getCurrencyNameFirstTable: getCurrencyNameFirstTable\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 592,
+        "y": 171,
+        "wires": [
+            [
+                "c455a09a.e3148"
+            ]
+        ]
+    },
+    {
+        "id": "42df764b.c71418",
+        "type": "function",
+        "z": "13bfe052.758b6",
+        "name": "GetAll",
+        "func": "var getCountries = [];\nvar getExchanges = [];\nvar getCurrencyNames =[];\nvar result = msg.payload;\nif (result !=0){\n    getCountries=result.getCountrySecondTable;\n    getExchanges = result.getKursSecondTable;\n    getCurrencyNames =result.getCurrencyNameSecondTable;\n\n    for(var j = 0; j < msg.payload.getCountryFirstTable.length; j++){\n       getCountries.push(msg.payload.getCountryFirstTable[j]);\n       getExchanges.push(msg.payload.getKursFirstTable[j]);\n       getCurrencyNames.push(msg.payload.getCurrencyNameFirstTable[j])\n    }\n}\n\n    msg.payload ={\n     \n        getCountries: getCountries,\n        getExchanges :getExchanges,\n        getCurrencyNames : getCurrencyNames\n    }\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 372,
+        "y": 294,
+        "wires": [
+            [
+                "4e2d48b.23b85b8"
+            ]
+        ]
+    },
+    {
+        "id": "b3ab46ca.8fa148",
+        "type": "join",
+        "z": "13bfe052.758b6",
+        "name": "JoinTable",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 202,
+        "y": 294,
+        "wires": [
+            [
+                "42df764b.c71418"
+            ]
+        ]
+    },
+    {
+        "id": "3fbd47fb.1e9c08",
+        "type": "html",
+        "z": "13bfe052.758b6",
+        "name": "GetExchangeSecondTable",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": ".table_responsive.mb20-mt td",
+        "ret": "text",
+        "as": "single",
+        "x": 322,
+        "y": 239,
+        "wires": [
+            [
+                "ef70dceb.dc118"
+            ]
+        ]
+    },
+    {
+        "id": "ef70dceb.dc118",
+        "type": "function",
+        "z": "13bfe052.758b6",
+        "name": "GetSecondTable",
+        "func": "var getCountrySecondTable = [];\nvar getKursSecondTable = [];\nvar getCurrencyNameSecondTable = [];\nvar result = msg.payload;\n\nif (result !=0){\n    for(var i = 2; i < msg.payload.length; i+=10){\n       getCountrySecondTable.push(result[i]);\n    }\n    for(var j = 5; j < msg.payload.length; j+=10){\n       getKursSecondTable.push(result[j]);\n    }\n    for(var k = 4; k < msg.payload.length; k+=10){\n       getCurrencyNameSecondTable.push(result[k]);\n    }\n}\n\n\nmsg.payload ={\n    getCountrySecondTable: getCountrySecondTable,\n    getKursSecondTable: getKursSecondTable,\n    getCurrencyNameSecondTable: getCurrencyNameSecondTable\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 572,
+        "y": 239,
+        "wires": [
+            [
+                "c455a09a.e3148"
+            ]
+        ]
+    },
+    {
+        "id": "47b5bbd.a392744",
+        "type": "comment",
+        "z": "13bfe052.758b6",
+        "name": "Get exchange rate from Euro to currencies from different countries",
+        "info": "",
+        "x": 410,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f42ecc65.b54f6",
+        "type": "link out",
+        "z": "13bfe052.758b6",
+        "name": "",
+        "links": [
+            "7d289d74.9acd14"
+        ],
+        "x": 803,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7d289d74.9acd14",
+        "type": "link in",
+        "z": "13bfe052.758b6",
+        "name": "",
+        "links": [
+            "f42ecc65.b54f6"
+        ],
+        "x": 96,
+        "y": 205,
+        "wires": [
+            [
+                "641e27b1.2ced08",
+                "3fbd47fb.1e9c08"
+            ]
+        ]
+    },
+    {
+        "id": "c455a09a.e3148",
+        "type": "link out",
+        "z": "13bfe052.758b6",
+        "name": "",
+        "links": [
+            "c61a42ff.082cf"
+        ],
+        "x": 804,
+        "y": 200,
+        "wires": [],
+        "icon": "node-red/bluetooth.png"
+    },
+    {
+        "id": "c61a42ff.082cf",
+        "type": "link in",
+        "z": "13bfe052.758b6",
+        "name": "",
+        "links": [
+            "c455a09a.e3148"
+        ],
+        "x": 97,
+        "y": 294,
+        "wires": [
+            [
+                "b3ab46ca.8fa148"
+            ]
+        ],
+        "icon": "node-red/bluetooth.png"
+    },
+    {
+        "id": "f80b985a.2ffa78",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
 ]
