@@ -1,13 +1,13 @@
 # [Voice Assistant Sherlock](https://ip-team4.intia.de)
 This is a Project to create Proof of Concept for a Voice Assistant. 
-We we are using these Tools:
+We are using these Tools:
 - Wake word:  [Raven](https://github.com/rhasspy/rhasspy-wake-raven) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/wake-word))
 - Speech to Text: [DeepSpeech](https://github.com/mozilla/DeepSpeech) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/deepspeech))
 - Intent Recognition: [Snips-NLU](https://github.com/snipsco/snips-nlu) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/intent-recognition))
 - Intent Handling: [NodeRed](https://nodered.org/) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/node-red))
 - Text-To-Speech: [NanoTTS](https://github.com/gmn/nanotts) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/tts/nano-tts))
 - 
-# Skills
+## Skills
 - [Read the clock](https://ip-team4.intia.de/pages/skills/time)
 - [Set an alarm clock](https://ip-team4.intia.de/pages/skills/alarm/)
 - [Weather forecast](https://ip-team4.intia.de/pages/skills/weather-forecast)
@@ -15,24 +15,12 @@ We we are using these Tools:
 - [Get latest news](https://ip-team4.intia.de/pages/skills/news/)
 - [Get infos about exchange rate](https://ip-team4.intia.de/pages/skills/exchange-rate)
 
-## To DO
-- [X] Write intent handling description
-- [X] Control light
-- [X] Alarm implementation
-- [X] Timer implementation
-- [X] Update documentation and git
-- [X] Installation script
-- [x] Revise the documentation
-- [X] Make images smaller
-- [X] Setup hardware at the bottom of the page refer to the installation
-- [X] Correct installation arrangement
-- [X] Technology rating section with rating of all technologies write down with personal rating and conclusion.
-- [x] Link to knowledge entries on all possible pages
-- [X] Check all images
-- [x] Check manual installation page against auto installation script (Workfolder should be /pi/home/installFiles)
-- [x] insert flow for alarm with node
-- [x] Revise sentence.ini
-- [x] Add text to the diagrams in the evaluation index
+## Project folder overview
+- data &#8594; the folder contains configuration files and files needed for the operation of rhasspy 
+- docs &#8594; the folder contains the documentation of the project 
+- flows &#8594; the folder contains the node-red flows 
+- scripts &#8594; the folder contains the installation scripts for the components of the voice assistant
+- tools &#8594; the folder contains the training tools for DeepSpeech
 
 ## Documentation
 The documentation is created in form of a GitHub page following the official documentation:  
