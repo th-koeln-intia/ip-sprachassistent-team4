@@ -1,0 +1,95 @@
+#SetVolume
+Set volume to 75 percent
+Volume 100 percent
+
+#GetExchangeRate
+What is the exchange rate for Japan
+Exchange rate for Japan
+
+#ChangeLightState
+Turn on the light
+Turn on the floor lamp
+Turn on the garage light
+Turn on all lamps
+Turn off all lamps
+Turn off the garage light
+Turn off floor lamp
+Turn all lamps on
+
+#ChangeLightBrightness
+Set the garage light to 50 percent
+Brightness floor lamp 20 percent
+Floor lamp 100 percent
+All lamps 10 percent
+
+#ChangeLightTemperature
+Make the floor lamp warm white
+Make the garage light cool white
+Make garage light warm white
+Make all lamps cool white
+
+#ChangeLightColor
+Make the floor lamp blue
+Floor lamp blue
+
+#GetWeather
+What is the weather in Cologne
+What will be the weather tomorrow in Brunsbüttel
+What will be the weather in two days in Munich
+How will be the weather in three days in Gummersbach
+
+#Read100SecNews
+news in 100 seconds
+read 100 seconds news
+what's new in 100 seconds
+
+#PlayHeadlines
+play headlines
+
+#GetTopTenNews
+play top ten news
+
+#SetTimer
+set a timer to 1 hour
+set a timer to 5 minutes
+set a timer for 30 seconds
+set a timer for 5 minutes and 30 seconds
+set a timer for 1 hour and 30 minutes
+set a timer for 2 hours 5 minutes and 20 seconds
+
+timer 1 hour
+timer 5 minutes
+timer 30 seconds
+timer 5 minutes and 30 seconds
+Timer 1 hour and 30 minutes
+Timer 2 hours 5 minutes and 20 seconds
+
+#StopTimer
+stop
+timer stop
+stop timer
+stop timer
+turn off the timer
+
+#GetNextTimer
+How long does the timer go
+How long does the next timer go
+
+#GetAllTimers
+Which timers are set
+
+#DeleteNextTimer
+Delete next timer
+Delete timer
+
+DeleteTimerById]
+Delete timer 1
+Delete Timer 3
+
+DeleteAllTimers
+Delete all timers
+
+#GetTime
+what time is it
+tell me the time
+what time do we have
