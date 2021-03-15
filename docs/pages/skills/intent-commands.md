@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Exchange Rate
+title: Intent commands
 parent: Skills
 ---
 
