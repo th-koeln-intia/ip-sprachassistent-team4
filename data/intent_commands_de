@@ -84,14 +84,52 @@ Welche Timer sind gestellt
 Nächsten Timer löschen
 Timer löschen
 
-[DeleteTimerById]
+#DeleteTimerById
 Timer 1 löschen
 Timer 3 löschen
 
-[DeleteAllTimers]
+#DeleteAllTimers
 Alle Timer löschen
 
 #GetTime
 wie spät ist es
 sag mir die uhrzeit
 wir viel uhr haben wir
+
+
+#SetAlarm
+Stelle einen Wecker für sechzehn uhr
+Stelle einen Wecker für sechzehn uhr zwanzig
+Stelle einen Wecker für sechzehn uhr zwanzig und 10 sekunden
+
+#StopAlarm
+alarm stop
+stop alarm
+stoppe den wecker
+stoppe den alarm
+schalte den Wecker aus
+
+#GetNextAlarm
+wann klingelt der nächste alarm
+wann geht der nächste wecker
+
+#GetAllAlarms
+liste alle alarme auf
+liste alle wecker auf
+
+#DeleteNextAlarm
+lösche den nächsten alarm
+
+#DeleteAllAlarms
+alle alarme löschen
+lösche alle alarme
+
+#DeleteAlarmById
+lösche alarm 1
+schalte alarm 1 aus
+deaktiviere alarm 1
+
+#read100SekNews
+nachrichten in 100 sekunden
+lese 100 sekunden news vor
+was gibt es neues bei 100 sekunden

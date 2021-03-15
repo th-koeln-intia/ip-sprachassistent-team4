@@ -91,7 +91,9 @@ stop timer
 turn off the timer
 
 #GetNextTimer
+How much longer
 How long does the timer go
+How long does the next timer go
 How long does the next timer go
 
 #GetAllTimers
@@ -101,17 +103,55 @@ Which timers are set
 Delete next timer
 Delete timer
 
-DeleteTimerById]
+#DeleteTimerById
 Delete timer 1
 Delete Timer 3
 
-DeleteAllTimers
+#DeleteAllTimers
 Delete all timers
 
 #GetTime
 what time is it
 tell me the time
-what time do we have
+how much time do we have
+
+
+#SetAlarm
+Set an alarm for sixteen o'clock
+set an alarm for sixteen twenty
+set an alarm for sixteen twenty and 10 seconds
+
+#StopAlarm
+alarm stop
+stop alarm
+stop alarm
+stop the alarm
+turn off the alarm
+
+#GetNextAlarm
+when will the next alarm ring
+when will the next alarm go off
+
+#GetAllAlarms
+list all alarms
+list all alarms
+
+#DeleteNextAlarm
+delete the next alarm
+
+#DeleteAllAlarms
+delete all alarms
+delete all alarms
+
+#DeleteAlarmById
+delete alarm 1
+turn off alarm 1
+disable alarm 1
+
+#read100SecNews
+news in 100 seconds
+read 100 seconds news
+what's new in 100 seconds
 
 ```
 
@@ -205,11 +245,11 @@ Welche Timer sind gestellt
 Nächsten Timer löschen
 Timer löschen
 
-[DeleteTimerById]
+#DeleteTimerById
 Timer 1 löschen
 Timer 3 löschen
 
-[DeleteAllTimers]
+#DeleteAllTimers
 Alle Timer löschen
 
 #GetTime
@@ -217,5 +257,42 @@ wie spät ist es
 sag mir die uhrzeit
 wir viel uhr haben wir
 
+
+#SetAlarm
+Stelle einen Wecker für sechzehn uhr
+Stelle einen Wecker für sechzehn uhr zwanzig
+Stelle einen Wecker für sechzehn uhr zwanzig und 10 sekunden
+
+#StopAlarm
+alarm stop
+stop alarm
+stoppe den wecker
+stoppe den alarm
+schalte den Wecker aus
+
+#GetNextAlarm
+wann klingelt der nächste alarm
+wann geht der nächste wecker
+
+#GetAllAlarms
+liste alle alarme auf
+liste alle wecker auf
+
+#DeleteNextAlarm
+lösche den nächsten alarm
+
+#DeleteAllAlarms
+alle alarme löschen
+lösche alle alarme
+
+#DeleteAlarmById
+lösche alarm 1
+schalte alarm 1 aus
+deaktiviere alarm 1
+
+#read100SekNews
+nachrichten in 100 sekunden
+lese 100 sekunden news vor
+was gibt es neues bei 100 sekunden
 ```
 

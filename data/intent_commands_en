@@ -72,7 +72,9 @@ stop timer
 turn off the timer
 
 #GetNextTimer
+How much longer
 How long does the timer go
+How long does the next timer go
 How long does the next timer go
 
 #GetAllTimers
@@ -82,14 +84,52 @@ Which timers are set
 Delete next timer
 Delete timer
 
-DeleteTimerById]
+#DeleteTimerById
 Delete timer 1
 Delete Timer 3
 
-DeleteAllTimers
+#DeleteAllTimers
 Delete all timers
 
 #GetTime
 what time is it
 tell me the time
-what time do we have
+how much time do we have
+
+
+#SetAlarm
+Set an alarm for sixteen o'clock
+set an alarm for sixteen twenty
+set an alarm for sixteen twenty and 10 seconds
+
+#StopAlarm
+alarm stop
+stop alarm
+stop alarm
+stop the alarm
+turn off the alarm
+
+#GetNextAlarm
+when will the next alarm ring
+when will the next alarm go off
+
+#GetAllAlarms
+list all alarms
+list all alarms
+
+#DeleteNextAlarm
+delete the next alarm
+
+#DeleteAllAlarms
+delete all alarms
+delete all alarms
+
+#DeleteAlarmById
+delete alarm 1
+turn off alarm 1
+disable alarm 1
+
+#read100SecNews
+news in 100 seconds
+read 100 seconds news
+what's new in 100 seconds
