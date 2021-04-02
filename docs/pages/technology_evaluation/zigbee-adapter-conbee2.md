@@ -1,4 +1,4 @@
- ---
+---
 layout: default
 title: Zigbee adapter ConBee2
 parent: Technology Evaluation
