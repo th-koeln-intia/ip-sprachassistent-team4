@@ -17,7 +17,7 @@ check_services() {
   RHASSPY_SNIPS_NLU_HERMES_ENABLED=$(systemctl is-enabled rhasspy-snips-nlu-hermes.service)
   ZIGBEE2MQTT_ENABLED=$(systemctl is-enabled zigbee2mqtt.service)
 
-  echo "entered function check_services"
+  echo "Check services"
   echo ""
   echo "Node-RED                          $NODERED_ACTIVE ($NODERED_ENABLED)"
   echo "Hermes LED Control                $HERMES_LED_CONTROL_ACTIVE ($HERMES_LED_CONTROL_ENABLED)"
