@@ -49,6 +49,18 @@ Rhasspy Snips NLU Hermes          active (enabled)
 zigbee2mqtt                       active (enabled)
 ```
 
+### Restart services
+Run the command `sherlock-conf -r` to restart all services:
+```bash
+Restarting...
+...Node-RED
+...Hermes LED Control
+...Rhasspy ASR Deepspeech Hermes
+...Rhasspy
+...Rhasspy Snips NLU Hermes
+...zigbee2mqtt
+```
+
 ## Our other Repositories we used in this Project
 - rhasspy-asr-deepspeech: [Sh4der/rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech)
 - rhasspy-asr-deepspeech-hermes: [Sh4der/rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes)
