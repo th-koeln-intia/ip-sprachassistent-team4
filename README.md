@@ -36,6 +36,7 @@ bundle exec jekyll serve
 ```
 
 ## Troubleshooting
+### Check service
 If something doesn't run as expected, check if all services are running. To check the services run the command `sherlock-conf -c`:
 ```bash
 pi@raspberrypi:~ $ sherlock-conf -c
