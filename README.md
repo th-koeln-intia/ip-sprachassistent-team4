@@ -35,6 +35,20 @@ cd docs
 bundle exec jekyll serve
 ```
 
+## Troubleshooting
+If something doesn't run as expected, check if all services are running. To check the services run the command `sherlock-conf -c`:
+```bash
+pi@raspberrypi:~ $ sherlock-conf -c
+Check services
+
+Node-RED                          active (enabled)
+Hermes LED Control                active (enabled)
+Rhasspy                           active (enabled)
+Rhasspy ASR Deepspeech Hermes     active (enabled)
+Rhasspy Snips NLU Hermes          active (enabled)
+zigbee2mqtt                       active (enabled)
+```
+
 ## Our other Repositories we used in this Project
 - rhasspy-asr-deepspeech: [Sh4der/rhasspy-asr-deepspeech](https://github.com/Sh4der/rhasspy-asr-deepspeech)
 - rhasspy-asr-deepspeech-hermes: [Sh4der/rhasspy-asr-deepspeech-hermes](https://github.com/Sh4der/rhasspy-asr-deepspeech-hermes)
