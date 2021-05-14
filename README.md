@@ -6,7 +6,7 @@ We are using these Tools:
 - Intent Recognition: [Snips-NLU](https://github.com/snipsco/snips-nlu) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/intent-recognition))
 - Intent Handling: [NodeRed](https://nodered.org/) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/node-red))
 - Text-To-Speech: [NanoTTS](https://github.com/gmn/nanotts) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/tts/nano-tts))
-- 
+
 ## Skills
 - [Read the clock](https://ip-team4.intia.de/pages/skills/time)
 - [Set an alarm clock](https://ip-team4.intia.de/pages/skills/alarm/)
