@@ -6,7 +6,7 @@ We are using these Tools:
 - Intent Recognition: [Snips-NLU](https://github.com/snipsco/snips-nlu) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/intent-recognition))
 - Intent Handling: [NodeRed](https://nodered.org/) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/node-red))
 - Text-To-Speech: [NanoTTS](https://github.com/gmn/nanotts) ([Sherlock docs](https://ip-team4.intia.de/pages/knowledge/tts/nano-tts))
-- 
+
 ## Skills
 - [Read the clock](https://ip-team4.intia.de/pages/skills/time)
 - [Set an alarm clock](https://ip-team4.intia.de/pages/skills/alarm/)
@@ -33,6 +33,33 @@ The following command starts a local server, if Jekyll is installed with bundler
 ```bash 
 cd docs
 bundle exec jekyll serve
+```
+
+## Troubleshooting
+### Check service
+If something doesn't run as expected, check if all services are running. To check the services run the command `sherlock-conf -c`:
+```bash
+pi@raspberrypi:~ $ sherlock-conf -c
+Check services
+
+Node-RED                          active (enabled)
+Hermes LED Control                active (enabled)
+Rhasspy                           active (enabled)
+Rhasspy ASR Deepspeech Hermes     active (enabled)
+Rhasspy Snips NLU Hermes          active (enabled)
+zigbee2mqtt                       active (enabled)
+```
+
+### Restart services
+Run the command `sherlock-conf -r` to restart all services:
+```bash
+Restarting...
+...Node-RED
+...Hermes LED Control
+...Rhasspy ASR Deepspeech Hermes
+...Rhasspy
+...Rhasspy Snips NLU Hermes
+...zigbee2mqtt
 ```
 
 ## Our other Repositories we used in this Project
