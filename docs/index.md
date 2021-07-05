@@ -1,5 +1,5 @@
 ---
-title: Welcome to Sherlock
+title: Welcome to Sherlock - Offline Voice Assistant
 layout: default
 nav_order: 1
 has_toc: true
@@ -15,7 +15,7 @@ has_toc: true
 </details> -->
 
 
-# Welcome To Sherlock
+# Welcome To Sherlock - Offline Voice Assistant
 Sherlock is a simple to use offline voice assistant, it's based on the [Rhasspy project](https://rhasspy.readthedocs.io/en/latest/). 
 It's an opensource project and is working local offline on your [Raspberry Pi](https://de.wikipedia.org/wiki/Raspberry_Pi). 
 So you don't need to worry about your privacy, it stays all on your own device. Unlike the Google Assistant or Alexa, 
@@ -39,6 +39,17 @@ the preset skills for Sherlock and how to configure them.
 Sherlock is a short, catchy word that is rarely used in everyday language. It also consists of two syllables and is 
 therefore a perfect wake word. Furthermore, Sherlock is based on the character Sherlock Holmes whose brother is 
 Mycroft Holmes. There is an open source language wizard called [Mycroft](https://mycroft.ai/).
+
+# Software-Stack
+| Software                                                | Version            | Note
+|---------------------------------------------------------|--------------------|--------------------------------------------|
+| [Rhasspy](https://rhasspy.readthedocs.io/en/latest/)    | 2.5.9              | Intent recognition not working on v2.5.10. See [issue 234](https://github.com/rhasspy/rhasspy/issues/234)
+| DeepSpeech                                              | 0.9.0              | 
+| Hermes LED Control                                      | 2.0.10             | 
+| Node-RED	                                              | 1.3.4              | 
+| Snips-NLU	                                              | 0.2.0              | 
+| Mosquitto	                                              | 1.5.7              | 
+
 
 # Links
 - Archilab project page: [www.archi-lab.io](https://www.archi-lab.io/pages/viewpage.action?pageId=41156613)

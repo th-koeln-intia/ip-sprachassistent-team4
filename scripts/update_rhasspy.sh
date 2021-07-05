@@ -33,7 +33,7 @@ select yes_no in "Yes" "No"; do
             echo "Creating backup." ;
             cp -R /home/pi/.config/rhasspy/ /home/pi/backup_rhasspy_config/ ;
         break;;
-      No) exit;;
+      No) break;;
   esac
 done
 
