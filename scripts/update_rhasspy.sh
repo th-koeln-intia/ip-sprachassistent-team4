@@ -1,4 +1,5 @@
 #!/bin/bash
+WORKFOLDER=/home/pi/installFiles
 RHASSPY_BACKUP_FOLDER=/home/pi/backup_rhasspy_config
 mkdir -p $RHASSPY_BACKUP_FOLDER
 
@@ -46,9 +47,9 @@ RHASSPY_TAG_NAME=$(curl --silent "https://api.github.com/repos/rhasspy/rhasspy/r
 echo "Installing rhasspy "$RHASSPY_TAG_NAME
 RHASSPY_VERSION=$(echo $RHASSPY_TAG_NAME | cut -d 'v' -f 2)
 echo "version: $RHASSPY_VERSION"
-wget https://github.com/rhasspy/rhasspy/releases/download/$RHASSPY_TAG_NAME/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
+mkdir -p $WORKFOLDER && wget https://github.com/rhasspy/rhasspy/releases/download/$RHASSPY_TAG_NAME/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb -O $WORKFOLDER/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
 
-sudo apt install ./rhasspy"_"$RHASSPY_VERSION"_"armhf.deb -y
+sudo apt install $WORKFOLDER/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
 rm rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
 
 # restore saved settings
