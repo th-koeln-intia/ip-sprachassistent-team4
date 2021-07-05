@@ -50,10 +50,7 @@ echo "version: $RHASSPY_VERSION"
 mkdir -p $WORKFOLDER && wget https://github.com/rhasspy/rhasspy/releases/download/$RHASSPY_TAG_NAME/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb -O $WORKFOLDER/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
 
 sudo apt install $WORKFOLDER/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
-rm rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
-
-# restore saved settings
-cp -r $RHASSPY_BACKUP_FOLDER/rhasspy/ /home/pi/.config/
+rm $WORKFOLDER/rhasspy"_"$RHASSPY_VERSION"_"armhf.deb
 
 # start service
 sudo systemctl start rhasspy.service
