@@ -99,8 +99,8 @@ else
     #install Rhasspy
     echo "$(tput setaf 3)Install Rhasspy! $(tput sgr 0)"
     cd $WORKFOLDER
-    wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.7/rhasspy_2.5.7_armhf.deb
-    sudo apt install ./rhasspy_2.5.7_armhf.deb -y
+    wget https://github.com/rhasspy/rhasspy/releases/download/v2.5.10/rhasspy_2.5.10_armhf.deb
+    sudo apt install ./rhasspy_2.5.10_armhf.deb -y
 
     sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/rhasspy_$language.service -O /etc/systemd/system/rhasspy.service
     sudo systemctl enable rhasspy
