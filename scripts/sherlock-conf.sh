@@ -6,7 +6,7 @@
 # 2021-05-14 Initial commit
 # 2021-05-14 Fix echo message
 # 2021-07-10 Add options for starting, stopping, restarting, journal
-#
+# 2021-07-10 Fix typos
 
 check_if_service_exists() {
   if [ "$servicename" == "nodered" ]; then
@@ -107,14 +107,14 @@ show_help() {
   echo "    -j servicename, --journal servicename             prints journal of the service"
   echo ""
   echo "Administration:"
-  echo "    -start servicename, --start servicename           restarts specific services"
+  echo "    -start servicename, --start servicename           starts specific service"
   echo "    -start all, --start all                           starts all services"
   echo ""
-  echo "    -stop servicename, --stop servicename             stopps all services"
-  echo "    -stop all, --stop all                             stopps all services"
+  echo "    -stop servicename, --stop servicename             stops specific service"
+  echo "    -stop all, --stop all                             stops all services"
   echo ""
-  echo "    -r all, --restart all                             restarts all services"
   echo "    -r servicename, --restart servicename             restarts specific service"
+  echo "    -r all, --restart all                             restarts all services"
   echo ""
   exit 0
 }
