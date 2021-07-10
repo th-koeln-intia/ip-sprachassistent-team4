@@ -27,6 +27,20 @@ quickly. `sherlock-conf` is located in `/usr/bin/sherlock-conf`. If you are a de
 is a shell script. You can also adapt or extend this script yourself. You can make extensions available to everyone with
 a pull request on [github](https://github.com/th-koeln-intia/ip-sprachassistent-team4/pulls).
 
+## Installation
+
+The tool should be already on your system after running
+the [automatic installation script](/pages/installation/auto-installation).
+
+If the tool is not available you can install the tool with following commands:
+
+```bash
+    sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/sherlock-conf.sh -O /usr/bin/sherlock-conf
+    sudo chmod +x /usr/bin/sherlock-conf
+```
+
+Finally run `sherlock-conf -h`.
+
 ## Options
 
 ```bash
