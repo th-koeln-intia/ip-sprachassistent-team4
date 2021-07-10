@@ -5,7 +5,7 @@ nav_order: 27
 has_children: false
 ---
 
-<details markdown="block">
+<details open markdown="block">
   <summary>
     Table of contents
   </summary>
