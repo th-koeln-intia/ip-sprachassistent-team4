@@ -139,7 +139,7 @@ else
 
     #install sherlock-conf
     echo "$(tput setaf 3)Install Configuration Script! $(tput sgr 0)"
-    sudo wget https://github.com/Sh4der/Sherlock/raw/master/scripts/sherlock-conf.sh -O /usr/bin/sherlock-conf
+    sudo wget https://github.com/th-koeln-intia/ip-sprachassistent-team4/raw/master/scripts/sherlock-conf.sh -O /usr/bin/sherlock-conf
     sudo chmod +x /usr/bin/sherlock-conf
     sherlock-conf -c
 
