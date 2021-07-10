@@ -5,6 +5,10 @@ nav_order: 27
 has_children: false
 ---
 
+# Administration tool
+
+`sherlock-conf` is a configuration tool for this voice assistant.
+
 <details open markdown="block">
   <summary>
     Table of contents
@@ -13,10 +17,6 @@ has_children: false
 1. TOC
 {:toc}
 </details>
-
-# Administration tool
-
-`sherlock-conf` is a configuration tool for this voice assistant.
 
 ## Introduction
 
