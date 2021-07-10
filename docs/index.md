@@ -35,10 +35,10 @@ installing Sherlock. The second one is the [Knowledge](pages/knowledge) section.
 background information about Rhasspy and the surrounding programs. The third one is [Skills](/pages/skills) which contains 
 the preset skills for Sherlock and how to configure them.
 
-# Why Sherlock?
-Sherlock is a short, catchy word that is rarely used in everyday language. It also consists of two syllables and is 
-therefore a perfect wake word. Furthermore, Sherlock is based on the character Sherlock Holmes whose brother is 
-Mycroft Holmes. There is an open source language wizard called [Mycroft](https://mycroft.ai/).
+# Administration tool
+
+Open a terminal on your Raspberry Pi and enter `sherlock-conf -h`. You will be able to get some useful tools. See
+page [Administration](/pages/administration) for more information about this tool.
 
 # Software-Stack
 | Software                                                | Version            | Note
@@ -50,6 +50,11 @@ Mycroft Holmes. There is an open source language wizard called [Mycroft](https:/
 | Snips-NLU	                                              | 0.2.0              | 
 | Mosquitto	                                              | 1.5.7              | 
 
+# Why Sherlock?
+
+Sherlock is a short, catchy word that is rarely used in everyday language. It also consists of two syllables and is
+therefore a perfect wake word. Furthermore, Sherlock is based on the character Sherlock Holmes whose brother is Mycroft
+Holmes. There is an open source language wizard called [Mycroft](https://mycroft.ai/).
 
 # Links
 - Archilab project page: [www.archi-lab.io](https://www.archi-lab.io/pages/viewpage.action?pageId=41156613)
