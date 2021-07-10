@@ -14,17 +14,20 @@ has_children: false
 {:toc}
 </details>
 
-# Introduction
+# Administration tool
 
-`sherlock-conf` is a configuration tool for this voice assistant. With this tool you can restart individual components
-or the entire system without having to restart the operating system. Furthermore, you can see whether all components or
-services are activated and running. For individual services, you can display and monitor the current log or journal.
-With this tool, problems with the system can be found more quickly. `sherlock-conf` is located
-in `/usr/bin/sherlock-conf`. If you are a developer, you can look at this file. It is a shell script. You can also adapt
-or extend this script yourself. You can make extensions available to everyone with a pull request
-on [github](https://github.com/th-koeln-intia/ip-sprachassistent-team4/pulls).
+`sherlock-conf` is a configuration tool for this voice assistant.
 
-# Options
+## Introduction
+
+With this tool you can restart individual components or the entire system without having to restart the operating
+system. Furthermore, you can see whether all components or services are activated and running. For individual services,
+you can display and monitor the current log or journal. With this tool, problems with the system can be found more
+quickly. `sherlock-conf` is located in `/usr/bin/sherlock-conf`. If you are a developer, you can look at this file. It
+is a shell script. You can also adapt or extend this script yourself. You can make extensions available to everyone with
+a pull request on [github](https://github.com/th-koeln-intia/ip-sprachassistent-team4/pulls).
+
+## Options
 
 ```bash
 pi@raspberrypi:~ $ sherlock-conf
@@ -49,38 +52,38 @@ Administration:
     -r all, --restart all                             restarts all services
 ```
 
-## -h, --help
+### -h, --help
 
 Displays the help.
 
-## -c, --check
+### -c, --check
 
 Checks the status of all services.
 
-## -j servicename, --journal servicename
+### -j servicename, --journal servicename
 
 Displays the journal of the specified service.
 
-## -start servicename, --start servicename
+### -start servicename, --start servicename
 
 Starts the specified service.
 
-## -start all, --start all
+### -start all, --start all
 
 Starts all services.
 
-## -stop servicename, --stop servicename
+### -stop servicename, --stop servicename
 
 Stops the specified service.
 
-## -stop all, --stop all
+### -stop all, --stop all
 
 Stops all services.
 
-## -r servicename, --restart servicename
+### -r servicename, --restart servicename
 
 Restarts the specified service.
 
-## -r all, --stop all
+### -r all, --stop all
 
 Restarts all services.
