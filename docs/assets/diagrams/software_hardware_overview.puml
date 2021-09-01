@@ -1,5 +1,4 @@
 @startuml
-
 [**DeepSpeech**] as deepspeech <<Speech to Text>>
 [**Hermes LED Control**] as hlc <<LED Control>>
 [**Mosquitto**] as mosquitto <<MQTT broker>> #DeepSkyBlue
@@ -17,6 +16,8 @@
 [**Sensor**] as sensor <<Zigbee device >>
 
 zigbeeadapter --- zigbee2mqtt
+zigbeeadapter -- light
+zigbeeadapter -- sensor
 zigbee2mqtt -- mosquitto
 mosquitto --- nodered
 mosquitto --- nanotts
@@ -33,7 +34,4 @@ respeaker --- rhasspy
 raspbian - raspberrypi
 raspberrypi -- respeaker
 raspberrypi -- zigbeeadapter
-
-
-
 @enduml
