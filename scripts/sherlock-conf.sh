@@ -55,7 +55,7 @@ parse_service_name() {
   fi
 
   if [ $servicename == "hermesledcontrol" ]; then
-    servicename_parsed="Hermes LED Control service"
+    servicename_parsed="Hermes LED Control"
     return
   fi
 
