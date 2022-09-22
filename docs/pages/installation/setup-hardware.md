@@ -71,7 +71,7 @@ network={
  psk="<Password for your wireless LAN>"
 }
 ```
-you can use the command `sudo rasi-config` for additional setting (e.g : change your time zone, set the language, 
+you can use the command `sudo raspi-config` for additional setting (e.g : change your time zone, set the language, 
 Keyboard layout etc.)
 
 Read more about a headless setup 
