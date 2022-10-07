@@ -332,6 +332,17 @@ Zigbee2MQTT:info  2020-11-17 11:32:44: MQTT publish: topic 'zigbee2mqtt/0x00158d
 ...
 ```
 
+If you get the error `MQTT error: Connection refused: Not authorized` you probably set credentials for the mqtt broker.
+
+Go to the data folder of zigbee2mqtt:
+```bash
+cd /opt/zigbee2mqtt/data
+```
+
+Open the file `configuration.yml` with an editor of your choice like `vi` or `vim`.
+
+Remove the comment parameter # in the line of `user` and `password` and add your credentials there.
+
 #### Quit
 {: .no_toc }
 Press ctrl + c to quit.
