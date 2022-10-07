@@ -16,6 +16,11 @@ nav_order: 1
 {:toc}
 </details>
 
+# Preconditions
+Install these software first:
+- Node.js: Follow the instructions on the page https://pimylifeup.com/raspberry-pi-nodejs/
+- Python 3: execute this commands `sudo apt update && sudo apt install python3 idle3`
+
 # Setup Software
 Login to your Raspberry Pi and solve the following steps.
 
@@ -171,7 +176,9 @@ sudo apt-get install mosquitto mosquitto-clients -y
 
 ## 3. Update Node.js and install [Node-RED](/pages/knowledge/node-red)
 
-First you need to download and execute a script to update Node.js and install [Node-RED](/pages/knowledge/node-red).
+Make sure you have installed Node.js. If not, follow these instructions first: https://pimylifeup.com/raspberry-pi-nodejs/
+
+Then you need to download and execute a script to update Node.js and install [Node-RED](/pages/knowledge/node-red).
 
 #### Go to pi's home directory
 {: .no_toc }
@@ -182,7 +189,7 @@ cd ~
 ### Download Script to update Node.js and install [Node-RED](/pages/knowledge/node-red)
 {: .no_toc }
 ```bash
-wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+wget https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
 ```
 
 ### Make the downloaded file executable
