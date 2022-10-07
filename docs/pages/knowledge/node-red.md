@@ -21,7 +21,7 @@ palette that can be deployed to its runtime in a single-click.
 Node-Red has different nodes which allows us to control our devices according to our needs. We will use this home 
 automation for our current project.
 
-# Installation of node-RED
+# Installation of Node-RED
 
 This command shows how to install Node-Red , Nodejs , Mosquitto as your MQTT Server in a simple line of commands.
 
@@ -32,6 +32,9 @@ sudo systemctl enable nodered.service # start Node-Red as service
 
 ```
 Node-Red is now available at http://<hostname>:1880 
+
+Links:
+  - [Node-RED Github](https://github.com/node-red/linux-installers)
 
 # Setting a password for your node-Red [Optional]
 
