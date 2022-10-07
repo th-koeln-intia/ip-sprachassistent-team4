@@ -331,7 +331,7 @@ An output could look like this:
 Zigbee2MQTT:info  2020-11-17 11:32:44: MQTT publish: topic 'zigbee2mqtt/0x00158d000520f47d', payload '{"brightness":255,"color_temp":153,"linkquality":118,"state":"ON"}'
 ...
 ```
-
+### MQTT error
 If you get the error `MQTT error: Connection refused: Not authorized` you probably set credentials for the mqtt broker.
 
 Go to the data folder of zigbee2mqtt:
@@ -339,7 +339,7 @@ Go to the data folder of zigbee2mqtt:
 cd /opt/zigbee2mqtt/data
 ```
 
-Open the file `configuration.yml` with an editor of your choice like `vi` or `vim`.
+Open the file `configuration.yml` with an editor of your choice like `nano`, `vi` or `vim`.
 
 Remove the comment parameter # in the line of `user` and `password` and add your credentials there.
 
@@ -373,6 +373,7 @@ User=pi
 [Install]
 WantedBy=multi-user.target
 ```
+!Ensure that you use the correct user!
 
 Enable the new service with 
 ```bash
@@ -383,6 +384,30 @@ Now start the service by restarting your Raspberry Pi or with this command:
 ```bash
 sudo systemctl start zigbee2mqtt.service
 ```
+
+### Frontend
+Zigbee2MQTT brings an own optional frontend. You can activate it in the `configuration.yml`.
+
+- Go to the folder `/opt/zigbee2mqtt/data`
+- Edit the file `configuration.yml`
+- Add the line `frontend: true` at the end of the file
+- Save and exit the editor
+- Restart the service with `sudo systemctl restart zigbee2mqtt.service`
+
+The frontend will run on port 8080. If you want to change the port, use this code instead of `frontend: true`:
+```bash
+frontend:
+  # Optional, default 8080
+  port: 8080
+  # Optional, default 0.0.0.0
+  host: 0.0.0.0
+  # Optional, enables authentication, disabled by default
+  auth_token: your-secret-token
+  # Optional, url on which the frontend can be reached, currently only used for the Home Assistant device configuration page
+  url: 'https://zigbee2mqtt.myhouse.org'
+```
+
+Read more about the frontend configuration on the zigbee2mqtt documentation: https://www.zigbee2mqtt.io/guide/configuration/frontend.html
 
 ## 5. Optional install Hermes Led Control for ReSpeaker LEDs
 
